@@ -24,11 +24,12 @@ class Validacion {
 
     /**
      * <p>Expresión regular para comprobación de nombres de usuario</p>
-     * <p>Requiere de 4 a 14 caracteres, mayúsculas o minúsculas. No permite espacios.</p>
+     * <p>Requiere de 4 a 16 caracteres, mayúsculas o minúsculas y los caracteres '-' y '_'.
+     * No permite espacios ni caracteres especiales.</p>
      * 
      * @var string
      */
-    private static string $usernameRegEx = "[A-Za-z]{4,14}";
+    private static string $usernameRegEx = "[A-z-0-9]{4,16}";
 
     /** FUNCIONES * */
 
@@ -44,20 +45,18 @@ class Validacion {
 
     /**
      * 
-     * @global type $usernameRegEx <p>Expresión regular para comprobar el nombre.</p>
      * @param string $string <p>Nombre de usuario a comprobar.</p>
      * @return bool <p>Indica si el nombre de usuario es correcto o no.</p>
      */
-    public static function validarNombreUsuario(string $string): bool {
+    public static function validarLogin(string $string): bool {
         return preg_match(self::$usernameRegEx, $string);
     }
 
     /**
      * <p>Valida la seguridad de una contraseña.</p>
      * 
-     * @global type $safePassRegEx <p>Expresión regular para comprobar la contraseña.</p>
      * @param string $string <p>Contraseña cuya seguridad se quiere comprobar.</p>
-     * @return boolean <p>Indica si la contraseña es segura o no.</p>
+     * @return bool <p>Indica si la contraseña es segura o no.</p>
      */
     public static function validarPassword(string $string): bool {
         return preg_match(self::$safePassRegEx, $string);
