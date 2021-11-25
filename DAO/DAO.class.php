@@ -1,22 +1,23 @@
 <?php
 
-require_once('../Class/Usuario.class.php');
-require_once('../Class/Admin.class.php');
-//require('Help.class.php');
+require('./Class/Usuario.class.php');
+require('./Class/Admin.class.php');
+require('Help.class.php');
+require('BD.class.php');
 class DAO
 {
-
-    private $idiomas = array('gallego' => 'GL', 'castellano' => 'ES');
-
+    private $idiomas = array('gallego' => 'GL', 'castellano' => 'ES', 'ingles' => 'EN');
+    private $modo = 'csv';
+    
     /**
      * Lectura del archivo del idioma correspondiente
      *
      * @param string $idioma
      * @return array
      */
-    public function leerIdioma($idioma) {
+    public function readLanguage($idioma) {
         $type = self::$idiomas[$idioma];
-        $data = CSV::readCSV($type);
+        $data = CSV::readLanguage($type);
         if($data != null) {
             return $data;
         }
@@ -31,8 +32,12 @@ class DAO
      */
     public function insertUser($user)
     {
-        $users = self::getUsers();
-        CSV::write($users, $user, 'usuarios');
+        if(self::$modo == 'csv') {
+            CSV::insertUser($user,'usuarios');
+        } else if(self::$modo == 'bd') {
+            BD::insertUser($user);
+        }
+        
     }
 
     /**
@@ -42,7 +47,12 @@ class DAO
      */
     public function getUsers()
     {
-        $users = CSV::read('usuarios');
+        $users = null;
+        if(self::$modo == 'csv') {
+            $users = CSV::getUsers('usuarios');
+        } else if(self::$modo == 'bd') {
+            $users = BD::getUsers();
+        }
         if ($users != null) {
             return $users;
         }
@@ -55,9 +65,14 @@ class DAO
      * @param Usuario $user
      * @return void
      */
-    public function deleteUser($delete)
+    public function deleteUser($user)
     {
-        $users = self::getUsers();
+        if(self::$modo == 'csv') {
+            CSV::deleteUser($user);
+        } else if(self::$modo == 'bd') {
+            BD::deleteUser($user);
+        }
+        
     }
     
     /**
@@ -68,8 +83,11 @@ class DAO
      */
     public function insertAdmin($admin)
     {
-        $admins = self::getAdmins();
-        CSV::write($admins, $admin, 'admins');
+        if(self::$modo == 'csv') {
+            CSV::insertAdmin($admin);
+        } else if(self::$modo == 'bd') {
+            BD::insertAdmin($admin);
+        }
     }
 
     /**
@@ -79,7 +97,12 @@ class DAO
      */
     public function getAdmins()
     {
-        $admins = CSV::read('admins');
+        $admins = null;
+        if(self::$modo == 'csv') {
+            $admins = CSV::getAdmins();
+        } else if(self::$modo == 'bd') {
+            $admins = BD::getAdmins();
+        }
         if ($admins != null) {
             return $admins;
         }
@@ -94,7 +117,11 @@ class DAO
      */
     public function deleteAdmin($admin)
     {
-        $admins = self::getAdmins();
+        if(self::$modo == 'csv') {
+            CSV::deleteAdmin($admin);
+        } else if(self::$modo == 'bd') {
+            BD::deleteAdmin($admin);
+        }
     }
 
     /**
