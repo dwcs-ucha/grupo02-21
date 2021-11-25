@@ -1,9 +1,9 @@
 <?php
 
-require('./Class/Usuario.class.php');
-require('./Class/Admin.class.php');
-require('Help.class.php');
-require('BD.class.php');
+require('../Class/Usuario.class.php');
+require('../Class/Admin.class.php');
+//require('Help.class.php');
+//require('BD.class.php');
 class DAO
 {
     private $idiomas = array('gallego' => 'GL', 'castellano' => 'ES', 'ingles' => 'EN');
