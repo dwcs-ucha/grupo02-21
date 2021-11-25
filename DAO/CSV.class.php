@@ -1,6 +1,6 @@
 <?php
 
-class Help
+class CSV
 {
     private $files = array('admin' => './privada/admins.csv', 'usuarios' => './privada/clientes.csv', 'GL' => './privada/idiomaGL.csv', 'ES' => './privada/idiomaES.csv', 'EN' => './privada/idiomaEN.csv');
     private $modo = 'csv';

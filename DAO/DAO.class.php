@@ -16,7 +16,7 @@ class DAO
      */
     public function leerIdioma($idioma) {
         $type = self::$idiomas[$idioma];
-        $data = Help::readCSV($type);
+        $data = CSV::readCSV($type);
         if($data != null) {
             return $data;
         }
@@ -32,7 +32,7 @@ class DAO
     public function insertUser($user)
     {
         $users = self::getUsers();
-        Help::write($users, $user, 'usuarios');
+        CSV::write($users, $user, 'usuarios');
     }
 
     /**
@@ -42,7 +42,7 @@ class DAO
      */
     public function getUsers()
     {
-        $users = Help::read('usuarios');
+        $users = CSV::read('usuarios');
         if ($users != null) {
             return $users;
         }
@@ -69,7 +69,7 @@ class DAO
     public function insertAdmin($admin)
     {
         $admins = self::getAdmins();
-        Help::write($admins, $admin, 'admins');
+        CSV::write($admins, $admin, 'admins');
     }
 
     /**
@@ -79,7 +79,7 @@ class DAO
      */
     public function getAdmins()
     {
-        $admins = Help::read('admins');
+        $admins = CSV::read('admins');
         if ($admins != null) {
             return $admins;
         }
