@@ -4,11 +4,11 @@
     //@author: Oscar González Martínez
     //Versión: 0.1
     //Proyecto "Aforro Enerxético"
-    include_once '../Class/Persona.class.php';
-    //include_once "../Class/Usuario.class.php";    
+    include_once '../Class/Persona.class.php';    
     include_once "../lote_tecnico_01/Validacion.class.php";
     include_once "../DAO/DAO.class.php";
-   
+    
+    
 
     
 ?>
