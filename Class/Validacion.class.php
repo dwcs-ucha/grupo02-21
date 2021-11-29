@@ -7,7 +7,7 @@
  * @email luisvaziza@gmail.com
  * @fechaDeCreación 18 nov 2021
  * @últimaModificación 18 nov 2021
- * @versión v01.01.01
+ * @versión v01.02.00
  */
 class Validacion {
     /*     * VARIABLES * */
