@@ -32,7 +32,7 @@ class DAO
      * @param Usuario $user
      * @return void
      */
-    public function insertUser($user)
+    public static function insertUser($user)
     {
         if(self::$modo == 'csv') {
             CSV::insertUser($user);

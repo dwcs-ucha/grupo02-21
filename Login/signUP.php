@@ -154,6 +154,7 @@
                 $user = new Usuario($registerLogin,$registerName,$registerPassWord,$registerSurname,$registerEmail,$registerRol,$registerAddress);
                 DAO::insertUser($user);
             }
+             //Erro::showErrors();
         }
         ?>
     </body>
