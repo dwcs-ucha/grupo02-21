@@ -18,23 +18,23 @@ class Erro
      * @param [type] $message
      * @return void
      */
-    public function addError($type, $message)
+    public static function addError($type, $message)
     {
-        $this->errors[$type] = $message;
+        self::$errors[$type] = $message;
     }
     /**
      * Mostrar todos los errores en formato texto
      *
      * @return string
      */
-    public function showErrors()
+    public static function showErrors()
     {
         foreach ($this->errors as $type => $message) {
             $texto = $type . ': ' . $message . '\n';
         }
         return $texto;
     }
-    public function countErros() {
+    public static function countErros() {
         return count($this->errores);
     }
 }

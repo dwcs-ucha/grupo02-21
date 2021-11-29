@@ -8,7 +8,7 @@
     include_once "../Class/Validacion.class.php";
     include_once "../DAO/DAO.class.php";
     include_once "../Class/Erro.class.php";
-    require_once "recaptchalib.php";
+//    require_once "recaptchalib.php";
     
  //Inicialización de variables 
  $registerLogin = $registerName = $registerSurname = $registerPassWord = $registerVerifyPassword = $registerEmail = $registerVerifyEmail = $registerAddress = "";
@@ -70,7 +70,7 @@
             
             
         </div>
-        <div class="g-recaptcha" data-sitekey="CLAVE PUBLICA"></div>
+        <!-- <div class="g-recaptcha" data-sitekey="CLAVE PUBLICA"></div> -->
         </form>
         <?php
         // put your code here
@@ -87,7 +87,7 @@
             }
             //Validación de Nombre
             if (isset($_POST['registerName'])){
-                if (Validacion::validarNombreUsuario($_POST['registerName'])){
+                if (Validacion::validarNombre($_POST['registerName'])){
                     $registerName = $_POST['registerName'];
                 } else {
                     Erro::addError("registerNameError","Nombre invalido");                    
@@ -95,7 +95,7 @@
             }
             //Validación de Apellido
             if (isset($_POST['registerSurName'])){
-                if (Validacion::validarNombreUsuario($_POST['registerSurName'])){
+                if (Validacion::validarApellido($_POST['registerSurName'])){
                     $registerName = $_POST['registerSurName'];
                 } else {
                     Erro::addError("registerSurNameError","Nombre invalido");                    
@@ -106,9 +106,9 @@
                 //Comprueba si se ha introducido la validacion.
                 if (isset($_POST['registerVerifyPassword'])) {
                     //Comprueba que ambas cadenas son iguales
-                    if (Validacion::comparaString($registerPassWord,$registerVerifyPassword)){
+                    if (Validacion::comprobarStrings($_POST['registerPassword'],$_POST['registerVerifyPassword'])){
                         //Si todo es correcto, se genera la la contraseña cifrada.
-                        $registerPassWord = Persona::generate_hash($registerPassWord);
+                        $registerPassWord = Persona::generate_hash($_POST['registerPassword']);
                     } else {
                       Erro::addError("registerPassWordError","Las contraseñales son distintas");                      
                     }                   
@@ -128,7 +128,7 @@
                 //Comprueba que el campo validar email tenga valor
                 if (isset($_POST['registerVerifyEmail'])){
                     //Comprueba que los Campos Mail y Verificar Email sean iguales.
-                    if (Validacion::comparaString($registerEmail,$registerVerifyEmail)){
+                    if (Validacion::comprobarStrings($registerEmail,$registerVerifyEmail)){
                         $registerEmail = $_POST['registerEmail'];
                     } else {
                         //Error cuando los campos no son iguales.
@@ -144,13 +144,8 @@
                 Erro::addError("registerEmailError","Introduzca Email");                
             }
 
-            if (isset($_POST['registerAddress'])){
-                if (Validacion::validarDireccion($_POST['registerAddress'])){
+            if (isset($_POST['registerAddress'])){               
                     $registerAddress = $_POST['registerAddress'];
-                } else {
-                    Erro::addError("registerAddressError","Dirección contiene caracteres incorrectos");
-                }
-                
             } else {
                 Erro:addError("registerAddressError","Inntroduzca dirección");
             }
