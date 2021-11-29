@@ -147,7 +147,7 @@
             if (isset($_POST['registerAddress'])){               
                     $registerAddress = $_POST['registerAddress'];
             } else {
-                Erro:addError("registerAddressError","Inntroduzca dirección");
+                Erro::addError("registerAddressError","Inntroduzca dirección");
             }
             
             if (Erro::countErros() == 0){

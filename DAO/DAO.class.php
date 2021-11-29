@@ -2,12 +2,14 @@
 
 require_once('../Class/Usuario.class.php');
 require_once('../Class/Admin.class.php');
+require_once('../DAO/CSV.class.php');
+require_once('../DAO/BD.class.php');
 //require('Help.class.php');
 //require('BD.class.php');
 class DAO
 {
     private $idiomas = array('gallego' => 'GL', 'castellano' => 'ES', 'ingles' => 'EN');
-    private $modo = 'csv';
+    private static $modo = 'csv';
     
     /**
      * Lectura del archivo del idioma correspondiente

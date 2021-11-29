@@ -9,7 +9,7 @@ class Erro
      *
      * @var array
      */
-    private $errors = array();
+    private static $errors = array();
 
     /**
      * Añadir un error con un identificador y un mensaje
@@ -29,12 +29,12 @@ class Erro
      */
     public static function showErrors()
     {
-        foreach ($this->errors as $type => $message) {
+        foreach (self::$errors as $type => $message) {
             $texto = $type . ': ' . $message . '\n';
         }
         return $texto;
     }
     public static function countErros() {
-        return count($this->errores);
+        return count(self::$errors);
     }
 }

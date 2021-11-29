@@ -2,7 +2,7 @@
 
 class CSV
 {
-    private $files = array('users' => '../DataBase/users.csv');
+    private static $files = array('users' => '../DataBase/users.csv');
 
     /**
      * Comprueba si el fichero pasado existe
