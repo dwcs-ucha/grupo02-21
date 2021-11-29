@@ -13,7 +13,7 @@
  $registerLogin = $registerName = $registerSurname = $registerPassWord = $registerVerifyPassword = $registerEmail = $registerVerifyEmail = $registerAddress = "";
  $registerRol = "Usuario";
  //$registerLoginError = $registerNameError = $registerSurnameError = $registerPassWordError = $registerVerifyPasswordError = $registerEmailError = $registerVerifyEmail = "";
- $registerError = array();
+ $registerError = array(); 
     
 ?>
 <html>
@@ -139,6 +139,17 @@
             } else {
                 //error cuando el campo email está vacío.
                 Erro::addError("registerEmailError","Introduzca Email");                
+            }
+
+            if (isset($_POST['registerAddress'])){
+                if (Validacion::validarDireccion($_POST['registerAddress'])){
+                    $registerAddress = $_POST['registerAddress'];
+                } else {
+                    Erro::addError("registerAddressError","Dirección contiene caracteres incorrectos");
+                }
+                
+            } else {
+                Erro:addError("registerAddressError","Inntroduzca dirección");
             }
             
             if (Erro::countErros() == 0){
