@@ -66,7 +66,9 @@
             $pass = $_POST['loginPassWord']; 
             
             if (empty($login) || empty($pass)){
-
+                Erro::addError("emptyField","Introduzca Login y contraseña");
+            } else {
+                if (DAO::authenticateUser($login) )
             }
         }
         

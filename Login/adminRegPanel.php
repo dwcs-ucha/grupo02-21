@@ -33,7 +33,11 @@
         <div class="container">            
             <!--  ROL -->
             <label for="adminRol">Rol </label>
-            <input type="text" name="adminRol" id="adminRol">
+            <select name="adminRol" id="adminRol">
+                <option value="user">Usuario</option>
+                <option value="admin">Administrador</option>
+            </select>
+            <br/>
             <!-- Nombre de Login -->
             <label for="adminLogin">Login</label>            
             <input type="text" name="adminLogin" value="<?php if(isset($_POST['adminLogin'])) { echo $_POST['adminLogin'];} ?>"/>            
@@ -119,7 +123,7 @@
                 }                
             } else {
                 //Se genera un error si no se ha introducido la conrtaseña.
-                Erro::addError(adminPassWord ,"Introduzca Password");
+                Erro::addError("adminPassWord" ,"Introduzca Password");
             }
             
             //Validación email.
