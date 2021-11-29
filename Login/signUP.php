@@ -28,7 +28,7 @@
                 width: 600px;
             }
         </style>
-        <!-- <script src="https://www.google.com/recaptcha/api.js?hl=es" async defer></script> -->
+        <script src="https://www.google.com/recaptcha/api.js?hl=es" async defer></script>
     </head>
     <body>
         <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>" >
@@ -128,12 +128,8 @@
                 //Comprueba que el campo validar email tenga valor
                 if (isset($_POST['registerVerifyEmail'])){
                     //Comprueba que los Campos Mail y Verificar Email sean iguales.
-                    if (Validacion::comprobarStrings($_POST['registerEmail'],$_POST['registerVerifyEmail'])){
-                        if (Validacion::validarEmail($_POST['registerVerifyEmail'])){
+                    if (Validacion::comprobarStrings($registerEmail,$registerVerifyEmail)){
                         $registerEmail = $_POST['registerEmail'];
-                        } else {
-                            Erro::addError("EmailInvalido", "El Email es invalido");
-                        }
                     } else {
                         //Error cuando los campos no son iguales.
 
@@ -153,13 +149,12 @@
             } else {
                 Erro::addError("registerAddressError","Inntroduzca dirección");
             }
-            echo Erro::showErrors();
+            
             if (Erro::countErros() == 0){
-                $user = new Usuario($registerLogin,$registerName,$registerPassWord,$registerSurname,$registerEmail,$registerRol,$registerAddress);
+                $user = new Usuario($registerRol,$registerLogin,$registerName,$registerPassWord,$registerSurname,$registerEmail,$registerAddress);
                 DAO::insertUser($user);
-                echo('Pasa');
             }
-             
+             //Erro::showErrors();
         }
         ?>
     </body>

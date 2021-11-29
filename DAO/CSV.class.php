@@ -105,10 +105,10 @@ class CSV
         if (self::existsFile($file)) {
             if (($fp = fopen($file, 'w')) !== FALSE) {
                 foreach ($data as $person) {
-                    if ($person->getRol() == 'admin') {
+                    if ($person->getRol() == 'Admin') {
                         $object = $person->formatPerson();
                         fputcsv($fp, $object, ';');
-                    } else if ($person->getRol() == 'usuario') {
+                    } else if ($person->getRol() == 'Usuario') {
                         $object = $person->formatUsuario();
                         fputcsv($fp, $object, ';');
                     }
