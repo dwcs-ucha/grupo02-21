@@ -87,7 +87,7 @@ class Validacion {
      * @return bool <p>Indica si las cadenas de texto son iguales o no.</p>
      */
     public static function comprobarStrings(string $string1, string $string2): bool {
-        return strcmp(trim($string1), trim($string2));
+        return strcmp(trim($string1), trim($string2)) == 0;
     }
 
     /**
@@ -110,8 +110,35 @@ class Validacion {
         return preg_match(self::$surnameRegEx, trim($string));
     }
 
-    //Validación dirección
-    /*
-        Como tú veas.
-    */
+    /**
+     * Valida cualquier campo input excepto submit o reset
+     *
+     * @param [type] $campo
+     * @return void
+     * 
+     * @author rdn998
+     */
+    public static function campoVacio($campo)
+    {
+        if ((isset($campo) && empty($campo)) || !isset($campo)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Valida el campo input de tipo submit
+     *
+     * @param [type] $campo
+     * @return void
+     * 
+     * @author rdn998
+     */
+    public static function botonPresionado($campo)
+    {
+        if (isset($campo)) {
+            return true;
+        }
+        return false;
+    }
 }
