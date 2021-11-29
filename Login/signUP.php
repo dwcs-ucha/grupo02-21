@@ -8,6 +8,7 @@
     include_once "../Class/Validacion.class.php";
     include_once "../DAO/DAO.class.php";
     include_once "../Class/Erro.class.php";
+    require_once "recaptchalib.php";
     
  //Inicialización de variables 
  $registerLogin = $registerName = $registerSurname = $registerPassWord = $registerVerifyPassword = $registerEmail = $registerVerifyEmail = $registerAddress = "";
@@ -27,6 +28,7 @@
                 width: 600px;
             }
         </style>
+        <script src="https://www.google.com/recaptcha/api.js?hl=es" async defer></script>
     </head>
     <body>
         <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>" >
@@ -68,6 +70,7 @@
             
             
         </div>
+        <div class="g-recaptcha" data-sitekey="CLAVE PUBLICA"></div>
         </form>
         <?php
         // put your code here
@@ -116,7 +119,7 @@
                 }                
             } else {
                 //Se genera un error si no se ha introducido la conrtaseña.
-                Erro::addError(registerPassWord ,"Introduzca Password");
+                Erro::addError("registerPassWord" ,"Introduzca Password");
             }
             
             //Validación email.
