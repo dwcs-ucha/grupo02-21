@@ -5,12 +5,13 @@
     //Versión: 0.1
     //Proyecto "Aforro Enerxético"
     include_once '../Class/Persona.class.php';    
-    include_once "../lote_tecnico_01/Validacion.class.php";
+    include_once "../Class/Validacion.class.php";
     include_once "../DAO/DAO.class.php";
     include_once "../Class/Erro.class.php";
     
  //Inicialización de variables 
- $registerLogin = $registerName = $registerSurname = $registerPassWord = $registerVerifyPassword = $registerEmail = $registerVerifyEmail = "";
+ $registerLogin = $registerName = $registerSurname = $registerPassWord = $registerVerifyPassword = $registerEmail = $registerVerifyEmail = $registerAddress = "";
+ $registerRol = "Usuario";
  //$registerLoginError = $registerNameError = $registerSurnameError = $registerPassWordError = $registerVerifyPasswordError = $registerEmailError = $registerVerifyEmail = "";
  $registerError = array();
     
@@ -58,7 +59,9 @@
             <label for="registerVerifyEmail">Verificar Correo Electronico </label>
             <input type="registerVerifyEmail" name="registerVerifyEmail" value="<?php if (isset($_POST['registerEmail'])) { echo $_POST['registerVerifyEmail'];}?>"/>
             <br/>
-            
+            <label for="registerAddress">Dirección</label>
+            <input type="text" name="registerAddress" id="registerAdress" value="<?php if (isset($_POST['registerAddress'])) {echo $_POST['registerAddress']; } ?>">
+            <br/>
             <!-- Input y Reset -->
             <input type="submit" value="Confirmar" name="registerSubmit"/>
             <input type="reset" value="Borrar"/>
@@ -138,6 +141,10 @@
                 Erro::addError("registerEmailError","Introduzca Email");                
             }
             
+            if (Erro::countErros() == 0){
+                $user = new Usuario($registerLogin,$registerName,$registerPassWord,$registerSurname,$registerEmail,$registerRol,$registerAddress);
+                DAO::insertUser($user);
+            }
         }
         ?>
     </body>

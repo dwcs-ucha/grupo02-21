@@ -28,7 +28,4 @@ class Usuario extends Persona {
     public function setAddress($address): void {
         $this->address = $address;
     }
-
-
-
 }
