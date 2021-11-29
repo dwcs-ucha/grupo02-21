@@ -5,6 +5,12 @@
     //@version: 0.1
     //include "validaciones.php";
     //Página de Login.
+    include_once "../Class/Persona.class.php";
+    include_once "../Class/Usuario.class.php";
+    include_once "../Class/Validacion.class.php";
+    include_once "../Class/Erro.class.php";
+    include_once "../DAO/DAO.class.php";
+    
 ?>
 <html>
     <head>
@@ -51,14 +57,17 @@
         </div>
             
         </form>
-        <?php
+        <?php        
         
-        $dataBase = DAO::readCsv();
         $login = $passWord = "";
         if (isset($_POST['loginSend'])){
             //Almacenamos en las variables los datos, después de estar validados.
             $login = $_POST['loginUserName'];
-            $pass = $_POST['loginPassWord'];            
+            $pass = $_POST['loginPassWord']; 
+            
+            if (empty($login) || empty($pass)){
+
+            }
         }
         
         ?>

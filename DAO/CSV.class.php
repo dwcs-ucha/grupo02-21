@@ -2,13 +2,13 @@
 
 class CSV
 {
-    private $files = array('admin' => './privada/admins.csv', 'usuarios' => './privada/clientes.csv', 'GL' => './privada/idiomaGL.csv', 'ES' => './privada/idiomaES.csv', 'EN' => './privada/idiomaEN.csv');
+    private $files = array('users' => '../DataBase/users.csv');
 
     /**
      * Comprueba si el fichero pasado existe
      *
-     * @param string $file
-     * @return void
+     * @param string $file Nombre del fichero
+     * @return boolean Devuelve true si el fichero existe, falso si no
      */
     private static function existsFile($file)
     {
@@ -18,13 +18,52 @@ class CSV
         return false;
     }
 
-    public static function readLanguage($type) {
-        $data = CSV::readCSV($type);
-        if($data != null) {
-            return $data;
+    /**
+     * Método que devuelve todos los datos de un archivo CSV
+     * @param string $filename Nombre del archivo CSV
+     * 
+     * @return mixed Devuelve array con los datos / false si falla la conexión.
+     */
+    public static function readCsvRows($filename)
+    {
+        $rows = array();
+        if ($fs = fopen($filename, 'r')) {
+            while ($row = fgetcsv($fs, 0, ",")) {
+                $rows[] = $row;
+            }
         }
-        return null;
+        fclose($fs);
+        return $rows;
     }
+
+    /**
+     * Método que almacena los datos de un array multidimensional en un fichero CSV
+     * 
+     * @param array $rows Los datos a almacenar
+     * @param string $filename Nombre del fichero
+     * @return boolean  
+     */
+    public static function writeCSVRows($rows, $filename)
+    {
+        if ($fs = fopen($filename, 'w')) {
+            foreach ($rows as $row) {
+                fputcsv($fs, $row);
+            }
+        }
+        fclose($fs);
+    }
+
+    /**
+     * Método para obtener las cabeceras del archivo
+     * 
+     * @param string $filename  Ruta al fichero
+     * @return array Los valores de la cabecera
+     */
+    /*function getHeaders($filename)
+    {
+        $rows = self::readCsvRows($filename);
+        return array_shift($rows);
+    }*/
 
     /**
      * Lectura de CSV
@@ -32,25 +71,19 @@ class CSV
      * @param string $file
      * @return array
      */
-    private static function readCSV($type)
+    private static function readCSV($file, $type = 'all')
     {
         $fileData = array();
-        $file = self::$files[$type];
+        $file = self::$files[$file];
         if (self::existsFile($file)) {
             if (($fp = fopen($file, 'r')) !== FALSE) {
                 while (($data = fgetcsv($fp, 0, ';')) !== FALSE) {
-                    if ($type == 'admins') {
+                    if ($type == 'admins' && $data[0] == 'admin' || $type == 'all' && $data[0] == 'admin') {
                         $admin = new Admin($data[0], $data[1], $data[2], $data[3], $data[4], $data[5]);
                         $fileData[] = $admin;
-                    } else if ($type == 'usuarios') {
+                    } else if ($type == 'usuarios' && $data[0] == 'usuario' || $type == 'all' && $data[0] == 'usuario') {
                         $user = new Usuario($data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6]);
                         $fileData[] = $user;
-                    } else if ($type == 'GL') {
-                        // Cambiar el idioma a todas las palabras, Gallego
-                    } else if ($type == 'ES') {
-                        // Cambiar el idioma a todas las palabras, Castellano
-                    } else if ($type == 'EN') {
-                        // Cambiar el idioma a todas las palabras, Ingles
                     }
                 }
                 return $fileData;
@@ -62,23 +95,21 @@ class CSV
     /**
      * Escritura de CSV
      *
-     * @param string $file
-     * @param array $data
+     * @param string $type Tipo de dato que se va a meter en el fichero
+     * @param array $data Datos que se van a meter en el fichero
      * @return void
      */
-    private static function writeCSV($type, $data)
+    private static function writeCSV($file, $data, $type = 'all')
     {
-        $file = self::$files[$type];
+        $file = self::$files[$file];
         if (self::existsFile($file)) {
             if (($fp = fopen($file, 'w')) !== FALSE) {
-                if ($type == 'admins') {
-                    foreach ($data as $admin) {
-                        $object = $admin->formatPerson();
+                foreach ($data as $person) {
+                    if ($person->getRol() == 'admin') {
+                        $object = $person->formatPerson();
                         fputcsv($fp, $object, ';');
-                    }
-                } else if ($type == 'usuarios') {
-                    foreach ($data as $user) {
-                        $object = $user->formatUsuario();
+                    } else if ($person->getRol() == 'usuario') {
+                        $object = $person->formatUsuario();
                         fputcsv($fp, $object, ';');
                     }
                 }
@@ -86,28 +117,27 @@ class CSV
         }
         fclose($fp);
     }
-
     /**
      * Insertar un usuario
      *
-     * @param Usuario $user
+     * @param Usuario $user Objeto de tipo usuario
      * @return void
      */
     public static function insertUser($user)
     {
-        $users = self::getUsers();
+        $users = self::getAllUsers();
         $users[] = $user;
-        self::writeCSV('usuarios', $users);
+        self::writeCSV('users', $users, 'usuarios');
     }
 
     /**
      * Recoger todos los usuarios
      *
-     * @return array
+     * @return array Array de objetos de tipo usuario
      */
     public static function getUsers()
     {
-        $users = self::readCSV('usuarios');
+        $users = self::readCSV('users', 'usuarios');
         if ($users != null) {
             return $users;
         }
@@ -117,39 +147,48 @@ class CSV
     /**
      * Eliminacion del usuario
      *
-     * @param Usuario $user
+     * @param Usuario $user Objeto de tipo usuario
      * @return void
      */
     public static function deleteUser($delete)
     {
-        $users = self::readCSV('usuarios');
+        $users = self::readCSV('users', 'usuarios');
         if ($users != null) {
         }
+    }
+
+    public static function getAllUsers()
+    {
+        $allUsers = self::readCSV('users');
+        if ($allUsers != null) {
+            return $allUsers;
+        }
+        return null;
     }
 
     /**
      * Insertar un administrador
      *
-     * @param Admin $admin
+     * @param Admin $admin Objeto de tipo admin
      * @return void
      */
     public static function insertAdmin($admin)
     {
-        $admins = self::getAdmins();
-        $admins[] = $admin;
-        self::writeCSV('usuarios', $admins);
+        $allUsers = self::getAllUsers();
+        $allUsers[] = $admin;
+        self::writeCSV('users', $allUsers, 'admins');
     }
 
     /**
      * Recoger todos los administradores
      *
-     * @return array
+     * @return array Array de objetos de tipo admin
      */
     public static function getAdmins()
     {
-        $users = self::readCSV('admins');
-        if ($users != null) {
-            return $users;
+        $admins = self::readCSV('users', 'admins');
+        if ($admins != null) {
+            return $admins;
         }
         return null;
     }
@@ -157,13 +196,55 @@ class CSV
     /**
      * Eliminación del admin
      *
-     * @param Admin $user
+     * @param Admin $user Objeto de tipo admin
      * @return void
      */
     public static function deleteAdmin($admin)
     {
-        $admins = self::readCSV('admins');
+        $admins = self::readCSV('users', 'admins');
         if ($admins != null) {
         }
+    }
+
+    /**
+     * Comprobar si el usuario existe en nuestra base de datos
+     *
+     * @param string $login
+     * @param string $pass
+     * @return mixed Devuelve un objeto Usuario o Admin
+     */
+    public function authenticateUser($login, $pass)
+    {
+        $allUsers = self::getAllUsers();
+        if ($allUsers != null) {
+            foreach ($allUsers as $person) {
+                if ((strcmp($login, $person->getLogin()) == 0) && (hash_equals($person->getPass(), $pass))) {
+                    return $person;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Comprobar si el usuario existe como administrador
+     *
+     * @param string $login
+     * @param string $pass
+     * @return Admin
+     */
+    public function authenticateAdmin($login, $pass)
+    {
+        $data = self::getAllUsers();
+        if ($data != null) {
+            foreach ($data as $person) {
+                if ($person->getRol() == 'admin') {
+                    if ((strcmp($login, $person->getLogin()) == 0) && (hash_equals($person->getPass(), $pass))) {
+                        return $person;
+                    }
+                }
+            }
+        }
+        return null;
     }
 }
