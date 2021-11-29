@@ -32,7 +32,7 @@ class DAO
      * @param Usuario $user
      * @return void
      */
-    public function insertUser($user)
+    public static function insertUser($user)
     {
         if(self::$modo == 'csv') {
             CSV::insertUser($user);
@@ -47,7 +47,7 @@ class DAO
      *
      * @return array
      */
-    public function getUsers()
+    public static function getUsers()
     {
         $users = null;
         if(self::$modo == 'csv') {
@@ -67,7 +67,7 @@ class DAO
      * @param Usuario $user
      * @return void
      */
-    public function deleteUser($user)
+    public static function deleteUser($user)
     {
         if(self::$modo == 'csv') {
             CSV::deleteUser($user);
@@ -83,7 +83,7 @@ class DAO
      * @param Admin $admin
      * @return void
      */
-    public function insertAdmin($admin)
+    public static function insertAdmin($admin)
     {
         if(self::$modo == 'csv') {
             CSV::insertAdmin($admin);
@@ -97,7 +97,7 @@ class DAO
      *
      * @return array
      */
-    public function getAdmins()
+    public static function getAdmins()
     {
         $admins = null;
         if(self::$modo == 'csv') {
@@ -117,7 +117,7 @@ class DAO
      * @param Admin $user
      * @return void
      */
-    public function deleteAdmin($admin)
+    public static function deleteAdmin($admin)
     {
         if(self::$modo == 'csv') {
             CSV::deleteAdmin($admin);
@@ -133,7 +133,7 @@ class DAO
      * @param string $pass
      * @return mixed Devuelve un objeto Usuario o Admin
      */
-    public function authenticateUser($login, $pass)
+    public static function authenticateUser($login, $pass)
     {
         $user = CSV::authenticateUser($login,$pass);
         if($user != null) {
@@ -149,7 +149,7 @@ class DAO
      * @param string $pass
      * @return Admin
      */
-    public function authenticateAdmin($login, $pass)
+    public static function authenticateAdmin($login, $pass)
     {
         $user = CSV::authenticateAdmin($login,$pass);
         if($user != null) {
