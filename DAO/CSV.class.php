@@ -24,18 +24,12 @@ class CSV
      * 
      * @return mixed Devuelve array con los datos / false si falla la conexión.
      */
-    public static function readCsvRows($filename, $includeHeader = true)
+    public static function readCsvRows($filename)
     {
         $rows = array();
         if ($fs = fopen($filename, 'r')) {
-            // Leer el contenido del archivo y pasar cada fila como un array
-            // Devuelve un array multidimensional
             while ($row = fgetcsv($fs, 0, ",")) {
                 $rows[] = $row;
-            }
-            // Si no se pide la cabecera eliminarla del array
-            if (!$includeHeader) {
-                unset($rows[0]);
             }
         }
         fclose($fs);
@@ -49,7 +43,7 @@ class CSV
      * @param string $filename Nombre del fichero
      * @return boolean  
      */
-    /*public static function writeCSVRows($rows, $filename)
+    public static function writeCSVRows($rows, $filename)
     {
         if ($fs = fopen($filename, 'w')) {
             foreach ($rows as $row) {
@@ -57,22 +51,8 @@ class CSV
             }
         }
         fclose($fs);
-    }*/
+    }
 
-    /**
-     * Método que añade un solo registro al final de la tabla de un fichero CSV
-     * 
-     * @param string $filename Nombre del fichero
-     * @param array $row Datos de la fila a almacenar
-     * @return boolean
-     */
-    /*public static function appendCsvRow($filename, $row)
-    {
-        if ($fs = fopen($filename, 'a')) {
-            fputcsv($fs, $row);
-        }
-        fclose($fs);
-    }*/
     /**
      * Método para obtener las cabeceras del archivo
      * 
@@ -231,7 +211,7 @@ class CSV
      *
      * @param string $login
      * @param string $pass
-     * @return Usuario
+     * @return mixed Devuelve un objeto Usuario o Admin
      */
     public function authenticateUser($login, $pass)
     {
