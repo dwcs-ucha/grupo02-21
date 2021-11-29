@@ -99,7 +99,7 @@ class CSV
      * @param array $data Datos que se van a meter en el fichero
      * @return void
      */
-    private static function writeCSV($file, $data, $type = 'all')
+    private static function writeCSV($file, $data)
     {
         $file = self::$files[$file];
         if (self::existsFile($file)) {
@@ -125,9 +125,9 @@ class CSV
      */
     public static function insertUser($user)
     {
-        $users = self::getAllUsers();
-        $users[] = $user;
-        self::writeCSV('users', $users, 'usuarios');
+        $allUsers = self::getAllUsers();
+        $allUsers[] = $user;
+        self::writeCSV('users', $allUsers);
     }
 
     /**
@@ -176,7 +176,7 @@ class CSV
     {
         $allUsers = self::getAllUsers();
         $allUsers[] = $admin;
-        self::writeCSV('users', $allUsers, 'admins');
+        self::writeCSV('users', $allUsers);
     }
 
     /**

@@ -10,6 +10,7 @@ class Erro
      * @var array
      */
     private static $errors = array();
+    
 
     /**
      * Añadir un error con un identificador y un mensaje
@@ -29,8 +30,9 @@ class Erro
      */
     public static function showErrors()
     {
+        $texto = "";
         foreach (self::$errors as $type => $message) {
-            $texto = $type . ': ' . $message . '\n';
+            $texto .= $type . ': ' . $message . '<br/>';
         }
         return $texto;
     }
