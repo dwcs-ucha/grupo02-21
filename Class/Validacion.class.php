@@ -7,7 +7,7 @@
  * @email luisvaziza@gmail.com
  * @fechaDeCreación 18 nov 2021
  * @últimaModificación 18 nov 2021
- * @versión v01.00.00
+ * @versión v01.01.01
  */
 class Validacion {
     /*     * VARIABLES * */
@@ -87,7 +87,7 @@ class Validacion {
      * @return bool <p>Indica si las cadenas de texto son iguales o no.</p>
      */
     public static function comprobarStrings(string $string1, string $string2): bool {
-        return preg_match(trim($string1), trim($string2));
+        return strcmp(trim($string1), trim($string2));
     }
 
     /**
