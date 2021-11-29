@@ -1,5 +1,6 @@
 <?php
-class BD {
+class BD
+{
 
     /**
      * Insertar un usuario
@@ -7,14 +8,18 @@ class BD {
      * @param Usuario $user
      * @return void
      */
-    public function insertUser($user){}
+    public static function insertUser($user)
+    {
+    }
 
     /**
      * Recoger todos los usuarios
      *
      * @return array
      */
-    public function getUsers(){}
+    public static function getUsers()
+    {
+    }
 
     /**
      * Eliminacion del usuario
@@ -22,22 +27,28 @@ class BD {
      * @param Usuario $user
      * @return void
      */
-    public function deleteUser($user){}
-    
+    public static function deleteUser($user)
+    {
+    }
+
     /**
      * Insertar un administrador
      *
      * @param Admin $admin
      * @return void
      */
-    public function insertAdmin($admin){}
+    public static function insertAdmin($admin)
+    {
+    }
 
     /**
      * Recoger todos los administradores
      *
      * @return array
      */
-    public function getAdmins(){}
+    public static function getAdmins()
+    {
+    }
 
     /**
      * Eliminación del admin
@@ -45,5 +56,7 @@ class BD {
      * @param Admin $user
      * @return void
      */
-    public function deleteAdmin($admin){}
+    public static function deleteAdmin($admin)
+    {
+    }
 }
