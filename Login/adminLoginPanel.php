@@ -13,8 +13,7 @@
  $adminRol = $adminLogin = $adminName = $adminSurname = $adminPassWord = $adminVerifyPassword = $adminEmail = $adminVerifyEmail = $adminAddress = "";
  
  //$adminLoginError = $adminNameError = $adminSurnameError = $adminPassWordError = $adminVerifyPasswordError = $adminEmailError = $adminVerifyEmail = "";
- $adminError = array();
- DAO::
+ $adminError = array(); 
     
 ?>
 <html>
@@ -75,13 +74,13 @@
         </form>
         <?php
         // put your code here
-        if (isset($_POST['adminSubmit'])){           
+        if (isset($_POST['adminSubmit'])){          
            
             
             //Validación de Login            
             if (isset($_POST['adminLogin'])){
                 if (Validacion::validarLogin($_POST['adminLogin'])){
-                    $adminLogin = $_POST['adminLogin'];
+                    $adminLogin = trim($_POST['adminLogin']);
                 } else {
                     Erro::addError("adminLoginError" ,"Login Invalido");                    
                 }
@@ -89,7 +88,7 @@
             //Validación de Nombre
             if (isset($_POST['adminName'])){
                 if (Validacion::validarNombreUsuario($_POST['adminName'])){
-                    $adminName = $_POST['adminName'];
+                    $adminName = trim($_POST['adminName']);
                 } else {
                     Erro::addError("adminNameError","Nombre invalido");                    
                 }
@@ -97,7 +96,7 @@
             //Validación de Apellido
             if (isset($_POST['adminSurName'])){
                 if (Validacion::validarNombreUsuario($_POST['adminSurName'])){
-                    $adminName = $_POST['adminSurName'];
+                    $adminName = trim($_POST['adminSurName']);
                 } else {
                     Erro::addError("adminSurNameError","Nombre invalido");                    
                 }
@@ -130,7 +129,7 @@
                 if (isset($_POST['adminVerifyEmail'])){
                     //Comprueba que los Campos Mail y Verificar Email sean iguales.
                     if (Validacion::comparaString($adminEmail,$adminVerifyEmail)){
-                        $adminEmail = $_POST['adminEmail'];
+                        $adminEmail = trim($_POST['adminEmail']);
                     } else {
                         //Error cuando los campos no son iguales.
 
@@ -143,6 +142,17 @@
             } else {
                 //error cuando el campo email está vacío.
                 Erro::addError("adminEmailError","Introduzca Email");                
+            }
+
+            if (isset($_POST['adminAddress'])){
+                if (Validacion::validarDireccion($_POST['adminAddress'])){
+                    $adminAddress = $_POST['adminAddress'];
+                } else {
+                    Erro::addError("adminAddressError","Dirección contiene caracteres incorrectos");
+                }
+                
+            } else {
+                Erro:addError("adminAddressError","Inntroduzca dirección");
             }
             
             if (Erro::countErros() == 0){
