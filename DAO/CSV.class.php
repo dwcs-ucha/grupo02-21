@@ -7,7 +7,7 @@ class CSV
     /**
      * Comprueba si el fichero pasado existe
      *
-     * @param string $file
+     * @param string $file Nombre del fichero
      * @return boolean Devuelve true si el fichero existe, falso si no
      */
     private static function existsFile($file)
@@ -49,7 +49,7 @@ class CSV
      * @param string $filename Nombre del fichero
      * @return boolean  
      */
-    public static function writeCSVRows($rows, $filename)
+    /*public static function writeCSVRows($rows, $filename)
     {
         if ($fs = fopen($filename, 'w')) {
             foreach ($rows as $row) {
@@ -57,7 +57,7 @@ class CSV
             }
         }
         fclose($fs);
-    }
+    }*/
 
     /**
      * Método que añade un solo registro al final de la tabla de un fichero CSV
@@ -66,60 +66,24 @@ class CSV
      * @param array $row Datos de la fila a almacenar
      * @return boolean
      */
-    public static function appendCsvRow($filename, $row)
+    /*public static function appendCsvRow($filename, $row)
     {
         if ($fs = fopen($filename, 'a')) {
             fputcsv($fs, $row);
         }
         fclose($fs);
-    }
-
-    /**
-     * Método para eliminar una fila del fichero
-     * 
-     * @param string $filename Nombre del fichero
-     * @param array $condition Condición para la búsqueda de la fila array('index' => 0, 'value' => 'valor a buscar')
-     * 
-     * @return boolean true o false en función del resultado
-     */
-   /* function removeCsvRow($filename, $condition, $onlyFirst = true)
-    {
-        $removed = false;
-        // Si se desea eliminar todos los registros que cumplan la condición
-        if (!$onlyFirst) {
-            $removed = 0;
-        }
-        // Recuperar los datos del fichero para seleccionar el/los registros
-        if ($rows = self::readCsvRows($filename)) {
-            // Recorrer el array para buscar el registro a eliminar
-            foreach ($rows as $i => $row) {
-                if ($row[$condition['index']] == $condition['value']) {
-                    unset($rows[$i]);
-                    // Si solo se elimina la primera coincidencia
-                    if ($onlyFirst) {
-                        self::writeCSVRows($rows, $filename);
-                    } else {
-                        $removed++;
-                    }
-                }
-            }
-            // Guardar array resultante
-            self::writeCSVRows($rows, $filename);
-            return $removed;
-        }
     }*/
-
     /**
      * Método para obtener las cabeceras del archivo
      * 
      * @param string $filename  Ruta al fichero
      * @return array Los valores de la cabecera
      */
-    function getHeaders($filename)
+    /*function getHeaders($filename)
     {
         $rows = self::readCsvRows($filename);
         return array_shift($rows);
-    }
+    }*/
 
     /**
      * Lectura de CSV
@@ -127,17 +91,17 @@ class CSV
      * @param string $file
      * @return array
      */
-    private static function readCSV($file, $type)
+    private static function readCSV($file, $type = 'all')
     {
         $fileData = array();
         $file = self::$files[$file];
         if (self::existsFile($file)) {
             if (($fp = fopen($file, 'r')) !== FALSE) {
                 while (($data = fgetcsv($fp, 0, ';')) !== FALSE) {
-                    if ($type == 'admins') {
+                    if ($type == 'admins' && $data[0] == 'admin' || $type == 'all' && $data[0] == 'admin') {
                         $admin = new Admin($data[0], $data[1], $data[2], $data[3], $data[4], $data[5]);
                         $fileData[] = $admin;
-                    } else if ($type == 'usuarios') {
+                    } else if ($type == 'usuarios' && $data[0] == 'usuario' || $type == 'all' && $data[0] == 'usuario') {
                         $user = new Usuario($data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6]);
                         $fileData[] = $user;
                     }
@@ -155,19 +119,17 @@ class CSV
      * @param array $data Datos que se van a meter en el fichero
      * @return void
      */
-    private static function writeCSV($file, $data, $type)
+    private static function writeCSV($file, $data, $type = 'all')
     {
         $file = self::$files[$file];
         if (self::existsFile($file)) {
             if (($fp = fopen($file, 'w')) !== FALSE) {
-                if ($type == 'admins') {
-                    foreach ($data as $admin) {
-                        $object = $admin->formatPerson();
+                foreach ($data as $person) {
+                    if ($person->getRol() == 'admin') {
+                        $object = $person->formatPerson();
                         fputcsv($fp, $object, ';');
-                    }
-                } else if ($type == 'usuarios') {
-                    foreach ($data as $user) {
-                        $object = $user->formatUsuario();
+                    } else if ($person->getRol() == 'usuario') {
+                        $object = $person->formatUsuario();
                         fputcsv($fp, $object, ';');
                     }
                 }
@@ -175,9 +137,6 @@ class CSV
         }
         fclose($fp);
     }
-
-
-
     /**
      * Insertar un usuario
      *
@@ -186,7 +145,7 @@ class CSV
      */
     public static function insertUser($user)
     {
-        $users = self::getUsers();
+        $users = self::getAllUsers();
         $users[] = $user;
         self::writeCSV('users', $users, 'usuarios');
     }
@@ -218,6 +177,15 @@ class CSV
         }
     }
 
+    public static function getAllUsers()
+    {
+        $allUsers = self::readCSV('users');
+        if ($allUsers != null) {
+            return $allUsers;
+        }
+        return null;
+    }
+
     /**
      * Insertar un administrador
      *
@@ -226,9 +194,9 @@ class CSV
      */
     public static function insertAdmin($admin)
     {
-        $admins = self::getAdmins();
-        $admins[] = $admin;
-        self::writeCSV('users', $admins, 'admins');
+        $allUsers = self::getAllUsers();
+        $allUsers[] = $admin;
+        self::writeCSV('users', $allUsers, 'admins');
     }
 
     /**
@@ -256,5 +224,47 @@ class CSV
         $admins = self::readCSV('users', 'admins');
         if ($admins != null) {
         }
+    }
+
+    /**
+     * Comprobar si el usuario existe en nuestra base de datos
+     *
+     * @param string $login
+     * @param string $pass
+     * @return Usuario
+     */
+    public function authenticateUser($login, $pass)
+    {
+        $allUsers = self::getAllUsers();
+        if ($allUsers != null) {
+            foreach ($allUsers as $person) {
+                if ((strcmp($login, $person->getLogin()) == 0) && (hash_equals($person->getPass(), $pass))) {
+                    return $person;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Comprobar si el usuario existe como administrador
+     *
+     * @param string $login
+     * @param string $pass
+     * @return Admin
+     */
+    public function authenticateAdmin($login, $pass)
+    {
+        $data = self::getAllUsers();
+        if ($data != null) {
+            foreach ($data as $person) {
+                if ($person->getRol() == 'admin') {
+                    if ((strcmp($login, $person->getLogin()) == 0) && (hash_equals($person->getPass(), $pass))) {
+                        return $person;
+                    }
+                }
+            }
+        }
+        return null;
     }
 }

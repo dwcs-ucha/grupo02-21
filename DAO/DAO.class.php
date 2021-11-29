@@ -1,7 +1,7 @@
 <?php
 
-require('../Class/Usuario.class.php');
-require('../Class/Admin.class.php');
+require_once('../Class/Usuario.class.php');
+require_once('../Class/Admin.class.php');
 //require('Help.class.php');
 //require('BD.class.php');
 class DAO
@@ -15,14 +15,14 @@ class DAO
      * @param string $idioma
      * @return array
      */
-    public function readLanguage($idioma) {
+    /*public function readLanguage($idioma) {
         $type = self::$idiomas[$idioma];
         $data = CSV::readLanguage($type);
         if($data != null) {
             return $data;
         }
         return null;
-    }
+    }*/
 
     /**
      * Insertar un usuario
@@ -33,7 +33,7 @@ class DAO
     public function insertUser($user)
     {
         if(self::$modo == 'csv') {
-            CSV::insertUser($user,'usuarios');
+            CSV::insertUser($user);
         } else if(self::$modo == 'bd') {
             BD::insertUser($user);
         }
@@ -49,7 +49,7 @@ class DAO
     {
         $users = null;
         if(self::$modo == 'csv') {
-            $users = CSV::getUsers('usuarios');
+            $users = CSV::getUsers();
         } else if(self::$modo == 'bd') {
             $users = BD::getUsers();
         }
@@ -124,47 +124,7 @@ class DAO
         }
     }
 
-    /**
-     * Comprobar si el usuario existe en nuestra base de datos
-     *
-     * @param string $login
-     * @param string $pass
-     * @return Usuario
-     */
-    public function authenticateUser($login, $pass)
-    {
-        $users = self::getUsers();
-        if ($users != null) {
-            foreach ($users as $user) {
-                if ((strcmp($login, $user->getLogin()) == 0) && (hash_equals($user->getPass(), $pass))) {
-                    return $user;
-                }
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Comprobar si el usuario existe como administrador
-     *
-     * @param string $login
-     * @param string $pass
-     * @return Admin
-     */
-    public function authenticateAdmin($login, $pass)
-    {
-        $admins = self::getAdmins();
-        if ($admins != null) {
-            foreach ($admins as $admin) {
-                if ($admin->getRol() == 1) {
-                    if ((strcmp($login, $admin->getLogin()) == 0) && (hash_equals($admin->getPass(), $pass))) {
-                        return $admin;
-                    }
-                }
-            }
-        }
-        return null;
-    }
+    
 
     /**
      * Comprobar si existe el nombre usuario en nuestros datos
