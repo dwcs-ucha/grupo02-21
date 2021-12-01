@@ -30,7 +30,7 @@ session_start();
                 $lavavajillas = ($_POST['lavavajillas']);
                 $lavadora = ($_POST['lavadora']);
                 $casa = new CasaAuga($duchaVeces, $duchaMinutos, $dientes, $cisterna, $manos, $cara, $grifo, $lavavajillas, $lavadora);
-                calculo($casa);
+                           
             }
         }
         ?>
@@ -84,9 +84,9 @@ session_start();
                     <br><br>  <input type="submit" value="Calcular" name="calcular"></input>  
                     <br><br>
                     <?php
-                    if (isset($gastoTotal)) {
-                        echo "Tu gasto total de litros al mes es: " . $gastoTotal . " L";
-                    }
+                    
+                        echo "Tu gasto total de litros al mes es: " .  $casa ->calculo()     . " L";
+                    
                     if (isset($Error)) {
                         echo $Error;
                     }
