@@ -18,14 +18,18 @@ class CSV
         return false;
     }
 
-    public static function writeLog($data)
+    /**
+     * Escribir el fichero Log, donde se guardarán los pasos del usuario
+     *
+     * @param Log $log Objeto de la clase Log
+     * @return void
+     */
+    public static function writeLog($log)
     {
         $file = self::$files['logs'];
         if (self::existsFile($file)) {
-            if (($fp = fopen($file, 'w+')) !== FALSE) {
-                $base =  fread($fp, filesize($file));
-                $base .= $data;
-                fwrite($fp, $base);
+            if (($fp = fopen($file, 'a')) !== FALSE) {
+                fwrite($fp, $log);
             }
             fclose($fp);
         }
