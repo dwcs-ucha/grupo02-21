@@ -18,7 +18,8 @@ class CSV
         return false;
     }
 
-    public static function writeLog($data) {
+    public static function writeLog($data)
+    {
         $file = self::$files['logs'];
         if (self::existsFile($file)) {
             if (($fp = fopen($file, 'w+')) !== FALSE) {
@@ -90,10 +91,10 @@ class CSV
         if (self::existsFile($file)) {
             if (($fp = fopen($file, 'r')) !== FALSE) {
                 while (($data = fgetcsv($fp, 0, ';')) !== FALSE) {
-                    if ($type == 'admins' && $data[0] == 'admin' || $type == 'all' && $data[0] == 'admin') {
+                    if ($type == 'admins' && $data[0] == 'Admin' || $type == 'all' && $data[0] == 'Admin') {
                         $admin = new Admin($data[0], $data[1], $data[2], $data[3], $data[4], $data[5]);
                         $fileData[] = $admin;
-                    } else if ($type == 'usuarios' && $data[0] == 'usuario' || $type == 'all' && $data[0] == 'usuario') {
+                    } else if ($type == 'usuarios' && $data[0] == 'Usuario' || $type == 'all' && $data[0] == 'Usuario') {
                         $user = new Usuario($data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6]);
                         $fileData[] = $user;
                     }
