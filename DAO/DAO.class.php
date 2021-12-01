@@ -10,7 +10,7 @@ class DAO
 {
     private $idiomas = array('gallego' => 'GL', 'castellano' => 'ES', 'ingles' => 'EN');
     private static $modo = 'csv';
-    
+
     /**
      * Lectura del archivo del idioma correspondiente
      *
@@ -27,6 +27,17 @@ class DAO
     }*/
 
     /**
+     * Escribir en el fichero Log
+     *
+     * @param Log $log Objeto de la clase Log
+     * @return void
+     */
+    public static function writeLog($log)
+    {
+        CSV::writeLog($log);
+    }
+
+    /**
      * Insertar un usuario
      *
      * @param Usuario $user
@@ -34,12 +45,11 @@ class DAO
      */
     public static function insertUser($user)
     {
-        if(self::$modo == 'csv') {
+        if (self::$modo == 'csv') {
             CSV::insertUser($user);
-        } else if(self::$modo == 'bd') {
+        } else if (self::$modo == 'bd') {
             BD::insertUser($user);
         }
-        
     }
 
     /**
@@ -50,9 +60,9 @@ class DAO
     public static function getUsers()
     {
         $users = null;
-        if(self::$modo == 'csv') {
+        if (self::$modo == 'csv') {
             $users = CSV::getUsers();
-        } else if(self::$modo == 'bd') {
+        } else if (self::$modo == 'bd') {
             $users = BD::getUsers();
         }
         if ($users != null) {
@@ -69,14 +79,13 @@ class DAO
      */
     public static function deleteUser($user)
     {
-        if(self::$modo == 'csv') {
+        if (self::$modo == 'csv') {
             CSV::deleteUser($user);
-        } else if(self::$modo == 'bd') {
+        } else if (self::$modo == 'bd') {
             BD::deleteUser($user);
         }
-        
     }
-    
+
     /**
      * Insertar un administrador
      *
@@ -85,9 +94,9 @@ class DAO
      */
     public static function insertAdmin($admin)
     {
-        if(self::$modo == 'csv') {
+        if (self::$modo == 'csv') {
             CSV::insertAdmin($admin);
-        } else if(self::$modo == 'bd') {
+        } else if (self::$modo == 'bd') {
             BD::insertAdmin($admin);
         }
     }
@@ -100,9 +109,9 @@ class DAO
     public static function getAdmins()
     {
         $admins = null;
-        if(self::$modo == 'csv') {
+        if (self::$modo == 'csv') {
             $admins = CSV::getAdmins();
-        } else if(self::$modo == 'bd') {
+        } else if (self::$modo == 'bd') {
             $admins = BD::getAdmins();
         }
         if ($admins != null) {
@@ -119,9 +128,9 @@ class DAO
      */
     public static function deleteAdmin($admin)
     {
-        if(self::$modo == 'csv') {
+        if (self::$modo == 'csv') {
             CSV::deleteAdmin($admin);
-        } else if(self::$modo == 'bd') {
+        } else if (self::$modo == 'bd') {
             BD::deleteAdmin($admin);
         }
     }
@@ -135,8 +144,8 @@ class DAO
      */
     public static function authenticateUser($login, $pass)
     {
-        $user = CSV::authenticateUser($login,$pass);
-        if($user != null) {
+        $user = CSV::authenticateUser($login, $pass);
+        if ($user != null) {
             return $user;
         }
         return null;
@@ -151,8 +160,8 @@ class DAO
      */
     public static function authenticateAdmin($login, $pass)
     {
-        $user = CSV::authenticateAdmin($login,$pass);
-        if($user != null) {
+        $user = CSV::authenticateAdmin($login, $pass);
+        if ($user != null) {
             return $user;
         }
         return null;
