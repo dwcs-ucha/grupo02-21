@@ -2,7 +2,7 @@
 
 class CSV
 {
-    private static $files = array('users' => '../DataBase/users.csv');
+    private static $files = array('users' => '../DataBase/users.csv', 'logs' => '../DataBase/logs.txt');
 
     /**
      * Comprueba si el fichero pasado existe
@@ -18,13 +18,25 @@ class CSV
         return false;
     }
 
+    public static function writeLog($data) {
+        $file = self::$files['logs'];
+        if (self::existsFile($file)) {
+            if (($fp = fopen($file, 'w+')) !== FALSE) {
+                $base =  fread($fp, filesize($file));
+                $base .= $data;
+                fwrite($fp, $base);
+            }
+            fclose($fp);
+        }
+    }
+
     /**
      * Método que devuelve todos los datos de un archivo CSV
      * @param string $filename Nombre del archivo CSV
      * 
      * @return mixed Devuelve array con los datos / false si falla la conexión.
      */
-    public static function readCsvRows($filename)
+    /*public static function readCsvRows($filename)
     {
         $rows = array();
         if ($fs = fopen($filename, 'r')) {
@@ -34,7 +46,7 @@ class CSV
         }
         fclose($fs);
         return $rows;
-    }
+    }*/
 
     /**
      * Método que almacena los datos de un array multidimensional en un fichero CSV
@@ -43,7 +55,7 @@ class CSV
      * @param string $filename Nombre del fichero
      * @return boolean  
      */
-    public static function writeCSVRows($rows, $filename)
+    /*public static function writeCSVRows($rows, $filename)
     {
         if ($fs = fopen($filename, 'w')) {
             foreach ($rows as $row) {
@@ -51,7 +63,7 @@ class CSV
             }
         }
         fclose($fs);
-    }
+    }*/
 
     /**
      * Método para obtener las cabeceras del archivo
