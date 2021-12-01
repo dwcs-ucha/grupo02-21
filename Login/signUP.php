@@ -98,7 +98,7 @@
                 if (Validacion::validarApellido($_POST['registerSurName'])){
                     $registerName = $_POST['registerSurName'];
                 } else {
-                    Erro::addError("registerSurNameError","Nombre invalido");                    
+                    Erro::addError("registerSurNameError","Apellido invalido");                    
                 }
             }
             //Validación de Password y encriptación
@@ -108,7 +108,11 @@
                     //Comprueba que ambas cadenas son iguales
                     if (Validacion::comprobarStrings($_POST['registerPassword'],$_POST['registerVerifyPassword'])){
                         //Si todo es correcto, se genera la la contraseña cifrada.
-                        $registerPassWord = Persona::generate_hash($_POST['registerPassword']);
+                        if (Validacion::validarPassword($_POST['registerPassword'])){
+                            $registerPassWord = Persona::generate_hash($_POST['registerPassword']);
+                        } else {
+                            Erro::addError("registerPassWordError","La contraseña no cumple los requisitos: 1 Mayuscula,1 Minuscula, 1 carácter especial");
+                        }
                     } else {
                       Erro::addError("registerPassWordError","Las contraseñales son distintas");                      
                     }                   
@@ -118,7 +122,7 @@
                     Erro::addError("registerVerifyPasswordError","Verifique la contraseña");                    
                 }                
             } else {
-                //Se genera un error si no se ha introducido la conrtaseña.
+                //Se genera un error si no se ha introducido la contraseña.
                 Erro::addError("registerPassWord" ,"Introduzca Password");
             }
             
@@ -128,10 +132,15 @@
                 //Comprueba que el campo validar email tenga valor
                 if (isset($_POST['registerVerifyEmail'])){
                     //Comprueba que los Campos Mail y Verificar Email sean iguales.
-                    if (Validacion::comprobarStrings($registerEmail,$registerVerifyEmail)){
-                        $registerEmail = $_POST['registerEmail'];
+                    if (Validacion::comprobarStrings($_POST['registerEmail'],$_POST['registerVerifyEmail'])){
+                        //Validamos el campo Mail si las cadenas son iguales
+                        if (Validacion::validarEmail($_POST['registerEmail'])){
+                            $registerEmail = $_POST['registerEmail'];
+                        } else {
+                            Erro::addError("registerEmail","El correo no cumple los requisitos de email");
+                        }
                     } else {
-                        //Error cuando los campos no son iguales.
+                         //Error cuando los campos no son iguales.
 
                         Erro::addError("registerVerifyEmailError", "Los campos no son iguales");                        
                     }                    
@@ -144,6 +153,7 @@
                 Erro::addError("registerEmailError","Introduzca Email");                
             }
 
+            //Validaciones Dirección.
             if (isset($_POST['registerAddress'])){               
                     $registerAddress = $_POST['registerAddress'];
             } else {
@@ -154,7 +164,7 @@
                 $user = new Usuario($registerRol,$registerLogin,$registerName,$registerPassWord,$registerSurname,$registerEmail,$registerAddress);
                 DAO::insertUser($user);
             }
-             //Erro::showErrors();
+             echo Erro::showErrors();
         }
         ?>
     </body>
