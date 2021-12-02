@@ -29,7 +29,7 @@ class CSV
         $file = self::$files['logs'];
         if (self::existsFile($file)) {
             if (($fp = fopen($file, 'a')) !== FALSE) {
-                fwrite($fp, $log);
+                fwrite($fp, $log . '\n');
             }
         } else {
             if (($fp = fopen($file, 'w')) !== FALSE) {
