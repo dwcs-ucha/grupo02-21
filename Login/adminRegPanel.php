@@ -103,7 +103,7 @@
             //Validación de Apellido
             if (isset($_POST['adminSurName'])){
                 if (Validacion::validarApellido($_POST['adminSurName'])){
-                    $adminName = trim($_POST['adminSurName']);
+                    $adminSurname = trim($_POST['adminSurName']);
                 } else {
                     Erro::addError("adminSurNameError","Nombre invalido");                    
                 }

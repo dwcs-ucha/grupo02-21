@@ -90,7 +90,7 @@ abstract class Persona {
      * 
      * @author https://www.php.net/manual/es/function.crypt.php#114060
      */
-    function generate_hash($password, $cost = 11) {
+    public static function generate_hash($password, $cost = 11) {
 
         $salt = substr(base64_encode(openssl_random_pseudo_bytes(17)), 0, 22);
         $salt = str_replace("+", ".", $salt);
