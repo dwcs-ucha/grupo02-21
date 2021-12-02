@@ -6,7 +6,7 @@ private string $error;
 private string $usuario;
 private string $texto;
 
-public function __construct($texto, $error = "", $usuario = "invitado") {
+public function __construct($texto, $usuario = "invitado", $error = "") {
     $fecha = getdate();
     $this->fecha = $fecha['year'] . "." . sprintf("%02d", $fecha['mon']) . "." . sprintf("%02d", $fecha['mday'])
     . "-" . sprintf("%02d", $fecha['hours']) . ":" . sprintf("%02d", $fecha['minutes']) . ":" . sprintf("%02d", $fecha['seconds']);
