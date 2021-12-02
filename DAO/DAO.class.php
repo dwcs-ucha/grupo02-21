@@ -172,13 +172,30 @@ class DAO
      * @param string $login
      * @return boolean
      */
-    public function existsUserName($login)
+    public static function existsUserName($login)
     {
         $bool = false;
         if (self::$modo == 'csv') {
             $bool = CSV::existsUserName($login);
         } else if (self::$modo == 'bd') {
             $bool = BD::existsUserName($login);
+        }
+        return $bool;
+    }
+
+    /**
+     * Comprobación de la existencia del email de usuario
+     *
+     * @param String $email Email a comprobar
+     * @return boolean
+     */
+    public static function existsUserEmail($email)
+    {
+        $bool = false;
+        if (self::$modo == 'csv') {
+            $bool = CSV::existsUserEmail($email);
+        } else if (self::$modo == 'bd') {
+            $bool = BD::existsUserEmail($email);
         }
         return $bool;
     }

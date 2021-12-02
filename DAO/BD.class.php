@@ -115,4 +115,14 @@ class BD
     public static function getArticles()
     {
     }
+    
+    /**
+     * Comprobación de la existencia del email de usuario
+     *
+     * @param String $email Email a comprobar
+     * @return boolean
+     */
+    public static function existsUserEmail($email)
+    {
+    }
 }

@@ -47,6 +47,14 @@ class Validacion {
      */
     private static string $surnameRegEx = "/^[A-zÁ-ú\s\'-]{1,30}$/";
 
+    /**
+     * <p>Expresión regular para comprobar números.</p>
+     * <p>Permite un número indeterminado de dígitos.</p>
+     * 
+     * @var string
+     */
+    private static string $numberRegEx = "/^[[:digit:]]+$/";
+
     /** FUNCIONES * */
 
     /**
@@ -108,6 +116,16 @@ class Validacion {
      */
     public static function validarApellido(string $string): bool {
         return preg_match(self::$surnameRegEx, trim($string));
+    }
+
+    /**
+     * <p>Comprueba que un número sea, en efecto, un número..</p>
+     * 
+     * @param string $string <p>Número que se quiere comprobar.</p>
+     * @return bool <p>Indica si es un dígito o no.</p>
+     */
+    public static function validarNumero(string $string): bool {
+        return preg_match(self::$numberRegEx, trim($string));
     }
 
     /**

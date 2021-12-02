@@ -2,7 +2,7 @@
 
 class CSV
 {
-    private static $files = array('users' => '../DataBase/users.csv', 'logs' => '../DataBase/logs.txt', 'idiomas' => '../DataBase/idioma');
+    private static $files = array('users' => '../DataBase/users.csv', 'logs' => '../DataBase/logs.txt', 'idiomas' => '../DataBase/idioma', 'articulos' => '../DataBase/articulos.csv');
 
     /**
      * Comprueba si el fichero pasado existe
@@ -68,7 +68,6 @@ class CSV
         } else {
             $file = self::$files[$file];
         }
-
         if (self::existsFile($file)) {
             if (($fp = fopen($file, 'r')) !== FALSE) {
                 while (($data = fgetcsv($fp, 0, ';')) !== FALSE) {
@@ -94,21 +93,32 @@ class CSV
     /**
      * Escritura de CSV
      *
-     * @param string $type Tipo de dato que se va a meter en el fichero
+     * @param string $file Clave para elegir el fichero a escribir
      * @param array $data Datos que se van a meter en el fichero
      * @return void
      */
     private static function writeCSV(String $file, array $data)
     {
+        $type = '';
+        if ($file == 'articulos') {
+            $type = 'articulos';
+        }
         $file = self::$files[$file];
         if (self::existsFile($file)) {
             if (($fp = fopen($file, 'w')) !== FALSE) {
-                foreach ($data as $person) {
-                    if ($person->getRol() == 'Admin') {
-                        $object = $person->formatPerson();
-                        fputcsv($fp, $object, ';');
-                    } else if ($person->getRol() == 'Usuario') {
-                        $object = $person->formatUsuario();
+                if ($type == '') {
+                    foreach ($data as $person) {
+                        if ($person->getRol() == 'Admin') {
+                            $object = $person->formatPerson();
+                            fputcsv($fp, $object, ';');
+                        } else if ($person->getRol() == 'Usuario') {
+                            $object = $person->formatUsuario();
+                            fputcsv($fp, $object, ';');
+                        }
+                    }
+                } else if ($type == 'articulos') {
+                    foreach ($data as $article) {
+                        $object = array($article->getTitulo(), $article->getCuerpo());
                         fputcsv($fp, $object, ';');
                     }
                 }
@@ -149,11 +159,11 @@ class CSV
      * @param Usuario $user Objeto de tipo usuario
      * @return void
      */
-    public static function deleteUser(Usuario $admin)
+    public static function deleteUser(Usuario $user)
     {
-        $users = self::readCSV('users', 'usuarios');
-        if ($users != null) {
-        }
+        //$users = self::readCSV('users', 'usuarios');
+        /*if ($users != null) {
+        }*/
     }
     /**
      * Recoger un array de objetos de tipo admin y usuario
@@ -269,7 +279,23 @@ class CSV
         }
         return false;
     }
-
+    /**
+     * Comprobación de la existencia del email de usuario
+     *
+     * @param String $email Email a comprobar
+     * @return boolean
+     */
+    public static function existsUserEmail(String $email) {
+        $allUsers = CSV::getAllUsers();
+        if ($allUsers != null) {
+            foreach ($allUsers as $person) {
+                if (strcmp($person->getEmail(), $email) == 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     /**
      * Insert un objeto articulo
      *
@@ -278,6 +304,9 @@ class CSV
      */
     public static function insertArticle(Publicacion $article)
     {
+        $articles = self::getArticles();
+        $articles[] = $article;
+        self::writeCSV('articulos', $articles);
     }
     /**
      * Recoger un objeto de tipo articulo
@@ -294,10 +323,11 @@ class CSV
      */
     public static function getArticles()
     {
-        $data = self::readCSV('articulos');
+        $data = self::readCSV('articulos', 'articulo');
         if ($data != null) {
             return $data;
         }
         return null;
     }
+
 }
