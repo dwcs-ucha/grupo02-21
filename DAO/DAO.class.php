@@ -17,14 +17,14 @@ class DAO
      * @param string $idioma
      * @return array
      */
-    /*public function readLanguage($idioma) {
+    public function readLanguage($idioma) {
         $type = self::$idiomas[$idioma];
-        $data = CSV::readLanguage($type);
+        $data = CSV::readCSV('idiomas', $type);
         if($data != null) {
             return $data;
         }
         return null;
-    }*/
+    }
 
     /**
      * Escribir en el fichero Log
