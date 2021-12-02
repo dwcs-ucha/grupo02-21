@@ -2,7 +2,7 @@
 
 class CSV
 {
-    private static $files = array('users' => '../DataBase/users.csv', 'logs' => '../DataBase/logs.txt');
+    private static $files = array('users' => '../DataBase/users.csv', 'logs' => '../DataBase/logs.txt', 'idiomas' => '../DataBase/idioma');
 
     /**
      * Comprueba si el fichero pasado existe
@@ -91,7 +91,12 @@ class CSV
     private static function readCSV($file, $type = 'all')
     {
         $fileData = array();
-        $file = self::$files[$file];
+        if ($file == 'idiomas') {
+            $file = self::$files[$file] . $type . '.csv';
+        } else {
+            $file = self::$files[$file];
+        }
+
         if (self::existsFile($file)) {
             if (($fp = fopen($file, 'r')) !== FALSE) {
                 while (($data = fgetcsv($fp, 0, ';')) !== FALSE) {
@@ -101,6 +106,7 @@ class CSV
                     } else if ($type == 'usuarios' && $data[0] == 'Usuario' || $type == 'all' && $data[0] == 'Usuario') {
                         $user = new Usuario($data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6]);
                         $fileData[] = $user;
+                    } else if ($type == 'idioma') {
                     }
                 }
                 return $fileData;
