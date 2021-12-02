@@ -184,6 +184,23 @@ class DAO
     }
 
     /**
+     * Comprobación de la existencia del email de usuario
+     *
+     * @param String $email Email a comprobar
+     * @return boolean
+     */
+    public static function existsUserEmail($email)
+    {
+        $bool = false;
+        if (self::$modo == 'csv') {
+            $bool = CSV::existsUserEmail($email);
+        } else if (self::$modo == 'bd') {
+            $bool = BD::existsUserEmail($email);
+        }
+        return $bool;
+    }
+
+    /**
      * Insert un objeto articulo
      *
      * @param Publicacion $article

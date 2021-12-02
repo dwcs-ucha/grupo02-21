@@ -2,7 +2,7 @@
 
 class CSV
 {
-    private static $files = array('users' => '../DataBase/users.csv', 'logs' => '../DataBase/logs.txt', 'idiomas' => '../DataBase/idioma');
+    private static $files = array('users' => '../DataBase/users.csv', 'logs' => '../DataBase/logs.txt', 'idiomas' => '../DataBase/idioma', 'articulos' => '../DataBase/articulos.csv');
 
     /**
      * Comprueba si el fichero pasado existe
@@ -68,7 +68,6 @@ class CSV
         } else {
             $file = self::$files[$file];
         }
-
         if (self::existsFile($file)) {
             if (($fp = fopen($file, 'r')) !== FALSE) {
                 while (($data = fgetcsv($fp, 0, ';')) !== FALSE) {
@@ -280,7 +279,23 @@ class CSV
         }
         return false;
     }
-
+    /**
+     * Comprobación de la existencia del email de usuario
+     *
+     * @param String $email Email a comprobar
+     * @return boolean
+     */
+    public static function existsUserEmail(String $email) {
+        $allUsers = CSV::getAllUsers();
+        if ($allUsers != null) {
+            foreach ($allUsers as $person) {
+                if (strcmp($person->getEmail(), $email) == 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     /**
      * Insert un objeto articulo
      *
@@ -308,10 +323,11 @@ class CSV
      */
     public static function getArticles()
     {
-        $data = self::readCSV('articulos');
+        $data = self::readCSV('articulos', 'articulo');
         if ($data != null) {
             return $data;
         }
         return null;
     }
+
 }
