@@ -172,7 +172,7 @@ class DAO
      * @param string $login
      * @return boolean
      */
-    public function existsUserName($login)
+    public static function existsUserName($login)
     {
         $bool = false;
         if (self::$modo == 'csv') {
