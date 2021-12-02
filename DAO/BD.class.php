@@ -69,4 +69,10 @@ class BD
     public static function existsUserName($login)
     {
     }
+    public static function authenticateUser($login, $pass)
+    {
+    }
+    public static function authenticateAdmin($login, $pass)
+    {
+    }
 }

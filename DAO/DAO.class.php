@@ -139,22 +139,19 @@ class DAO
     /**
      * Comprobar si el usuario existe en nuestra base de datos
      *
-     * @param string $login
-     * @param string $pass
+     * @param string $login Nombre de Usuario
+     * @param string $pass Contraseña Encriptada
      * @return mixed Devuelve un objeto Usuario o Admin
      */
     public static function authenticateUser($login, $pass)
     {
-        if(self::$modo == 'csv') {
-
-        } else if(self::$modo == 'bd') {
-            
+        $person = '';
+        if (self::$modo == 'csv') {
+            $person = CSV::authenticateUser($login, $pass);
+        } else if (self::$modo == 'bd') {
+            $person = BD::authenticateUser($login, $pass);
         }
-        $user = CSV::authenticateUser($login, $pass);
-        if ($user != null) {
-            return $user;
-        }
-        return null;
+        return $person;
     }
 
     /**
@@ -166,11 +163,13 @@ class DAO
      */
     public static function authenticateAdmin($login, $pass)
     {
-        $user = CSV::authenticateAdmin($login, $pass);
-        if ($user != null) {
-            return $user;
+        $person = '';
+        if (self::$modo == 'csv') {
+            $person = CSV::authenticateAdmin($login, $pass);
+        } else if (self::$modo == 'bd') {
+            $person = BD::authenticateAdmin($login, $pass);
         }
-        return null;
+        return $person;
     }
 
     /**
@@ -181,11 +180,12 @@ class DAO
      */
     public function existsUserName($login)
     {
+        $bool = false;
         if (self::$modo == 'csv') {
-            CSV::existsUserName($login);
+            $bool = CSV::existsUserName($login);
         } else if (self::$modo == 'bd') {
-            BD::existsUserName($login);
+            $bool = BD::existsUserName($login);
         }
-        return false;
+        return $bool;
     }
 }
