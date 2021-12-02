@@ -66,10 +66,7 @@ class DAO
         } else if (self::$modo == 'bd') {
             $users = BD::getUsers();
         }
-        if ($users != null) {
-            return $users;
-        }
-        return null;
+        return $users;
     }
 
     /**
@@ -78,7 +75,7 @@ class DAO
      * @param Usuario $user
      * @return void
      */
-    public static function deleteUser($user)
+    public static function deleteUser(Usuario $user)
     {
         if (self::$modo == 'csv') {
             CSV::deleteUser($user);
@@ -115,10 +112,7 @@ class DAO
         } else if (self::$modo == 'bd') {
             $admins = BD::getAdmins();
         }
-        if ($admins != null) {
-            return $admins;
-        }
-        return null;
+        return $admins;
     }
 
     /**
@@ -187,5 +181,50 @@ class DAO
             $bool = BD::existsUserName($login);
         }
         return $bool;
+    }
+
+    /**
+     * Insert un objeto articulo
+     *
+     * @param Publicacion $article
+     * @return void
+     */
+    public static function insertArticle(Publicacion $article)
+    {
+        if (self::$modo == 'csv') {
+            CSV::insertArticle($article);
+        } else if (self::$modo == 'bd') {
+            BD::insertArticle($article);
+        }
+    }
+    /**
+     * Recoger un objeto de tipo articulo
+     *
+     * @return Publicacion
+     */
+    /*public static function getArticle()
+    {
+        $article = '';
+        if (self::$modo == 'csv') {
+            $article = CSV::getArticle();
+        } else if (self::$modo == 'bd') {
+            $article = BD::getArticle();
+        }
+        return $article;
+    }*/
+    /**
+     * Recoger un array de tipo article
+     *
+     * @return array
+     */
+    public static function getArticles()
+    {
+        $articles = array();
+        if (self::$modo == 'csv') {
+            $articles = CSV::getArticles();
+        } else if (self::$modo == 'bd') {
+            $articles = BD::getArticles();
+        }
+        return $articles;
     }
 }

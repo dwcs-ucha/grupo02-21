@@ -8,7 +8,7 @@ class BD
      * @param Usuario $user
      * @return void
      */
-    public static function insertUser($user)
+    public static function insertUser(Usuario $user)
     {
     }
 
@@ -27,7 +27,7 @@ class BD
      * @param Usuario $user
      * @return void
      */
-    public static function deleteUser($user)
+    public static function deleteUser(Usuario $user)
     {
     }
 
@@ -37,7 +37,7 @@ class BD
      * @param Admin $admin
      * @return void
      */
-    public static function insertAdmin($admin)
+    public static function insertAdmin(Admin $admin)
     {
     }
 
@@ -56,7 +56,7 @@ class BD
      * @param Admin $user
      * @return void
      */
-    public static function deleteAdmin($admin)
+    public static function deleteAdmin(Admin $admin)
     {
     }
 
@@ -66,7 +66,7 @@ class BD
      * @param String $login 
      * @return boolean
      */
-    public static function existsUserName($login)
+    public static function existsUserName(String $login)
     {
     }
     /**
@@ -76,17 +76,43 @@ class BD
      * @param string $pass Contraseña Encriptada
      * @return mixed Devuelve un objeto Usuario o Admin
      */
-    public static function authenticateUser($login, $pass)
+    public static function authenticateUser(String $login, String $pass)
     {
     }
     /**
      * Comprobar si el usuario existe como administrador
      *
-     * @param string $login Nombre de Usuario
-     * @param string $pass Contraseña Encriptada
+     * @param String $login Nombre de Usuario
+     * @param String $pass Contraseña Encriptada
      * @return Admin Objeto de tipo admin
      */
-    public static function authenticateAdmin($login, $pass)
+    public static function authenticateAdmin(String $login, String $pass)
+    {
+    }
+
+    /**
+     * Insert un objeto articulo
+     *
+     * @param Publicacion $article
+     * @return void
+     */
+    public static function insertArticle(Publicacion $article)
+    {
+    }
+    /**
+     * Recoger un objeto de tipo articulo
+     *
+     * @return Publicacion
+     */
+    public static function getArticle()
+    {
+    }
+    /**
+     * Recoger un array de tipo article
+     *
+     * @return array
+     */
+    public static function getArticles()
     {
     }
 }

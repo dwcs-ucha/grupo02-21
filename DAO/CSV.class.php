@@ -7,10 +7,10 @@ class CSV
     /**
      * Comprueba si el fichero pasado existe
      *
-     * @param string $file Nombre del fichero
+     * @param string $file Ruta del fichero
      * @return boolean Devuelve true si el fichero existe, falso si no
      */
-    private static function existsFile($file)
+    private static function existsFile(String $file)
     {
         if (file_exists($file)) {
             return true;
@@ -76,6 +76,9 @@ class CSV
                         $fileData[] = $user;
                     } else if ($type == 'GL' || $type == 'EN' || $type == 'ES') {
                         $fileData[] = $data;
+                    } else if($type == 'articulo') {
+                        $article = new Publicacion($data[0], $data[1]);
+                        $fileData[] = $article;
                     }
                 }
                 return $fileData;
@@ -142,7 +145,7 @@ class CSV
      * @param Usuario $user Objeto de tipo usuario
      * @return void
      */
-    public static function deleteUser($delete)
+    public static function deleteUser(Usuario $admin)
     {
         $users = self::readCSV('users', 'usuarios');
         if ($users != null) {
@@ -168,7 +171,7 @@ class CSV
      * @param Admin $admin Objeto de tipo admin
      * @return void
      */
-    public static function insertAdmin($admin)
+    public static function insertAdmin(Admin $admin)
     {
         $allUsers = self::getAllUsers();
         $allUsers[] = $admin;
@@ -195,7 +198,7 @@ class CSV
      * @param Admin $user Objeto de tipo admin
      * @return void
      */
-    public static function deleteAdmin($admin)
+    public static function deleteAdmin(Admin $admin)
     {
         $admins = self::readCSV('users', 'admins');
         if ($admins != null) {
@@ -209,7 +212,7 @@ class CSV
      * @param string $pass Contraseña Encriptada
      * @return mixed Devuelve un objeto Usuario o Admin
      */
-    public function authenticateUser($login, $pass)
+    public function authenticateUser(String $login, String $pass)
     {
         $allUsers = self::getAllUsers();
         if ($allUsers != null) {
@@ -229,7 +232,7 @@ class CSV
      * @param string $pass Contraseña Encriptada
      * @return Admin Objeto de tipo admin
      */
-    public function authenticateAdmin($login, $pass)
+    public function authenticateAdmin(String $login, String $pass)
     {
         $data = self::getAllUsers();
         if ($data != null) {
@@ -250,7 +253,7 @@ class CSV
      * @param String $login Nombre de Usuario
      * @return boolean True si existe, False si no existe
      */
-    public static function existsUserName($login)
+    public static function existsUserName(String $login)
     {
         $allUsers = CSV::getAllUsers();
         if ($allUsers != null) {
@@ -261,5 +264,36 @@ class CSV
             }
         }
         return false;
+    }
+
+    /**
+     * Insert un objeto articulo
+     *
+     * @param Publicacion $article
+     * @return void
+     */
+    public static function insertArticle(Publicacion $article)
+    {
+    }
+    /**
+     * Recoger un objeto de tipo articulo
+     *
+     * @return Articulo
+     */
+    public static function getArticle()
+    {
+    }
+    /**
+     * Recoger un array de tipo article
+     *
+     * @return array
+     */
+    public static function getArticles()
+    {
+        $data = self::readCSV('articulos');
+        if($data != null) {
+            return $data;
+        }
+        return null;
     }
 }

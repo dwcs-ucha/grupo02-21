@@ -4,7 +4,7 @@
  * Version:1.0.0
  * Last modified: 29/11/2021
  */
-class Publicacion{
+class Publicacion {
     private $titulo;
     private $cuerpo;
   
