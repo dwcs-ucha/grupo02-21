@@ -15,7 +15,7 @@ abstract class Persona {
     private $eMail;
     private $rol;
 
-    public function __construct( $rol,$login, $name, $surName, $passWord, $eMail) {
+    public function __construct( $rol,$login, $name, $passWord, $surName, $eMail) {
         $this->login = $login;
         $this->name = $name;
         $this->surName = $surName;
@@ -27,9 +27,9 @@ abstract class Persona {
     // Formatear la salida para que la escritura sea más fácil
     public function formatPerson() {
         $user = array($this->rol,
-            $this->login,
-            $this->passWord,
+            $this->login,            
             $this->name,
+            $this->passWord,
             $this->surName,
             $this->eMail
     );
