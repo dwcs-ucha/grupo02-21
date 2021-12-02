@@ -29,22 +29,13 @@ $registerError = array();
             width: 600px;
         }
     </style>
-    <script src='https://www.google.com/recaptcha/api.js?render=CLAVE_PUBLICA'> 
-</script>
-<script>
-grecaptcha.ready(function() {
-grecaptcha.execute('6LedZm8dAAAAAGlyooVsLfyvGI8oWn8o40oUjKLi', {action: 'ejemplo'})
-.then(function(token) {
-var recaptchaResponse = document.getElementById('recaptchaResponse');
-recaptchaResponse.value = token;
-});});
-</script>
+    <script src="https://www.google.com/recaptcha/api.js?hl=es" async defer></script>
 </head>
 
 <body>
     <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
         <div class="container">
-        <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
+            <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
 
             <!-- Nombre de Login -->
             <label for="registerLogin">Login</label>
@@ -95,10 +86,13 @@ recaptchaResponse.value = token;
 
 
         </div>
+        <div class="g-recaptcha" data-sitekey="6LcYTXMdAAAAAPCoFfQN11at0TXtFhAuiB5N1-w8"></div>
         
+
+
     </form>
-    <?php        
-  
+    <?php
+
     if (isset($_POST['registerSubmit'])) {
 
         //Validación de Login            
@@ -120,7 +114,7 @@ recaptchaResponse.value = token;
         //Validación de Apellido
         if (isset($_POST['registerSurName'])) {
             if (Validacion::validarApellido($_POST['registerSurName'])) {
-                $registerName = $_POST['registerSurName'];
+                $registerSurname = $_POST['registerSurName'];
             } else {
                 Erro::addError("registerSurNameError", "Apellido invalido");
             }
@@ -183,12 +177,17 @@ recaptchaResponse.value = token;
             Erro::addError("registerAddressError", "Inntroduzca dirección");
         }
 
-        $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify'; 
-        $recaptcha_secret = "6LedZm8dAAAAAFYofkFX8QHUQDFfYFwQCDsujN9K";
-        $recaptcha_response = $_POST['recaptcha_response']; 
-        $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response); 
-        $recaptcha = json_decode($recaptcha);
-        if($recaptcha->score >= 0.7){
+        
+        $secret = "6LcYTXMdAAAAADWRLx2Kr8jjYsgSk2OjOl5_crGj";
+        $response = null;
+        $reCaptcha = new ReCaptcha($secret);
+        if ($_POST["g-recaptcha-response"]) {
+            $response = $reCaptcha->verifyResponse(
+            $_SERVER["REMOTE_ADDR"],
+            $_POST["g-recaptcha-response"]
+            );
+         }
+         if ($response != null && $response->success) {
             if (Erro::countErros() == 0) {
                 $user = new Usuario($registerRol, $registerLogin, $registerName, $registerPassWord, $registerSurname, $registerEmail, $registerAddress);
                 DAO::insertUser($user);
@@ -196,7 +195,6 @@ recaptchaResponse.value = token;
         } else {
             echo Erro::showErrors();
         }
-        
     }
     ?>
 </body>

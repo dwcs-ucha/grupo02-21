@@ -17,14 +17,15 @@ class DAO
      * @param string $idioma
      * @return array
      */
-    /*public function readLanguage($idioma) {
+    public function readLanguage($idioma)
+    {
         $type = self::$idiomas[$idioma];
-        $data = CSV::readLanguage($type);
-        if($data != null) {
+        $data = CSV::readLanguage('idiomas', $type);
+        if ($data != null) {
             return $data;
         }
         return null;
-    }*/
+    }
 
     /**
      * Escribir en el fichero Log
@@ -65,10 +66,7 @@ class DAO
         } else if (self::$modo == 'bd') {
             $users = BD::getUsers();
         }
-        if ($users != null) {
-            return $users;
-        }
-        return null;
+        return $users;
     }
 
     /**
@@ -77,7 +75,7 @@ class DAO
      * @param Usuario $user
      * @return void
      */
-    public static function deleteUser($user)
+    public static function deleteUser(Usuario $user)
     {
         if (self::$modo == 'csv') {
             CSV::deleteUser($user);
@@ -114,10 +112,7 @@ class DAO
         } else if (self::$modo == 'bd') {
             $admins = BD::getAdmins();
         }
-        if ($admins != null) {
-            return $admins;
-        }
-        return null;
+        return $admins;
     }
 
     /**
@@ -138,17 +133,19 @@ class DAO
     /**
      * Comprobar si el usuario existe en nuestra base de datos
      *
-     * @param string $login
-     * @param string $pass
+     * @param string $login Nombre de Usuario
+     * @param string $pass Contraseña Encriptada
      * @return mixed Devuelve un objeto Usuario o Admin
      */
     public static function authenticateUser($login, $pass)
     {
-        $user = CSV::authenticateUser($login, $pass);
-        if ($user != null) {
-            return $user;
+        $person = '';
+        if (self::$modo == 'csv') {
+            $person = CSV::authenticateUser($login, $pass);
+        } else if (self::$modo == 'bd') {
+            $person = BD::authenticateUser($login, $pass);
         }
-        return null;
+        return $person;
     }
 
     /**
@@ -160,11 +157,13 @@ class DAO
      */
     public static function authenticateAdmin($login, $pass)
     {
-        $user = CSV::authenticateAdmin($login, $pass);
-        if ($user != null) {
-            return $user;
+        $person = '';
+        if (self::$modo == 'csv') {
+            $person = CSV::authenticateAdmin($login, $pass);
+        } else if (self::$modo == 'bd') {
+            $person = BD::authenticateAdmin($login, $pass);
         }
-        return null;
+        return $person;
     }
 
     /**
@@ -173,17 +172,59 @@ class DAO
      * @param string $login
      * @return boolean
      */
-    /*public function existsUserName($login)
+    public function existsUserName($login)
     {
-        $users = self::getUsers();
-        $admins = self::getAdmins();
-        if ($users != null) {
-            foreach ($users as $user) {
-                if (strcmp($user->getLogin(), $login) == 0) {
-                    return true;
-                }
-            }
+        $bool = false;
+        if (self::$modo == 'csv') {
+            $bool = CSV::existsUserName($login);
+        } else if (self::$modo == 'bd') {
+            $bool = BD::existsUserName($login);
         }
-        return false;
+        return $bool;
+    }
+
+    /**
+     * Insert un objeto articulo
+     *
+     * @param Publicacion $article
+     * @return void
+     */
+    public static function insertArticle(Publicacion $article)
+    {
+        if (self::$modo == 'csv') {
+            CSV::insertArticle($article);
+        } else if (self::$modo == 'bd') {
+            BD::insertArticle($article);
+        }
+    }
+    /**
+     * Recoger un objeto de tipo articulo
+     *
+     * @return Publicacion
+     */
+    /*public static function getArticle()
+    {
+        $article = '';
+        if (self::$modo == 'csv') {
+            $article = CSV::getArticle();
+        } else if (self::$modo == 'bd') {
+            $article = BD::getArticle();
+        }
+        return $article;
     }*/
+    /**
+     * Recoger un array de tipo article
+     *
+     * @return array
+     */
+    public static function getArticles()
+    {
+        $articles = array();
+        if (self::$modo == 'csv') {
+            $articles = CSV::getArticles();
+        } else if (self::$modo == 'bd') {
+            $articles = BD::getArticles();
+        }
+        return $articles;
+    }
 }
