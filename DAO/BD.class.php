@@ -59,4 +59,14 @@ class BD
     public static function deleteAdmin($admin)
     {
     }
+
+    /**
+     * Comprobación de la existencia del nombre de usuario
+     *
+     * @param String $login 
+     * @return boolean
+     */
+    public static function existsUserName($login)
+    {
+    }
 }

@@ -17,10 +17,11 @@ class DAO
      * @param string $idioma
      * @return array
      */
-    public function readLanguage($idioma) {
+    public function readLanguage($idioma)
+    {
         $type = self::$idiomas[$idioma];
-        $data = CSV::readCSV('idiomas', $type);
-        if($data != null) {
+        $data = CSV::readLanguage('idiomas', $type);
+        if ($data != null) {
             return $data;
         }
         return null;
@@ -144,6 +145,11 @@ class DAO
      */
     public static function authenticateUser($login, $pass)
     {
+        if(self::$modo == 'csv') {
+
+        } else if(self::$modo == 'bd') {
+            
+        }
         $user = CSV::authenticateUser($login, $pass);
         if ($user != null) {
             return $user;
@@ -173,17 +179,13 @@ class DAO
      * @param string $login
      * @return boolean
      */
-    /*public function existsUserName($login)
+    public function existsUserName($login)
     {
-        $users = self::getUsers();
-        $admins = self::getAdmins();
-        if ($users != null) {
-            foreach ($users as $user) {
-                if (strcmp($user->getLogin(), $login) == 0) {
-                    return true;
-                }
-            }
+        if (self::$modo == 'csv') {
+            CSV::existsUserName($login);
+        } else if (self::$modo == 'bd') {
+            BD::existsUserName($login);
         }
         return false;
-    }*/
+    }
 }

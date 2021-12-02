@@ -35,52 +35,14 @@ class CSV
         }
     }
 
-    /**
-     * Método que devuelve todos los datos de un archivo CSV
-     * @param string $filename Nombre del archivo CSV
-     * 
-     * @return mixed Devuelve array con los datos / false si falla la conexión.
-     */
-    /*public static function readCsvRows($filename)
+    public static function readLanguage($file, $type)
     {
-        $rows = array();
-        if ($fs = fopen($filename, 'r')) {
-            while ($row = fgetcsv($fs, 0, ",")) {
-                $rows[] = $row;
-            }
+        $data = CSV::readCSV($file, $type);
+        if ($data != null) {
+            return $data;
         }
-        fclose($fs);
-        return $rows;
-    }*/
-
-    /**
-     * Método que almacena los datos de un array multidimensional en un fichero CSV
-     * 
-     * @param array $rows Los datos a almacenar
-     * @param string $filename Nombre del fichero
-     * @return boolean  
-     */
-    /*public static function writeCSVRows($rows, $filename)
-    {
-        if ($fs = fopen($filename, 'w')) {
-            foreach ($rows as $row) {
-                fputcsv($fs, $row);
-            }
-        }
-        fclose($fs);
-    }*/
-
-    /**
-     * Método para obtener las cabeceras del archivo
-     * 
-     * @param string $filename  Ruta al fichero
-     * @return array Los valores de la cabecera
-     */
-    /*function getHeaders($filename)
-    {
-        $rows = self::readCsvRows($filename);
-        return array_shift($rows);
-    }*/
+        return null;
+    }
 
     /**
      * Lectura de CSV
@@ -106,7 +68,8 @@ class CSV
                     } else if ($type == 'usuarios' && $data[0] == 'Usuario' || $type == 'all' && $data[0] == 'Usuario') {
                         $user = new Usuario($data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6]);
                         $fileData[] = $user;
-                    } else if ($type == 'idioma') {
+                    } else if ($type == 'GL' || $type == 'EN' || $type == 'ES') {
+                        $fileData[] = $data;
                     }
                 }
                 return $fileData;
@@ -261,7 +224,7 @@ class CSV
         $data = self::getAllUsers();
         if ($data != null) {
             foreach ($data as $person) {
-                if ($person->getRol() == 'admin') {
+                if ($person->getRol() == 'Admin') {
                     if ((strcmp($login, $person->getLogin()) == 0) && (hash_equals($person->getPass(), $pass))) {
                         return $person;
                     }
@@ -269,5 +232,24 @@ class CSV
             }
         }
         return null;
+    }
+
+    /**
+     * Comprobación de la existencia del nombre de usuario
+     *
+     * @param String $login 
+     * @return boolean
+     */
+    public static function existsUserName($login)
+    {
+        $allUsers = CSV::getAllUsers();
+        if ($allUsers != null) {
+            foreach ($allUsers as $person) {
+                if (strcmp($person->getLogin(), $login) == 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
