@@ -105,7 +105,8 @@ class CasaAuga {
         $gastoGrifo = ($this->grifo * 40) * 4;
         $gastoLavavajillas = ($this->lavavajillas * 54) * 4;
         $gastoLavadora = ($this->lavadora * 50) * 4;
-        $gastoTotal = $gastoDucha + $gastoDientes + $gastoCisterna + $gastoManos + $gastoCara + $gastoGrifo + $gastoLavavajillas + $gastoLavadora;       
+        $gastoTotal = $gastoDucha + $gastoDientes + $gastoCisterna + $gastoManos + $gastoCara + $gastoGrifo + $gastoLavavajillas + $gastoLavadora;   
+        return  $gastoTotal;
     }
 
 }
