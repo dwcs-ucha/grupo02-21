@@ -285,7 +285,8 @@ class CSV
      * @param String $email Email a comprobar
      * @return boolean
      */
-    public static function existsUserEmail(String $email) {
+    public static function existsUserEmail(String $email)
+    {
         $allUsers = CSV::getAllUsers();
         if ($allUsers != null) {
             foreach ($allUsers as $person) {
@@ -329,5 +330,4 @@ class CSV
         }
         return null;
     }
-
 }

@@ -115,7 +115,7 @@ class BD
     public static function getArticles()
     {
     }
-    
+
     /**
      * Comprobación de la existencia del email de usuario
      *
