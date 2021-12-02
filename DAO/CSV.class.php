@@ -24,7 +24,7 @@ class CSV
      * @param Log $log Objeto de la clase Log
      * @return void
      */
-    public static function writeLog($log)
+    public static function writeLog(Log $log)
     {
         $file = self::$files['logs'];
         if (self::existsFile($file)) {
@@ -34,8 +34,14 @@ class CSV
             fclose($fp);
         }
     }
-
-    public static function readLanguage($file, $type)
+    /**
+     * Obtener los textos en el idioma que se pase
+     *
+     * @param String $file
+     * @param String $type
+     * @return void
+     */
+    public static function readLanguage(String $file, String $type)
     {
         $data = CSV::readCSV($file, $type);
         if ($data != null) {
@@ -50,7 +56,7 @@ class CSV
      * @param string $file
      * @return array
      */
-    private static function readCSV($file, $type = 'all')
+    private static function readCSV(String $file, String $type = 'all')
     {
         $fileData = array();
         if ($file == 'idiomas') {
@@ -85,7 +91,7 @@ class CSV
      * @param array $data Datos que se van a meter en el fichero
      * @return void
      */
-    private static function writeCSV($file, $data)
+    private static function writeCSV(String $file, array $data)
     {
         $file = self::$files[$file];
         if (self::existsFile($file)) {
@@ -109,7 +115,7 @@ class CSV
      * @param Usuario $user Objeto de tipo usuario
      * @return void
      */
-    public static function insertUser($user)
+    public static function insertUser(Usuario $user)
     {
         $allUsers = self::getAllUsers();
         $allUsers[] = $user;
@@ -142,7 +148,11 @@ class CSV
         if ($users != null) {
         }
     }
-
+    /**
+     * Recoger un array de objetos de tipo admin y usuario
+     *
+     * @return array
+     */
     public static function getAllUsers()
     {
         $allUsers = self::readCSV('users');
@@ -180,7 +190,7 @@ class CSV
     }
 
     /**
-     * Eliminación del admin
+     * Eliminación de un administrador
      *
      * @param Admin $user Objeto de tipo admin
      * @return void
@@ -195,8 +205,8 @@ class CSV
     /**
      * Comprobar si el usuario existe en nuestra base de datos
      *
-     * @param string $login
-     * @param string $pass
+     * @param string $login Nombre de Usuario
+     * @param string $pass Contraseña Encriptada
      * @return mixed Devuelve un objeto Usuario o Admin
      */
     public function authenticateUser($login, $pass)
@@ -204,7 +214,7 @@ class CSV
         $allUsers = self::getAllUsers();
         if ($allUsers != null) {
             foreach ($allUsers as $person) {
-                if ((strcmp($login, $person->getLogin()) == 0) && (hash_equals($person->getPass(), $pass))) {
+                if ((strcmp($login, $person->getLogin()) == 0) && (hash_equals($person->getPassWord(), $pass))) {
                     return $person;
                 }
             }
@@ -215,9 +225,9 @@ class CSV
     /**
      * Comprobar si el usuario existe como administrador
      *
-     * @param string $login
-     * @param string $pass
-     * @return Admin
+     * @param string $login Nombre de Usuario
+     * @param string $pass Contraseña Encriptada
+     * @return Admin Objeto de tipo admin
      */
     public function authenticateAdmin($login, $pass)
     {
@@ -225,7 +235,7 @@ class CSV
         if ($data != null) {
             foreach ($data as $person) {
                 if ($person->getRol() == 'Admin') {
-                    if ((strcmp($login, $person->getLogin()) == 0) && (hash_equals($person->getPass(), $pass))) {
+                    if ((strcmp($login, $person->getLogin()) == 0) && (hash_equals($person->getPassWord(), $pass))) {
                         return $person;
                     }
                 }
@@ -237,8 +247,8 @@ class CSV
     /**
      * Comprobación de la existencia del nombre de usuario
      *
-     * @param String $login 
-     * @return boolean
+     * @param String $login Nombre de Usuario
+     * @return boolean True si existe, False si no existe
      */
     public static function existsUserName($login)
     {

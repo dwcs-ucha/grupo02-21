@@ -69,9 +69,23 @@ class BD
     public static function existsUserName($login)
     {
     }
+    /**
+     * Comprobar si el usuario existe en nuestra base de datos
+     *
+     * @param string $login Nombre de usuario
+     * @param string $pass Contraseña Encriptada
+     * @return mixed Devuelve un objeto Usuario o Admin
+     */
     public static function authenticateUser($login, $pass)
     {
     }
+    /**
+     * Comprobar si el usuario existe como administrador
+     *
+     * @param string $login Nombre de Usuario
+     * @param string $pass Contraseña Encriptada
+     * @return Admin Objeto de tipo admin
+     */
     public static function authenticateAdmin($login, $pass)
     {
     }
