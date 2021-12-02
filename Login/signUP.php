@@ -196,6 +196,7 @@ $registerError = array();
                     echo Erro::showErrors();
                 } else {
                     DAO::insertUser($user);
+                    header("location: ../index.php");
                 }
             }
         } else {
