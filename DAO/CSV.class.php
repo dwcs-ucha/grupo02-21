@@ -2,7 +2,7 @@
 
 class CSV
 {
-    private static $files = array('users' => '../DataBase/users.csv');
+    private static $files = array('users' => '../DataBase/users.csv', 'logs' => '../DataBase/logs.txt');
 
     /**
      * Comprueba si el fichero pasado existe
@@ -19,12 +19,29 @@ class CSV
     }
 
     /**
+     * Escribir el fichero Log, donde se guardarán los pasos del usuario
+     *
+     * @param Log $log Objeto de la clase Log
+     * @return void
+     */
+    public static function writeLog($log)
+    {
+        $file = self::$files['logs'];
+        if (self::existsFile($file)) {
+            if (($fp = fopen($file, 'a')) !== FALSE) {
+                fwrite($fp, $log);
+            }
+            fclose($fp);
+        }
+    }
+
+    /**
      * Método que devuelve todos los datos de un archivo CSV
      * @param string $filename Nombre del archivo CSV
      * 
      * @return mixed Devuelve array con los datos / false si falla la conexión.
      */
-    public static function readCsvRows($filename)
+    /*public static function readCsvRows($filename)
     {
         $rows = array();
         if ($fs = fopen($filename, 'r')) {
@@ -34,7 +51,7 @@ class CSV
         }
         fclose($fs);
         return $rows;
-    }
+    }*/
 
     /**
      * Método que almacena los datos de un array multidimensional en un fichero CSV
@@ -43,7 +60,7 @@ class CSV
      * @param string $filename Nombre del fichero
      * @return boolean  
      */
-    public static function writeCSVRows($rows, $filename)
+    /*public static function writeCSVRows($rows, $filename)
     {
         if ($fs = fopen($filename, 'w')) {
             foreach ($rows as $row) {
@@ -51,7 +68,7 @@ class CSV
             }
         }
         fclose($fs);
-    }
+    }*/
 
     /**
      * Método para obtener las cabeceras del archivo
@@ -78,10 +95,10 @@ class CSV
         if (self::existsFile($file)) {
             if (($fp = fopen($file, 'r')) !== FALSE) {
                 while (($data = fgetcsv($fp, 0, ';')) !== FALSE) {
-                    if ($type == 'admins' && $data[0] == 'admin' || $type == 'all' && $data[0] == 'admin') {
+                    if ($type == 'admins' && $data[0] == 'Admin' || $type == 'all' && $data[0] == 'Admin') {
                         $admin = new Admin($data[0], $data[1], $data[2], $data[3], $data[4], $data[5]);
                         $fileData[] = $admin;
-                    } else if ($type == 'usuarios' && $data[0] == 'usuario' || $type == 'all' && $data[0] == 'usuario') {
+                    } else if ($type == 'usuarios' && $data[0] == 'Usuario' || $type == 'all' && $data[0] == 'Usuario') {
                         $user = new Usuario($data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6]);
                         $fileData[] = $user;
                     }

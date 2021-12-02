@@ -78,7 +78,7 @@
             <input type="range" class="form-range" min="1" max="7" default="2" onchange="updateTextValue(this.value, 'valorNenos');" id="nenos" name="nenos">
         </div>
         <div class="col-sm-2">
-            <input type="text" readonly class="form-control-plaintext d-inline" style="width: 12px;" id="valorNenos" value="60"> <span> nenos</span>
+            <input type="text" readonly class="form-control-plaintext d-inline" style="width: 12px;" id="valorNenos" value=""> <span> nenos</span>
         </div>
     </div>
     <div class="mt-4 pt-5 row">
