@@ -31,17 +31,12 @@ class CSV
             if (($fp = fopen($file, 'a')) !== FALSE) {
                 fwrite($fp, $log . '\n');
             }
-<<<<<<< HEAD
-            fclose($fp);
-        }
-=======
         } else {
             if (($fp = fopen($file, 'w')) !== FALSE) {
                 fwrite($fp, $log);
             }
         }
         fclose($fp);
->>>>>>> 084bff74c3f313847b50449e2f6b28253296801f
     }
     /**
      * Obtener los textos en el idioma que se pase
@@ -85,11 +80,7 @@ class CSV
                         $fileData[] = $user;
                     } else if ($type == 'GL' || $type == 'EN' || $type == 'ES') {
                         $fileData[] = $data;
-<<<<<<< HEAD
-                    } else if($type == 'articulo') {
-=======
                     } else if ($type == 'articulo') {
->>>>>>> 084bff74c3f313847b50449e2f6b28253296801f
                         $article = new Publicacion($data[0], $data[1]);
                         $fileData[] = $article;
                     }
@@ -304,11 +295,7 @@ class CSV
     public static function getArticles()
     {
         $data = self::readCSV('articulos');
-<<<<<<< HEAD
-        if($data != null) {
-=======
         if ($data != null) {
->>>>>>> 084bff74c3f313847b50449e2f6b28253296801f
             return $data;
         }
         return null;
