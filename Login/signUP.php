@@ -190,9 +190,15 @@ $registerError = array();
          if ($response != null && $response->success) {
             if (Erro::countErros() == 0) {
                 $user = new Usuario($registerRol, $registerLogin, $registerName, $registerPassWord, $registerSurname, $registerEmail, $registerAddress);
-                DAO::insertUser($user);
+                if (DAO::existsUserName($user->getLogin())) {
+                    Erro::addError('ExistsUserName','El nombre de usuario ya existe');
+                    echo Erro::showErrors();
+                } else {
+                    DAO::insertUser($user);
+                }
             }
         } else {
+            Erro::addError('captchaError','Fallo de verificación de Capcha');
             echo Erro::showErrors();
         }
     }
