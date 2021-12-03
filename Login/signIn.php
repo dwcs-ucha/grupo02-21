@@ -67,12 +67,16 @@
             
             if (empty($login) || empty($pass)){
                 Erro::addError("emptyField","Introduzca Login y contraseña");
+                echo Erro::showErrors();
             } else {
                 if (($user = DAO::authenticateUser($login,$pass)) != null ){
                     session_start();
                     $_SESSION['userLogged'] = $user;
+                    var_dump($user);
                     echo "todo ok";
-                    var_dump($_SESSION['userLogged']);
+                    var_dump($_SESSION['userLogged']);                    
+                } else {
+                    echo "nada ok";
                 }
             }
                     

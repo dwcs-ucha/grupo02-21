@@ -11,8 +11,8 @@ class Usuario extends Persona {
     //put your code here
     private $address;
 
-    public function __construct($login, $name, $passWord, $surName, $eMail, $rol, $address) {
-        parent::__construct($login, $name, $passWord, $surName, $eMail, $rol);
+    public function __construct( $rol,$login, $name, $passWord, $surName, $eMail, $address) {
+        parent::__construct( $rol,$login, $name, $passWord, $surName, $eMail);
         $this->address = $address;
     }
     public function formatUsuario() {
