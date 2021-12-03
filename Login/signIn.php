@@ -7,6 +7,7 @@
     //Página de Login.
     include_once "../Class/Persona.class.php";
     include_once "../Class/Usuario.class.php";
+    include_once "../Class/Admin.class.php";
     include_once "../Class/Validacion.class.php";
     include_once "../Class/Erro.class.php";
     include_once "../DAO/DAO.class.php";
@@ -60,16 +61,19 @@
         <?php        
         
         $login = $passWord = "";
+
         if (isset($_POST['loginSend'])){
             //Almacenamos en las variables los datos, después de estar validados.
             $login = $_POST['loginUserName'];
-            $pass = $_POST['loginPassWord']; 
+            $passWord = $_POST['loginPassWord']; 
             
-            if (empty($login) || empty($pass)){
+            if (empty($login) || empty($passWord)){
                 Erro::addError("emptyField","Introduzca Login y contraseña");
                 echo Erro::showErrors();
             } else {
-                if (($user = DAO::authenticateUser($login,$pass)) != null ){
+                $user = DAO::authenticateUser($login,$passWord);
+                var_dump($user);
+                if ($user != null ){
                     session_start();
                     $_SESSION['userLogged'] = $user;
                     var_dump($user);

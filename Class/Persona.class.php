@@ -112,7 +112,7 @@ abstract class Persona {
      */
     
      function validate_pw($password, $hash){
-        return crypt($password, $hash) == $hash;
+        return hash_equals(crypt($password, $hash), $hash);
     }
 
 }

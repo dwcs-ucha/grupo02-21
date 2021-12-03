@@ -229,10 +229,10 @@ class CSV
     public function authenticateUser(String $login, String $pass)
     {
         $allUsers = self::getAllUsers();
-        if ($allUsers != null) {
-            foreach ($allUsers as $person) {
-                if ((strcmp($login, $person->getLogin()) == 0) && (hash_equals($person->getPassWord(), $pass))) {
-                    return $person;
+        if ($allUsers != null) {            
+            foreach ($allUsers as $person) {                
+                if ((strcmp($login, $person->getLogin()) == 0) && (Persona::validate_pw($pass,$person->getPassWord()))) {                                        
+                    return $person;                    
                 }
             }
         }
