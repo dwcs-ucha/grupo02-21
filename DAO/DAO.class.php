@@ -139,7 +139,7 @@ class DAO
     public static function authenticateUser($login, $pass)
     {
         $person = '';
-        if (self::$modo == 'csv') {            
+        if (self::$modo == 'csv') {
             $person = CSV::authenticateUser($login, $pass);
         } else if (self::$modo == 'bd') {
             $person = BD::authenticateUser($login, $pass);
