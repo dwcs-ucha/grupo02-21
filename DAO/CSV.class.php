@@ -231,7 +231,7 @@ class CSV
         $allUsers = self::getAllUsers();
         if ($allUsers != null) {            
             foreach ($allUsers as $person) {                
-                if ((strcmp($login, $person->getLogin()) == 0) && (Persona::validate_pw($pass,$person->getPassWord()))) {                                        
+                if ((strcmp(strtolower($login), strtolower($person->getLogin())) == 0) && (Persona::validate_pw($pass,$person->getPassWord()))) {                                        
                     return $person;                    
                 }
             }

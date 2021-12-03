@@ -111,7 +111,7 @@ abstract class Persona {
      * @author https://www.php.net/manual/es/function.crypt.php#114060
      */
     
-     function validate_pw($password, $hash){
+    static function validate_pw($password, $hash){
         return hash_equals(crypt($password, $hash), $hash);
     }
 
