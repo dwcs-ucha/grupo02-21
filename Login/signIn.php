@@ -69,21 +69,26 @@
             $passWord = $_POST['loginPassWord']; 
             
             if (empty($login) || empty($passWord)){
-                Erro::addError("emptyField","Introduzca Login y contraseña");
+                Erro::addError("EmptyField", "Introduzca Login y contraseña");
                 echo Erro::showErrors();
 
                 // LOGIN INCORRECTO - Añade un registro al LOG
-                DAO::writeLog(new Log("se ha intentado loguear como " . $login . " en la aplicación desde " . $_SERVER['REMOTE_ADDR']));
+                DAO::writeLog(new Log("se ha intentado loguear en la aplicación desde " . $_SERVER['REMOTE_ADDR'] . " - " . Erro::showErrorsLog()));
             } else {
                 $user = DAO::authenticateUser($login,$passWord);
                 var_dump($user);
                 if ($user != null ){
                     session_start();
                     $_SESSION['userLogged'] = $user; 
+                    
                     // LOGIN CORRECTO - Añade un registro al LOG
                     DAO::writeLog(new Log("se ha logueado en la aplicación desde " . $_SERVER['REMOTE_ADDR'] , $login));
                 } else {
-                    Erro::showErrors();
+                    Erro::addError("UserAuthenticateError", "No parece haber ningún usuario con ese nombre");
+                    echo Erro::showErrors();
+
+                    // LOGIN INCORRECTO - Añade un registro al LOG
+                    DAO::writeLog(new Log("se ha intentado loguear como " . strtoupper($login) . " en la aplicación desde " . $_SERVER['REMOTE_ADDR'] . " - " . Erro::showErrorsLog()));
                 }
             }
                     
