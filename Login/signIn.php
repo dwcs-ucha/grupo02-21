@@ -11,6 +11,7 @@
     include_once "../Class/Validacion.class.php";
     include_once "../Class/Erro.class.php";
     include_once "../DAO/DAO.class.php";
+    include_once "../Class/Log.class.php";
     
 ?>
 <html>
@@ -70,6 +71,9 @@
             if (empty($login) || empty($passWord)){
                 Erro::addError("emptyField","Introduzca Login y contraseña");
                 echo Erro::showErrors();
+
+                // LOGIN INCORRECTO - Añade un registro al LOG
+                DAO::writeLog(new Log("se ha intentado loguear como " . $login . " en la aplicación desde " . $_SERVER['REMOTE_ADDR']));
             } else {
                 $user = DAO::authenticateUser($login,$passWord);
                 var_dump($user);
@@ -78,7 +82,10 @@
                     $_SESSION['userLogged'] = $user;
                     var_dump($user);
                     echo "todo ok";
-                    var_dump($_SESSION['userLogged']);                    
+                    var_dump($_SESSION['userLogged']);     
+                    
+                    // LOGIN CORRECTO - Añade un registro al LOG
+                    DAO::writeLog(new Log("se ha logueado en la aplicación desde " . $_SERVER['REMOTE_ADDR'] , $login));
                 } else {
                     echo "nada ok";
                 }
