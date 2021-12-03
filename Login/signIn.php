@@ -75,10 +75,10 @@
                 var_dump($user);
                 if ($user != null ){
                     session_start();
-                    $_SESSION['userLogged'] = $user;
+                    $_SESSION['userLogged'] = $user; 
                     var_dump($user);
                     echo "todo ok";
-                    var_dump($_SESSION['userLogged']);                    
+                    var_dump($_SESSION['userLogged']);                     
                 } else {
                     echo "nada ok";
                 }

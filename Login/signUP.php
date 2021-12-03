@@ -2,7 +2,7 @@
 <?php
 //Página de registro.
 //@author: Oscar González Martínez
-//Versión: 0.1
+//Versión: 0.9
 //Proyecto "Aforro Enerxético"
 include_once '../Class/Persona.class.php';
 include_once "../Class/Validacion.class.php";
@@ -152,6 +152,7 @@ $registerError = array();
                 if (Validacion::comprobarStrings($_POST['registerEmail'], $_POST['registerVerifyEmail'])) {
                     //Validamos el campo Mail si las cadenas son iguales
                     if (Validacion::validarEmail($_POST['registerEmail'])) {
+                        
                         $registerEmail = $_POST['registerEmail'];
                     } else {
                         Erro::addError("registerEmail", "El correo no cumple los requisitos de email");
