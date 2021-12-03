@@ -2,7 +2,7 @@
 <?php 
     //@author: Oscar Gonzalez Martinez
     //@date: 22/11/2021
-    //@version: 0.1
+    //@version: 0.9
     //include "validaciones.php";
     //Página de Login.
     include_once "../Class/Persona.class.php";
@@ -80,14 +80,10 @@
                 if ($user != null ){
                     session_start();
                     $_SESSION['userLogged'] = $user; 
-                    var_dump($user);
-                    echo "todo ok";
-                    var_dump($_SESSION['userLogged']);     
-                    
                     // LOGIN CORRECTO - Añade un registro al LOG
                     DAO::writeLog(new Log("se ha logueado en la aplicación desde " . $_SERVER['REMOTE_ADDR'] , $login));
                 } else {
-                    echo "nada ok";
+                    Erro::showErrors();
                 }
             }
                     
