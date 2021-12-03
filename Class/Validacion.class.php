@@ -6,7 +6,7 @@
  * @author luisvi
  * @email luisvaziza@gmail.com
  * @fechaDeCreación 18 nov 2021
- * @últimaModificación 03 nov 2021
+ * @últimaModificación 03 dic 2021
  * @versión v01.04.00
  */
 class Validacion {
