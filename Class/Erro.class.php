@@ -39,4 +39,12 @@ class Erro
     public static function countErros() {
         return count(self::$errors);
     }
+    public static function showErrorsLog()
+    {
+        $texto = "";
+        foreach (self::$errors as $type => $message) {
+            $texto .= $type . '//';
+        }
+        return $texto;
+    }
 }

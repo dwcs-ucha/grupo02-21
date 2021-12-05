@@ -2,7 +2,7 @@
 <?php 
     //Página de registro.
     //@author: Oscar González Martínez
-    //Versión: 0.1
+    //Versión: 0.9
     //Proyecto "Aforro Enerxético"
     include_once '../Class/Persona.class.php';    
     include_once "../Class/Validacion.class.php";
@@ -12,7 +12,7 @@
  //Inicialización de variables 
  $adminRol = $adminLogin = $adminName = $adminSurname = $adminPassWord = $adminVerifyPassword = $adminEmail = $adminVerifyEmail = $adminAddress = "";
  
- //$adminLoginError = $adminNameError = $adminSurnameError = $adminPassWordError = $adminVerifyPasswordError = $adminEmailError = $adminVerifyEmail = "";
+ 
  $adminError = array(); 
     
 ?>
@@ -133,9 +133,6 @@
                 Erro::addError("adminPassWord" ,"Introduzca Password");
             }
             
-            
-            //Validación email.
-            
            //Validación email.
             
            if (isset($_POST['adminEmail'])){
@@ -171,14 +168,20 @@
         }
                     
             if (Erro::countErros() == 0){
+                if (DAO::existsUserName($adminLogin) || DAO::existsUserEmail($adminEmail)){
+                    Erro::addError("UserError","Usuario o email ya existentes");
+                    echo Erro::showErrors();
+                }else {
                 if ($_POST['adminRol'] == "Admin"){
-                    $admin = new Admin($adminRol,$adminLogin,$adminName,$adminPassWord,$adminSurname,$adminEmail);
-                    var_dump($admin);
+                    $admin = new Admin($adminRol,$adminLogin,$adminName,$adminPassWord,$adminSurname,$adminEmail);                    
                     DAO::insertAdmin($admin);
                 } else {
                     $user = new Usuario($adminRol,$adminLogin,$adminName,$adminPassWord,$adminSurname,$adminEmail,$adminAddress);
                     DAO::insertUser($user);
                 }
+            }
+            } else {
+                echo Erro::showErrors();
             }
         }
         ?>

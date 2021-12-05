@@ -231,7 +231,7 @@ class CSV
         $allUsers = self::getAllUsers();
         if ($allUsers != null) {
             foreach ($allUsers as $person) {
-                if ((strcmp($login, $person->getLogin()) == 0) && (hash_equals($person->getPassWord(), $pass))) {
+                if ((strcmp(strtolower($login), strtolower($person->getLogin())) == 0) && (Persona::validate_pw($pass, $person->getPassWord()))) {
                     return $person;
                 }
             }
@@ -252,7 +252,7 @@ class CSV
         if ($data != null) {
             foreach ($data as $person) {
                 if ($person->getRol() == 'Admin') {
-                    if ((strcmp($login, $person->getLogin()) == 0) && (hash_equals($person->getPassWord(), $pass))) {
+                    if ((strcmp(strtolower($login), strtolower($person->getLogin())) == 0) && (Persona::validate_pw($pass, $person->getPassWord()))) {
                         return $person;
                     }
                 }

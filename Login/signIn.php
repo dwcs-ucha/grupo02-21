@@ -2,14 +2,16 @@
 <?php 
     //@author: Oscar Gonzalez Martinez
     //@date: 22/11/2021
-    //@version: 0.1
+    //@version: 0.9
     //include "validaciones.php";
     //Página de Login.
     include_once "../Class/Persona.class.php";
     include_once "../Class/Usuario.class.php";
+    include_once "../Class/Admin.class.php";
     include_once "../Class/Validacion.class.php";
     include_once "../Class/Erro.class.php";
     include_once "../DAO/DAO.class.php";
+    include_once "../Class/Log.class.php";
     
 ?>
 <html>
@@ -60,23 +62,33 @@
         <?php        
         
         $login = $passWord = "";
+
         if (isset($_POST['loginSend'])){
             //Almacenamos en las variables los datos, después de estar validados.
             $login = $_POST['loginUserName'];
-            $pass = $_POST['loginPassWord']; 
+            $passWord = $_POST['loginPassWord']; 
             
-            if (empty($login) || empty($pass)){
-                Erro::addError("emptyField","Introduzca Login y contraseña");
+            if (empty($login) || empty($passWord)){
+                Erro::addError("EmptyField", "Introduzca Login y contraseña");
                 echo Erro::showErrors();
+
+                // LOGIN INCORRECTO - Añade un registro al LOG
+                DAO::writeLog(new Log("se ha intentado loguear en la aplicación desde " . $_SERVER['REMOTE_ADDR'] . " - " . Erro::showErrorsLog()));
             } else {
-                if (($user = DAO::authenticateUser($login,$pass)) != null ){
+                $user = DAO::authenticateUser($login,$passWord);
+                var_dump($user);
+                if ($user != null ){
                     session_start();
-                    $_SESSION['userLogged'] = $user;
-                    var_dump($user);
-                    echo "todo ok";
-                    var_dump($_SESSION['userLogged']);                    
+                    $_SESSION['userLogged'] = $user; 
+                    
+                    // LOGIN CORRECTO - Añade un registro al LOG
+                    DAO::writeLog(new Log("se ha logueado en la aplicación desde " . $_SERVER['REMOTE_ADDR'] , $login));
                 } else {
-                    echo "nada ok";
+                    Erro::addError("UserAuthenticateError", "No parece haber ningún usuario con ese nombre");
+                    echo Erro::showErrors();
+
+                    // LOGIN INCORRECTO - Añade un registro al LOG
+                    DAO::writeLog(new Log("se ha intentado loguear como " . strtoupper($login) . " en la aplicación desde " . $_SERVER['REMOTE_ADDR'] . " - " . Erro::showErrorsLog()));
                 }
             }
                     
