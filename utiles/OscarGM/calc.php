@@ -19,8 +19,34 @@ include_once "Class/Fm.class.php";
             text-transform: capitalize;
             text-align: center;
         }
-        th {
-            border: solid 1px black;
+
+        table {
+            margin: auto;
+        }
+
+        fieldset {
+            font-family: sans-serif;
+            border: 5px solid #14782e;
+            background: #73e090;
+            border-radius: 5px;
+            padding: 15px;
+        }
+
+        input,
+        select {
+            background-color: #14782e;
+            border: #317873 solid 3px;
+            border-radius: 5px;
+        }
+
+        fieldset legend {
+            background: #14782e;
+            color: #fff;
+            padding: 5px 10px;
+            font-size: 32px;
+            border-radius: 5px;
+            box-shadow: 0 0 0 5px #ddd;
+            margin-left: 20px;
         }
     </style>
 </head>
@@ -34,31 +60,31 @@ include_once "Class/Fm.class.php";
                     <th>Equipo</th>
                     <th>Nº De Equipos</th>
                     <th>Potencia(Watios)</th>
-                    <th>Horas de Uso Diario</th>                    
+                    <th>Horas de Uso Diario</th>
                 </tr>
                 <tr>
                     <td>
                         <select name="devicesName" id="devicesName">
                             <?php
                             foreach (Devices::$data as $calcDevices) {
-                                echo '<option value="' . $calcDevices. '">' . $calcDevices. '</option>';
+                                echo '<option value="' . $calcDevices . '">' . $calcDevices . '</option>';
                             }
                             ?>
                         </select>
                     </td>
                     <td>
-                        <input type="number" name="deviceQuantity" id="deviceQuantity" min="1"/>
+                        <input type="number" name="deviceQuantity" id="deviceQuantity" min="1" value="1" />
                     </td>
                     <td>
-                        <input type="number" name="devicePower" id="devicePower" min="1"/>
+                        <input type="number" name="devicePower" id="devicePower" min="1" value="100" />
                     </td>
                     <td>
-                        <input type="number" name="deviceHours" id="deviceHours" min="0" max="24"/>
+                        <input type="number" name="deviceHours" id="deviceHours" min="0" max="24" value="1" />
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <input type="submit" value="Agregar Otro" name="addMore">                        
+                    <td colspan="4">
+                        <input type="submit" value="Enviar/Agregar" name="addMore">
                     </td>
                 </tr>
             </table>
@@ -66,65 +92,88 @@ include_once "Class/Fm.class.php";
     </fieldset>
 
     <?php
-        $deviceName = $deviceNumber = $devicePower = $deviceHours = "";        
-        if (isset($_POST['addMore'])){
-            
-            $deviceName = $_POST['devicesName'];
-            $deviceNumber = (int)$_POST['deviceQuantity'];
-            $devicePower = (int)$_POST['devicePower'];
-            $deviceHours = (int)$_POST['deviceHours'];
-            
-            
-            $deviceOne[] = new Devices($deviceName,$deviceNumber,$devicePower,$deviceHours);                     
-           
-            Fm::setData($deviceOne);
-            header("refresh:0");
-        }
-    
-    
+    //Inicialización de variables que contendrán los valores del formulario.
+    $deviceName = $deviceNumber = $devicePower = $deviceHours = "";
+
+    if (isset($_POST['addMore'])) {
+
+        $deviceName = $_POST['devicesName'];
+        $deviceNumber = (int)$_POST['deviceQuantity'];
+        $devicePower = (int)$_POST['devicePower'];
+        $deviceHours = (int)$_POST['deviceHours'];
+
+
+        $deviceOne[] = new Devices($deviceName, $deviceNumber, $devicePower, $deviceHours);
+
+        Fm::setData($deviceOne, "a");
+        header("refresh:0");
+    }
+
+
     if (file_exists(Fm::$file)) {
     ?>
-    
-    
-    <table>
-        <tr>
-            <th>Equipo</th>
-            <th>Número de Equipos</th>
-            <th>Potencia(Watios)</th>
-            <th>Horas de Uso Diario</th>
-            <th>Consumo Diario (Kw/h)</th>
-            <th>Consumo Mensual (Kw/h)</th>
-        </tr>
-        
-            <?php                 
+    <br><br>
+    <fieldset>
+        <legend>Resultados</legend>
+        <form method="post" action=<?php $_SERVER['PHP_SELF'] ?>>
+            <table>
+                <tr>
+                    <th>Equipo</th>
+                    <th>Número de Equipos</th>
+                    <th>Potencia(Watios)</th>
+                    <th>Horas de Uso Diario</th>
+                    <th>Consumo Diario (Kw/h)</th>
+                    <th>Consumo Mensual (Kw/h)</th>
+                </tr>
+
+                <?php
+                $line = 0;
                 $dataBase = Fm::getCalc();
                 $sumDaily = $sumMonthly = 0;
-                foreach ($dataBase as $calcs){
+                foreach ($dataBase as $calcs) {
                     echo '<tr>';
-                    echo '<td>'.$calcs->getName().'</td>';
-                    echo '<td>'.$calcs->getNumber().'</td>';
-                    echo '<td>'.$calcs->getPower().'</td>';
-                    echo '<td>'.$calcs->getHours().'</td>';
-                    echo '<td>'.$calcs->daily().'</td>';
+                    echo '<td>' . $calcs->getName() . '</td>';
+                    echo '<td>' . $calcs->getNumber() . '</td>';
+                    echo '<td>' . $calcs->getPower() . '</td>';
+                    echo '<td>' . $calcs->getHours() . '</td>';
+                    echo '<td>' . $calcs->daily() . '</td>';
                     $sumDaily += $calcs->daily();
-                    echo '<td>'.$calcs->monthly().'</td>';
+                    echo '<td>' . $calcs->monthly() . '</td>';
                     $sumMonthly += $calcs->monthly();
+                    echo '<input type="hidden" name="fileNumber" value="' . $line++ . '"/>';
+                    echo '<td><input type="submit" name="rmFile" value="Eliminar"/></td>';
                     echo '</tr>';
                 }
-            ?>
-        <tr>
-            <th colspan="4">Total</th>
-            <th><?php echo $sumDaily ?></th>
-            <th><?php echo $sumMonthly ?></th>
-        </tr>
-    </table>
-    <form method="post" action=<?php $_SERVER['PHP_SELF'] ?> >
-                <input type="submit" value="Borrar" name="erase">
-    </form>
-    <?php 
-        if (isset($_POST['erase'])){
-            fm::emptyCsv();
-            header("refresh:0");
+                ?>
+                <tr>
+                    <th colspan="4">Total</th>
+                    <th><?php echo $sumDaily ?></th>
+                    <th><?php echo $sumMonthly ?></th>
+                </tr>
+            </table>
+
+            <input type="submit" value="Borrar" name="erase">
+        </form>
+        </fieldset>
+    <?php
+        //Llamada a la función que borra el CSV entero.
+        if (isset($_POST['erase'])) {
+            Fm::emptyCsv();
+            echo "<meta http-equiv='refresh' content='0'>";
+        }
+
+        //Borrado de lineas del Array dónde se almacena el contenido del CSV.
+        //Se comprueba que el array tenga contenido, de esta vacío se borra el CSV.
+        //Si tiene contenido, se reescribe el array en el archivo.
+        if (isset($_POST['rmFile'])) {
+            $remove = Fm::rmDevice($dataBase, $_POST['fileNumber']);
+            $ordered = array_values($remove);
+            if (empty($ordered)) {
+                Fm::emptyCsv();
+            } else {
+                Fm::setData($ordered, "w");
+            }
+            echo "<meta http-equiv='refresh' content='0'>";
         }
     }
     ?>

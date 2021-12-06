@@ -1,7 +1,7 @@
 <?php
     //Autor: Oscar González Martínez
     //Fecha: 27/11/21
-    //Version: 0.1
+    //Version:1.0
     //Clase: Electrodomesticos.
 
 class Devices {

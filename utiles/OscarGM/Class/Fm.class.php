@@ -1,5 +1,8 @@
  <?php
   /* 
+    @author: Oscar González Martínez
+    @Version: 1.0
+    @date: 28/11/2021
     FileManager:
 
     Clase de manejo de CSV para calculadora individual.
@@ -10,8 +13,12 @@ class Fm{
     public static $file = "./CSV/calculos.csv";
 
     //Función estatica que se encarga de almacenar datos en el fichero, si este no escribe lo crea.
-    public static function setData($devices){        
-        if ($fp = fopen(self::$file,"a")){
+    //Recibe dos parametros:
+    //El Array a escribir y el modo de escritura.
+    //W: Reescribe el fichero entero.
+    //A: Añade lineas al archivo.
+    public static function setData($devices,$mode){        
+        if ($fp = fopen(self::$file,$mode)){
             foreach($devices as $device){
                 $deviceData = [$device->getName(),$device->getNumber(),$device->getPower(),$device->getHours(),$device->daily(),$device->monthly()];
                 fputcsv($fp,$deviceData);
@@ -43,6 +50,11 @@ class Fm{
     public static function emptyCsv(){        
         unlink(self::$file);
         return true;
+    }
+
+    public static function rmDevice($data,$id){
+        unset($data[$id]);
+        return $data;
     }
     
 }
