@@ -71,18 +71,29 @@ class DAO
     /**
      * Eliminacion del usuario o del administrador
      *
-     * @param mixed $user objeto de tipo usuario o admin
+     * @param String $login Nombre de usuario de un admin o un usuario
      * @return void
      */
-    public static function deletePerson($person)
+    public static function deletePerson($login)
     {
         if (self::$modo == 'csv') {
-            CSV::deletePerson($person);
+            CSV::deletePerson($login);
         } else if (self::$modo == 'bd') {
-            BD::deletePerson($person);
+            BD::deletePerson($login);
         }
     }
-
+    /**
+     * Recoger un array de objetos de tipo admin y usuario
+     *
+     * @return array
+     */
+    public static function getAllUsers() {
+        $allUsers = array();
+        if(self::$modo == 'csv') {
+            $allUsers = CSV::getAllUsers();
+        }
+        return $allUsers;
+    }
     /**
      * Insertar un administrador
      *

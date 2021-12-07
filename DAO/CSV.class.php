@@ -156,25 +156,30 @@ class CSV
     /**
      * Eliminacion de un usuario o un administrador
      *
-     * @param mixed $user Objeto de tipo usuario o admin
+     * @param String $login Nombre de Usuario de un admin o un usuario
      * @return void
      */
-    public static function deletePerson($person)
+    public static function deletePerson($login)
     {
         $allUsers = self::getAllUsers();
         if ($allUsers != null) {
-            $delete = self::getKeyPerson($person);
+            $delete = self::getKeyPerson($login);
             unset($allUsers[$delete]);
             self::writeCSV('users', $allUsers);
         }
     }
-
-    private static function getKeyPerson($person) {
+    /**
+     * Recoger la posiocion en el array del objeto que coincide con el login pasado
+     *
+     * @param  String $login Nombre de usuario del admin o del usuario
+     * @return int Posicion del objeto en el array
+     */
+    private static function getKeyPerson($login) {
         $all = self::getAllUsers();
         if($all != null) {
-            foreach($all as $object) {
-                if($object->getLogin() == $person->getLogin()) {
-                    return key($object);
+            foreach($all as $key => $object) {
+                if($object->getLogin() == $login) {
+                    return $key;
                 }
             }
         }
