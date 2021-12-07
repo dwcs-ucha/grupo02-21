@@ -15,7 +15,10 @@ $registerLogin = $registerName = $registerSurname = $registerPassWord = $registe
 $registerRol = "Usuario";
 //$registerLoginError = $registerNameError = $registerSurnameError = $registerPassWordError = $registerVerifyPasswordError = $registerEmailError = $registerVerifyEmail = "";
 $registerError = array();
-
+session_start();
+if(isset($_SESSION['userLogged'])) {
+    header('Location: ../index.php');
+}
 ?>
 <html>
 
