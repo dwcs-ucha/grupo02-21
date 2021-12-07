@@ -154,16 +154,31 @@ class CSV
     }
 
     /**
-     * Eliminacion del usuario
+     * Eliminacion de un usuario o un administrador
      *
-     * @param Usuario $user Objeto de tipo usuario
+     * @param mixed $user Objeto de tipo usuario o admin
      * @return void
      */
-    public static function deleteUser(Usuario $user)
+    public static function deletePerson($person)
     {
-        //$users = self::readCSV('users', 'usuarios');
-        /*if ($users != null) {
-        }*/
+        $allUsers = self::getAllUsers();
+        if ($allUsers != null) {
+            $delete = self::getKeyPerson($person);
+            unset($allUsers[$delete]);
+            self::writeCSV('users', $allUsers);
+        }
+    }
+
+    private static function getKeyPerson($person) {
+        $all = self::getAllUsers();
+        if($all != null) {
+            foreach($all as $object) {
+                if($object->getLogin() == $person->getLogin()) {
+                    return key($object);
+                }
+            }
+        }
+        return null;
     }
     /**
      * Recoger un array de objetos de tipo admin y usuario
@@ -205,20 +220,6 @@ class CSV
         }
         return null;
     }
-
-    /**
-     * Eliminación de un administrador
-     *
-     * @param Admin $user Objeto de tipo admin
-     * @return void
-     */
-    public static function deleteAdmin(Admin $admin)
-    {
-        $admins = self::readCSV('users', 'admins');
-        if ($admins != null) {
-        }
-    }
-
     /**
      * Comprobar si el usuario existe en nuestra base de datos
      *

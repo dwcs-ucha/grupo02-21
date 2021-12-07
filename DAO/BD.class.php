@@ -22,16 +22,6 @@ class BD
     }
 
     /**
-     * Eliminacion del usuario
-     *
-     * @param Usuario $user
-     * @return void
-     */
-    public static function deleteUser(Usuario $user)
-    {
-    }
-
-    /**
      * Insertar un administrador
      *
      * @param Admin $admin
@@ -51,12 +41,12 @@ class BD
     }
 
     /**
-     * Eliminación del admin
+     * Eliminación del admin o de un usuario
      *
-     * @param Admin $user
+     * @param mixed $person objeto de tipo usuario o admin
      * @return void
      */
-    public static function deleteAdmin(Admin $admin)
+    public static function deletePerson($person)
     {
     }
 

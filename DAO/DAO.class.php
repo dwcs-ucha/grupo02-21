@@ -69,17 +69,17 @@ class DAO
     }
 
     /**
-     * Eliminacion del usuario
+     * Eliminacion del usuario o del administrador
      *
-     * @param Usuario $user
+     * @param mixed $user objeto de tipo usuario o admin
      * @return void
      */
-    public static function deleteUser(Usuario $user)
+    public static function deletePerson($person)
     {
         if (self::$modo == 'csv') {
-            CSV::deleteUser($user);
+            CSV::deletePerson($person);
         } else if (self::$modo == 'bd') {
-            BD::deleteUser($user);
+            BD::deletePerson($person);
         }
     }
 
@@ -112,21 +112,6 @@ class DAO
             $admins = BD::getAdmins();
         }
         return $admins;
-    }
-
-    /**
-     * Eliminación del admin
-     *
-     * @param Admin $user
-     * @return void
-     */
-    public static function deleteAdmin($admin)
-    {
-        if (self::$modo == 'csv') {
-            CSV::deleteAdmin($admin);
-        } else if (self::$modo == 'bd') {
-            BD::deleteAdmin($admin);
-        }
     }
 
     /**
