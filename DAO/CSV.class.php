@@ -340,4 +340,55 @@ class CSV
         }
         return null;
     }
+
+    /**
+     * Eliminacion de un articulo dependiendo de su titulo
+     * 
+     * @param String $titulo Titulo del articulo a eliminar
+     * 
+     * @return void
+     */
+    public static function deleteArticle($titulo) {
+        $articles = self::getArticles();
+        if ($articles != null) {
+            $delete = self::getKeyArticle($titulo);
+            unset($articles[$delete]);
+            self::writeCSV('articulos', $articles);
+        }
+    }
+
+    /**
+     * Recoger la posiocion en el array de un objeto articulo que coincide con el titulo pasado
+     *
+     * @param  String $titulo Titulo del articulo
+     * @return int Posicion del objeto en el array
+     */
+    private static function getKeyArticle($titulo) {
+        $articles = self::getArticles();
+        if ($articles != null) {
+            foreach ($articles as $key => $article) {
+                if ($article->getTitulo() == $titulo) {
+                    return $key;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Comprobación de la existencia de un articulo
+     * 
+     * @param String $titulo Titulo del articulo
+     * @return boolean Si existe el articulo devuelve true si no lo hace false
+     */
+    public static function existArticle($titulo) {
+        $bool = false;
+        $articles = self::getArticles();
+        foreach ($articles as $article) {
+            if($article->getTitulo() == $titulo) {
+                $bool = true;
+            }
+        }
+        return $bool;
+    }
 }

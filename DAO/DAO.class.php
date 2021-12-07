@@ -243,4 +243,33 @@ class DAO
         }
         return $articles;
     }
+
+    /**
+     * Eliminacion de un articulo dependiendo de su titulo
+     * 
+     * @param String $titulo Titulo del articulo a eliminar
+     * 
+     * @return void
+     */
+    public static function deleteArticle($titulo) {
+        if(self::$modo == 'csv') {
+            CSV::deleteArticle($titulo);
+        }
+    }
+
+    /**
+     * Compronbación de la existencia de un articulo
+     * 
+     * @param String $titulo Titulo del articulo
+     * @return boolean Si existe el articulo devuelve true si no lo hace false
+     */
+    
+    public static function existsArticle($titulo) {
+        $bool = false;
+        if(self::$modo == 'csv') {
+            $bool = CSV::existArticle($titulo);
+        }
+        return $bool;
+    }
+    
 }
