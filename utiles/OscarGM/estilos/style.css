@@ -1,0 +1,60 @@
+* {
+  text-transform: capitalize;
+  text-align: center;    
+  font-family: 'Times New Roman', Times, serif;
+}
+
+table {
+  margin: auto;
+}
+
+fieldset {
+  font-family: sans-serif;
+  border: 5px solid #14782e;
+  background: #73e090;
+  border-radius: 5px;
+  padding: 15px;
+  
+}
+
+input,
+select {  
+  background-color: #14782e;
+  border: #317873 solid 3px;
+  border-radius: 5px;  
+  width: 150px;
+  color:blue;
+  padding: 2px;
+}
+
+fieldset legend {
+  background: #14782e;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 32px;
+  border-radius: 5px;
+  box-shadow: 0 0 0 5px #ddd;
+  margin-left: 20px;
+}
+div {
+  color: blue;  
+  margin: auto;  
+}
+
+button {
+  border-radius: 5px;
+  color: white;
+  background-color: #0F5897;
+  padding: 5px 10px 8px 10px;
+}
+
+button:hover {
+  animation-name: background-color;
+  animation-duration: 500ms;
+}
+
+@keyframes background-color {
+  100% {
+    background-color: #4791d0;
+    }
+}

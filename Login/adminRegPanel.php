@@ -2,7 +2,7 @@
 <?php 
     //Página de registro.
     //@author: Oscar González Martínez
-    //Versión: 0.9
+    //Versión: 1.0
     //Proyecto "Aforro Enerxético"
     include_once '../Class/Persona.class.php';    
     include_once "../Class/Validacion.class.php";
