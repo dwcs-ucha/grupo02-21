@@ -11,10 +11,16 @@
     
  //Inicialización de variables 
  $adminRol = $adminLogin = $adminName = $adminSurname = $adminPassWord = $adminVerifyPassword = $adminEmail = $adminVerifyEmail = $adminAddress = "";
- 
- 
- $adminError = array(); 
-    
+ $adminError = array();
+ session_start();
+ if(isset($_SESSION['userLogged'])) {
+    $user = $_SESSION['userLogged'];
+    if($user->getRol() != 'Admin') {
+        header('Location: ../index.php');
+    }
+} else {
+    header('Location: signUp.php');
+}
 ?>
 <html>
     <head>

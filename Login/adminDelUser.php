@@ -14,6 +14,14 @@ include_once "../Class/Erro.class.php";
 
 $dataBaseAdmins = DAO::getAdmins();
 session_start();
+if(isset($_SESSION['userLogged'])) {
+    $user = $_SESSION['userLogged'];
+    if($user->getRol() != 'Admin') {
+        header('Location: ../index.php');
+    }
+} else {
+    header('Location: signUp.php');
+}
 ?>
 
 <!DOCTYPE html>

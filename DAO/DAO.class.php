@@ -1,5 +1,9 @@
 <?php
-
+/*
+ * Author: Rubén Dopico Novo
+ * Version: 4.5.0
+ * Last modified: 07 12 2021
+ */
 require_once('../Class/Usuario.class.php');
 require_once('../Class/Admin.class.php');
 require_once('../DAO/CSV.class.php');

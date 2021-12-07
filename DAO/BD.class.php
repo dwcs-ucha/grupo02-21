@@ -1,4 +1,9 @@
 <?php
+/*
+ * Author: Rubén Dopico Novo
+ * Version: 2.0.0
+ * Last modified: 07 12 2021
+ */
 class BD
 {
 

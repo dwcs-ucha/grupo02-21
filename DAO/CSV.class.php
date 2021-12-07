@@ -1,5 +1,9 @@
 <?php
-
+/*
+ * Author: Rubén Dopico Novo
+ * Version: 4.5.0
+ * Last modified: 07 12 2021
+ */
 class CSV
 {
     private static $files = array('users' => '../DataBase/users.csv', 'logs' => '../DataBase/logs.txt', 'idiomas' => '../DataBase/idioma', 'articulos' => '../DataBase/articulos.csv');
