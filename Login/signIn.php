@@ -83,11 +83,9 @@ if (isset($_SESSION['userLogged'])) {
             // LOGIN INCORRECTO - Añade un registro al LOG
             DAO::writeLog(new Log("se ha intentado loguear en la aplicación desde " . $_SERVER['REMOTE_ADDR'] . " - " . Erro::showErrorsLog()));
         } else {
-            $user = DAO::authenticateUser($login, $passWord);
-            var_dump($user);
+            $user = DAO::authenticateUser($login, $passWord);            
             if ($user != null) {
-                $_SESSION['userLogged'] = $user;
-
+                $_SESSION['userLogged'] = $user;                
                 // LOGIN CORRECTO - Añade un registro al LOG
                 DAO::writeLog(new Log("se ha logueado en la aplicación desde " . $_SERVER['REMOTE_ADDR'], $login));
             } else {

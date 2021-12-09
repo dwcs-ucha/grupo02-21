@@ -9,7 +9,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Index</title>
-        <link rel="stylesheet" href="./css/estilo.css">
+        <link rel="stylesheet" href="/css/estilo.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" rel="stylesheet">
@@ -19,13 +19,13 @@
         <div class="col-12 col-lg-12 col-sm-12">
             <div class="row">
                <div class="col-4 col-lg-4 col-sm-4 flex-colum">
-                    <img src="./logos/logoPlan.png" class="img-fluid" width="100px">
+                    <img src="/logos/logoPlan.png" class="img-fluid" width="100px">
                 </div>
                 <div class="col-4 col-lg-4 col-sm-4">
                    <h1 class="text-center fw-bolder text-primary">Aforro enerxético</h1>
                 </div>
                 <div class="col-4 col-lg-4 col-sm-4 flex-column-reverse">
-                    <img src="./logos/logoCentro.png" class="img-fluid">
+                    <img src="/logos/logoCentro.png" class="img-fluid">
                 </div>
               </div>
         </div>
