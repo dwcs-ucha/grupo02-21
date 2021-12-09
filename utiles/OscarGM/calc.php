@@ -21,7 +21,7 @@ session_start();
 if (isset($_SESSION['userLogged'])){
     $user = $_SESSION['userLogged'];        
 } else {
-    header("../../Login/signIn.php");
+    header("Location: ../../Login/signIn.php");
 }
 
 ?>
