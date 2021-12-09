@@ -105,17 +105,17 @@ $datos = array();
                 <th>Titulo</th>
                 <th>Cuerpo </th>
                 <th>Eliminacion</th>
-                <!--<th>Edicion</th>-->
             </tr>
             <?php
             foreach ($articulos as $novas) {
                 ?>
+                <form action="<?php echo './gestionArticle.php?titulo=' . $novas->getTitulo()?>" method="post" name="formulario" id="formulario">
                 <tr>
                     <td><?php echo $novas->getTitulo() ?></td>
                     <td><?php echo $novas->getCuerpo() ?></td>
-                    <td><a href='./elimArticle.php?titulo=<?php echo $novas->getTitulo() ?>'>Eliminar</a></td>
-                    <!--<td><a href="elimArticle.php?titulo=<?php //$novas->getTitulo()    ?>">Editar</a></td>-->
+                    <td><input type="submit" name="delete"></a></td>
                 </tr>
+                </form>
                 <?php
             }
         }

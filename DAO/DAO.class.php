@@ -4,6 +4,7 @@
  * Version: 4.8.0
  * Last modified: 07 12 2021
  */
+require_once('../Class/Persona.class.php');
 require_once('../Class/Usuario.class.php');
 require_once('../Class/Admin.class.php');
 require_once('../DAO/CSV.class.php');
