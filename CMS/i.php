@@ -5,12 +5,11 @@
  * Last modified: 02/12/2021
  */
 //HACER COMO LA GESTIÓN DE USUARIOS PERO CON ENTRADAS(DOCUMENTOS);
-require_once '../Class/CMS.class.php';
+require_once '../Class/Cms.class.php';
 require_once '../DAO/DAO.class.php';
 require_once '../Class/Validacion.class.php';
 require_once '../Class/Erro.class.php';
-$datosCorrectos = true;
-$datos = array();
+session_start();
 ?>
 <html>
     <head>
