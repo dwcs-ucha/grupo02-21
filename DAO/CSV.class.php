@@ -1,7 +1,7 @@
 <?php
 /*
  * Author: Rubén Dopico Novo
- * Version: 4.5.0
+ * Version: 4.8.0
  * Last modified: 07 12 2021
  */
 class CSV
@@ -178,11 +178,12 @@ class CSV
      * @param  String $login Nombre de usuario del admin o del usuario
      * @return int Posicion del objeto en el array
      */
-    private static function getKeyPerson($login) {
+    private static function getKeyPerson($login)
+    {
         $all = self::getAllUsers();
-        if($all != null) {
-            foreach($all as $key => $object) {
-                if($object->getLogin() == $login) {
+        if ($all != null) {
+            foreach ($all as $key => $object) {
+                if ($object->getLogin() == $login) {
                     return $key;
                 }
             }
@@ -319,14 +320,7 @@ class CSV
         $articles[] = $article;
         self::writeCSV('articulos', $articles);
     }
-    /**
-     * Recoger un objeto de tipo articulo
-     *
-     * @return Articulo
-     */
-    public static function getArticle()
-    {
-    }
+
     /**
      * Recoger un array de tipo article
      *
@@ -348,7 +342,8 @@ class CSV
      * 
      * @return void
      */
-    public static function deleteArticle($titulo) {
+    public static function deleteArticle(String $titulo)
+    {
         $articles = self::getArticles();
         if ($articles != null) {
             $delete = self::getKeyArticle($titulo);
@@ -363,7 +358,8 @@ class CSV
      * @param  String $titulo Titulo del articulo
      * @return int Posicion del objeto en el array
      */
-    private static function getKeyArticle($titulo) {
+    private static function getKeyArticle(String $titulo)
+    {
         $articles = self::getArticles();
         if ($articles != null) {
             foreach ($articles as $key => $article) {
@@ -376,19 +372,59 @@ class CSV
     }
 
     /**
+     * Recoger un objeto de tipo articulo
+     *
+     * @param String $titulp
+     * 
+     * @return Articulo
+     */
+    public static function getArticle(String $titulo)
+    {
+        $articles = self::getArticles();
+        if ($articles != null) {
+            foreach ($articles as $article) {
+                if ($article->getTitulo() == $titulo) {
+                    return $article;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
      * Comprobación de la existencia de un articulo
      * 
      * @param String $titulo Titulo del articulo
      * @return boolean Si existe el articulo devuelve true si no lo hace false
      */
-    public static function existArticle($titulo) {
+    public static function existArticle(String $titulo)
+    {
         $bool = false;
         $articles = self::getArticles();
         foreach ($articles as $article) {
-            if($article->getTitulo() == $titulo) {
+            if ($article->getTitulo() == $titulo) {
                 $bool = true;
             }
         }
         return $bool;
+    }
+
+    /**
+     *  Modificar un artículo
+     * 
+     * @param String $titulo Titulo del articulo a modificar
+     * @param String $cuerpo Cuerpo modificado del articulo
+     * @return void
+     * 
+     */
+
+    public static function updateArticle(String $titulo, String $cuerpo)
+    {
+        $article = self::getArticle($titulo);
+        $key = self::getKeyArticle($titulo);
+        $articles = self::getArticles();
+        $article->setCuerpo($cuerpo);
+        $articles[$key] = $article;
+        self::writeCSV('articulos', $articles);
     }
 }
