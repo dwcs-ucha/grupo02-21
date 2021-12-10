@@ -29,9 +29,9 @@
                             <div class="card-body">
                                 <div class="d-flex mb-3">
                                     <div class="ps-3">
-                                        <h5 class="card-title">Calculadora 1</h5>
-                                        <p class="card-text">Info</p>
-                                        <a href="#" class="btn btn-primary">Acceder</a>
+                                        <h5 class="card-title">Calculadora avanzada</h5>
+                                        <p class="card-text">Permite realizar el cálculo de <strong class="bold">consumo eléctrico anual de su vivienda</strong> teniendo en cuenta el consumo individual de cada uno de los equipos eléctronicos disponibles en su hogar.</p>
+                                        <a href="/utiles/miguel/datos" class="btn btn-primary">Acceder</a>
                                     </div>
                                 </div>
                             </div>

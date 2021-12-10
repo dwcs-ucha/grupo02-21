@@ -1,5 +1,8 @@
 .fondo {
-  background-color: #73e090;
+  background-color: #d4f7dd;
+}
+.alto{
+  height: 100vh;
 }
 
 /*!
@@ -2925,6 +2928,7 @@ textarea.form-control-lg {
   background-color: #e9ecef;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
+  width: 50%;
 }
 
 .input-group-lg > .form-control,

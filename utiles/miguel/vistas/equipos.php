@@ -8,39 +8,39 @@
  * @version 1.0.0
  */
 
+$tabs = array(
+    array('id' => 'cocina', 'nombre' => 'Cocina'),
+    array('id' => 'limpieza', 'nombre' => 'Limpieza'),
+    array('id' => 'climatizacion', 'nombre' => 'Climatización'),
+    array('id' => 'electronica', 'nombre' => 'Electrónica'),
+    array('id' => 'transporte', 'nombre' => 'Transporte'),
+    array('id' => 'iluminacion', 'nombre' => 'Iluminación')
+);
 ?>
 
-<div class="container-fluid">
-    <div class="row-fluid mt-4">
-        <div class="col">Página de equipos</div>
-    </div>
+<section id="equipos" class="container" style="display:none">
     <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-            <a class="nav-link active" id="cocina-tab" data-toggle="tab" href="#cocina" role="tab" aria-controls="cocina" aria-selected="true">Cocina</a>
-        </li>
-        <li class="nav-item" role="presentation">
-            <a class="nav-link" id="limpieza-tab" data-toggle="tab" href="#limpieza" role="tab" aria-controls="limpieza" aria-selected="false">Limpieza</a>
-        </li>
-        <li class="nav-item" role="presentation">
-            <a class="nav-link" id="climatizacion-tab" data-toggle="tab" href="#climatizacion" role="tab" aria-controls="climatizacion" aria-selected="false">Climatización</a>
-        </li>
-        <li class="nav-item" role="presentation">
-            <a class="nav-link" id="electronica-tab" data-toggle="tab" href="#electronica" role="tab" aria-controls="electronica" aria-selected="false">Electrónica</a>
-        </li>
-        <li class="nav-item" role="presentation">
-            <a class="nav-link" id="iluminacion-tab" data-toggle="tab" href="#iluminacion" role="tab" aria-controls="iluminacion" aria-selected="false">Iluminación</a>
-        </li>
-        <li class="nav-item" role="presentation">
-            <a class="nav-link" id="transporte-tab" data-toggle="tab" href="#transporte" role="tab" aria-controls="transporte" aria-selected="false">Transporte</a>
-        </li>
-   </ul>
+        <?php foreach ($tabs as $index => $tab) : ?>
+            <?php $active = $index === 0 ? ' active' : ''; ?>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link<?php echo $active; ?>" id="<?php echo $tab['id']; ?>-tab" data-bs-toggle="tab" type="button" data-bs-target="#<?php echo $tab['id']; ?>" role="tab" aria-controls="<?php echo $tab['id']; ?>" aria-selected="true"><?php echo $tab['nombre']; ?></a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
     <div class="tab-content mt-5" id="myTabContent">
-        <div class="tab-pane fade show active" id="cocina" role="tabpanel" aria-labelledby="cocina-tab"><?php include './vistas/equipos-cocina.php'; ?></div>
-        <div class="tab-pane fade" id="limpieza" role="tabpanel" aria-labelledby="limpieza-tab"><?php include './vistas/equipos-limpieza.php'; ?></div>
-        <div class="tab-pane fade" id="climatizacion" role="tabpanel" aria-labelledby="climatizacion-tab"><?php include './vistas/equipos-climatizacion.php'; ?></div>
-        <div class="tab-pane fade" id="electronica" role="tabpanel" aria-labelledby="electronica-tab"><?php include './vistas/equipos-electronica.php'; ?></div>
-        <div class="tab-pane fade" id="iluminacion" role="tabpanel" aria-labelledby="iluminacion-tab"><?php include './vistas/equipos-iluminacion.php'; ?></div>
-        <div class="tab-pane fade" id="transporte" role="tabpanel" aria-labelledby="transporte-tab"><?php include './vistas/equipos-transporte.php'; ?></div>
+        <div>
+            <p class="fs-5">Define la potencia y el uso de cada equipo</p>
+        </div>
+        <?php foreach ($tabs as $index => $tab) : ?>
+            <?php $active = $index === 0 ? ' show active' : ''; ?>
+            <div class="tab-pane fade<?php echo $active; ?>" id="<?php echo $tab['id']; ?>" role="tabpanel" aria-labelledby="<?php echo $tab['id']; ?>-tab">
+                <?php include "equipos-{$tab['id']}.php"; ?>
+            </div>
+        <?php endforeach; ?>
     </div>
-
-</div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <button class="btn btn-secondary" type="submit">Finalizar</button>
+        </div>
+    </div>
+</section>

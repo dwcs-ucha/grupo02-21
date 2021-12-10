@@ -1,0 +1,59 @@
+.unidades,
+.horas,
+.minutos {
+    width: 60px;
+    text-align: right;
+}
+
+.potencia, .kilometros {
+    width: 120px;
+    text-align: right;
+}
+
+.espacio {
+    width: 150px;
+    padding: 0 8px;
+}
+
+.potencia,
+.horas,
+.minutos {
+    padding-right: 8px;
+}
+
+.consumo-anual-aparato {
+    font-size: 12px;
+    text-align: end;
+    color: #757575;
+}
+
+.total-columna-consumo {
+    text-align: end;
+}
+
+.consumo-total-valor {
+    font-weight: 800;
+    margin-left: 4px;
+    color: #e1a820;
+}
+
+.rotated-header th {
+    height: 120px;
+    vertical-align: bottom;
+    text-align: left;
+    line-height: 1;
+}
+
+.rotated-header-container {
+    width: 35px;
+}
+
+.rotated-header-content {
+    width: 120px;
+    transform-origin: bottom left;
+    transform: translateX(15px) rotate(-60deg);
+}
+
+.rotated-header td:not(:first-child) {
+    text-align: right;
+}
