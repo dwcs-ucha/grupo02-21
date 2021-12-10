@@ -29,7 +29,7 @@ if ($resultados) {
 
     // Si no hay errores realizar los cálculos
     if (Erro::countErros() == 0) {
-        header('location /index.php');
+        header('location: /index.php');
     }
 }
 ?>

@@ -18,23 +18,23 @@ foreach ($categorias as $categoria => $equipos) {
         $nombre = $valor['tipo'] == '5' ? $valor['nombre_espacio'] : $valor['nombre'];
 
         // Validar campos comunes a todos los tipos
-        ValidacionEquipos::esNumeroPositivo($valor['unidades'], $nombreCategoria, $nombre);
-        ValidacionEquipos::esNumeroPositivo($valor['potencia'], $nombreCategoria, $nombre);
+        ValidacionEquipos::esNumeroPositivo($valor['unidades'], $nombreCategoria, 'unidades', $nombre);
+        ValidacionEquipos::esNumeroPositivo($valor['potencia'], $nombreCategoria, 'potencia', $nombre);
 
         // Validar campos propios del tipo 1 y 5, ya que a excepción del nombre comparte el resto de variables
         if ($valor['tipo'] == '1' || $valor['tipo'] == '5') {
-            ValidacionEquipos::esNumeroPositivo($valor['horas'], $nombreCategoria, $nombre, 168);
-            ValidacionEquipos::esNumeroPositivo($valor['min'], $nombreCategoria, $nombre, 59);
+            ValidacionEquipos::esNumeroPositivo($valor['horas'], $nombreCategoria, 'horas', $nombre, 168);
+            ValidacionEquipos::esNumeroPositivo($valor['min'], $nombreCategoria, 'minutos', $nombre, 59);
         }
 
         // Validar campos propios del tipo 3 (calculo por numero de usos semanales)
         if ($valor['tipo'] == '3') {
-            ValidacionEquipos::esNumeroPositivo($valor['usos_semanales'], $categoria, $nombre);
+            ValidacionEquipos::esNumeroPositivo($valor['usos_semanales'], $categoria, 'número de usos', $nombre);
         }
 
         // Validar campos propios del tipo 4 (calculo de consumo por km/mes)
         if ($valor['tipo'] == '4') {
-            ValidacionEquipos::esNumeroPositivo($valor['km_mes'], $categoria, $nombre);
+            ValidacionEquipos::esNumeroPositivo($valor['km_mes'], $categoria, 'Km. al mes', $nombre);
         }
     }
 }
