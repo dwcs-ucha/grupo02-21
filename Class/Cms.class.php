@@ -17,8 +17,17 @@ class Publicacion {
         return $this->titulo;
     }
 
+    public function setTitulo($titulo) {
+        $this->titulo = $titulo;
+    }
+
     public function getCuerpo() {
         return $this->cuerpo;
     }
+
+    public function setCuerpo($cuerpo) {
+        $this->cuerpo = $cuerpo;
+    }
+
 
 }

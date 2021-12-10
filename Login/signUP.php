@@ -13,83 +13,99 @@ require_once "recaptchalib.php";
 //Inicialización de variables 
 $registerLogin = $registerName = $registerSurname = $registerPassWord = $registerVerifyPassword = $registerEmail = $registerVerifyEmail = $registerAddress = "";
 $registerRol = "Usuario";
-//$registerLoginError = $registerNameError = $registerSurnameError = $registerPassWordError = $registerVerifyPasswordError = $registerEmailError = $registerVerifyEmail = "";
+$registerLoginError = $registerNameError = $registerSurnameError = $registerPassWordError = $registerVerifyPasswordError = $registerEmailError = $registerVerifyEmail = "";
 $registerError = array();
-
+session_start();
+if(isset($_SESSION['userLogged'])) {
+    header('Location: ../index.php');
+}
 ?>
 <html>
 
 <head>
     <meta charset="UTF-8">
     <title>Registro de Usuario</title>
-    <style>
-        .container {
-            border: solid 1px;
-            margin: auto;
-            width: 600px;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/custom.css">
+    <?php
+        include '../head.php'; 
+    ?>
     <script src="https://www.google.com/recaptcha/api.js?hl=es" async defer></script>
 </head>
 
 <body>
+    <?php
+        include '../menu.php'; 
+    ?>
+    <div class="fondo alto">
+    <div class="container"> 
     <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
-        <div class="container">
             <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
-
-            <!-- Nombre de Login -->
-            <label for="registerLogin">Login</label>
-            <input type="text" name="registerLogin" value="<?php if (isset($_POST['registerLogin'])) {
-                                                                echo $_POST['registerLogin'];
-                                                            } ?>" />
-            <br />
-            <!-- Nombre del Usario -->
-            <label for="registerName">Nombre</label>
-            <input type="text" name="registerName" value="<?php if (isset($_POST['registerName'])) {
-                                                                echo $_POST['registerName'];
-                                                            } ?>" />
-            <br />
-            <!-- Apellido del Usario -->
-            <label for="registerSurName">Apellidos</label>
-            <input type="text" name="registerSurName" value="<?php if (isset($_POST['registerSurName'])) {
-                                                                    echo $_POST['registerSurName'];
-                                                                } ?>" />
-            <br />
-            <!-- Campo Password. Por seguridad en caso de fallo no recupera el valor de la conrtaseña -->
-            <label for="registerPassWord">Contraseña</label>
-            <input type="password" name="registerPassword" />
-            <br />
-            <!-- Verificar PassWord -->
-            <label for="registerVerifyPassWord">Verificar Contraseña</label>
-            <input type="password" name="registerVerifyPassword" />
-            <br />
-            <!-- Email -->
-            <label for="registerEmail">Correo Electronico </label>
-            <input type="registerEmail" name="registerEmail" value="<?php if (isset($_POST['registerEmail'])) {
-                                                                        echo $_POST['registerVerifyEmail'];
-                                                                    } ?>" />
-            <br />
-            <!-- Verificar Email -->
-            <label for="registerVerifyEmail">Verificar Correo Electronico </label>
-            <input type="registerVerifyEmail" name="registerVerifyEmail" value="<?php if (isset($_POST['registerEmail'])) {
-                                                                                    echo $_POST['registerVerifyEmail'];
-                                                                                } ?>" />
-            <br />
-            <label for="registerAddress">Dirección</label>
-            <input type="text" name="registerAddress" id="registerAdress" value="<?php if (isset($_POST['registerAddress'])) {
-                                                                                        echo $_POST['registerAddress'];
-                                                                                    } ?>">
-            <br />
-            <!-- Input y Reset -->
-            <input type="submit" value="Confirmar" name="registerSubmit" />
-            <input type="reset" value="Borrar" />
-
-
-        </div>
-        <div class="g-recaptcha" data-sitekey="6LcYTXMdAAAAAPCoFfQN11at0TXtFhAuiB5N1-w8"></div>
-        
-
-
+            <div class="col-12 pt-3 pb-1">
+                <h1 class="text-primary">Registrarse</h1>
+            </div>
+            <div class="container border border-5 border border-primary border rounded-3 bg-light">
+                <div class="col-12 col-lg-12">
+                    <div class="row">
+                        <div class="col-12 col-lg-12 px-3 mt-3">
+                            <!-- Nombre de Login -->
+                            <label for="registerLogin">Login</label>
+                            <input type="text" name="registerLogin" class="input-group-text" value="<?php if (isset($_POST['registerLogin'])) {
+                                                                                                        echo $_POST['registerLogin'];
+                                                                                                    } ?>" />
+                        </div>
+                        <div class="col-12 col-lg-12 px-3 mt-3">
+                            <!-- Nombre del Usario -->
+                            <label for="registerName">Nombre</label>
+                            <input type="text" name="registerName" class="input-group-text" value="<?php if (isset($_POST['registerName'])) {
+                                                                                                        echo $_POST['registerName'];
+                                                                                                    } ?>" />
+                        </div>
+                        <div class="col-12 col-lg-12 px-3 mt-3">
+                            <!-- Apellido del Usario -->
+                            <label for="registerSurName">Apellidos</label>
+                            <input type="text" name="registerSurName" class="input-group-text" value="<?php if (isset($_POST['registerSurName'])) {
+                                                                                                            echo $_POST['registerSurName'];
+                                                                                                        } ?>" />
+                        </div>
+                        <div class="col-12 col-lg-12 px-3 mt-3">
+                            <!-- Campo Password. Por seguridad en caso de fallo no recupera el valor de la conrtaseña -->
+                            <label for="registerPassWord">Contraseña</label>
+                            <input type="password" class="input-group-text" name="registerPassword" />
+                        </div>    
+                        <div class="col-12 col-lg-12 px-3 mt-3">                                                                               
+                            <!-- Verificar PassWord -->
+                            <label for="registerVerifyPassWord">Verificar Contraseña</label>
+                            <input type="password" class="input-group-text" name="registerVerifyPassword" />
+                        </div>
+                        <div class="col-12 col-lg-12 px-3 mt-3">
+                            <!-- Email -->
+                            <label for="registerEmail">Correo Electronico </label>
+                            <input type="registerEmail" name="registerEmail" class="input-group-text" value="<?php if (isset($_POST['registerEmail'])) {
+                                                                                                                echo $_POST['registerVerifyEmail'];
+                                                                                                            } ?>" />
+                        </div>
+                        <div class="col-12 col-lg-12 px-3 mt-3">
+                            <!-- Verificar Email -->
+                            <label for="registerVerifyEmail">Verificar Correo Electronico </label>
+                            <input type="registerVerifyEmail" class="input-group-text" name="registerVerifyEmail" value="<?php if (isset($_POST['registerEmail'])) {
+                                                                                                                                echo $_POST['registerVerifyEmail'];
+                                                                                                                            } ?>" />
+                        </div>
+                        <div class="col-12 col-lg-12 px-3 mt-3">
+                            <label for="registerAddress">Dirección</label>
+                            <input type="text" name="registerAddress" class="input-group-text" id="registerAdress" value="<?php if (isset($_POST['registerAddress'])) {
+                                                                                                                                echo $_POST['registerAddress'];
+                                                                                                                            } ?>">
+                        </div>
+                        <div class="col-12 col-lg-12 px-3 mt-3 mb-3">
+                            <!-- Input y Reset -->
+                            <input type="submit" value="Confirmar" class="btn btn-primary" name="registerSubmit" />
+                            <input type="reset" value="Borrar" class="btn btn-primary" />
+                        </div>
+                        <div class="g-recaptcha" data-sitekey="6LcYTXMdAAAAAPCoFfQN11at0TXtFhAuiB5N1-w8"></div>
+                    </div>
+                </div>
+            </div>
     </form>
     <?php
 
@@ -207,6 +223,8 @@ $registerError = array();
         }
     }
     ?>
+    </div>
+</div>
 </body>
 
 </html>

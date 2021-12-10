@@ -4,17 +4,32 @@
   font-family: 'Times New Roman', Times, serif;
 }
 
+#global {
+  width: 80%;  
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  }
+  #calculadora {
+    display: grid;
+    grid-template-rows: auto;
+    
+  }
+
+  #global {
+    margin-top: 50px;
+  }
 table {
   margin: auto;
 }
 
 fieldset {
+  top: 110px;
   font-family: sans-serif;
   border: 5px solid #14782e;
   background: #73e090;
   border-radius: 5px;
-  padding: 15px;
-  
+  padding: 15px;  
 }
 
 input,
@@ -28,6 +43,7 @@ select {
 }
 
 fieldset legend {
+  top: 10px;
   background: #14782e;
   color: #fff;
   padding: 5px 10px;
@@ -37,7 +53,7 @@ fieldset legend {
   margin-left: 20px;
 }
 div {
-  color: blue;  
+  color: black;  
   margin: auto;  
 }
 
@@ -45,12 +61,12 @@ button {
   border-radius: 5px;
   color: white;
   background-color: #0F5897;
-  padding: 5px 10px 8px 10px;
+  height: 30px;
 }
 
 button:hover {
   animation-name: background-color;
-  animation-duration: 500ms;
+  animation-duration: 2s;
 }
 
 @keyframes background-color {
@@ -58,3 +74,4 @@ button:hover {
     background-color: #4791d0;
     }
 }
+

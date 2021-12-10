@@ -1,10 +1,16 @@
 <?php
-
+/*
+ * Author: Rubén Dopico Novo
+ * Version: 4.8.0
+ * Last modified: 07 12 2021
+ */
+require_once('../Class/Persona.class.php');
 require_once('../Class/Usuario.class.php');
 require_once('../Class/Admin.class.php');
 require_once('../DAO/CSV.class.php');
 require_once('../DAO/BD.class.php');
 require_once('../Class/Cms.class.php');
+require_once('../Class/Visitas.class.php');
 class DAO
 {
     private static $idiomas = array('gallego' => 'GL', 'castellano' => 'ES', 'ingles' => 'EN');
@@ -71,18 +77,29 @@ class DAO
     /**
      * Eliminacion del usuario o del administrador
      *
-     * @param mixed $user objeto de tipo usuario o admin
+     * @param String $login Nombre de usuario de un admin o un usuario
      * @return void
      */
-    public static function deletePerson($person)
+    public static function deletePerson($login)
     {
         if (self::$modo == 'csv') {
-            CSV::deletePerson($person);
+            CSV::deletePerson($login);
         } else if (self::$modo == 'bd') {
-            BD::deletePerson($person);
+            BD::deletePerson($login);
         }
     }
-
+    /**
+     * Recoger un array de objetos de tipo admin y usuario
+     *
+     * @return array
+     */
+    public static function getAllUsers() {
+        $allUsers = array();
+        if(self::$modo == 'csv') {
+            $allUsers = CSV::getAllUsers();
+        }
+        return $allUsers;
+    }
     /**
      * Insertar un administrador
      *
@@ -203,16 +220,16 @@ class DAO
      *
      * @return Publicacion
      */
-    /*public static function getArticle()
+    public static function getArticle($titulo)
     {
         $article = '';
         if (self::$modo == 'csv') {
-            $article = CSV::getArticle();
+            $article = CSV::getArticle($titulo);
         } else if (self::$modo == 'bd') {
-            $article = BD::getArticle();
+            $article = BD::getArticle($titulo);
         }
         return $article;
-    }*/
+    }
     /**
      * Recoger un array de tipo article
      *
@@ -228,4 +245,76 @@ class DAO
         }
         return $articles;
     }
+
+    /**
+     * Eliminacion de un articulo dependiendo de su titulo
+     * 
+     * @param String $titulo Titulo del articulo a eliminar
+     * 
+     * @return void
+     */
+    public static function deleteArticle($titulo) {
+        if(self::$modo == 'csv') {
+            CSV::deleteArticle($titulo);
+        } else if(self::$modo == 'bd') {
+            BD::deleteArticle($titulo);
+        }
+    }
+
+    /**
+     * Compronbación de la existencia de un articulo
+     * 
+     * @param String $titulo Titulo del articulo
+     * @return boolean Si existe el articulo devuelve true si no lo hace false
+     */
+    
+    public static function existsArticle($titulo) {
+        $bool = false;
+        if(self::$modo == 'csv') {
+            $bool = CSV::existArticle($titulo);
+        } else if(self::$modo == 'bd') {
+            BD::existArticle($titulo);
+        }
+        return $bool;
+    }
+
+    /**
+     *  Modificar un artículo
+     * 
+     * @param String $titulo Titulo del articulo a modificar
+     * @param String $cuerpo Cuerpo modificado del articulo
+     * @return void
+     * 
+     */
+
+    public static function updateArticle($titulo, $cuerpo) {
+        if(self::$modo == 'csv') {
+            CSV::updateArticle($titulo, $cuerpo);
+        } else if(self::$modo == 'bd') {
+            BD::updateArticle($titulo, $cuerpo);
+        }
+    }
+    
+    /**
+     * Insertar una visita
+     *
+     * @param Visitas $visit
+     * @return void
+     */
+    public static function insertVisit(Visitas $visit) {
+        if(self::$modo == 'csv') {
+            CSV::insertVisit($visit);
+        } else if(self::$modo == 'bd') {
+            BD::insertVisit($visit);
+        }
+    }
+
+    /*public static function getVisits() {
+        if(self::$modo == 'csv') {
+            CSV::getVisits();
+        } else if(self::$modo == 'bd') {
+            BD::getVisits();
+        }
+    }*/
+
 }
