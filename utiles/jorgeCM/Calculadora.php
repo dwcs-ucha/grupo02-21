@@ -2,8 +2,10 @@
 /* 
  * Author: Jorge Carreño Miranda
  * Version:1.0.0
- * Last modified: 02/12/2021
+ * Last modified: 08/12/2021
  */
+session_start();
+include_once './Class/classCalculadora.php';
 ?>
 <html>
     <head>
@@ -13,109 +15,81 @@
     <body>
         <h1>Calculadora eficiencia energética</h1>
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="formulario" id="formulario">
-                <p>Certificado energético</p>
-                <select name="certificado">
-                    <option value="inidividual" <?php if(isset($_POST['enviar']) && ($_POST['certificado']=="inidividual")) echo "selected"; ?>>Vivienda individual</option>
-                    <option value="completo" <?php if(isset($_POST['enviar']) && ($_POST['certificado']=="completo")) echo "selected"; ?>>Edificio completo </option>
-                </select>&nbsp&nbsp&nbsp&nbsp&nbsp
-                No tengo certificado energético    <input type="checkbox" name="noCertificado"><br></br>
                 <p>Calefacción</p>
                 <pre> kWh/m²                     Tipo</pre>
-                <input type="text" value="">
-                <select name="calefaccion">
+                <input type="number" name="calefaccion" value="">
+                <select name="tipoCalc">
                     <option value="Gas" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Gas")) echo "selected"; ?>>Gas</option>
                     <option value="Electricidad" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Electricidad")) echo "selected"; ?>>Electricidad</option>
                     <option value="Gasoleo" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Gasoleo")) echo "selected"; ?>>Gasóleo</option>
                 </select><br></br>
                 <p>ACS</p>
                 <pre> kWh/m²                     Tipo</pre>
-                <input type="text" value="">
-                <select name="calefaccion">
+                <input type="number" name='ACS' value="">
+                <select name="tipoACS">
                     <option value="Gas" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Gas")) echo "selected"; ?>>Gas</option>
                     <option value="Electricidad" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Electricidad")) echo "selected"; ?>>Electricidad</option>
                     <option value="Gasoleo" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Gasoleo")) echo "selected"; ?>>Gasóleo</option>
                 </select><br></br>
                 <p>Refrigeración</p>
                 <pre> kWh/m²                     Tipo</pre>
-                <input type="text" value="">
-                <select name="calefaccion">
+                <input type="number" name="refrigeracion" value="">
+                <select name="tipoRef">
                     <option value="Electricidad" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Electricidad")) echo "selected"; ?>>Electricidad</option>
                 </select><br></br>
                 <p>Datos de la vivienda</p>
                 <pre>superficie                  Tipo</pre>
-                <input type="text" value="">
-                <select name="superficie">
-                    <option value="unifamiliar" <?php if(isset($_POST['enviar']) && ($_POST['superficie']=="unifamiliar")) echo "selected"; ?>>Unifamiliar</option>
-                    <option value="bloque" <?php if(isset($_POST['enviar']) && ($_POST['superficie']=="bloque")) echo "selected"; ?>>Bloque </option>
+                <input type="number" name="superficie" value="">
+                <select name="tipoSuperf">
+                    <option value="Unifamiliar" <?php if(isset($_POST['enviar']) && ($_POST['superficie']=="unifamiliar")) echo "selected"; ?>>Unifamiliar</option>
+                    <option value="Bloque" <?php if(isset($_POST['enviar']) && ($_POST['superficie']=="bloque")) echo "selected"; ?>>Bloque </option>
                 </select>
                 <pre>Altitud de población       Provincia</pre>
-                <input type="text" value="">
+                <input type="text" name="altitud" value="">
                   <select required name="provincia" >
-                        <option value="Álava">Álava</option>
-                        <option value="Albacete">Albacete</option>
-                        <option value="Alicante">Alicante</option>
-                        <option value="Almería">Almería</option>
-                        <option value="Asturias">Asturias</option>
-                        <option value="Ávila">Ávila</option>
-                        <option value="Badajoz">Badajoz</option>
-                        <option value="Baleares">Baleares</option>
-                        <option value="Barcelona">Barcelona</option>
-                        <option value="Burgos">Burgos</option>
-                        <option value="Cáceres">Cáceres</option>
-                        <option value="Cádiz">Cádiz</option>
-                        <option value="Cantabria">Cantabria</option>
-                        <option value="Castellón">Castellón</option>
-                        <option value="Ceuta">Ceuta</option>
-                        <option value="Ciudad Real">Ciudad Real</option>
-                        <option value="Córdoba">Córdoba</option>
-                        <option value="Cuenca">Cuenca</option>
-                        <option value="Girona">Girona</option>
-                        <option value="Granada">Granada</option>
-                        <option value="Guadalajara">Guadalajara</option>
-                        <option value="Gipuzkoa">Gipuzkoa</option>
-                        <option value="Huelva">Huelva</option>
-                        <option value="Huesca">Huesca</option>
-                        <option value="Jaén">Jaén</option>
-                        <option value="A Coruña">A Coruña</option>
-                        <option value="La Rioja">La Rioja</option>
-                        <option value="Las Palmas">Las Palmas</option>
-                        <option value="León">León</option>
-                        <option value="Lleida">Lleida</option>
-                        <option value="Lugo">Lugo</option>
-                        <option value="Madrid">Madrid</option>
-                        <option value="Málaga">Málaga</option>
-                        <option value="Melilla">Melilla</option>
-                        <option value="Murcia">Murcia</option>
-                        <option value="Navarra">Navarra</option>
-                        <option value="Ourense">Ourense</option>
-                        <option value="Palencia">Palencia</option>
-                        <option value="Pontevedra">Pontevedra</option>
-                        <option value="Salamanca">Salamanca</option>
-                        <option value="Segovia">Segovia</option>
-                        <option value="Sevilla">Sevilla</option>
-                        <option value="Soria">Soria</option>
-                        <option value="Tarragona">Tarragona</option>
-                        <option value="Tenerife">Tenerife</option>
-                        <option value="Teruel">Teruel</option>
-                        <option value="Toledo">Toledo</option>
-                        <option value="Valencia">Valencia</option>
-                        <option value="Valladolid">Valladolid</option>
-                        <option value="Bizkaia">Bizkaia</option>
-                        <option value="Zamora">Zamora</option>
-                        <option value="Zaragoza">Zaragoza</option>
+                        <?php
+                        foreach (Vivienda:: $provincias as $nombre){
+                            echo '<option value="'.$nombre.'">'.$nombre.'</option>';
+                        }
+                        ?>
                   </select><br>
                 <pre>Potencia eléctrica PUNTA</pre>
-                <select name="certificado" style="width: 310px" >
-                    <option>3,45kW</option>
-                    <option>4,6kW</option>
-                    <option>5,75kW</option>
-                    <option>6,9kW</option>
-                    <option>8,05kW</option>
-                    <option>9,2kW</option>
-                    <option>10,35kW</option>
-                    <option>11,5kW</option>
-                    <option>14,49kW</option>
-                </select>
+                <select name="potencia" style="width: 310px" >
+                    <?php
+                        foreach (Vivienda:: $potencia as $valor){
+                            echo '<option value="'.$valor.'">'.$valor.'KW</option>';
+                        }
+                        ?>
+                </select><br></br>
+                <input type="submit" name="calcular" value="calcular">
+               
             </form>
+        <?php
+        
+        if(isset($_POST['calcular'])){
+            $calefaccion=(int)$_POST['calefaccion'];
+            $ACS=(int)$_POST['ACS'];
+            $refrigeracion=(int)$_POST['refrigeracion'];
+            $superficie=(int)$_POST['superficie'];
+            $altitud=(int)$_POST['altitud'];
+            $potenciaPunta=(float)$_POST['potencia'];
+            $provincia=$_POST['provincia'];
+            $tipoCalc=$_POST['tipoCalc'];
+            $tipoACS=$_POST['tipoACS'];
+            $tipoRef=$_POST['tipoRef'];
+            $tipoSuperf=$_POST['tipoSuperf'];
+            $Vivienda=new vivienda($calefaccion, $ACS, $refrigeracion, $superficie, $altitud, $potenciaPunta);
+            $_SESSION['vivienda']=$Vivienda;
+            }
+            
+        $Vivienda->obtenerSuperficie($tipoSuperf);
+        $zona=$Vivienda->obtenerZona($provincia);
+        $consumoCalc=$Vivienda->calculaCalefaccion($tipoCalc,$Vivienda->getPotenciaPunta(),$zona);
+        $consumoACS=$Vivienda->calculaACS($tipoACS,$Vivienda->getPotenciaPunta(),$zona);
+        $consumoRefrig=$Vivienda->calculaRefrigeracion($tipoRef,$Vivienda->getPotenciaPunta(),$zona);
+        $Vivienda->consumoTotal($consumoCalc,$consumoACS,$consumoRefrig);
+        $Vivienda->calculoEficiencia($zona,$consumoCalc, $consumoACS, $consumoRefrig);
+        
+        ?>
     </body>
 </html>

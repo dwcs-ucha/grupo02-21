@@ -1,0 +1,7 @@
+2021.12.09-14:45:43 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1
+2021.12.09-14:47:52 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1
+2021.12.09-14:50:16 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1
+2021.12.09-14:50:26 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1
+2021.12.09-14:51:15 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1
+2021.12.09-15:00:41 - ADMIN se ha logueado en la aplicación desde 127.0.0.1
+2021.12.09-15:01:00 - INVITADO se ha intentado loguear como ADMIN2 en la aplicación desde 127.0.0.1 - UserAuthenticateError//

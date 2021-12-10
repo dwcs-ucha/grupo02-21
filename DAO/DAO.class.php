@@ -1,9 +1,10 @@
 <?php
 /*
  * Author: Rubén Dopico Novo
- * Version: 4.5.0
+ * Version: 4.8.0
  * Last modified: 07 12 2021
  */
+require_once('../Class/Persona.class.php');
 require_once('../Class/Usuario.class.php');
 require_once('../Class/Admin.class.php');
 require_once('../DAO/CSV.class.php');
@@ -218,16 +219,16 @@ class DAO
      *
      * @return Publicacion
      */
-    /*public static function getArticle()
+    public static function getArticle($titulo)
     {
         $article = '';
         if (self::$modo == 'csv') {
-            $article = CSV::getArticle();
+            $article = CSV::getArticle($titulo);
         } else if (self::$modo == 'bd') {
-            $article = BD::getArticle();
+            $article = BD::getArticle($titulo);
         }
         return $article;
-    }*/
+    }
     /**
      * Recoger un array de tipo article
      *
@@ -254,6 +255,8 @@ class DAO
     public static function deleteArticle($titulo) {
         if(self::$modo == 'csv') {
             CSV::deleteArticle($titulo);
+        } else if(self::$modo == 'bd') {
+            BD::deleteArticle($titulo);
         }
     }
 
@@ -268,8 +271,27 @@ class DAO
         $bool = false;
         if(self::$modo == 'csv') {
             $bool = CSV::existArticle($titulo);
+        } else if(self::$modo == 'bd') {
+            BD::existArticle($titulo);
         }
         return $bool;
+    }
+
+    /**
+     *  Modificar un artículo
+     * 
+     * @param String $titulo Titulo del articulo a modificar
+     * @param String $cuerpo Cuerpo modificado del articulo
+     * @return void
+     * 
+     */
+
+    public static function updateArticle($titulo, $cuerpo) {
+        if(self::$modo == 'csv') {
+            CSV::updateArticle($titulo, $cuerpo);
+        } else if(self::$modo == 'bd') {
+            BD::updateArticle($titulo, $cuerpo);
+        }
     }
     
 }
