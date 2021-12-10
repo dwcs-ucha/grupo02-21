@@ -11,14 +11,14 @@ include_once "../Class/Erro.class.php";
 require_once "recaptchalib.php";
 
 //Inicialización de variables 
-//$registerLogin = $registerName = $registerSurname = $registerPassWord = $registerVerifyPassword = $registerEmail = $registerVerifyEmail = $registerAddress = "";
-//$registerRol = "Usuario";
-//$registerLoginError = $registerNameError = $registerSurnameError = $registerPassWordError = $registerVerifyPasswordError = $registerEmailError = $registerVerifyEmail = "";
-//$registerError = array();
-//session_start();
-//if(isset($_SESSION['userLogged'])) {
-    //header('Location: ../index.php');
-//}
+$registerLogin = $registerName = $registerSurname = $registerPassWord = $registerVerifyPassword = $registerEmail = $registerVerifyEmail = $registerAddress = "";
+$registerRol = "Usuario";
+$registerLoginError = $registerNameError = $registerSurnameError = $registerPassWordError = $registerVerifyPasswordError = $registerEmailError = $registerVerifyEmail = "";
+$registerError = array();
+session_start();
+if(isset($_SESSION['userLogged'])) {
+    header('Location: ../index.php');
+}
 ?>
 <html>
 
