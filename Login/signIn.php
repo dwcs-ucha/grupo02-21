@@ -76,6 +76,7 @@ if (isset($_SESSION['userLogged'])) {
             if ($user != null) {
                 $_SESSION['userLogged'] = $user;  
                 $visitas = new Visitas($username->getLogin(),$ip,$fecha,$serveName,$browser,$so,$requestTime);
+                DAO::insertVisit($visitas);
                 // LOGIN CORRECTO - Añade un registro al LOG
                 DAO::writeLog(new Log("se ha logueado en la aplicación desde " . $_SERVER['REMOTE_ADDR'], $login));
             } else {
