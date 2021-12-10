@@ -6,7 +6,7 @@
  */
 class CSV
 {
-    private static $files = array('users' => '../DataBase/users.csv', 'logs' => '../DataBase/logs.txt', 'idiomas' => '../DataBase/idioma', 'articulos' => '../DataBase/articulos.csv');
+    private static $files = array('users' => '../DataBase/users.csv', 'logs' => '../DataBase/logs.txt', 'idiomas' => '../DataBase/idioma', 'articulos' => '../DataBase/articulos.csv', 'visitas' => '../DataBase/datosVisitas.csv');
 
     /**
      * Comprueba si el fichero pasado existe
@@ -86,6 +86,9 @@ class CSV
                     } else if ($type == 'articulo') {
                         $article = new Publicacion($data[0], $data[1]);
                         $fileData[] = $article;
+                    } else if ($type == 'visitas') {
+                        $visit = new Visitas($data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6]);
+                        $fileData[] = $visit;
                     }
                 }
                 return $fileData;
@@ -106,6 +109,8 @@ class CSV
         $type = '';
         if ($file == 'articulos') {
             $type = 'articulos';
+        } else if ($file == 'visitas') {
+            $type = 'visitas';
         }
         $file = self::$files[$file];
         if (self::existsFile($file)) {
@@ -123,6 +128,11 @@ class CSV
                 } else if ($type == 'articulos') {
                     foreach ($data as $article) {
                         $object = array($article->getTitulo(), $article->getCuerpo());
+                        fputcsv($fp, $object, ';');
+                    }
+                } else if ($type == 'visitas') {
+                    foreach ($data as $visit) {
+                        $object = $visit->formatVisit();
                         fputcsv($fp, $object, ';');
                     }
                 }
@@ -426,5 +436,29 @@ class CSV
         $article->setCuerpo($cuerpo);
         $articles[$key] = $article;
         self::writeCSV('articulos', $articles);
+    }
+
+    /**
+     * Insertar una visita
+     *
+     * @param Visitas $visit
+     * @return void
+     */
+    public static function insertVisit(Visitas $visit)
+    {
+        $visits = self::getVisits();
+        $visits[] = $visit;
+        self::writeCSV('visitas', $visits);
+    }
+
+    /**
+     * Recoger un array de objetos de tipo Visitas
+     *
+     * @return array
+     */
+    private static function getVisits()
+    {
+        $visits = self::readCSV('visitas');
+        return $visits;
     }
 }

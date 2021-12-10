@@ -17,14 +17,13 @@ session_start();
     <body>
         <?php
         $articulos = DAO::getArticles();
-        var_dump($_SESSION['articulo']);
-        if ($articulos != null) {
-         foreach ($articulos as $novas) {
-                ?>
-        <h3><a><?php echo $novas->getTitulo() ?></h3>
-                <?php
-        }
-    }
+        if ($_SESSION['articulo'] != null) {
+         $article=DAO::getArticle($_SESSION['articulo']);
+         }
+         echo "<h1>". $article->getTitulo()."</h1><br>";
+         echo "<p>".$article->getCuerpo()."</p>";
+        
+    
         ?>
 
     </body>
