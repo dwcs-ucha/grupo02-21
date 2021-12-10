@@ -24,8 +24,8 @@ session_start();
       $cont=0;
       $articulos = DAO::getArticles(); 
       if(isset($_GET['abrir'])){
-            $_SESSION['articulo']=$_GET['abrir'];
-            header("Location: ./articulo.php");
+           $_SESSION['articulo']=$_GET['abrir'];
+           header("Location: ./articulo.php");
       }
     if ($articulos != null) {
         ?><div class="col-12">
