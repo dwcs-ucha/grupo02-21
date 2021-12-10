@@ -74,27 +74,13 @@ if (isset($_SESSION['userLogged'])) {
         } else {
             $user = DAO::authenticateUser($login, $passWord);            
             if ($user != null) {
-                $_SESSION['userLogged'] = $user;                
+                $_SESSION['userLogged'] = $user;  
+                $visitas = new Visitas($username->getLogin(),$ip,$fecha,$serveName,$browser,$so,$requestTime);
                 // LOGIN CORRECTO - Añade un registro al LOG
                 DAO::writeLog(new Log("se ha logueado en la aplicación desde " . $_SERVER['REMOTE_ADDR'], $login));
             } else {
-<<<<<<< HEAD
-                $user = DAO::authenticateUser($login,$passWord);
-                var_dump($user);
-                if ($user != null ){
-                    session_start();
-                    $_SESSION['userLogged'] = $user; 
-                    $visitas = new Visitas($this->getLogin(),$ip,$fecha, $serverName, $browser, $so, $requestTime);
-                    
-                    // LOGIN CORRECTO - Añade un registro al LOG
-                    DAO::writeLog(new Log("se ha logueado en la aplicación desde " . $_SERVER['REMOTE_ADDR'] , $login));
-                } else {
-                    Erro::addError("UserAuthenticateError", "No parece haber ningún usuario con ese nombre");
-                    echo Erro::showErrors();
-=======
                 Erro::addError("UserAuthenticateError", "No parece haber ningún usuario con ese nombre");
                 echo Erro::showErrors();
->>>>>>> 7eef5aaf411c0c69a2bcd3dca0709da28b732993
 
                 // LOGIN INCORRECTO - Añade un registro al LOG
                 DAO::writeLog(new Log("se ha intentado loguear como " . strtoupper($login) . " en la aplicación desde " . $_SERVER['REMOTE_ADDR'] . " - " . Erro::showErrorsLog()));
