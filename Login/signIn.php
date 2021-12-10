@@ -80,6 +80,7 @@
                 if ($user != null ){
                     session_start();
                     $_SESSION['userLogged'] = $user; 
+                    $visitas = new Visitas($this->getLogin(),$ip,$fecha, $serverName, $browser, $so, $requestTime);
                     
                     // LOGIN CORRECTO - Añade un registro al LOG
                     DAO::writeLog(new Log("se ha logueado en la aplicación desde " . $_SERVER['REMOTE_ADDR'] , $login));
