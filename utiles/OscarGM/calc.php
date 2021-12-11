@@ -32,8 +32,10 @@ if (isset($_SESSION['userLogged'])){
 <head>
     <meta charset="UTF-8">
     <title>Calculadora de Consumo Electrico</title>
-
+<!--
     <link rel="stylesheet" href="./estilos/style.css">
+-->
+<?php include_once "../../head.php"; ?>
 </head>
 
 <body>
