@@ -22,10 +22,10 @@
 </div>
 <ul class="nav justify-content-center bg-primary border border-5 border border-primary">
     <li class="nav-item">
-        <a class="nav-link text-white" aria-current="page" href="#">Login</a>
+        <a class="nav-link text-white" aria-current="page" href="./Login/signIn.php">Login</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-white" href="#">Rexistro</a>
+        <a class="nav-link text-white" href="./Login/signUP.php">Rexistro</a>
     </li>
     <li class="nav-item">
         <a class="nav-link text-white" href="#">Novas</a>
