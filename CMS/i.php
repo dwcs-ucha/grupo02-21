@@ -42,13 +42,19 @@ session_start();
         </div>
     </form>
     <script src="ckeditor/ckeditor.js"></script>
-    <script>
+    <script src="ckfinder/ckfinder.js"></script>
+    <script type="text/javascript">
         //Esto la llamada al script de cskjeditor para la modificación del textarea
         ClassicEditor
-                .create(document.querySelector('#editor'), {
-                   
-                    //toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
-                })
+                .create(document.querySelector('#editor'), { 
+                ckfinder: {
+			uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
+                 
+		},
+                    } )
+                    .catch( error => {
+		console.error( error );
+                } )
                 .then(editor => {
                     window.editor = editor;
                 })
@@ -83,11 +89,12 @@ session_start();
     }
 
     if (isset($_POST['enviar']) && Erro::countErros() == 0) {
+        $creacion=date("F jS - g: i a");
         if (DAO::existsArticle($titulo)) {
             Erro::addError('existsTitle', 'El titulo ya existe');
             echo Erro::showErrors();
         } else {
-            $nuevo = new Publicacion($titulo, $cuerpo);
+            $nuevo = new Publicacion($titulo, $cuerpo,$creacion);
             DAO::insertArticle($nuevo);
         }
     } else {
