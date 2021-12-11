@@ -12,7 +12,8 @@ include_once "../Class/Validacion.class.php";
 include_once "../Class/Erro.class.php";
 include_once "../DAO/DAO.class.php";
 include_once "../Class/Log.class.php";
-session_start();
+//Comento el inicio de Sesión. Se inicia Sesión desde el Menú para poder mostrar el enlace a cerrar sesión si hay una sesion iniciada.
+//session_start();
 if (isset($_SESSION['userLogged'])) {
     header('Location: ../index.php');
 }
@@ -75,10 +76,16 @@ if (isset($_SESSION['userLogged'])) {
             $user = DAO::authenticateUser($login, $passWord);            
             if ($user != null) {
                 $_SESSION['userLogged'] = $user;  
-                $visitas = new Visitas($user->getLogin(),$ip,$fecha,$serveName,$browser,$so,$requestTime);
-                DAO::insertVisit($visitas);
+                //$visitas = new Visitas($user->getLogin(),$ip,$fecha,$serveName,$browser,$so,$requestTime);
+                //DAO::insertVisit($visitas);
                 // LOGIN CORRECTO - Añade un registro al LOG
                 DAO::writeLog(new Log("se ha logueado en la aplicación desde " . $_SERVER['REMOTE_ADDR'], $login));
+                if ($user->getRol() == "Admin") {
+                    header("Location: adminRegPanel.php");
+                } else {
+                        header("Location: /index.php");
+                    }
+                
             } else {
                 Erro::addError("UserAuthenticateError", "No parece haber ningún usuario con ese nombre");
                 echo Erro::showErrors();

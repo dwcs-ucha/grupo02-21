@@ -12,7 +12,8 @@
  //Inicialización de variables 
  $adminRol = $adminLogin = $adminName = $adminSurname = $adminPassWord = $adminVerifyPassword = $adminEmail = $adminVerifyEmail = $adminAddress = "";
  $adminError = array();
- session_start();
+ //Comento el inicio de Sesión. Se inicia Sesión desde el Menú para poder mostrar el enlace a cerrar sesión si hay una sesion iniciada.
+ //session_start();
  if(isset($_SESSION['userLogged'])) {
     $user = $_SESSION['userLogged'];
     if($user->getRol() != 'Admin') {
