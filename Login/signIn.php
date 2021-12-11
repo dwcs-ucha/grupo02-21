@@ -98,18 +98,21 @@ if (isset($_SESSION['userLogged'])) {
          */
         function registrarLogIn($tipo, $login = null)
         {
+            $ip = Visitas::guessIP();
+            $location = Visitas::locateIP($ip);
+
             switch ($tipo) {
                 case 1:
                     // Login correcto
-                    DAO::writeLog(new Log("se ha logueado en la aplicación desde " . Visitas::guessIP(), $login));
+                    DAO::writeLog(new Log("se ha logueado en la aplicación desde " . $ip . "(" . $location . ")", $login));
                     break;
                 case 2:
                     // Login incorrecto, usuario o contraseña no son válidos
-                    DAO::writeLog(new Log("se ha intentado loguear como " . strtoupper($login) . " en la aplicación desde " . Visitas::guessIP() . " - " . Erro::showErrorsLog()));
+                    DAO::writeLog(new Log("se ha intentado loguear como " . strtoupper($login) . " en la aplicación desde " . $ip . "(" . $location . ") - " . Erro::showErrorsLog()));
                     break;
                 case 3:
                     // Login incorrecto, alguno de los campos está vacío
-                    DAO::writeLog(new Log("se ha intentado loguear en la aplicación desde " . Visitas::guessIP() . " - " . Erro::showErrorsLog()));
+                    DAO::writeLog(new Log("se ha intentado loguear en la aplicación desde " . $ip . "(" . $location . ") - " . Erro::showErrorsLog()));
                     break;
             }
         }
