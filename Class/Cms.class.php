@@ -7,10 +7,13 @@
 class Publicacion {
     private $titulo;
     private $cuerpo;
+    private $creacion;
   
-    public function __construct($titulo, $cuerpo) {
+    public function __construct($titulo, $cuerpo, $creacion) {
         $this->titulo = $titulo;
         $this->cuerpo = $cuerpo;
+        $this->creacion = $creacion;
+
     }
 
         public function getTitulo() {
@@ -29,5 +32,12 @@ class Publicacion {
         $this->cuerpo = $cuerpo;
     }
 
+    public function getCreacion() {
+        return $this->creacion;
+    }
+    
+    public function setCreacion($creacion) {
+        $this->creacion = $creacion;
+    }
 
 }
