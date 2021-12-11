@@ -18,8 +18,8 @@ require_once "../../Class/Admin.class.php";
 require_once "../../Class/Usuario.class.php";
 
 session_start();
-if (isset($_SESSION['userLogged'])){
-    $user = $_SESSION['userLogged'];        
+if (isset($_SESSION['userLogged'])) {
+    $user = $_SESSION['userLogged'];
 } else {
     header("Location: ../../Login/signIn.php");
 }
@@ -32,28 +32,33 @@ if (isset($_SESSION['userLogged'])){
 <head>
     <meta charset="UTF-8">
     <title>Calculadora de Consumo Electrico</title>
-<!--
+    <!--
     <link rel="stylesheet" href="./estilos/style.css">
 -->
-<?php include_once "../../head.php"; ?>
+    <?php
+    //include '../../plantillas/head.php';
+    include_once "../../head.php";
+    ?>
 </head>
 
 <body>
-   
-        <div id="menu">
-            <?php
-            require_once "../../menu.php";
-            ?>
-        </div>
-        <div id="global">
-        <div id="calculadora">
+
+    <div id="menu">
+        <?php
+
+        require_once "../../menu.php";
+        ?>
+    </div>
+    <div class="container">
+
+        <div id="calculadora" class="col">
             <fieldset>
                 <legend>Consumos</legend>
                 <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
-                    <div class="form">
+                    <div class="form-group">
                         <div class="select">
                             <label for="devicesName">Tipo de Equipo</label><br />
-                            <select name="devicesName" id="devicesName">
+                            <select name="devicesName" id="devicesName" class="form-select">
                                 <?php
                                 foreach (Devices::$data as $calcDevices) {
                                     echo '<option value="' . $calcDevices . '">' . $calcDevices . '</option>';
@@ -63,19 +68,19 @@ if (isset($_SESSION['userLogged'])){
                         </div>
                         <div class="diceNumber">
                             <label for="deviceQuantity">Numero de Equipos</label><br />
-                            <input type="number" name="deviceQuantity" id="deviceQuantity" min="1" value="1" />
+                            <input type="number" class="form-control" name="deviceQuantity" id="deviceQuantity" min="1" value="1" />
                         </div>
                         <div class="devicePower">
                             <label for="devicePower">Potencia(Watios)</label><br />
-                            <input type="number" name="devicePower" id="devicePower" min="1" value="100" />
+                            <input type="number" class="form-control" name="devicePower" id="devicePower" min="1" value="100" />
                         </div>
                         <div class="deviceHours">
                             <label for="deviceHours">Horas de Uso Diario</label><br />
-                            <input type="number" name="deviceHours" id="deviceHours" min="0" max="24" value="1" />
+                            <input type="number" class="form-control" name="deviceHours" id="deviceHours" min="0" max="24" value="1" />
                         </div>
                         <br />
                         <div class="btn">
-                            <button type="submit" name="addMore">Enviar/Agregar</button>
+                            <button type="submit" name="addMore" class="btn btn-primary">Enviar/Agregar</button>
                         </div>
                     </div>
                 </form>
@@ -95,7 +100,7 @@ if (isset($_SESSION['userLogged'])){
 
                 $deviceOne[] = new Devices($deviceName, $deviceNumber, $devicePower, $deviceHours);
 
-                Fm::setData($deviceOne, "a",$user->getLogin());
+                Fm::setData($deviceOne, "a", $user->getLogin());
                 echo "<meta http-equiv='refresh' content='0'>";
             }
 
@@ -104,12 +109,12 @@ if (isset($_SESSION['userLogged'])){
             ?>
                 <br><br>
         </div>
-        <div id="resultados">
+        <div id="resultados" class="col">
             <fieldset>
                 <legend>Resultados</legend>
                 <form method="post" action=<?php $_SERVER['PHP_SELF'] ?>>
-                    <table>
-                        <tr>
+                    <table class="table-primary">
+                        <tr class="table-primary">
                             <th>Equipo</th>
                             <th>Número de Equipos</th>
                             <th>Potencia(Watios)</th>
@@ -123,17 +128,17 @@ if (isset($_SESSION['userLogged'])){
                         $dataBase = Fm::getCalc($user->getLogin());
                         $sumDaily = $sumMonthly = 0;
                         foreach ($dataBase as $calcs) {
-                            echo '<tr>';
-                            echo '<td>' . $calcs->getName() . '</td>';
-                            echo '<td>' . $calcs->getNumber() . '</td>';
-                            echo '<td>' . $calcs->getPower() . '</td>';
-                            echo '<td>' . $calcs->getHours() . '</td>';
-                            echo '<td>' . $calcs->daily() . '</td>';
+                            echo '<tr class="table-primary">';
+                            echo '<td class="table-primary">' . $calcs->getName() . '</td>';
+                            echo '<td class="table-primary">' . $calcs->getNumber() . '</td>';
+                            echo '<td class="table-primary">' . $calcs->getPower() . '</td>';
+                            echo '<td class="table-primary">' . $calcs->getHours() . '</td>';
+                            echo '<td class="table-primary">' . $calcs->daily() . '</td>';
                             $sumDaily += $calcs->daily();
-                            echo '<td>' . $calcs->monthly() . '</td>';
+                            echo '<td class="table-primary">' . $calcs->monthly() . '</td>';
                             $sumMonthly += $calcs->monthly();
                             echo '<input type="hidden" name="fileNumber" value="' . $line++ . '"/>';
-                            echo '<td><button type="submit" name="rmFile">Eliminar</button></td>';
+                            echo '<td class="table-primary"><button type="submit" name="rmFile" class="btn btn-primary">Eliminar</button></td>';
                             echo '</tr>';
                         }
                         ?>
@@ -144,7 +149,7 @@ if (isset($_SESSION['userLogged'])){
                         </tr>
                     </table>
 
-                    <input type="submit" value="Borrar" name="erase">
+                    <button type="submit" name="erase" class="btn btn-primary">Borrar</button>
                 </form>
             </fieldset>
         <?php
@@ -163,7 +168,7 @@ if (isset($_SESSION['userLogged'])){
                     if (empty($ordered)) {
                         Fm::emptyCsv($user->getLogin());
                     } else {
-                        Fm::setData($ordered, "w",$user->getLogin());
+                        Fm::setData($ordered, "w", $user->getLogin());
                     }
                     echo "<meta http-equiv='refresh' content='0'>";
                 }

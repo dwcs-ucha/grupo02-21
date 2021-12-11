@@ -17,3 +17,11 @@
 2021.12.11-12:57:32 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1
 2021.12.11-13:01:45 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1
 2021.12.11-13:38:06 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1
+2021.12.11-15:52:45 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1
+2021.12.11-16:09:38 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1
+2021.12.11-16:22:25 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
+2021.12.11-16:23:28 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
+2021.12.11-16:23:49 - INVITADO se ha intentado loguear como FDSFS en la aplicación desde 127.0.0.1(Ubicación desconocida) - UserAuthenticateError//
+2021.12.11-16:23:56 - INVITADO se ha intentado loguear como SDFDS en la aplicación desde 127.0.0.1(Ubicación desconocida) - UserAuthenticateError//
+2021.12.11-16:24:05 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
+2021.12.11-16:24:42 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)

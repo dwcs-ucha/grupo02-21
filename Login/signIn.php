@@ -80,6 +80,7 @@ if (isset($_SESSION['userLogged'])) {
                     //DAO::insertVisit($visitas);
 
                     registrarLogIn(1, $login);
+                    header('Location: ../index.php');
                 } else {
                     Erro::addError("UserAuthenticateError", "No parece haber ningún usuario con ese nombre");
                     echo Erro::showErrors();
