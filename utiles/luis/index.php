@@ -1,17 +1,10 @@
 <?php
-/* 
- * Calculadora avazada
- * Punto de entrada a las vistas
- * @author Miguel A García Fustes
- * @date 25 de Noviembre de 2021
- * @version 1.0.0
- * 
- * Nuestra calculador utiliza 5 tipos de equipos según su consumo que se clasifican del siguiente modo:
- * tipo 1: Equipo cuyo consumo se calcula en función de las horas y minutos de uso semanal (televisor, secador, batidora, etc)
- * tipo 2: Equipo cuyo funcionamiento es contínuo (365/24)
- * tipo 3: Equipo cuyo consumo se calcula por uso, donde se multiplica el uso por los hWh/uso (lavadora, lavavajillas, etc)
- * tipo 4: Equipo cuyo consumo se calcula por uso mensual, habitualmente Km al mes (cualquier equipo de transporte)
- * tipo 5: Equipo de iluminación, donde la potencia se obtiene en función del tipo de bombilla
+/**
+ * @author luisvi
+ * @email luisvaziza@gmail.com
+ * @fechaDeCreación 11 dic 2021
+ * @últimaModificación 12 dic 2021
+ * @versión v01.04.00
  */
 
 include_once '../../Class/Erro.class.php';
@@ -35,7 +28,7 @@ $resultados = isset($_POST) ? $_POST : null;
     <?php if (isset($_POST['currency']) && $_POST['currency'] == 0) { echo "selected";}?>
 
     <form action="./index.php" method="POST">
-        <select name="currency" id="currency">
+        <select name="currency" id="currency" onchange="this.form.submit()">
             <option value="0" <?php if (isset($_POST['currency']) && $_POST['currency'] == 0) { echo "selected";}?>>Bitcoin</option>
             <option value="1" <?php if (isset($_POST['currency']) && $_POST['currency'] == 1) { echo "selected";}?>>Ethereum</option>
             <option value="2" <?php if (isset($_POST['currency']) && $_POST['currency'] == 2) { echo "selected";}?>>Bitcoin Cash</option>
@@ -45,8 +38,6 @@ $resultados = isset($_POST) ? $_POST : null;
             <option value="6" <?php if (isset($_POST['currency']) && $_POST['currency'] == 6) { echo "selected";}?>>Dogecoin</option>
             <option value="7" <?php if (isset($_POST['currency']) && $_POST['currency'] == 7) { echo "selected";}?>>XRP</option>
         </select>
-        <br><br>
-        <input type="submit" value="Submit">
     </form>
 
     <button id="start" onclick="start()">Iniciar</button>
@@ -82,7 +73,6 @@ $resultados = isset($_POST) ? $_POST : null;
                 is_started = true;
             }
         }
-
 
         function stop() {
             clearInterval(intervalo);
