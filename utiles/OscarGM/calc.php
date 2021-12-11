@@ -17,11 +17,11 @@ require_once "../../Class/Persona.class.php";
 require_once "../../Class/Admin.class.php";
 require_once "../../Class/Usuario.class.php";
 
-//session_start();
+session_start();
 if (isset($_SESSION['userLogged'])){
     $user = $_SESSION['userLogged'];        
 } else {
-    //header("Location: ../../Login/signIn.php");
+    header("Location: ../../Login/signIn.php");
 }
 
 ?>

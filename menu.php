@@ -33,8 +33,8 @@
     <li class="nav-item">
         <a class="nav-link text-white" href="/index.php">Calculadoras</a>
     </li>
-    <?php    
-    session_start();
+    <?php 
+    session_status() === PHP_SESSION_ACTIVE ?: session_start();      
     if(isset($_SESSION['userLogged'])) {        
         ?>
     <li class="nav-item">

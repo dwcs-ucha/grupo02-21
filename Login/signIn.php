@@ -13,7 +13,7 @@ include_once "../Class/Erro.class.php";
 include_once "../DAO/DAO.class.php";
 include_once "../Class/Log.class.php";
 //Comento el inicio de Sesión. Se inicia Sesión desde el Menú para poder mostrar el enlace a cerrar sesión si hay una sesion iniciada.
-//session_start();
+session_status() === PHP_SESSION_ACTIVE ?: session_start();
 if (isset($_SESSION['userLogged'])) {
     header('Location: ../index.php');
 }
