@@ -80,7 +80,15 @@ if (isset($_SESSION['userLogged'])) {
                     //DAO::insertVisit($visitas);
 
                     registrarLogIn(1, $login);
-                    header('Location: ../index.php');
+
+                    //Comprobamos el rol del usuario logueado.
+                    //Si es administrador se le dirigen a su panel de administración.
+                    if ($user->getRol() === "Admin"){
+                        header('Location: adminRegPanel.php');
+                    } else {
+                    //Si es un usuario se le dirige al indice de la página.
+                        header('Location: ../index.php');
+                    }
                 } else {
                     Erro::addError("UserAuthenticateError", "No parece haber ningún usuario con ese nombre");
                     echo Erro::showErrors();

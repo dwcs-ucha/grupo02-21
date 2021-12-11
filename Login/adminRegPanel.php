@@ -95,7 +95,9 @@
                                 <!-- Input y Reset -->
                                 <input type="submit" value="Confirmar" class="btn btn-primary" name="adminSubmit"/>
                                 <input type="reset" value="Borrar" class="btn btn-primary"/>
+                                
                             </div>   
+                            <button class="btn btn-primary"><a class="nav-link text-white" href="adminDelUser.php">Gestion de Usuarios</a></button>
                         </div>
         <?php
         // put your code here
@@ -205,6 +207,7 @@
                 echo Erro::showErrors();
             }
         }
+        
         ?>
          </div>
                 </div>
