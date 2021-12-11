@@ -76,8 +76,8 @@ if (isset($_SESSION['userLogged'])) {
                 $user = DAO::authenticateUser($login, $passWord);
                 if ($user != null) {
                     $_SESSION['userLogged'] = $user;
-                    $visitas = new Visitas($username->getLogin(), $ip, $fecha, $serveName, $browser, $so, $requestTime);
-                    DAO::insertVisit($visitas);
+                    //$visitas = new Visitas($username->getLogin(), $ip, $fecha, $serveName, $browser, $so, $requestTime);
+                    //DAO::insertVisit($visitas);
 
                     registrarLogIn(1, $login);
                 } else {
