@@ -1,4 +1,9 @@
 <?php
+/*
+ * Author: Rubén Dopico Novo
+ * Version: 2.5.0
+ * Last modified: 09 12 2021
+ */
 class BD
 {
 
@@ -22,16 +27,6 @@ class BD
     }
 
     /**
-     * Eliminacion del usuario
-     *
-     * @param Usuario $user
-     * @return void
-     */
-    public static function deleteUser(Usuario $user)
-    {
-    }
-
-    /**
      * Insertar un administrador
      *
      * @param Admin $admin
@@ -51,12 +46,12 @@ class BD
     }
 
     /**
-     * Eliminación del admin
+     * Eliminación del admin o de un usuario
      *
-     * @param Admin $user
+     * @param mixed $person objeto de tipo usuario o admin
      * @return void
      */
-    public static function deleteAdmin(Admin $admin)
+    public static function deletePerson($person)
     {
     }
 
@@ -122,7 +117,50 @@ class BD
      * @param String $email Email a comprobar
      * @return boolean
      */
-    public static function existsUserEmail($email)
+    public static function existsUserEmail(String $email)
     {
+    }
+
+    /**
+     * Eliminacion de un articulo dependiendo de su titulo
+     * 
+     * @param String $titulo Titulo del articulo a eliminar
+     * 
+     * @return void
+     */
+    public static function deleteArticle(String $titulo)
+    {
+    }
+
+    /**
+     * Compronbación de la existencia de un articulo
+     * 
+     * @param String $titulo Titulo del articulo
+     * @return boolean Si existe el articulo devuelve true si no lo hace false
+     */
+
+    public static function existArticle(String $titulo)
+    {
+    }
+
+    /**
+     *  Modificar un artículo
+     * 
+     * @param String $titulo Titulo del articulo a modificar
+     * @param String $cuerpo Cuerpo modificado del articulo
+     * @return void
+     * 
+     */
+
+    public static function updateArticle(String $titulo, String $cuerpo)
+    {
+    }
+    /**
+     * Insertar una visita
+     *
+     * @param Visitas $visit
+     * @return void
+     */
+    public static function insertVisit(Visitas $visit) { 
     }
 }

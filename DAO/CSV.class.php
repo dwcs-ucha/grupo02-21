@@ -1,8 +1,12 @@
 <?php
-
+/*
+ * Author: Rubén Dopico Novo
+ * Version: 4.8.0
+ * Last modified: 07 12 2021
+ */
 class CSV
 {
-    private static $files = array('users' => '../DataBase/users.csv', 'logs' => '../DataBase/logs.txt', 'idiomas' => '../DataBase/idioma', 'articulos' => '../DataBase/articulos.csv');
+    private static $files = array('users' => '../DataBase/users.csv', 'logs' => '../DataBase/logs.txt', 'idiomas' => '../DataBase/idioma', 'articulos' => '../DataBase/articulos.csv', 'visitas' => '../DataBase/datosVisitas.csv');
 
     /**
      * Comprueba si el fichero pasado existe
@@ -82,6 +86,9 @@ class CSV
                     } else if ($type == 'articulo') {
                         $article = new Publicacion($data[0], $data[1]);
                         $fileData[] = $article;
+                    } else if ($type == 'visitas') {
+                        $visit = new Visitas($data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6]);
+                        $fileData[] = $visit;
                     }
                 }
                 return $fileData;
@@ -102,6 +109,8 @@ class CSV
         $type = '';
         if ($file == 'articulos') {
             $type = 'articulos';
+        } else if ($file == 'visitas') {
+            $type = 'visitas';
         }
         $file = self::$files[$file];
         if (self::existsFile($file)) {
@@ -119,6 +128,11 @@ class CSV
                 } else if ($type == 'articulos') {
                     foreach ($data as $article) {
                         $object = array($article->getTitulo(), $article->getCuerpo());
+                        fputcsv($fp, $object, ';');
+                    }
+                } else if ($type == 'visitas') {
+                    foreach ($data as $visit) {
+                        $object = $visit->formatVisit();
                         fputcsv($fp, $object, ';');
                     }
                 }
@@ -154,16 +168,37 @@ class CSV
     }
 
     /**
-     * Eliminacion del usuario
+     * Eliminacion de un usuario o un administrador
      *
-     * @param Usuario $user Objeto de tipo usuario
+     * @param String $login Nombre de Usuario de un admin o un usuario
      * @return void
      */
-    public static function deleteUser(Usuario $user)
+    public static function deletePerson($login)
     {
-        //$users = self::readCSV('users', 'usuarios');
-        /*if ($users != null) {
-        }*/
+        $allUsers = self::getAllUsers();
+        if ($allUsers != null) {
+            $delete = self::getKeyPerson($login);
+            unset($allUsers[$delete]);
+            self::writeCSV('users', $allUsers);
+        }
+    }
+    /**
+     * Recoger la posiocion en el array del objeto que coincide con el login pasado
+     *
+     * @param  String $login Nombre de usuario del admin o del usuario
+     * @return int Posicion del objeto en el array
+     */
+    private static function getKeyPerson($login)
+    {
+        $all = self::getAllUsers();
+        if ($all != null) {
+            foreach ($all as $key => $object) {
+                if ($object->getLogin() == $login) {
+                    return $key;
+                }
+            }
+        }
+        return null;
     }
     /**
      * Recoger un array de objetos de tipo admin y usuario
@@ -205,20 +240,6 @@ class CSV
         }
         return null;
     }
-
-    /**
-     * Eliminación de un administrador
-     *
-     * @param Admin $user Objeto de tipo admin
-     * @return void
-     */
-    public static function deleteAdmin(Admin $admin)
-    {
-        $admins = self::readCSV('users', 'admins');
-        if ($admins != null) {
-        }
-    }
-
     /**
      * Comprobar si el usuario existe en nuestra base de datos
      *
@@ -231,7 +252,7 @@ class CSV
         $allUsers = self::getAllUsers();
         if ($allUsers != null) {
             foreach ($allUsers as $person) {
-                if ((strcmp($login, $person->getLogin()) == 0) && (hash_equals($person->getPassWord(), $pass))) {
+                if ((strcmp(strtolower($login), strtolower($person->getLogin())) == 0) && (Persona::validate_pw($pass, $person->getPassWord()))) {
                     return $person;
                 }
             }
@@ -252,7 +273,7 @@ class CSV
         if ($data != null) {
             foreach ($data as $person) {
                 if ($person->getRol() == 'Admin') {
-                    if ((strcmp($login, $person->getLogin()) == 0) && (hash_equals($person->getPassWord(), $pass))) {
+                    if ((strcmp(strtolower($login), strtolower($person->getLogin())) == 0) && (Persona::validate_pw($pass, $person->getPassWord()))) {
                         return $person;
                     }
                 }
@@ -309,14 +330,7 @@ class CSV
         $articles[] = $article;
         self::writeCSV('articulos', $articles);
     }
-    /**
-     * Recoger un objeto de tipo articulo
-     *
-     * @return Articulo
-     */
-    public static function getArticle()
-    {
-    }
+
     /**
      * Recoger un array de tipo article
      *
@@ -329,5 +343,122 @@ class CSV
             return $data;
         }
         return null;
+    }
+
+    /**
+     * Eliminacion de un articulo dependiendo de su titulo
+     * 
+     * @param String $titulo Titulo del articulo a eliminar
+     * 
+     * @return void
+     */
+    public static function deleteArticle(String $titulo)
+    {
+        $articles = self::getArticles();
+        if ($articles != null) {
+            $delete = self::getKeyArticle($titulo);
+            unset($articles[$delete]);
+            self::writeCSV('articulos', $articles);
+        }
+    }
+
+    /**
+     * Recoger la posiocion en el array de un objeto articulo que coincide con el titulo pasado
+     *
+     * @param  String $titulo Titulo del articulo
+     * @return int Posicion del objeto en el array
+     */
+    private static function getKeyArticle(String $titulo)
+    {
+        $articles = self::getArticles();
+        if ($articles != null) {
+            foreach ($articles as $key => $article) {
+                if ($article->getTitulo() == $titulo) {
+                    return $key;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Recoger un objeto de tipo articulo
+     *
+     * @param String $titulp
+     * 
+     * @return Articulo
+     */
+    public static function getArticle(String $titulo)
+    {
+        $articles = self::getArticles();
+        if ($articles != null) {
+            foreach ($articles as $article) {
+                if ($article->getTitulo() == $titulo) {
+                    return $article;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Comprobación de la existencia de un articulo
+     * 
+     * @param String $titulo Titulo del articulo
+     * @return boolean Si existe el articulo devuelve true si no lo hace false
+     */
+    public static function existArticle(String $titulo)
+    {
+        $bool = false;
+        $articles = self::getArticles();
+        foreach ($articles as $article) {
+            if ($article->getTitulo() == $titulo) {
+                $bool = true;
+            }
+        }
+        return $bool;
+    }
+
+    /**
+     *  Modificar un artículo
+     * 
+     * @param String $titulo Titulo del articulo a modificar
+     * @param String $cuerpo Cuerpo modificado del articulo
+     * @return void
+     * 
+     */
+
+    public static function updateArticle(String $titulo, String $cuerpo)
+    {
+        $article = self::getArticle($titulo);
+        $key = self::getKeyArticle($titulo);
+        $articles = self::getArticles();
+        $article->setCuerpo($cuerpo);
+        $articles[$key] = $article;
+        self::writeCSV('articulos', $articles);
+    }
+
+    /**
+     * Insertar una visita
+     *
+     * @param Visitas $visit
+     * @return void
+     */
+    public static function insertVisit(Visitas $visit)
+    {
+        $visits = self::getVisits();
+        $visits[] = $visit;
+        self::writeCSV('visitas', $visits);
+    }
+
+    /**
+     * Recoger un array de objetos de tipo Visitas
+     *
+     * @return array
+     */
+    private static function getVisits()
+    {
+        $visits = self::readCSV('visitas');
+        return $visits;
     }
 }
