@@ -17,9 +17,15 @@
  // Cargar clases necesarias
  // Clase Erro para controlar los posibles errores
 include_once '../../../Class/Erro.class.php';
+
+session_start();
+
 $resultados = isset($_POST) ? $_POST : null;
 
 if ($resultados) {
+
+    $_SESSION['calculadora_miguel']['resultados'] = $resultados;
+
     // Cargar clases necesarias
     include_once '../../../Class/Validacion.class.php';
     // Validar los datos enviados por el usuario
@@ -29,25 +35,37 @@ if ($resultados) {
 
     // Si no hay errores realizar los cálculos
     if (Erro::countErros() == 0) {
-        header('location: /index.php');
+        // Añadir clases para los cálculos
+        include_once '../clases/Equipo.class.php';
+        include_once '../clases/EquipoPorHora.class.php';
+        include_once '../clases/EquipoPorKm.class.php';
+        include_once '../clases/EquipoPorUsos.class.php';
+        include_once '../clases/EquipoUsoContinuo.class.php';
+        include_once '../resultados/calculos.php';
     }
 }
+
+// Si no hay resultados pero si existen en session
+if (!$resultados && isset($_SESSION['calculadora_miguel']['resultados'])) {
+    $resultados = $_SESSION['calculadora_miguel']['resultados'];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <!-- Head principal con los estilos del sitio -->
-    <?php include '../../../plantillas/head.php'; ?>
+    <?php include '../../../componentes/head.php'; ?>
     <!-- Estilos propios de la página -->
     <link rel="stylesheet" href="../vistas/assets/css/equipos.css">
 </head>
 
 <body>
     <!-- Cabecera de la página -->
-    <?php include '../../../plantillas/menu.php'; ?>
+    <?php include '../../../componentes/menu.php'; ?>
     <!-- Espacio reservado para mostrar los posibles errores -->
-    <?php include '../../../plantillas/error.php'; ?>
+    <?php include '../../../componentes/error.php'; ?>
     <!-- Formulario para la solicitud de datos y consumos del hogar -->
     <form action="/utiles/miguel/datos/index.php" method="POST">
         <div class="container my-5">

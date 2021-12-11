@@ -13,7 +13,7 @@
  * tipo 4: Equipo cuyo consumo se calcula por uso mensual, habitualmente Km al mes (cualquier equipo de transporte)
  * tipo 5: Equipo de iluminación, donde la potencia se obtiene en función del tipo de bombilla
  */
-
+session_start();
  include_once '../../Class/Erro.class.php';
  $resultados = isset($_POST) ? $_POST : null;
 
@@ -27,13 +27,13 @@
 <html lang="es">
 
 <head>
-    <?php include '../../plantillas/head.php'; ?>
+    <?php include '../../componentes/head.php'; ?>
     <link rel="stylesheet" href="./vistas/assets/css/equipos.css">
 </head>
 
 <body>
-    <?php include '../../plantillas/menu.php'; ?>
-    <?php include '../../plantillas/error.php'; ?>
+    <?php include '../../componentes/menu.php'; ?>
+    <?php include '../../componentes/error.php'; ?>
     <form action="/utiles/miguel/index.php" method="POST">
         <div class="container my-5">
             <?php include './vistas/datos.php'; ?>

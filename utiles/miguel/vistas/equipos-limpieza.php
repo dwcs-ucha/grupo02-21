@@ -9,11 +9,11 @@
 
 $tab = 'limpieza';
 $tabNombre = 'Limpieza';
-$aparatos = array(
-    array("tipo" => "3", "default" => 0.665, "unidadDefault" => "kWh/uso", "id" => "lavadora", "nombre" => "Lavadora", "usos" => 3),
-    array("tipo" => "1", "default" => 1200, "unidadDefault" => "W", "id" => "plancha", "nombre" => "Plancha", "horas" => 2, "minutos" => 0),
-    array("tipo" => "1", "default" => 600, "unidadDefault" => "W", "id" => "aspiradora", "nombre" => "Aspiradora", "horas" => 2, "minutos" => 0),
-    array("tipo" => "3", "default" => 1.0595, "unidadDefault" => "kWh/uso", "id" => "secadora", "nombre" => "Secadora", "usos" => 3),
+$datos = array(
+    array("tipo" => "3", "potencia" => 0.665, "unidad" => "kWh/uso", "id" => "lavadora", "nombre" => "Lavadora", "usos_semanales" => 3),
+    array("tipo" => "1", "potencia" => 1200, "unidad" => "W", "id" => "plancha", "nombre" => "Plancha", "horas" => 2, "min" => 0),
+    array("tipo" => "1", "potencia" => 600, "unidad" => "W", "id" => "aspiradora", "nombre" => "Aspiradora", "horas" => 2, "min" => 0),
+    array("tipo" => "3", "potencia" => 1.0595, "unidad" => "kWh/uso", "id" => "secadora", "nombre" => "Secadora", "usos_semanales" => 3),
 );
 
 include 'tablaequipos.php';

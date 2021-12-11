@@ -8,19 +8,31 @@
  * @version 1.0.0
  */
 
- class Equipo 
+ abstract class Equipo 
  {
-     protected $nombre;
      protected $unidades;
+     protected $potencia;
+     protected $nombre;
+     protected $categoria;
 
-     public function __construct($nombre, $unidades)
+     public function __construct($nombre, $potencia, $unidades, $categoria)
      {
+         $this->potencia = floatval($potencia);
+         $this->unidades = floatval($unidades);
          $this->nombre = $nombre;
-         $this->unidades = $unidades;
+         $this->categoria = $categoria;
      }
 
+     /**
+      * Método que calcula el consumo anual de nuestro equipo
+      */
+     public abstract function getConsumo();
 
-     public function getUnidades() {
-         
+     public function getCategoria() {
+         return $this->categoria;
+     }
+
+     public function getNombre() {
+         return $this->nombre;
      }
  }

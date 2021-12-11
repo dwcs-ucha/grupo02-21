@@ -6,6 +6,28 @@
 * @version 1.0.0
 */
 
+$hasResultados = isset($resultados['equipos'][$tab]);
+$aparatos = array();
+
+if (isset($resultados['equipos'][$tab])) {
+    $equipos = $resultados['equipos'][$tab];
+
+    foreach ($datos as $aparato) {
+        if (isset($equipos[$aparato['id']])) {
+            $equipos[$aparato['id']]['id'] = $aparato['id'];
+            $aparatos[] = $equipos[$aparato['id']];
+        } else {
+            $aparato['unidades'] = 0;
+            $aparatos[] = $aparato;
+        }
+    }
+} else {
+    foreach ($datos as $aparato) {
+        $aparato['unidades'] = 0;
+        $aparatos[] = $aparato;
+    }
+}
+
 ?>
 
 <table class="table table-hover">
@@ -26,7 +48,7 @@
                     <input 
                         type="number" 
                         class="unidades" 
-                        value="0" 
+                        value="<?php echo $aparato['unidades']; ?>" 
                         id="<?php echo $tab; ?>_<?php echo $aparato['id']; ?>_unidades" 
                         name="equipos[<?php echo $tab; ?>][<?php echo $aparato['id']; ?>][unidades]" 
                         data-aparato="<?php echo $aparato['id']; ?>" 
@@ -47,10 +69,10 @@
                         name="equipos[<?php echo $tab; ?>][<?php echo $aparato['id']; ?>][potencia]" 
                         id="<?php echo $tab; ?>_<?php echo $aparato['id']; ?>_potencia" 
                         data-aparato="<?php echo $aparato['id']; ?>" 
-                        value="<?php echo $aparato['default']; ?>" 
+                        value="<?php echo $aparato['potencia']; ?>" 
                         onchange="setConsumo(this)" 
                     />
-                    <label for="<?php echo $tab; ?>_<?php echo $aparato['id']; ?>_potencia"><?php echo $aparato['unidadDefault']; ?></label>
+                    <label for="<?php echo $tab; ?>_<?php echo $aparato['id']; ?>_potencia"><?php echo $aparato['unidad']; ?></label>
                 </td>
                 <!-- Tiempos o número de usos del equipo -->
                 <?php if ($aparato['tipo'] == "1") : ?>
@@ -82,7 +104,7 @@
                             class="horas" 
                             name="equipos[<?php echo $tab; ?>][<?php echo $aparato['id']; ?>][usos_semanales]" 
                             id="<?php echo $tab; ?>_<?php echo $aparato['id']; ?>_usos_semanales"
-                            value="<?php echo $aparato['usos']; ?>" 
+                            value="<?php echo $aparato['usos_semanales']; ?>" 
                             data-aparato="<?php echo $aparato['id']; ?>" 
                             onchange="setConsumo(this)" 
                             />
@@ -100,7 +122,7 @@
                                 class="minutos" 
                                 name="equipos[<?php echo $tab; ?>][<?php echo $aparato['id']; ?>][min]" 
                                 id="<?php echo $tab; ?>_<?php echo $aparato['id']; ?>_min"
-                                value="<?php echo $aparato['minutos']; ?>"
+                                value="<?php echo $aparato['min']; ?>"
                                 data-aparato="<?php echo $aparato['id']; ?>" 
                                 onchange="setConsumo(this)" 
                             />
@@ -115,11 +137,12 @@
                             <span>anuales</span>
                         </div>
                         <!-- Consumo anual del equipo calculado con Javascript, solo informa al usuario en tiempo real, pero no se pasa al servidor -->
-                        <input type="hidden" id="<?php echo $tab; ?>_<?php echo $aparato['id']; ?>_consumo_total">
+                        <input type="hidden" id="<?php echo $tab; ?>_<?php echo $aparato['id']; ?>_consumo_total" name="equipos[<?php echo $tab; ?>][<?php echo $aparato['id']; ?>][consumo_total]" value="<?php echo $aparato['consumo_total']; ?>">
                         <!-- Tipo de equipo, necesario para el cálculo de consumo -->
                         <input type="hidden" name="equipos[<?php echo $tab; ?>][<?php echo $aparato['id']; ?>][tipo]" id="<?php echo $tab; ?>_<?php echo $aparato['id']; ?>_tipo" value="<?php echo $aparato['tipo']; ?>">
                         <!-- Nombre del equipo para envío como dato de formulario -->
                         <input type="hidden" name="equipos[<?php echo $tab; ?>][<?php echo $aparato['id']; ?>][nombre]" id="<?php echo $tab; ?>_<?php echo $aparato['id']; ?>_nombre" value="<?php echo $aparato['nombre']; ?>">
+                        <input type="hidden" name="equipos[<?php echo $tab; ?>][<?php echo $aparato['id']; ?>][unidad]" id="<?php echo $tab; ?>_<?php echo $aparato['id']; ?>_unidad" value="<?php echo $aparato['unidad']; ?>">
                     </td>
             </tr>
         <?php endforeach; ?>

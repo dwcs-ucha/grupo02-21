@@ -9,13 +9,13 @@
 
 $tab = 'electronica';
 $tabNombre = 'Electrónica';
-$aparatos = array(
-    array("tipo" => "1", "default" => 250, "unidadDefault" => "W", "id" => "televisor", "nombre" => "Televisor", "horas" => 20, "minutos" => 0),
-    array("tipo" => "1", "default" => 16, "unidadDefault" => "W", "id" => "router", "nombre" => "Router", "horas" => 168, "minutos" => 0),
-    array("tipo" => "1", "default" => 80, "unidadDefault" => "W", "id" => "ordenador", "nombre" => "Ordenador", "horas" => 18, "minutos" => 0),
-    array("tipo" => "1", "default" => 2200, "unidadDefault" => "W", "id" => "secador", "nombre" => "Secador", "horas" => 0, "minutos" => 40),
-    array("tipo" => "1", "default" => 150, "unidadDefault" => "W", "id" => "videojuegos", "nombre" => "Consola videojuegos", "horas" => 3, "minutos" => 0),
-    array("tipo" => "1", "default" => 110, "unidadDefault" => "W", "id" => "manta", "nombre" => "Manta eléctrica", "horas" => 1, "minutos" => 30),
+$datos = array(
+    array("tipo" => "1", "potencia" => 250, "unidad" => "W", "id" => "televisor", "nombre" => "Televisor", "horas" => 20, "min" => 0),
+    array("tipo" => "1", "potencia" => 16, "unidad" => "W", "id" => "router", "nombre" => "Router", "horas" => 168, "min" => 0),
+    array("tipo" => "1", "potencia" => 80, "unidad" => "W", "id" => "ordenador", "nombre" => "Ordenador", "horas" => 18, "min" => 0),
+    array("tipo" => "1", "potencia" => 2200, "unidad" => "W", "id" => "secador", "nombre" => "Secador", "horas" => 0, "min" => 40),
+    array("tipo" => "1", "potencia" => 150, "unidad" => "W", "id" => "videojuegos", "nombre" => "Consola videojuegos", "horas" => 3, "min" => 0),
+    array("tipo" => "1", "potencia" => 110, "unidad" => "W", "id" => "manta", "nombre" => "Manta eléctrica", "horas" => 1, "min" => 30),
 );
 
 include 'tablaequipos.php';

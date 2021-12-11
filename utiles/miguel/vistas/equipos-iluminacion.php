@@ -16,7 +16,26 @@
 
 $tab = 'iluminacion';
 $tabNombre = 'Iluminación';
-$espacios = array('Salón', 'Cocina', 'Baño', 'Habitación 1', 'Habitación 2','','','');
+$nombres = array('Salón', 'Cocina', 'Baño', 'Habitación 1', 'Habitación 2','','','');
+
+$hasResultados = isset($resultados['equipos'][$tab]);
+$espacios = array();
+
+if (isset($resultados['equipos'][$tab])) {
+    $espacios = $resultados['equipos'][$tab];
+    unset($espacios['nombre']);
+} else {
+    $i = 1;
+    foreach ($nombres as $espacio) {
+        $espacios[$i]['nombre_espacio'] = $espacio;
+        $espacios[$i]['unidades'] = 0;
+        $espacios[$i]['potencia'] = 60;
+        $espacios[$i]['horas'] = 0;
+        $espacios[$i]['min'] = 0;
+        $espacios[$i]['tipo'] = 5;
+        $i++;
+    }
+}
 
 ?>
 
@@ -57,13 +76,13 @@ $espacios = array('Salón', 'Cocina', 'Baño', 'Habitación 1', 'Habitación 2',
     <tbody>
         <?php $numEspacio = 1; ?>
         <?php foreach ($espacios as $espacio) : ?>
-            <tr id="<?php echo $numEspacio; ?>" data-tab="<?php echo $tab; ?>" data-tipo-espacio="5">
+            <tr id="<?php echo $numEspacio; ?>" data-tab="<?php echo $tab; ?>" data-tipo-espacio="<?php echo $espacio['tipo']; ?>">
                 <td>
                     <!-- Nombre del espacio -->
                     <input 
                         type="text" 
                         class="espacio" 
-                        value="<?php echo $espacio; ?>" 
+                        value="<?php echo $espacio['nombre_espacio']; ?>" 
                         id="<?php echo $tab; ?>_<?php echo $numEspacio; ?>_nombre_espacio" 
                         name="equipos[<?php echo $tab; ?>][<?php echo $numEspacio; ?>][nombre_espacio]" 
                         data-espacio="<?php echo $numEspacio; ?>"
@@ -80,7 +99,7 @@ $espacios = array('Salón', 'Cocina', 'Baño', 'Habitación 1', 'Habitación 2',
                         onchange="setConsumo(this)"
                         data-espacio="<?php echo $numEspacio; ?>"
                         value="60"
-                        checked="true"
+                        <?php echo $espacio['potencia'] == '60' ? 'checked=""' : ''; ?>
                     >
                 </td>
                 <td>
@@ -93,6 +112,7 @@ $espacios = array('Salón', 'Cocina', 'Baño', 'Habitación 1', 'Habitación 2',
                         onchange="setConsumo(this)"
                         data-espacio="<?php echo $numEspacio; ?>"
                         value="30"
+                        <?php echo $espacio['potencia'] == '30' ? 'checked=""' : ''; ?>
                     >
                 </td>
                 <td>
@@ -105,6 +125,7 @@ $espacios = array('Salón', 'Cocina', 'Baño', 'Habitación 1', 'Habitación 2',
                         onchange="setConsumo(this)"
                         data-espacio="<?php echo $numEspacio; ?>"
                         value="50"
+                        <?php echo $espacio['potencia'] == '50' ? 'checked=""' : ''; ?>
                     >
                 </td>
                 <td>
@@ -117,6 +138,7 @@ $espacios = array('Salón', 'Cocina', 'Baño', 'Habitación 1', 'Habitación 2',
                         onchange="setConsumo(this)"
                         data-espacio="<?php echo $numEspacio; ?>"
                         value="36"
+                        <?php echo $espacio['potencia'] == '36' ? 'checked=""' : ''; ?>
                     >
                 </td>
                 <td>
@@ -129,6 +151,7 @@ $espacios = array('Salón', 'Cocina', 'Baño', 'Habitación 1', 'Habitación 2',
                         onchange="setConsumo(this)"
                         data-espacio="<?php echo $numEspacio; ?>"
                         value="15"
+                        <?php echo $espacio['potencia'] == '15' ? 'checked=""' : ''; ?>
                     >
                 </td>                                           
                 <td>
@@ -136,7 +159,7 @@ $espacios = array('Salón', 'Cocina', 'Baño', 'Habitación 1', 'Habitación 2',
                     <input 
                         type="number" 
                         class="unidades" 
-                        value="0" 
+                        value="<?php echo $espacio['unidades']; ?>" 
                         id="<?php echo $tab; ?>_<?php echo $numEspacio; ?>_unidades" 
                         name="equipos[<?php echo $tab; ?>][<?php echo $numEspacio; ?>][unidades]" 
                         data-espacio="<?php echo $numEspacio; ?>" 
@@ -155,7 +178,7 @@ $espacios = array('Salón', 'Cocina', 'Baño', 'Habitación 1', 'Habitación 2',
                         class="horas"
                         name="equipos[<?php echo $tab; ?>][<?php echo $numEspacio; ?>][horas]" 
                         id="<?php echo $tab; ?>_<?php echo $numEspacio; ?>_horas"
-                        value="0"
+                        value="<?php echo $espacio['horas']; ?>"
                         data-espacio="<?php echo $numEspacio; ?>" 
                         onchange="setConsumo(this)" 
                     />
@@ -171,7 +194,7 @@ $espacios = array('Salón', 'Cocina', 'Baño', 'Habitación 1', 'Habitación 2',
                         class="minutos" 
                         name="equipos[<?php echo $tab; ?>][<?php echo $numEspacio; ?>][min]" 
                         id="<?php echo $tab; ?>_<?php echo $numEspacio; ?>_min"
-                        value="0"
+                        value="<?php echo $espacio['min']; ?>"
                         data-espacio="<?php echo $numEspacio; ?>" 
                         onchange="setConsumo(this)" 
                     />
@@ -183,7 +206,7 @@ $espacios = array('Salón', 'Cocina', 'Baño', 'Habitación 1', 'Habitación 2',
                         <span> kWh</span><br>
                         <span>anuales</span>
                     </div>
-                    <input type="hidden" id="<?php echo $tab; ?>_<?php echo $numEspacio; ?>_consumo_total">
+                    <input type="hidden" id="<?php echo $tab; ?>_<?php echo $numEspacio; ?>_consumo_total" name="equipos[<?php echo $tab; ?>][<?php echo $numEspacio; ?>][consumo_total]" value="<?php echo $espacio['consumo_total']; ?>">
                     <input type="hidden" name="equipos[<?php echo $tab; ?>][<?php echo $numEspacio; ?>][tipo]" id="<?php echo $tab; ?>_<?php echo $numEspacio; ?>_tipo" value="5">
                 </td>
             </tr>

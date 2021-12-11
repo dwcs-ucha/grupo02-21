@@ -7,6 +7,12 @@
  * @version 1.0.0
  */
 
+// Crear un array con los datos si existen y si no con datos vacíos
+$campos = array('ciudad' => '', 'superficie' => 60, 'habitacion' => 2, 'habitantes' => 3, 'nenos' => 1);
+$datos = isset($resultados['datos']) ? $resultados['datos'] : array();
+foreach ($campos as $campo => $valor) {
+    $datos[$campo] = isset($datos[$campo]) ? $datos[$campo] : $valor;
+}
 
 ?>
 
@@ -19,17 +25,17 @@
                 <div class="mb-3 row">
                     <label for="ciudad" class="col-12 col-md-3 col-form-label">Cidade</label>
                     <div class="col-12 col-md-9">
-                        <input type="text" class="form-control" name="datos[ciudad]" id="ciudad">
+                        <input type="text" class="form-control" name="datos[ciudad]" id="ciudad" value="<?php echo $datos['ciudad']; ?>">
                     </div>
                 </div>
                 <!-- selector de superficie -->
                 <div class="mb-3 row">
                     <label for="superficie" class="col-12 col-md-3 col-form-label">Superficie</label>
                     <div class="col-12 col-md-6">
-                        <input type="range" class="form-range" min="35" max="500" default="60" onchange="updateTextValue(this.value, 'valorSuperficie');" id="superficie" name="datos[superficie]">
+                        <input type="range" class="form-range" min="35" max="500" onchange="updateTextValue(this.value, 'valorSuperficie');" id="superficie" name="datos[superficie]" value="<?php echo $datos['superficie']; ?>">
                     </div>
                     <div class="col-12 col-md-3">
-                        <input type="text" readonly class="form-control-plaintext d-inline" style="width: 30px;" id="valorSuperficie" value="60"> <span> m2.</span>
+                        <input type="text" readonly class="form-control-plaintext d-inline" style="width: 30px;" id="valorSuperficie" value="<?php echo $datos['superficie']; ?>"> <span> m2.</span>
                     </div>
                 </div>
                 <!-- selector de año de construcción -->
@@ -61,10 +67,10 @@
                 <div class="mb-3 row">
                     <label for="habitaciones" class="col-12 col-md-3 col-form-label">Número de habitacións</label>
                     <div class="col-12 col-md-6">
-                        <input type="range" class="form-range" min="1" max="7" default="2" onchange="updateTextValue(this.value, 'valorHabitacion');" id="habitacion" name="datos[habitacion]">
+                        <input type="range" class="form-range" min="1" max="7" value="<?php echo $datos['habitacion']; ?>" onchange="updateTextValue(this.value, 'valorHabitacion');" id="habitacion" name="datos[habitacion]">
                     </div>
                     <div class="col-12 col-md-3">
-                        <input type="text" readonly class="form-control-plaintext d-inline" style="width: 12px;" id="valorHabitacion" value="2"> <span> habitaciones</span>
+                        <input type="text" readonly class="form-control-plaintext d-inline" style="width: 12px;" id="valorHabitacion" value="<?php echo $datos['habitacion']; ?>"> <span> habitaciones</span>
                     </div>
                 </div>
 
@@ -72,20 +78,20 @@
                 <div class="mb-3 row">
                     <label for="habitantes" class="col-12 col-md-3 col-form-label">Número de habitantes</label>
                     <div class="col-12 col-md-6">
-                        <input type="range" class="form-range" min="1" max="5" default="1" onchange="updateTextValue(this.value, 'valorHabitantes');" id="habitantes" name="datos[habitantes]">
+                        <input type="range" class="form-range" min="1" max="5" value="<?php echo $datos['habitantes']; ?>" onchange="updateTextValue(this.value, 'valorHabitantes');" id="habitantes" name="datos[habitantes]">
                     </div>
                     <div class="col-12 col-md-3">
-                        <input type="text" readonly class="form-control-plaintext d-inline" style="width: 12px;" id="valorHabitantes" value="1"> <span> habitantes</span>
+                        <input type="text" readonly class="form-control-plaintext d-inline" style="width: 12px;" id="valorHabitantes" value="<?php echo $datos['habitantes']; ?>"> <span> habitantes</span>
                     </div>
                 </div>
                 <!-- si habitantes > 1, pedir "cuantos niños" -->
                 <div class="mb-3 row">
                     <label for="nenos" class="col-12 col-md-3 col-form-label">Número de nenos</label>
                     <div class="col-12 col-md-6">
-                        <input type="range" class="form-range" min="1" max="7" default="2" onchange="updateTextValue(this.value, 'valorNenos');" id="nenos" name="datos[nenos]">
+                        <input type="range" class="form-range" min="1" max="7" value="<?php echo $datos['nenos']; ?>" onchange="updateTextValue(this.value, 'valorNenos');" id="nenos" name="datos[nenos]">
                     </div>
                     <div class="col-12 col-md-3">
-                        <input type="text" readonly class="form-control-plaintext d-inline" style="width: 12px;" id="valorNenos" value=""> <span> nenos</span>
+                        <input type="text" readonly class="form-control-plaintext d-inline" style="width: 12px;" id="valorNenos" value="<?php echo $datos['nenos']; ?>"> <span> nenos</span>
                     </div>
                 </div>
                 <div class="mt-4 pt-5 row">

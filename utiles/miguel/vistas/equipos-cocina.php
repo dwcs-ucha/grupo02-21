@@ -9,19 +9,19 @@
 
 $tab = 'cocina';
 $tabNombre = 'Cocina';
-$aparatos = array(
-    array("tipo" => "1", "default" => 150, "unidadDefault" => "W", "id" => "extractor", "nombre" => "Extractor", "horas" => 10, "minutos" => 0),
-    array("tipo" => "2", "default" => 150, "unidadDefault" => "W", "id" => "nevera", "nombre" => "Nevera"),
-    array("tipo" => "1", "default" => 800, "unidadDefault" => "W", "id" => "microondas", "nombre" => "Microondas", "horas" => 1, "minutos" => 0),
-    array("tipo" => "3", "default" => 0.845, "unidadDefault" => "kWh/Lavado", "id" => "lavavajillas", "nombre" => "Lavavajillas", "usos" => 3),
-    array("tipo" => "1", "default" => 1200, "unidadDefault" => "W", "id" => "horno", "nombre" => "Horno", "horas" => 2, "minutos" => 0),
-    array("tipo" => "1", "default" => 1100, "unidadDefault" => "W", "id" => "tostadora", "nombre" => "Tostadora", "horas" => 0, "minutos" => 25),
-    array("tipo" => "3", "default" => 0.20, "unidadDefault" => "kWh/uso", "id" => "cafetera", "nombre" => "Cafetera", "usos" => 7),
-    array("tipo" => "1", "default" => 1100, "unidadDefault" => "W", "id" => "tostadora", "nombre" => "Tostadora", "horas" => 0, "minutos" => 25),
-    array("tipo" => "1", "default" => 1200, "unidadDefault" => "W", "id" => "batidora", "nombre" => "Batidora", "horas" => 2, "minutos" => 0),
-    array("tipo" => "1", "default" => 1500, "unidadDefault" => "W", "id" => "induccion", "nombre" => "Cocina de inducción", "horas" => 10, "minutos" => 0),
-    array("tipo" => "1", "default" => 2500, "unidadDefault" => "W", "id" => "batidora", "nombre" => "Cocina vitrocerámica", "horas" => 10, "minutos" => 0),
+$datos = array(
+    array("tipo" => "1", "potencia" => 150, "unidad" => "W", "id" => "extractor", "nombre" => "Extractor", "horas" => 10, "min" => 0),
+    array("tipo" => "2", "potencia" => 150, "unidad" => "W", "id" => "nevera", "nombre" => "Nevera"),
+    array("tipo" => "1", "potencia" => 800, "unidad" => "W", "id" => "microondas", "nombre" => "Microondas", "horas" => 1, "min" => 0),
+    array("tipo" => "3", "potencia" => 0.845, "unidad" => "kWh/Lavado", "id" => "lavavajillas", "nombre" => "Lavavajillas", "usos_semanales" => 3),
+    array("tipo" => "1", "potencia" => 1200, "unidad" => "W", "id" => "horno", "nombre" => "Horno", "horas" => 2, "min" => 0),
+    array("tipo" => "1", "potencia" => 1100, "unidad" => "W", "id" => "tostadora", "nombre" => "Tostadora", "horas" => 0, "min" => 25),
+    array("tipo" => "3", "potencia" => 0.20, "unidad" => "kWh/uso", "id" => "cafetera", "nombre" => "Cafetera", "usos_semanales" => 7),
+    array("tipo" => "1", "potencia" => 1200, "unidad" => "W", "id" => "batidora", "nombre" => "Batidora", "horas" => 2, "min" => 0),
+    array("tipo" => "1", "potencia" => 1500, "unidad" => "W", "id" => "induccion", "nombre" => "Cocina de inducción", "horas" => 10, "min" => 0),
+    array("tipo" => "1", "potencia" => 2500, "unidad" => "W", "id" => "batidora", "nombre" => "Cocina vitrocerámica", "horas" => 10, "min" => 0),
 );
+
 
 include 'tablaequipos.php';
 
