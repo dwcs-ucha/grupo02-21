@@ -20,7 +20,7 @@ session_start();
     <body><br>
 
         <?php
-        $titulo = ""; //hay q pasarle validacion de solo letras
+        $titulo = ""; 
         $cuerpo = "";
         $errorTitulo = "";
         $errorCuerpo = "";
@@ -43,8 +43,10 @@ session_start();
     </form>
     <script src="ckeditor/ckeditor.js"></script>
     <script>
+        //Esto la llamada al script de cskjeditor para la modificación del textarea
         ClassicEditor
                 .create(document.querySelector('#editor'), {
+                   
                     //toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
                 })
                 .then(editor => {

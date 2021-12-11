@@ -10,6 +10,7 @@ require_once('../Class/Admin.class.php');
 require_once('../DAO/CSV.class.php');
 require_once('../DAO/BD.class.php');
 require_once('../Class/Cms.class.php');
+require_once('../Class/Visitas.class.php');
 class DAO
 {
     private static $idiomas = array('gallego' => 'GL', 'castellano' => 'ES', 'ingles' => 'EN');
@@ -294,4 +295,26 @@ class DAO
         }
     }
     
+    /**
+     * Insertar una visita
+     *
+     * @param Visitas $visit
+     * @return void
+     */
+    public static function insertVisit(Visitas $visit) {
+        if(self::$modo == 'csv') {
+            CSV::insertVisit($visit);
+        } else if(self::$modo == 'bd') {
+            BD::insertVisit($visit);
+        }
+    }
+
+    /*public static function getVisits() {
+        if(self::$modo == 'csv') {
+            CSV::getVisits();
+        } else if(self::$modo == 'bd') {
+            BD::getVisits();
+        }
+    }*/
+
 }

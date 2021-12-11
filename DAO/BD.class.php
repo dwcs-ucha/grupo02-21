@@ -155,4 +155,12 @@ class BD
     public static function updateArticle(String $titulo, String $cuerpo)
     {
     }
+    /**
+     * Insertar una visita
+     *
+     * @param Visitas $visit
+     * @return void
+     */
+    public static function insertVisit(Visitas $visit) { 
+    }
 }
