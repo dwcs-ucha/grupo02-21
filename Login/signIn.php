@@ -2,8 +2,8 @@
 <?php
 //@author: Oscar Gonzalez Martinez
 //@date: 22/11/2021
-//@version: 0.9
-//include "validaciones.php";
+//@version: 1.0
+
 //Página de Login.
 include_once "../Class/Persona.class.php";
 include_once "../Class/Usuario.class.php";
