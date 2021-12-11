@@ -116,6 +116,7 @@ if (isset($_SESSION['userLogged'])) {
         ?>
     </div>
     </div>
+    <?php include_once "../cookieAlert.php" ?>
 </body>
 
 </html>
