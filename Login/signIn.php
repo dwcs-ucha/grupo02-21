@@ -71,26 +71,7 @@ if (isset($_SESSION['userLogged'])) {
                 Erro::addError("EmptyField", "Introduzca Login y contraseña");
                 echo Erro::showErrors();
 
-<<<<<<< HEAD
-            // LOGIN INCORRECTO - Añade un registro al LOG
-            DAO::writeLog(new Log("se ha intentado loguear en la aplicación desde " . $_SERVER['REMOTE_ADDR'] . " - " . Erro::showErrorsLog()));
-        } else {
-            $user = DAO::authenticateUser($login, $passWord);            
-            if ($user != null) {
-                $_SESSION['userLogged'] = $user;  
-                //$visitas = new Visitas($user->getLogin(),$ip,$fecha,$serveName,$browser,$so,$requestTime);
-                //DAO::insertVisit($visitas);
-                // LOGIN CORRECTO - Añade un registro al LOG
-                DAO::writeLog(new Log("se ha logueado en la aplicación desde " . $_SERVER['REMOTE_ADDR'], $login));
-                if ($user->getRol() == "Admin") {
-                    header("Location: adminRegPanel.php");
-                } else {
-                        header("Location: /index.php");
-                    }
-                
-=======
                 registrarLogIn(3);
->>>>>>> 662a3616d6c954c9832ca4e60cba25710da69963
             } else {
                 $user = DAO::authenticateUser($login, $passWord);
                 if ($user != null) {

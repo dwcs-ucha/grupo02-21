@@ -17,11 +17,11 @@ require_once "../../Class/Persona.class.php";
 require_once "../../Class/Admin.class.php";
 require_once "../../Class/Usuario.class.php";
 
-session_start();
+//session_start();
 if (isset($_SESSION['userLogged'])){
     $user = $_SESSION['userLogged'];        
 } else {
-    header("Location: ../../Login/signIn.php");
+    //header("Location: ../../Login/signIn.php");
 }
 
 ?>
@@ -32,8 +32,10 @@ if (isset($_SESSION['userLogged'])){
 <head>
     <meta charset="UTF-8">
     <title>Calculadora de Consumo Electrico</title>
-
+<!--
     <link rel="stylesheet" href="./estilos/style.css">
+-->
+<?php include_once "../../head.php"; ?>
 </head>
 
 <body>
