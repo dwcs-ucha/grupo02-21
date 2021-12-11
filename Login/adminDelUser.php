@@ -27,13 +27,16 @@ if(isset($_SESSION['userLogged'])) {
 <!DOCTYPE html>
 <html lang="es">
     <head>
+        <?php include_once '../head.php'; ?>
         <meta charset="UTF-8">
         <title>Panel de Control</title>
     </head>
     <body>
-        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+        <?php include_once '../menu.php'; ?>
+        <div class="container">
+        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" class="form-group">
             <label for="setRol">Selecciona un Rol
-                <select name="setRol" id="setRol">
+                <select name="setRol" id="setRol" class="form-select">
                     <option value="admin">Administradores</option>
                     <option value="user">Usuarios</option>
                     <option value="all">Todos los Usuarios</option>
@@ -41,7 +44,7 @@ if(isset($_SESSION['userLogged'])) {
             </label>
             <input type="submit" name="selectRol" value="Seleccionar">
         </form>
-
+        
         <?php
         $selected = "";
         if (isset($_POST['selectRol'])) {
@@ -88,5 +91,6 @@ if(isset($_SESSION['userLogged'])) {
             unset($_SESSION['eliminado']);
         }
         ?>
+        </div>
     </body>
 </html>

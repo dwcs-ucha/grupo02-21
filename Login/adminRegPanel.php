@@ -12,7 +12,8 @@
  //Inicialización de variables 
  $adminRol = $adminLogin = $adminName = $adminSurname = $adminPassWord = $adminVerifyPassword = $adminEmail = $adminVerifyEmail = $adminAddress = "";
  $adminError = array();
- session_start();
+ //Comento el inicio de Sesión. Se inicia Sesión desde el Menú para poder mostrar el enlace a cerrar sesión si hay una sesion iniciada.
+ session_status() === PHP_SESSION_ACTIVE ?: session_start();
  if(isset($_SESSION['userLogged'])) {
     $user = $_SESSION['userLogged'];
     if($user->getRol() != 'Admin') {
@@ -94,7 +95,9 @@
                                 <!-- Input y Reset -->
                                 <input type="submit" value="Confirmar" class="btn btn-primary" name="adminSubmit"/>
                                 <input type="reset" value="Borrar" class="btn btn-primary"/>
+                                
                             </div>   
+                            <button class="btn btn-primary"><a class="nav-link text-white" href="adminDelUser.php">Gestion de Usuarios</a></button>
                         </div>
         <?php
         // put your code here
@@ -204,6 +207,7 @@
                 echo Erro::showErrors();
             }
         }
+        
         ?>
          </div>
                 </div>
