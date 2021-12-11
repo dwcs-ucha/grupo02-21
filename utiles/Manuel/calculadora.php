@@ -1,5 +1,11 @@
 <html>
 	<head>
+
+		    <link rel="stylesheet" href="../../css/custom.css">
+	   	    <?php
+		    	include '../../head.php'; 
+		    ?>
+  
 		<meta charset="utf-8">
 		<title>Calculadora del gasto energético anual de un electrodoméstico</title>
 		<?php
@@ -15,6 +21,10 @@
 		</style>
 	</head>
 	<body>
+		<?php
+            		include '../../menu.php';
+        	?>
+		<div class="fondo">
 		<form action="calculadora.php" method="post">
 			<fieldset>
 				<?php
@@ -141,6 +151,6 @@
                 <p>Con un golpe, el consumo de energía se puede reducir enormemente reemplazando un refrigerador, congelador o lavadora antiguos. Los dispositivos nuevos tienen un menor consumo que los antiguos.</p>
 
 
-</p>
+	<div class="fondo">
 	</body>
 </html>
