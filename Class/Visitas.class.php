@@ -67,6 +67,8 @@ class Visitas
     /**
      * El método devuelve la ip del usuario. Si, por lo que sea, no es capaz
      *  de averiguarla, devolverá la string "IP desconocida".
+     * 
+     * @return string La IP desde la que se conecta el cliente.
      */
     public static function guessIP()
     {
@@ -98,10 +100,9 @@ class Visitas
      */
     public static function locateIP($ip)
     {
-        $dataArray = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip));
+        $dataArray = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip), true);
 
-        var_dump($dataArray);
-        if ($dataArray["geoplugin_city"] != null && $dataArray["geoplugin_region"] != null) {
+        if (isset($dataArray["geoplugin_city"]) && isset($dataArray["geoplugin_region"])) {
             return $dataArray["geoplugin_city"] . ", " . $dataArray["geoplugin_region"];
         } else {
             return "Ubicación desconocida";
