@@ -21,10 +21,7 @@ if (isset($_SESSION['userLogged'])) {
     header('Location: signUp.php');
 }
 
-$userName = $userSurname = $userPassWord = $userVerifyPassword =   $userAddress =  "";
-
 $userLogin = $user->getLogin();
-
 $userRol = "Usuario";
 $userActivate = 1;
 $userEmail = $user->getEmail();
@@ -47,7 +44,7 @@ $userError = array();
         <div class="container">
             <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
                 <div class="col-12 pt-3 pb-1">
-                    <h1 class="text-primary">Registrarse</h1>
+                    <h1 class="text-primary">Panel de Usuario</h1>
                 </div>
                 <div class="container border border-5 border border-primary border rounded-3 bg-light">
                     <div class="col-12 col-lg-12">
@@ -100,8 +97,8 @@ $userError = array();
     </div>
     <?php
     // put your code here
+    $userName = $userSurname = $userPassWord = $userVerifyPassword =   $userAddress =  "";
     if (isset($_POST['userSubmit'])) {
-
 
         //Validación de Nombre
         if (isset($_POST['userName'])) {
@@ -159,7 +156,7 @@ $userError = array();
             
                     $user = new Usuario($userRol, $userLogin, $userName, $userPassWord, $userSurname, $userEmail, $userAddress, $userActiveUser);
                     DAO::updateUser($user);
-                    header("refresh: 0");
+                    $_SESSION['userLogged'] = $user;
             }
         } else {
             //echo Erro::showErrors();
