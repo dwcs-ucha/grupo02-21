@@ -14,12 +14,12 @@ session_start();
         <title>Novas</title>
         <meta charset="utf-8">
         <?php
-            include '../head.php'
+            include '../componentes/head.php'
         ?>
     </head>
     <body>
         <?php
-            include '../menu.php'
+            include '../componentes/menu.php'
         ?>
         <div class="fondo">
             <main class="container alto">
