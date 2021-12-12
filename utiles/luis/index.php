@@ -31,6 +31,8 @@ $resultados = isset($_POST) ? $_POST : null;
     <div class="fondo alto">
         <div class="container center_lvi">
             <br />
+            <h3 class="title_lvi">Criptonómetro</h3>
+            <br />
             <img src="./criptomonedas/currency_<?php echo isset($_POST["currency"]) ? $_POST["currency"] : 0 ?>.png" height="175" />
             <br /><br />
 
@@ -70,7 +72,64 @@ $resultados = isset($_POST) ? $_POST : null;
 
             <br /><br />
 
-            <div id="consumption">0 Wh</div>
+            <div id="consumption" class="consumption">0 Wh</div>
+
+            <br /><br />
+
+            <div class="d-flex justify-content-center">
+                <span class="span_lvi flex">
+                    <img id="img_lvi" class="img_lvi" src="icons/bombilla.png" width="200px" />
+                    <br /><br />
+                    <p>Bombillas de 60W</p>
+                    <p id="object_1">0</p>
+                </span>
+                <span class="span_lvi flex">
+                    <img id="img_lvi" class="img_lvi" src="icons/tesla.png" width="200px" />
+                    <br /><br />
+                    <p>Km en un Tesla</p>
+                    <p id="object_2">0</p>
+                </span>
+                <span class="span_lvi flex">
+                    <img id="img_lvi" class="img_lvi" src="icons/washer.png" width="200px" />
+                    <br /><br />
+                    <p>Lavadoras</p>
+                    <p id="object_3">0</p>
+                </span>
+                <span class="span_lvi">
+                    <img id="img_lvi" class="img_lvi" src="icons/manowar.png" width="200px" />
+                    <br /><br />
+                    <p>Conciertos de Manowar</p>
+                    <p id="object_4">0</p>
+
+                </span>
+            </div>
+            <br />
+            <div class="d-flex justify-content-center">
+                <span class="span_lvi">
+                    <img id="img_lvi" class="img_lvi" src="icons/family.png" width="200px" />
+                    <br /><br />
+                    <p>Consumo familiar en un año</p>
+                    <p id="object_5">0</p>
+                </span>
+                <span class="span_lvi">
+                    <img id="img_lvi" class="img_lvi" src="icons/soccermatches.png" width="200px" />
+                    <br /><br />
+                    <p>Partidos de fútbol</p>
+                    <p id="object_6">0</p>
+                </span>
+                <span class="span_lvi">
+                    <img id="img_lvi" class="img_lvi" src="icons/vigo.png" width="200px" />
+                    <br /><br />
+                    <p>Navidades de Vigo</p>
+                    <p id="object_7">0</p>
+                </span>
+                <span class="span_lvi flex">
+                    <img id="img_lvi" class="img_lvi" src="icons/timetravel.png" width="200px" />
+                    <br /><br />
+                    <p>Viajes en el tiempo</p>
+                    <p id="object_8">0</p>
+                </span>
+            </div>
 
             <script>
                 let intervalo;
@@ -78,6 +137,17 @@ $resultados = isset($_POST) ? $_POST : null;
 
                 let unit;
                 let format_multiplier;
+
+                let objects = [
+                    60, //bombilla
+                    200, //tesla
+                    1200, //lavadora
+                    300000, //manowar
+                    9922000, //familia
+                    25000000, //partido
+                    100000000, //vigo
+                    1210000000 //viaje
+                ];
 
                 let Wh_counter;
                 let Wh = parseFloat(<?php echo $currency[isset($_POST["currency"]) ? $_POST["currency"] : 0] / 36000; ?>);
@@ -107,6 +177,8 @@ $resultados = isset($_POST) ? $_POST : null;
                 }
 
                 function checkTime() {
+                    writeValues();
+
                     switch (true) {
                         case (Wh_counter > checkMultiplier(1) && Wh_counter < checkMultiplier(2)):
                             format_multiplier = checkMultiplier(1);
@@ -139,6 +211,17 @@ $resultados = isset($_POST) ? $_POST : null;
                     unit = " Wh";
                     Wh_counter = Wh;
                     format_multiplier = checkMultiplier(0);
+                }
+
+                function writeValues() {
+                    document.getElementById("object_1").innerHTML = parseInt(Wh_counter / objects[0]);
+                    document.getElementById("object_2").innerHTML = parseInt(Wh_counter / objects[1]);
+                    document.getElementById("object_3").innerHTML = parseInt(Wh_counter / objects[2]);
+                    document.getElementById("object_4").innerHTML = parseInt(Wh_counter / objects[3]);
+                    document.getElementById("object_5").innerHTML = parseInt(Wh_counter / objects[4]);
+                    document.getElementById("object_6").innerHTML = parseInt(Wh_counter / objects[5]);
+                    document.getElementById("object_7").innerHTML = parseInt(Wh_counter / objects[6]);
+                    document.getElementById("object_8").innerHTML = parseInt(Wh_counter / objects[7]);
                 }
 
                 resetTime();
