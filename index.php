@@ -101,9 +101,9 @@
                             <div class="card-body">
                                 <div class="d-flex mb-3">
                                     <div class="ps-3">
-                                        <h5 class="card-title">Calculadora 6</h5>
-                                        <p class="card-text">Info</p>
-                                        <a href="#" class="btn btn-primary">Acceder</a>
+                                        <h5 class="card-title">Calculadora de consumo en calefacción dunha habitación</h5>
+                                        <p class="card-text">Permite calcular o consumo de calefacción para unha habitación según as súas características e localización </p>
+                                        <a href="/utiles/pablomc/calculadora.php" class="btn btn-primary">Acceder</a>
                                     </div>
                                 </div>
                             </div>
