@@ -117,9 +117,9 @@
                             <div class="card-body">
                                 <div class="d-flex mb-3">
                                     <div class="ps-3">
-                                        <h5 class="card-title">Calculadora 7</h5>
-                                        <p class="card-text">Info</p>
-                                        <a href="#" class="btn btn-primary">Acceder</a>
+                                        <h5 class="card-title">Calculadora consumo mensual de agua en litros</h5>
+                                        <p class="card-text">Sirve para calcular cuantos litros de agua se gastan en una casa </p>
+                                        <a href="/utiles/javiml99 individual/calculadoraagua.php" class="btn btn-primary">Acceder</a>
                                     </div>
                                 </div>
                             </div>
