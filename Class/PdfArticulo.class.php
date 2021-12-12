@@ -18,7 +18,7 @@
             // Movernos a la derecha
             $this->Cell(58);
             // Título
-            $this->Cell(70,10,'Listado CSV',1,0,'C');
+            $this->Cell(70,10,$this->titulo,1,0,'C');
             // Salto de línea
             $this->Ln(20);
         }
@@ -37,8 +37,8 @@
 
             //Times 12
             $this->SetFont('Times','',12);
-            $articulo->getImg();
-            $articulo->getCuerpo();
+            $this->Image($this->img,10,10,);
+            //$articulo->getCuerpo();
         }
         
         function ImprimirArchivo(){
