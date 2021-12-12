@@ -76,7 +76,7 @@ session_start();
                     </div> <br> <br>
                     <div class="row align-items-end">
                         <div class="col">
-                            ¿Cantas veces lavas os platos con auga do grifo a semana?: <input type="number" name="grifo" min="0" max="4" > </input> <br> 
+                            ¿Cantas veces lavas os platos con auga do grifo a semana?: <input type="number" name="grifo" min="0" max="9" > </input> <br> 
                         </div>
                         <div class="col">
                             ¿Cantas veces usas o lavavajillas a semana?: <input type="number" name="lavavajillas" min="0" max="9" > </input>  
