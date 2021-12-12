@@ -76,15 +76,13 @@ if (isset($_SESSION['userLogged'])) {
             } else {
                 $user = DAO::authenticateUser($login, $passWord);
                 if ($user != null) {
-                    $_SESSION['userLogged'] = $user;
-                    //$visitas = new Visitas($username->getLogin(), $ip, $fecha, $serveName, $browser, $so, $requestTime);
-                    //DAO::insertVisit($visitas);
+                    $_SESSION['userLogged'] = $user;                   
 
                     registrarLogIn(1, $login);
 
                     //Comprobamos el rol del usuario logueado.
                     //Si es administrador se le dirigen a su panel de administración.
-                    if ($user->getRol() === "Admin"){
+                    if ($user->getRol() == "Admin"){
                         header('Location: adminRegPanel.php');
                     } else {
                     //Si es un usuario se le dirige al indice de la página.

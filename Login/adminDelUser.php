@@ -32,7 +32,9 @@ if(isset($_SESSION['userLogged'])) {
         <title>Panel de Control</title>
     </head>
     <body>
-        <?php include_once '../componentes/menu.php'; ?>
+        <?php include_once '../componentes/menu.php'; 
+        include_once "../componentes/cookieAlert.php";
+        ?>
         <div class="container">
         <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" class="form-group">
             <label for="setRol">Selecciona un Rol
