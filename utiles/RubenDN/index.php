@@ -10,8 +10,8 @@ require('Calc.class.php');
 require_once('../../Class/Erro.class.php');
 function lista() {
     $utils = Calc::getUtils();
-    foreach($utils as $util) {
-        echo '<option value='.$util,'>'.$util.'</option>';
+    foreach($utils as $key => $util) {
+        echo '<option value="'.$key.'">'.$util.'</option>';
     }
 }
 ?>
@@ -57,13 +57,16 @@ function lista() {
                             if(isset($_POST['lista'])) {
                                 if((isset($_POST['paxinas']) && !empty($_POST['paxinas']))) {
                                     $util = $_POST['lista'];
-                                $pages = $_POST['paxinas'];
-                                $lit = Calc::calcularAuga($util, $pages);
-                                if(strpos($util, 'Papel') !== false) {
-                                    echo 'Gastouse un total de ' . $lit . ' litros de auga para realizar ese ' . $util . ' con ' . $pages . ' usos';
-                                } else {
-                                    echo 'Gastouse un total de ' . $lit . ' litros de auga para realizar ese ' . $util . ' con ' . $pages . ' páxinas';
-                                }
+                                    $pages = $_POST['paxinas'];
+                                    $lit = Calc::calcularAuga($util, $pages);
+                                    $nameUtil = Calc::getUtil($util);
+                                    if(strpos($util, 'Papel') !== false) {
+                                        echo 'Gastouse un total de ' . $lit . ' litros de auga para realizar ese ' . $nameUtil . ' con ' . $pages . ' usos';
+                                    } else {
+                                        echo 'Gastouse un total de ' . $lit . ' litros de auga para realizar ese ' . $nameUtil . ' con ' . $pages . ' páxinas';
+                                    }
+                                    $lavManos = number_format(Calc::calculoLavManos($lit), 2);
+                                    echo '<br>Que é o mesmo que estar ' . $lavManos . ' minutos coa billa aberta mentras te lavas as mans';
                                 } else {
                                     Erro::addError('EmptyFieldError', 'Non se atoparon datos no campo páxinas');
                                 }
