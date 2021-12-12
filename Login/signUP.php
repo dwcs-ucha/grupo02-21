@@ -212,19 +212,20 @@ if(isset($_SESSION['userLogged'])) {
                 $user = new Usuario($registerRol, $registerLogin, $registerName, $registerPassWord, $registerSurname, $registerEmail, $registerAddress);
                 if (DAO::existsUserName($user->getLogin()) || DAO::existsUserEmail($user->getEMail())) {
                     Erro::addError('ExistsUserName','El nombre de usuario ya existe');
-                    echo Erro::showErrors();
+                    //echo Erro::showErrors();
                 } else {
                     DAO::insertUser($user);
                     header("location: ../index.php");
                 }
             } else {
-                echo Erro::showErrors();
+                //echo Erro::showErrors();
             }
         } else {
             Erro::addError('captchaError','Fallo de verificación de Capcha');
-            echo Erro::showErrors();
+            //echo Erro::showErrors();
         }
     }
+    include_once '../componentes/error.php';
     ?>
     </div>
 </div>

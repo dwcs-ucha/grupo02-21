@@ -69,7 +69,7 @@ if (isset($_SESSION['userLogged'])) {
 
             if (empty($login) || empty($passWord)) {
                 Erro::addError("EmptyField", "Introduzca Login y contraseña");
-                echo Erro::showErrors();
+                //echo Erro::showErrors();
 
                 registrarLogIn(3);
             } else {
@@ -91,12 +91,13 @@ if (isset($_SESSION['userLogged'])) {
                     }
                 } else {
                     Erro::addError("UserAuthenticateError", "No parece haber ningún usuario con ese nombre");
-                    echo Erro::showErrors();
+                    //echo Erro::showErrors();
 
                     registrarLogIn(2, $login);
                 }
             }
         }
+        include_once '../componentes/error.php';
 
         /**
          * Empleado para llevar registro de visitas y del log.

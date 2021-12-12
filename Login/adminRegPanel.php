@@ -9,6 +9,7 @@
     include_once "../DAO/DAO.class.php";
     include_once "../Class/Erro.class.php";
     
+
  //Inicialización de variables 
  $adminRol = $adminLogin = $adminName = $adminSurname = $adminPassWord = $adminVerifyPassword = $adminEmail = $adminVerifyEmail = $adminAddress = "";
  $adminError = array();
@@ -192,7 +193,7 @@
             if (Erro::countErros() == 0){
                 if (DAO::existsUserName($adminLogin) || DAO::existsUserEmail($adminEmail)){
                     Erro::addError("UserError","Usuario o email ya existentes");
-                    echo Erro::showErrors();
+                  //  echo Erro::showErrors();
                 }else {
                 if ($_POST['adminRol'] == "Admin"){
                     $admin = new Admin($adminRol,$adminLogin,$adminName,$adminPassWord,$adminSurname,$adminEmail);                    
@@ -203,10 +204,11 @@
                 }
             }
             } else {
-                echo Erro::showErrors();
+                //echo Erro::showErrors();
             }
         }
-        
+        include_once '../componentes/error.php';
+
         ?>
          </div>
                 </div>
