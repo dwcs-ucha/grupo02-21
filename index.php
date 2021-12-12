@@ -73,15 +73,9 @@
                             <div class="card-body">
                                 <div class="d-flex mb-3">
                                     <div class="ps-3">
-<<<<<<< HEAD
-                                        <h5 class="card-title">Calculadora 4</h5>
-                                        <p class="card-text">Info</p>
-                                        <a href="" class="btn btn-primary">Acceder</a>
-=======
                                         <h5 class="card-title">Calculadora de ahorro energético</h5>
                                         <p class="card-text">Permite calcular el ahorro energético según la cantidad y el consumo de bombillas tradicionales y LEDs</p>
                                         <a href="/utiles/ricardo/index.php" class="btn btn-primary">Acceder</a>
->>>>>>> 8423de545e8d982a3195c693895b2d0df2d2c1c2
                                     </div>
                                 </div>
                             </div>
@@ -92,9 +86,9 @@
                             <img src="./imagenes/ejemplo.jpg" class="card-img-top p-1">
                             <div class="card-body">
                                 <div class="d-flex mb-3">
-                                    <div class="ps-3">
-                                        <h5 class="card-title">Calculadora 5</h5>
-                                        <p class="card-text">Info</p>
+                                <h5 class="card-title">Criptonómetro</h5>
+                                        <p class="card-text">Cronómetro de consumo acumulado por la actividad de diferentes criptomonedas comparado con el consumo de a pie y el día a día.</p>
+                                        <a href="/utiles/luis/index.php" class="btn btn-primary">Acceder</a>
                                         <a href="#" class="btn btn-primary">Acceder</a>
                                     </div>
                                 </div>
