@@ -15,6 +15,7 @@ session_start();
     <head>
         <meta charset="utf-8">
         <link type="text/css" href="ckeditor/sample/css/sample.css" rel="stylesheet" media="screen" />
+        <script src="ckeditor/ckeditor.js"></script>
         <title>Indice</title>
     </head>
     <body><br>
@@ -41,26 +42,9 @@ session_start();
             <input type="submit" value="borrar todo" name="borrar"/><br></br>
         </div>
     </form>
-    <script src="ckeditor/ckeditor.js"></script>
-    <script src="ckfinder/ckfinder.js"></script>
     <script type="text/javascript">
         //Esto la llamada al script de cskjeditor para la modificación del textarea
-        ClassicEditor
-                .create(document.querySelector('#editor'), { 
-                ckfinder: {
-			uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
-                 
-		},
-                    } )
-                    .catch( error => {
-		console.error( error );
-                } )
-                .then(editor => {
-                    window.editor = editor;
-                })
-                .catch(err => {
-                    console.error(err.stack);
-                });
+         CKEDITOR.replace( 'cuerpo');
     </script>
 
     <?php
@@ -112,6 +96,7 @@ session_start();
             <tr>
                 <th>Titulo</th>
                 <th>Cuerpo </th>
+                <th>fecha de creación</th>
                 <th>Eliminacion</th>
             </tr>
             <?php
@@ -121,6 +106,7 @@ session_start();
                 <tr>
                     <td><?php echo $novas->getTitulo() ?></td>
                     <td><?php echo $novas->getCuerpo() ?></td>
+                    <td><?php echo $novas->getCreacion()?></td>
                     <td><input type="submit" name="delete"></a></td>
                 </tr>
                 </form>
