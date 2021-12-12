@@ -146,9 +146,9 @@
                             <div class="card-body">
                                 <div class="d-flex mb-3">
                                     <div class="ps-3">
-                                        <h5 class="card-title">Calculadora 9</h5>
-                                        <p class="card-text">Info</p>
-                                        <a href="#" class="btn btn-primary">Acceder</a>
+                                        <h5 class="card-title">Calculadora do consumo dun vehículo</h5>
+                                        <p class="card-text">Calcula o custo de gasolina nun viaxe</p>
+                                        <a href="/utiles/Pelayo/calculadora.php" class="btn btn-primary">Acceder</a>
                                     </div>
                                 </div>
                             </div>
