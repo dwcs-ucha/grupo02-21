@@ -4,6 +4,7 @@
   Fecha de Última modificación: 16/11/2021
   Versión: 0.9
  */
+include_once '../../Class/Erro.class.php';
 session_start();
 ?>
 <html>
