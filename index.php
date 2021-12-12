@@ -133,7 +133,7 @@
                                     <div class="ps-3">
                                         <h5 class="card-title">Calculadora 8</h5>
                                         <p class="card-text">Info</p>
-                                        <a href="#" class="btn btn-primary">Acceder</a>
+                                        <a href="/utiles/jorgeCM/Calculadora.php" class="btn btn-primary">Acceder</a>
                                     </div>
                                 </div>
                             </div>
