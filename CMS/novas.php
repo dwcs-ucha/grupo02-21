@@ -14,37 +14,43 @@ session_start();
         <title>Novas</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../css/custom.css">
+        <?php
+            include '../head.php'
+        ?>
     </head>
     <body>
-        <div class="container">
-        <h1>Novas</h1><br>
-        
-      
-      <?php
-      $cont=0;
-      $articulos = DAO::getArticles(); 
-      if(isset($_GET['abrir'])){
-           $_SESSION['articulo']=$_GET['abrir'];
-           header("Location: ./articulo.php");
-      }
-    if ($articulos != null) {
-        ?><div class="col-12">
-            <div class="row">
-                <div class="col-12">
-                    <div class="col-6"></div><?php
-         $cont=0;
-         foreach ($articulos as $novas) {
-            ?>  
-        <div class="col-6"><a href='novas.php?abrir=<?php echo $novas->getTitulo() ?>'><?php echo $novas->getTitulo() ?></a></div>
-                <?php 
-        }
-         
-    }
-    
+        <?php
+            include '../menu.php'
         ?>
-                    </div>
+        <div class="fondo">
+            <main class="container alto">
+            
+                <div class="col-12 pt-5 pb-1">
+                    <h1 class="text-primary">Novas</h1>
                 </div>
-            </div>
+                <div  class="container border border-5 border border-primary border rounded-3 bg-light">
+                <?php
+                    $cont=0;
+                    $articulos = DAO::getArticles(); 
+                    if(isset($_GET['abrir'])){
+                        $_SESSION['articulo']=$_GET['abrir'];
+                        header("Location: ./articulo.php");
+                    }
+                    if ($articulos != null) {
+                ?>
+                <?php
+                        $cont=0;
+                        foreach ($articulos as $novas) {
+                ?> 
+                <div class="">
+                    <a href='novas.php?abrir=<?php echo $novas->getTitulo() ?>'><?php echo $novas->getTitulo() ?></a>
+                </div>
+                <?php 
+                        }
+                    }
+                ?>
+                </div>
+            </main>
         </div>
     </body>
 </html>

@@ -28,7 +28,7 @@
         <a class="nav-link text-white" href="/Login/signUP.php">Rexistro</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-white" href="#">Novas</a>
+        <a class="nav-link text-white" href="/CMS/novas.php">Novas</a>
     </li>
     <li class="nav-item">
         <a class="nav-link text-white" href="/index.php">Calculadoras</a>

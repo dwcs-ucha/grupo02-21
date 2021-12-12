@@ -27,7 +27,6 @@
     <head>
         <meta charset="UTF-8">
         <title>Registro de Usuario</title>
-        <link rel="stylesheet" href="../css/custom.css">
         <?php
            include '../head.php'; 
         ?>

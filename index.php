@@ -57,9 +57,9 @@
                             <div class="card-body">
                                 <div class="d-flex mb-3">
                                     <div class="ps-3">
-                                        <h5 class="card-title">Calculadora 3</h5>
-                                        <p class="card-text">Info</p>
-                                        <a href="#" class="btn btn-primary">Acceder</a>
+                                        <h5 class="card-title">Calculadora del gasto de agua en base al consumo de carne</h5>
+                                        <p class="card-text">Permite calcular el agua que gastas a la hora de preparar tu comida y te muestra cuanto gastarías sustituyéndolo por su versión plant-based</p>
+                                        <a href="/utiles/alexia/individualAlexia.php" class="btn btn-primary">Acceder</a>
                                     </div>
                                 </div>
                             </div>

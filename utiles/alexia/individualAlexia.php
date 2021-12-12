@@ -11,7 +11,6 @@ include_once "claseCalcAlexia.php";
 <head>
     <title>El coste real</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../../css/custom.css">
     <?php
            include '../../head.php'; 
         ?>
