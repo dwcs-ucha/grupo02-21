@@ -11,7 +11,7 @@
     
 
  //Inicialización de variables 
- $adminRol = $adminLogin = $adminName = $adminSurname = $adminPassWord = $adminVerifyPassword = $adminEmail = $adminVerifyEmail = $adminAddress = "";
+ $adminRol = $adminLogin = $adminName = $adminSurname = $adminPassWord = $adminVerifyPassword = $adminEmail = $adminVerifyEmail = $adminAddress = $adminActiveUser = "";
  $adminError = array();
  //Comento el inicio de Sesión. Se inicia Sesión desde el Menú para poder mostrar el enlace a cerrar sesión si hay una sesion iniciada.
  session_status() === PHP_SESSION_ACTIVE ?: session_start();
@@ -90,6 +90,13 @@
                                 <br/>
                                 <label for="adminAddress">Dirección</label>
                                 <input type="text" name="adminAddress" id="adminAdress" class="input-group-text" value="<?php if (isset($_POST['adminAddress'])) {echo $_POST['adminAddress']; } ?>">
+                            </div>
+                            <div class="col-12 col-lg-12 px-3 mt-3"> 
+                                <label for="adminActiveUser">Activar Usuario</label>
+                                <select name="adminActiveUser" id="adminActiveUser" class="form-select input-group-text">
+                                    <option value="0" selected>Desactivar</option>
+                                    <option value="1">Activar</option>                                    
+                                </select>
                             </div>
                             <div class="col-12 col-lg-12 px-3 mt-3 mb-3">
                                 <!-- Input y Reset -->
@@ -189,6 +196,10 @@
         } else {
             Erro::addError("adminAddressError","Inntroduzca dirección");
         }
+            //Validacion de Usuario activo.
+            if (isset($_POST['adminActiveUser'])){
+                $adminActiveUser = $_POST['adminActiveUser'];                
+            }
                     
             if (Erro::countErros() == 0){
                 if (DAO::existsUserName($adminLogin) || DAO::existsUserEmail($adminEmail)){
@@ -199,7 +210,7 @@
                     $admin = new Admin($adminRol,$adminLogin,$adminName,$adminPassWord,$adminSurname,$adminEmail);                    
                     DAO::insertAdmin($admin);
                 } else {
-                    $user = new Usuario($adminRol,$adminLogin,$adminName,$adminPassWord,$adminSurname,$adminEmail,$adminAddress);
+                    $user = new Usuario($adminRol,$adminLogin,$adminName,$adminPassWord,$adminSurname,$adminEmail,$adminAddress,$adminActiveUser);
                     DAO::insertUser($user);
                 }
             }
