@@ -90,6 +90,24 @@ class DAO
     }
 
     /**
+     * Recoger un objeto de Usuario
+     * 
+     * @param String login Parametro Opcional
+     * @param String email Parametro Opcional
+     * 
+     * @return Usuario
+     */
+    public static function getUser($login = '', $email = '') {
+        $user = null;
+        if(self::$modo == 'csv') {
+            $user = CSV::getUser($login ,$email);
+        } else if(self::$modo == 'bd') {
+            $user = BD::getUser($login, $email);
+        }
+        return $user;
+    }
+
+    /**
      * Modificar un Usuario
      * 
      * @param Usuario $user Objeto de usuario
