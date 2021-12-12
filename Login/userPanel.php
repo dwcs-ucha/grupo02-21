@@ -32,13 +32,13 @@ $userError = array();
     <meta charset="UTF-8">
     <title>Panel de Control de Usuario</title>
     <?php
-    include '../head.php';
+    include '../componentes/head.php';
     ?>
 </head>
 
 <body>
     <?php
-    include '../menu.php';
+    include '../componentes/menu.php';
     ?>
     <div class="fondo alto">
         <div class="container">

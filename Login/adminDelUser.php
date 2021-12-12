@@ -27,12 +27,12 @@ if(isset($_SESSION['userLogged'])) {
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <?php include_once '../head.php'; ?>
+        <?php include_once '../componentes/head.php'; ?>
         <meta charset="UTF-8">
         <title>Panel de Control</title>
     </head>
     <body>
-        <?php include_once '../menu.php'; ?>
+        <?php include_once '../componentes/menu.php'; ?>
         <div class="container">
         <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" class="form-group">
             <label for="setRol">Selecciona un Rol
