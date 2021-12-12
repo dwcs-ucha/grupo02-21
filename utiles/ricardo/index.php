@@ -24,6 +24,8 @@ CABECEIRA:
 <body>
     <?php
     include '../../menu.php';
+    include_once '../../cookieAlert.php';
+    include_once '../../Class/Erro.class.php';
     ?>
 
 
@@ -47,7 +49,7 @@ CABECEIRA:
             echo $calculoLED->calculoBombillas() * 730, 001 . "\nEuros cada 30 días<br>";
             echo $calculoLED->calculoBombillas() * 8760, 00240024 . "\nEuros al año<br>";
         } else {
-            echo "<h2 class='text-danger'>*ERROR: DATOS VACÍOS</h2>";
+            Erro::addError("EmptyField", "Introduzca todos los datos");
         }
     }
     ?>
