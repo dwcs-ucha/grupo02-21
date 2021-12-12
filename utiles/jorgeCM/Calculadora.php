@@ -12,17 +12,18 @@ include_once './Class/classCalculadora.php';
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Calculadora de eficiencia energética de una vivienda</title>
+        <title>Eficiencia energética</title>
         <link rel="stylesheet" href="../../css/custom.css"/>
     </head>
     <body>
         <?php include '../../componentes/menu.php'; ?>
-
-        <div align="center">
-        <h1>Calculadora eficiencia energética</h1>
+<div class="fondo">
+        <div class="container pt-5">
+            <h1 class="text-primary">Calculadora eficiencia energética</h1>
        
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="formulario" id="formulario">
                 <fieldset class="fieldset">
+
                      <div class="tamaño">
                 <p>Calefacción</p>
                 <pre> kWh/m²                         Tipo</pre>
@@ -72,7 +73,7 @@ include_once './Class/classCalculadora.php';
                 </div>
                 <input class="calc" type="submit" name="calcular" value="calcular"><br></br>
                 
-              
+                
                 
         <?php
         
@@ -96,14 +97,19 @@ include_once './Class/classCalculadora.php';
             $consumoCalc=$Vivienda->calculaCalefaccion($tipoCalc,$Vivienda->getPotenciaPunta(),$zona);
             $consumoACS=$Vivienda->calculaACS($tipoACS,$Vivienda->getPotenciaPunta(),$zona);
             $consumoRefrig=$Vivienda->calculaRefrigeracion($tipoRef,$Vivienda->getPotenciaPunta(),$zona);
+            echo '<div align:right>';
+            echo '<div class="rounded float-end"><img src="imagen/eficiencia-energetica.png" alt="imagen eficiencia energética"/></div>';
             $Vivienda->consumoTotal($consumoCalc,$consumoACS,$consumoRefrig);
             $Vivienda->calculoEficiencia($zona,$consumoCalc, $consumoACS, $consumoRefrig);
-        }
+            echo '</div>';
+            }
         echo '</div>';
         ?>
                 <br/>
             </div>
         </fieldset
        </form> 
+            
+        </div>
     </body>
 </html>
