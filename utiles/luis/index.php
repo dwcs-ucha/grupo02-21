@@ -121,7 +121,7 @@ $resultados = isset($_POST) ? $_POST : null;
                 <span class="span_lvi">
                     <img id="img_lvi" class="img_lvi" src="icons/vigo.png" width="200px" />
                     <br /><br />
-                    <p>Nadais de Vigo <span title="En Nueva York van a alucinar.">ⓘ</span></p>
+                    <p>Nadais de Vigo <span title="En Nova York van alucinar.">ⓘ</span></p>
                     <p id="object_7">0</p>
                 </span>
                 <span class="span_lvi flex">
