@@ -162,9 +162,9 @@
                             <div class="card-body">
                                 <div class="d-flex mb-3">
                                     <div class="ps-3">
-                                        <h5 class="card-title">Calculadora 10</h5>
-                                        <p class="card-text">Info</p>
-                                        <a href="#" class="btn btn-primary">Acceder</a>
+                                        <h5 class="card-title">Calculadora do gasto enerxetico anual dun electródomestico</h5>
+                                        <p class="card-text">Calcula o consumo dun electrodoméstico nun ano, ademáis do prezo en electricidade </p>
+                                        <a href="/utiles/Manuel/calculadora.php" class="btn btn-primary">Acceder</a>
                                     </div>
                                 </div>
                             </div>

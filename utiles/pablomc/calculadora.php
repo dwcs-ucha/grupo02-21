@@ -20,6 +20,7 @@ include('funciones.php');
     <body>
         <?php
             include '../../componentes/menu.php';
+            include_once '../../componentes/cookieAlert.php';
             
             $camposCubiertos = false;
             

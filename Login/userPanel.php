@@ -36,6 +36,7 @@ $userError = array();
 <body>
     <?php
     include '../componentes/menu.php';
+    include_once "../componentes/cookieAlert.php";
     ?>
     <div class="fondo alto">
         <div class="container">
