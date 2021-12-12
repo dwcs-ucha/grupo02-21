@@ -10,8 +10,8 @@
  * @cookie_alert_author kolappannathan
  * @reference https://github.com/kolappannathan/bootstrap-cookie-banner
  */
-if (isset($_COOKIE['newcomerr'])) {
-    echo $_COOKIE['newcomer'];
+if (isset($_COOKIE['newcomer'])) {
+    
 } else {
 ?>
     <div id="cb-cookie-banner" class="alert alert-dark text-center mb-0" role="alert">
@@ -22,7 +22,7 @@ if (isset($_COOKIE['newcomerr'])) {
         </button>
     </div>
 <?php
-    setcookie("newcomer", "Not anymore!", time() + (86400 * 30), "/");
+    //setcookie("newcomer", "Not anymore!", time() + (86400 * 30), "/");
 }
 ?>
 
