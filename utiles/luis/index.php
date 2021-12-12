@@ -24,9 +24,10 @@ $resultados = isset($_POST) ? $_POST : null;
 
 <body>
     <?php
-    include_once '../../componentes/cookieAlert.php';
     include_once '../../componentes/menu.php';
-    include_once './data/data.php'
+    include_once '../../componentes/cookieAlert.php';  
+    include_once './data/data.php';
+
     ?>
 
     <div class="fondo">
