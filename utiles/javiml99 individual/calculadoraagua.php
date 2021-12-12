@@ -15,6 +15,7 @@ session_start();
     </head>
     <body>  
         <?php include '../../componentes/menu.php'; ?>
+           
         <?php       
         $duchaVeces = $duchaMinutos = $dientes = $cisterna = $manos = $cara = $grifo = $lavavajillas = $lavadora = '';
         if (isset($_POST['calcular'])) { 
@@ -87,13 +88,14 @@ session_start();
                     <br><br>  <input type="submit" value="Calcular" name="calcular"></input>  
                     <br><br>
                     <?php
-                    
+                    if(isset($casa)){
                         echo "Tu gasto total de litros al mes es: " .  $casa ->calculo()     . " L";
-                    
+                    }
                     if (isset($Error)) {
                         echo $Error;
                     }
                     ?>
+                    <?php include '../../componentes/error.php'; ?>
                 </div>
                 </p>                            
             </fieldset>                                                                                
