@@ -110,6 +110,11 @@ if (isset($_SESSION['userLogged'])) {
             $ip = Visitas::guessIP();
             $location = Visitas::locateIP($ip);
             //$username=$_SESSION['userLogged'];
+            //$fecha=
+            //$serveName=$_SERVER['SERVER_NAME']
+            // $browser= $_SERVER['SERVER_SOFTWARE']
+            //$so= $_SERVER['HTTP_USER_AGENT']
+            //$requestTime=$_SERVER['REQUEST_TIME']
             switch ($tipo) {
                 case 1:
                     // Login correcto
