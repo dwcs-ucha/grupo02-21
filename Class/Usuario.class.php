@@ -23,6 +23,7 @@ class Usuario extends Persona {
     public function formatUsuario() {
         $array = parent::formatPerson();
         $array[] = $this->address;
+        $array[] = $this->active;
         return $array;
     }
     
