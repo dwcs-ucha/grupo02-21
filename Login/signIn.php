@@ -109,10 +109,11 @@ if (isset($_SESSION['userLogged'])) {
         {
             $ip = Visitas::guessIP();
             $location = Visitas::locateIP($ip);
-
+            //$username=$_SESSION['userLogged'];
             switch ($tipo) {
                 case 1:
                     // Login correcto
+                    //DAO::insertVisit(new Visitas($username->getLogin(), $ip, $fecha, $serveName, $browser, $so, $requestTime));
                     DAO::writeLog(new Log("se ha logueado en la aplicación desde " . $ip . "(" . $location . ")", $login));
                     break;
                 case 2:

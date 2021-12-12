@@ -1,4 +1,15 @@
 <?php
+/*
+CABECEIRA:
+
+    TRABAJO: CLASS VISITAS
+    AUTOR: Ricardo Apaza Cueva
+    CURSO:2ºDAW
+    FECHA:08/12/2021
+    */
+      
+    ?>
+<?php
 
 class Visitas
 {
