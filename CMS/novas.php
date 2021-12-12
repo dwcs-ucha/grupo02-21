@@ -27,7 +27,7 @@ session_start();
                 <div class="col-12 pt-5 pb-1">
                     <h1 class="text-primary">Novas</h1>
                 </div>
-                <div  class="container border border-5 border border-primary border rounded-3 bg-light">
+                <div  class="container border border-5 border border-primary border rounded-3 bg-light pb-3 ">
                 <?php
                     $cont=0;
                     $articulos = DAO::getArticles(); 
@@ -42,9 +42,10 @@ session_start();
                         foreach ($articulos as $novas) {
                 ?> 
                 <div class="row">
-                    <div class="col-12 col-lg-12 px-3 mt-3"></div>
-                        <a class='text-decoration-none fs-4 fw-bold' href='novas.php?abrir=<?php echo $novas->getTitulo() ?>'><?php echo $novas->getTitulo()?></a>
+                    <div class="col-12 col-lg-12 px-3 mt-3 ">
+                    <p class='fs-4 fw-bold text-primary'><?php echo $novas->getTitulo()?></p>
                         <?php echo "<p>".$novas->getCreacion()."</p>" ?>
+                    <a class="text-decoration-none text-secondary eP" href='novas.php?abrir=<?php echo $novas->getTitulo() ?>'>Acceder a la noticia...</a>
                     
                 <?php 
                         }

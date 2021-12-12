@@ -17,6 +17,7 @@ include_once './Class/classCalculadora.php';
     </head>
     <body>
         <?php include '../../componentes/menu.php'; ?>
+        <?php include_once '../../componentes/cookieAlert.php';?>
 <div class="fondo">
         <div class="container pt-5">
             <h1 class="text-primary">Calculadora eficiencia energética</h1>
@@ -97,7 +98,7 @@ include_once './Class/classCalculadora.php';
             $consumoCalc=$Vivienda->calculaCalefaccion($tipoCalc,$Vivienda->getPotenciaPunta(),$zona);
             $consumoACS=$Vivienda->calculaACS($tipoACS,$Vivienda->getPotenciaPunta(),$zona);
             $consumoRefrig=$Vivienda->calculaRefrigeracion($tipoRef,$Vivienda->getPotenciaPunta(),$zona);
-            echo '<div align:right>';
+            echo '<d civ align:right>';
             echo '<div class="rounded float-end"><img src="imagen/eficiencia-energetica.png" alt="imagen eficiencia energética"/></div>';
             $Vivienda->consumoTotal($consumoCalc,$consumoACS,$consumoRefrig);
             $Vivienda->calculoEficiencia($zona,$consumoCalc, $consumoACS, $consumoRefrig);

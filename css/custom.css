@@ -4,6 +4,9 @@
 .alto{
   height: 100vh;
 }
+.eP>a:hover{
+  color:black
+}
 
 /*!
  * Bootstrap v5.1.3 (https://getbootstrap.com/)
