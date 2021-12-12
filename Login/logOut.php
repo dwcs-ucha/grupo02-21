@@ -1,6 +1,15 @@
+<<<<<<< HEAD
+<!--
+    Cierre de Sesión
+    @author Oscar González Martínez    
+    Fecha: 10/12/2021
+-->
+
+=======
 <?php 
     setcookie("cookie_readed", true,  time() + 86400);
 ?>
+>>>>>>> db68affd93f81bdce168adefb1bec52360fc9198
 <html>
     <head>
         <meta charset="UTF-8">
