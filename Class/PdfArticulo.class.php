@@ -4,10 +4,6 @@
     class PdfArticulo extends FPDF{
         private $articulo;
 
-        public function __constructor($articulo){
-
-        }
-
         // Cabecera de página
         function Header()
         {
@@ -43,4 +39,6 @@
             $this->CuerpoArchivo();
         }
     }
+    
+
 ?>
