@@ -31,8 +31,11 @@ class Erro
     public static function showErrors()
     {
         $texto = "";
-        foreach (self::$errors as $type => $message) {
-            $texto .= $type . ': ' . $message . '<br/>';
+        foreach (self::$errors as $type => $erros) {
+            $texto .= $type . ':<br/>';
+            foreach($erros as $erro) {
+                $texto .= $erro . '<br>';
+            }
         }
         return $texto;
     }

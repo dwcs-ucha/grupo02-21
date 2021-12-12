@@ -176,9 +176,9 @@
                             <div class="card-body">
                                 <div class="d-flex mb-3">
                                     <div class="ps-3">
-                                        <h5 class="card-title">Calculadora 11</h5>
-                                        <p class="card-text">Info</p>
-                                        <a href="#" class="btn btn-primary">Acceder</a>
+                                        <h5 class="card-title">Calculadora de Auga gastada na realización de obxectos con papel</h5>
+                                        <p class="card-text">Calculadora que nos permitirá calcular canta auga se gasta en realizar os libros, comics,... que teñamos polo fogar</p>
+                                        <a href="/utiles/RubenDN/index.php" class="btn btn-primary">Acceder</a>
                                     </div>
                                 </div>
                             </div>
