@@ -1,7 +1,13 @@
 <?php
-    require('fpdf.php');
+    require('/fpdf/fpdf.php');
 
-    class PDF extends FPDF{
+    class PdfArticulo extends FPDF{
+        private $articulo;
+
+        public function __constructor($articulo){
+
+        }
+
         // Cabecera de página
         function Header()
         {
@@ -42,12 +48,4 @@
             $this->CuerpoArchivo($file);
         }
     }
-    
-    $pdf = new PDF();
-    
-    $pdf->AliasNbPages(); 
-    $pdf->AddPage();
-    $pdf->SetFont('Arial','B',10);
-    $pdf->ImprimirArchivo('productos.csv');
-    $pdf->Output();
 ?>
