@@ -21,7 +21,9 @@ session_start();
          $article=DAO::getArticle($_SESSION['articulo']);
          }
          echo "<h1>". $article->getTitulo()."</h1><br>";
+         echo "<img src='".$article->getImg()."'>";
          echo "<p>".$article->getCuerpo()."</p>";
+         
         
     
         ?>

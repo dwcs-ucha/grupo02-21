@@ -18,16 +18,14 @@
      private $ACS;
      private $refrigeracion;
      private $superficie;
-     private $altitud;
      private $potenciaPunta;
      
      
-     public function __construct($calefaccion, $ACS, $refrigeracion, $superficie, $altitud, $potenciaPunta) {
+     public function __construct($calefaccion, $ACS, $refrigeracion, $superficie, $potenciaPunta) {
          $this->calefaccion = $calefaccion;
          $this->ACS = $ACS;
          $this->refrigeracion = $refrigeracion;
          $this->superficie = $superficie;
-         $this->altitud = $altitud;
          $this->potenciaPunta = $potenciaPunta;
      }
      
@@ -47,10 +45,6 @@
          return $this->superficie;
      }
 
-     public function getAltitud() {
-         return $this->altitud;
-     }
-
      public function getPotenciaPunta() {
          return $this->potenciaPunta;
      }
@@ -68,10 +62,6 @@
 
      public function setSuperficie($superficie): void {
          $this->superficie = $superficie;
-     }
-
-     public function setAltitud($altitud): void {
-         $this->altitud = $altitud;
      }
 
      public function setPotenciaPunta($potenciaPunta): void {
@@ -164,7 +154,7 @@
      }
      public function consumoTotal($consumoCalc,$consumoACS,$consumoRefrig) {
          $consumoTotal=$consumoCalc+$consumoACS+$consumoRefrig;
-         echo 'El consumo total de tu vivienda es de :'. round($consumoTotal,2)."€<br>";
+         echo 'El consumo total de tu vivienda es de: '. round($consumoTotal,2)."€<br>";
      }
      public function calculoEficiencia($zona) {
      $eficiencia=$this->superficie*$zona;
