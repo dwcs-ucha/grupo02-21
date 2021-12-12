@@ -13,18 +13,35 @@ session_start();
 <html>
     <head>
         <title><?php //Aquí va el articulo que se ha abierto para leerlo entero ?></title>
+        <?php
+        include '../componentes/head.php';
+        ?>
     </head>
     <body>
         <?php
-        $articulos = DAO::getArticles();
-        if ($_SESSION['articulo'] != null) {
-         $article=DAO::getArticle($_SESSION['articulo']);
-         }
-         echo "<h1>". $article->getTitulo()."</h1><br>";
-         echo "<p>".$article->getCuerpo()."</p>";
-        
-    
+            include '../componentes/menu.php';
         ?>
-
+        <div class="fondo alto">
+        <?php
+            $articulos = DAO::getArticles();
+            if ($_SESSION['articulo'] != null) {
+                $article=DAO::getArticle($_SESSION['articulo']);
+            }
+        ?>
+            <main class="container">
+                <div class="col-12 pt-5 text-primary">
+                    <?php
+                        echo "<h1>". $article->getTitulo()."</h1>";
+                    ?>
+                </div>
+                <div class="col-12 border border-5 border border-primary border rounded-3 bg-light">
+                    <div class="mx-3">
+                    <?php
+                    echo "<p>".$article->getCuerpo()."</p>";
+                    ?>
+                    </div>
+                </div>
+            </main>
+        </div>
     </body>
 </html>
