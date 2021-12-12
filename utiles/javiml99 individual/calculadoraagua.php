@@ -88,9 +88,9 @@ session_start();
                     <br><br>  <input type="submit" value="Calcular" name="calcular"></input>  
                     <br><br>
                     <?php
-                    
+                    if(isset($casa)){
                         echo "Tu gasto total de litros al mes es: " .  $casa ->calculo()     . " L";
-                    
+                    }
                     if (isset($Error)) {
                         echo $Error;
                     }
