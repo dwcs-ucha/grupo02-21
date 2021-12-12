@@ -29,6 +29,7 @@ session_start();
 <head>
     <?php include '../../componentes/head.php'; ?>
     <link rel="stylesheet" href="./vistas/assets/css/equipos.css">
+    <title>Calculadora Avanzada</title>
 </head>
 
 <body>

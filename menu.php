@@ -4,6 +4,8 @@
 *@modificado 06/12/2021
 *@version 01
 */
+//$user = $_SESSION['userLogged'];
+//$rol = $user->getRol();
 ?>
 <div class="container">
     <div class="col-12 col-lg-12 col-sm-12">

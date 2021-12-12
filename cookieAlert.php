@@ -14,7 +14,14 @@ if (isset($_COOKIE['newcomer'])) {
     
 } else {
 ?>
-    <div id="cb-cookie-banner" class="alert alert-dark text-center mb-0" role="alert">
+<style>
+    #cb-cookie-banner{
+        z-index: 100;
+        position: fixed;
+        bottom: 10px;
+    }
+</style>
+    <div id="cb-cookie-banner"  class="alert alert-dark text-center mb-0" role="alert">
         🍪 This website uses cookies to ensure you get the best experience on our website.
         <a href="https://www.cookiesandyou.com/" target="blank">Learn more</a>
         <button type="button" class="btn btn-primary btn-sm ms-3" onclick="window.hideCookieBanner()">
