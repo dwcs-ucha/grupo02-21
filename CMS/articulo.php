@@ -18,7 +18,7 @@ session_start();
         ?>
     </head>
     <body>
-        <?php
+      <?php
             include '../componentes/menu.php';
         ?>
         <div class="fondo alto">
@@ -29,16 +29,16 @@ session_start();
             }
         ?>
             <main class="container">
-                <div class="col-12 pt-5 text-primary">
-                    <?php
-                        echo "<h1>". $article->getTitulo()."</h1>";
-                    ?>
+                <div class="col-12 pt-5 text-primary">         
+                        <?php echo "<h1>". $article->getTitulo()."</h1>" ;?>
+                         <div class="mb-4"><?php echo "<img class='img-fluid' style='max-width: 400px;' src='".$article->getImg()."'>";?></div>
                 </div>
                 <div class="col-12 border border-5 border border-primary border rounded-3 bg-light">
                     <div class="mx-3">
-                    <?php
-                    echo "<p>".$article->getCuerpo()."</p>";
-                    ?>
+                    
+                    <?php echo "<p>".$article->getCuerpo()."</p>";?>
+                      <a class="btn btn-primary mb-2" href="/fpdf/descarga.php?articulo=<?php echo $_SESSION['articulo'];?> ">Imprimir a PDF </a>
+                    
                     </div>
                 </div>
             </main>

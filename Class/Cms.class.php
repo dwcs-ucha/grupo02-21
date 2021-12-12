@@ -8,11 +8,14 @@ class Publicacion {
     private $titulo;
     private $cuerpo;
     private $creacion;
+    private $img;
+
   
-    public function __construct($titulo, $cuerpo, $creacion) {
+    public function __construct($titulo, $cuerpo, $creacion, $img) {
         $this->titulo = $titulo;
         $this->cuerpo = $cuerpo;
         $this->creacion = $creacion;
+        $this->img = $img;
 
     }
 
@@ -40,4 +43,11 @@ class Publicacion {
         $this->creacion = $creacion;
     }
 
+    public function getImg() {
+        return $this->img;
+    }
+
+    public function setImg($img) {
+        $this->img = $img;
+    }
 }
