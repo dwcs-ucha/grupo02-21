@@ -2,7 +2,7 @@
     require_once '../Class/Cms.class.php';
     session_start();
 
-    $article=DAO::getArticle($_SESSION['articulo']);
+    $article; 
 
     $pdf = new PDF($articulo);
 
