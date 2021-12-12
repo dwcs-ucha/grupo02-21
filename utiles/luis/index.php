@@ -81,25 +81,25 @@ $resultados = isset($_POST) ? $_POST : null;
                 <span class="span_lvi flex">
                     <img id="img_lvi" class="img_lvi" src="icons/bombilla.png" width="200px" />
                     <br /><br />
-                    <p>Bombillas de 60W</p>
+                    <p>Bombillas de 60W <span title="Consumo dunha bombilla incandescente convencional.">ⓘ</span></p>
                     <p id="object_1">0</p>
                 </span>
                 <span class="span_lvi flex">
                     <img id="img_lvi" class="img_lvi" src="icons/tesla.png" width="200px" />
                     <br /><br />
-                    <p>Km en un Tesla</p>
+                    <p>Km nun Tesla <span title="Cálculo de 200 Wh por km.">ⓘ</span></p>
                     <p id="object_2">0</p>
                 </span>
                 <span class="span_lvi flex">
                     <img id="img_lvi" class="img_lvi" src="icons/washer.png" width="200px" />
                     <br /><br />
-                    <p>Lavadoras</p>
+                    <p>Lavadoras <span title="Lavadora de 1200W.">ⓘ</span></p>
                     <p id="object_3">0</p>
                 </span>
                 <span class="span_lvi">
                     <img id="img_lvi" class="img_lvi" src="icons/manowar.png" width="200px" />
                     <br /><br />
-                    <p>Conciertos de Manowar</p>
+                    <p>Concertos de Manowar <span title="Durante o 2016 fixeron un concerto con 300.000W entre equipos de sonido e realización.">ⓘ</span></p>
                     <p id="object_4">0</p>
 
                 </span>
@@ -109,25 +109,25 @@ $resultados = isset($_POST) ? $_POST : null;
                 <span class="span_lvi">
                     <img id="img_lvi" class="img_lvi" src="icons/family.png" width="200px" />
                     <br /><br />
-                    <p>Consumo familiar en un año</p>
+                    <p>Consumo familiar nun ano <span title="Basado no promedio dun fogar na cidade.">ⓘ</span></p>
                     <p id="object_5">0</p>
                 </span>
                 <span class="span_lvi">
                     <img id="img_lvi" class="img_lvi" src="icons/soccermatches.png" width="200px" />
                     <br /><br />
-                    <p>Partidos de fútbol</p>
+                    <p>Partidos de fútbol <span title="Un partido de fútbol pode chegar a consumir ata 25.000 KWh.">ⓘ</span></p>
                     <p id="object_6">0</p>
                 </span>
                 <span class="span_lvi">
                     <img id="img_lvi" class="img_lvi" src="icons/vigo.png" width="200px" />
                     <br /><br />
-                    <p>Navidades de Vigo</p>
+                    <p>Nadais de Vigo <span title="En Nova York van alucinar.">ⓘ</span></p>
                     <p id="object_7">0</p>
                 </span>
                 <span class="span_lvi flex">
                     <img id="img_lvi" class="img_lvi" src="icons/timetravel.png" width="200px" />
                     <br /><br />
-                    <p>Viajes en el tiempo</p>
+                    <p>Viaxes no tiempo <span title="«Marty, lo siento, pero a única fonte de poder capaz de xerar 1.21 giga watts de potencia eléctrica é un raio.»">ⓘ</span></p>
                     <p id="object_8">0</p>
                 </span>
             </div>

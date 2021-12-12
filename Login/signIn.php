@@ -25,13 +25,13 @@ if (isset($_SESSION['userLogged'])) {
     <title></title>
     <link rel="stylesheet" href="../css/custom.css">
     <?php
-    include '../head.php';
+    include '../componentes/head.php';
     ?>
 </head>
 
 <body>
     <?php
-    include '../menu.php';
+    include '../componentes/menu.php';
     ?>
     <div class="fondo alto">
         <div class="container">
@@ -110,16 +110,16 @@ if (isset($_SESSION['userLogged'])) {
         {
             $ip = Visitas::guessIP();
             $location = Visitas::locateIP($ip);
-            //$username=$_SESSION['userLogged'];
-            //$fecha=
-            //$serveName=$_SERVER['SERVER_NAME']
-            // $browser= $_SERVER['SERVER_SOFTWARE']
-            //$so= $_SERVER['HTTP_USER_AGENT']
-            //$requestTime=$_SERVER['REQUEST_TIME']
+            $username=$_SESSION['userLogged'];
+            $fecha=getDate();
+            $serveName=$_SERVER['SERVER_NAME'];
+            $browser= $_SERVER['SERVER_SOFTWARE'];
+            $so= $_SERVER['HTTP_USER_AGENT'];
+            $requestTime=$_SERVER['REQUEST_TIME'];
             switch ($tipo) {
                 case 1:
                     // Login correcto
-                    //DAO::insertVisit(new Visitas($username->getLogin(), $ip, $fecha, $serveName, $browser, $so, $requestTime));
+                    DAO::insertVisit(new Visitas($username->getLogin(), $ip, $fecha, $serveName, $browser, $so, $requestTime));
                     DAO::writeLog(new Log("se ha logueado en la aplicación desde " . $ip . "(" . $location . ")", $login));
                     break;
                 case 2:

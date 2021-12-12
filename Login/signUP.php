@@ -30,14 +30,14 @@ if(isset($_SESSION['userLogged'])) {
     <title>Registro de Usuario</title>
     <link rel="stylesheet" href="../css/custom.css">
     <?php
-        include '../head.php'; 
+        include '../componentes/head.php'; 
     ?>
     <script src="https://www.google.com/recaptcha/api.js?hl=es" async defer></script>
 </head>
 
 <body>
     <?php
-        include '../menu.php'; 
+        include '../componentes/menu.php'; 
     ?>
     <div class="fondo alto">
     <div class="container"> 
