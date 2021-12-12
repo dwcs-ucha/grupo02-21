@@ -113,6 +113,8 @@ if (isset($_SESSION['userLogged'])) {
             $location = Visitas::locateIP($ip);
             $username=$_SESSION['userLogged'];
             $fecha=getDate();
+            $fecha= $fecha['year'] . "." . sprintf("%02d", $fecha['mon']) . "." . sprintf("%02d", $fecha['mday'])
+            . "-" . sprintf("%02d", $fecha['hours']) . ":" . sprintf("%02d", $fecha['minutes']) . ":" . sprintf("%02d", $fecha['seconds']);
             $serveName=$_SERVER['SERVER_NAME'];
             $browser= $_SERVER['SERVER_SOFTWARE'];
             $so= $_SERVER['HTTP_USER_AGENT'];
