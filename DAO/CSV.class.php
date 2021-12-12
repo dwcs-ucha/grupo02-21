@@ -168,6 +168,32 @@ class CSV
     }
 
     /**
+     * Recoger un objeto de Usuario
+     * 
+     * @param String login Parametro Opcional
+     * @param String email Parametro Opcional
+     * 
+     * @return Usuario
+     */
+    public static function getUser($login = '', $email = '')
+    {
+        $allUsers = self::getAllUsers();
+        if ($allUsers != null) {
+            foreach ($allUsers as $object) {
+                if ($login != '') {
+                    if ($object->getLogin() == $login) {
+                        return $object;
+                    }
+                } else if ($email != '') {
+                    if ($object->getEmail() == $email) {
+                        return $object;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
      * Eliminacion de un usuario o un administrador
      *
      * @param String $login Nombre de Usuario de un admin o un usuario

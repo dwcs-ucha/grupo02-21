@@ -1,7 +1,9 @@
 <?php
 
-if(isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !empty($_GET['hash'])){
+if (isset($_GET['email']) && !empty($_GET['email']) and isset($_GET['hash']) && !empty($_GET['hash'])) {
     Persona::validate_pw($_GET['email'], $_GET['hash']);
-}else{
+    $user = DAO::getUser('', $_GET['email']);
+    DAO::updateUser($user);
+} else {
     // Invalid approach
 }

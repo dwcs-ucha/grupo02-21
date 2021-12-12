@@ -182,4 +182,16 @@ class BD
     private static function getVisits()
     {
     }
+
+    /**
+     * Recoger un objeto de Usuario
+     * 
+     * @param String login Parametro Opcional
+     * @param String email Parametro Opcional
+     * 
+     * @return Usuario
+     */
+    public static function getUser($login = '', $email = '')
+    {
+    }
 }
