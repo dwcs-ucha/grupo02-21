@@ -56,6 +56,16 @@ class BD
     }
 
     /**
+     * Modificar un Usuario
+     * 
+     * @param Usuario $user Objeto de usuario
+     * @return void
+     */
+    public static function updateUser(Usuario $user)
+    {
+    }
+
+    /**
      * Comprobación de la existencia del nombre de usuario
      *
      * @param String $login 

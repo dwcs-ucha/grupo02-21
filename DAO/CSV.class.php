@@ -200,6 +200,23 @@ class CSV
         }
         return null;
     }
+
+    /**
+     * Modificar un Usuario
+     * 
+     * @param Usuario $user Objeto de usuario
+     * @return void
+     */
+    public static function updateUser(Usuario $user)
+    {
+        $allUsers = self::getAllUsers();
+        if ($allUsers != null) {
+            $update = self::getKeyPerson($user->getLogin());
+            $allUsers[$update] = $user;
+            self::writeCSV('users', $allUsers);
+        }
+    }
+
     /**
      * Recoger un array de objetos de tipo admin y usuario
      *
