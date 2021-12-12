@@ -1,18 +1,25 @@
+<?php
+
+include_once('Habitacion.php');
+include('funciones.php');
+
+?>
 <html>
     <head>
+        <title>Calculadora consumo Calefacción</title>
         <meta charset="UTF-8">
         <?php /*Titulo: calculadora.php
             Autor: Pablo Martinez Castro
             Version=1.0.0
             Ultima modificacion: 27/11/2021*/
-	?>
-        <title>Calculadora consumo Calefacción</title>
+
+            include '../../componentes/head.php';
+	    ?>
         <link rel="stylesheet" href="./css/archivo.css"/>
     </head>
     <body>
         <?php
-            include('funciones.php');
-            include_once('Habitacion.php');
+            include '../../componentes/menu.php';
             
             $camposCubiertos = false;
             
@@ -55,6 +62,7 @@
 
             
         ?>
+        <div class="fondo">
         <div class="div">
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
             <fieldset class="fieldset">
@@ -134,6 +142,7 @@
                     ?>
             </fieldset>
         </form>
+        </div>
         </div>
     </body>
 </html>

@@ -10,9 +10,6 @@ include_once "../DAO/DAO.class.php";
 include_once "../Class/Erro.class.php";
 
 
-//Inicialización de variables 
-
-
 //Comento el inicio de Sesión. Se inicia Sesión desde el Menú para poder mostrar el enlace a cerrar sesión si hay una sesion iniciada.
 session_status() === PHP_SESSION_ACTIVE ?: session_start();
 if (isset($_SESSION['userLogged'])) {
@@ -21,10 +18,7 @@ if (isset($_SESSION['userLogged'])) {
     header('Location: signUp.php');
 }
 
-$userName = $userSurname = $userPassWord = $userVerifyPassword =   $userAddress =  "";
-
 $userLogin = $user->getLogin();
-
 $userRol = "Usuario";
 $userActivate = 1;
 $userEmail = $user->getEmail();
@@ -47,7 +41,7 @@ $userError = array();
         <div class="container">
             <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
                 <div class="col-12 pt-3 pb-1">
-                    <h1 class="text-primary">Registrarse</h1>
+                    <h1 class="text-primary">Panel de Usuario</h1>
                 </div>
                 <div class="container border border-5 border border-primary border rounded-3 bg-light">
                     <div class="col-12 col-lg-12">
@@ -99,9 +93,9 @@ $userError = array();
         </div>
     </div>
     <?php
-    // put your code here
+    //Inicialización de variables 
+    $userName = $userSurname = $userPassWord = $userVerifyPassword =   $userAddress =  "";
     if (isset($_POST['userSubmit'])) {
-
 
         //Validación de Nombre
         if (isset($_POST['userName'])) {
@@ -156,15 +150,15 @@ $userError = array();
         }
 
         if (Erro::countErros() == 0) {
-            
-                    $user = new Usuario($userRol, $userLogin, $userName, $userPassWord, $userSurname, $userEmail, $userAddress, $userActiveUser);
-                    DAO::updateUser($user);
-                    header("refresh: 0");
-            }
-        } else {
-            //echo Erro::showErrors();
+
+            $user = new Usuario($userRol, $userLogin, $userName, $userPassWord, $userSurname, $userEmail, $userAddress, $userActiveUser);
+            DAO::updateUser($user);
+            $_SESSION['userLogged'] = $user;
         }
-    
+    } else {
+        //echo Erro::showErrors();
+    }
+
     include_once '../componentes/error.php';
 
     ?>

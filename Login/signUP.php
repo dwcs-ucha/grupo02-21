@@ -2,13 +2,14 @@
 <?php
 //Página de registro.
 //@author: Oscar González Martínez
-//Versión: 0.9
+//Versión: 1.0
 //Proyecto "Aforro Enerxético"
 include_once '../Class/Persona.class.php';
 include_once "../Class/Validacion.class.php";
 include_once "../DAO/DAO.class.php";
 include_once "../Class/Erro.class.php";
 require_once "recaptchalib.php";
+require_once "../Mails/send_mails.php";
 
 //Inicialización de variables 
 $registerLogin = $registerName = $registerSurname = $registerPassWord = $registerVerifyPassword = $registerEmail = $registerVerifyEmail = $registerAddress = "";
@@ -209,13 +210,15 @@ if(isset($_SESSION['userLogged'])) {
          }
          if ($response != null && $response->success) {
             if (Erro::countErros() == 0) {
-                $user = new Usuario($registerRol, $registerLogin, $registerName, $registerPassWord, $registerSurname, $registerEmail, $registerAddress);
+                $user = new Usuario($registerRol, $registerLogin, $registerName, $registerPassWord, $registerSurname, $registerEmail, $registerAddress,0);
                 if (DAO::existsUserName($user->getLogin()) || DAO::existsUserEmail($user->getEMail())) {
                     Erro::addError('ExistsUserName','El nombre de usuario ya existe');
                     //echo Erro::showErrors();
                 } else {
                     DAO::insertUser($user);
-                    header("location: ../index.php");
+                    $link = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] .' /Login/verify.php?email='.$user->getEmail().'&hash='.Persona::generate_hash($user->getEmail());
+                    mail_cpanel($user->getLogin(),$user->getEmail(),$user->getAddress(),$link);
+                    header("location: ../index.php");                    
                 }
             } else {
                 //echo Erro::showErrors();

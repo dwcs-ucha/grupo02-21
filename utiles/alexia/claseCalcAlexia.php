@@ -31,11 +31,11 @@ class claseCalcAlexia {
     }
     //Muestra por pantalla el resultado del calculo
     public function resultado($raciones){
-        echo "<p>Hoy comiendo ".$this->comida." has gastado ".$this->litrosCRacion($raciones)."L, que corresponden a ".($this->litrosCRacion($raciones)/80)." duchas de 80L</p>";
-        echo "<p>Si lo hubieras cambiado por una opción de carne vegetal, hubieras gastado ".$this->litrosVRacion($raciones)."L, que corresponden a ".($this->litrosVRacion($raciones)/80)." duchas de 80L</p>";
-        echo "<p>Esto sería un ahorro del ".$this->ahorro."% de agua</p>";
+        echo "<p>Hoxe comendo ".$this->comida." gastaches ".$this->litrosCRacion($raciones)."L, que corresponden a ".($this->litrosCRacion($raciones)/80)." duchas de 80L</p>";
+        echo "<p>Se o cambiaras por unha opción de carne vexetal, gastarías".$this->litrosVRacion($raciones)."L, que corresponden a ".($this->litrosVRacion($raciones)/80)." duchas de 80L</p>";
+        echo "<p>Isto sería un aforro de ".$this->ahorro."% de auga</p>";
         if(intval($raciones)>1){
-            echo "<p>Cálculos hechos en base a ".$raciones." raciones</p>";
-        }else echo "<p>Cálculos hechos en base a ".$raciones." ración</p>";
+            echo "<p>Cálculos feitos en base a ".$raciones." racions, para máis información podes visitar @heurafoods.es no Instagram</p>";
+        }else echo "<p>Cálculos feitos en base a ".$raciones." ración, para máis información podes visitar @heurafoods.es no Instagram</p>";
     }
 }

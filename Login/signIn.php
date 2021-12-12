@@ -32,6 +32,7 @@ if (isset($_SESSION['userLogged'])) {
 <body>
     <?php
     include '../componentes/menu.php';
+    include_once "../componentes/cookieAlert.php";
     ?>
     <div class="fondo alto">
         <div class="container">
@@ -112,6 +113,8 @@ if (isset($_SESSION['userLogged'])) {
             $location = Visitas::locateIP($ip);
             $username=$_SESSION['userLogged'];
             $fecha=getDate();
+            $fecha= $fecha['year'] . "." . sprintf("%02d", $fecha['mon']) . "." . sprintf("%02d", $fecha['mday'])
+            . "-" . sprintf("%02d", $fecha['hours']) . ":" . sprintf("%02d", $fecha['minutes']) . ":" . sprintf("%02d", $fecha['seconds']);
             $serveName=$_SERVER['SERVER_NAME'];
             $browser= $_SERVER['SERVER_SOFTWARE'];
             $so= $_SERVER['HTTP_USER_AGENT'];
@@ -135,7 +138,6 @@ if (isset($_SESSION['userLogged'])) {
         ?>
     </div>
     </div>
-    <?php include_once "../cookieAlert.php" ?>
 </body>
 
 </html>

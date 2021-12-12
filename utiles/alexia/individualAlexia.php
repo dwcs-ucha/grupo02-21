@@ -9,7 +9,7 @@ include_once "claseCalcAlexia.php";
 <html>
 
 <head>
-    <title>El coste real</title>
+    <title>O custo real</title>
     <meta charset="utf-8">
     <?php
            include '../../componentes/head.php'; 
@@ -23,18 +23,18 @@ include_once "claseCalcAlexia.php";
     <div class="fondo">
         <?php
             //Instancio el objeto
-            $pizza = new claseCalcAlexia("pizza de pollo",344,0.4,99.8);
-            $fajitas = new claseCalcAlexia("fajitas de pollo",387,0.8,99.7);
-            $paella = new claseCalcAlexia("paella con pollo",716,1.28,99.8);
-            $pinchos = new claseCalcAlexia("pinchos de pollo",516,1.12,99.8);
-            $estofado = new claseCalcAlexia("estofado de ternera",2000,0.8,99.9);
-            $albondigas = new claseCalcAlexia("albóndigas de ternera",2880,1.2,99.9);
+            $pizza = new claseCalcAlexia("pizza de polo",344,0.4,99.8);
+            $fajitas = new claseCalcAlexia("fajitas de polo",387,0.8,99.7);
+            $paella = new claseCalcAlexia("paella de polo",716,1.28,99.8);
+            $pinchos = new claseCalcAlexia("pinchos de polo",516,1.12,99.8);
+            $estofado = new claseCalcAlexia("estufado de tenreira",2000,0.8,99.9);
+            $albondigas = new claseCalcAlexia("albóndigas",2880,1.2,99.9);
             $bisteq = new claseCalcAlexia("bisteq",3080,2,99.9);
             $hamburguesa = new claseCalcAlexia("hamburguesa",1694,0.7,99.9);
         ?>
         <main class="container alto">
             <div class="col-12 pt-5 pb-1">
-                <h1 class="text-primary">Calcula el gasto real de tu comida</h1>
+                <h1 class="text-primary">Calcula o custo real da túa comida</h1>
             </div>
             <div class="container border border-5 border border-primary border rounded-3 bg-light">
                 <div class="col-12 col-lg-12">
@@ -42,19 +42,19 @@ include_once "claseCalcAlexia.php";
                         <form action="individualAlexia.php" method="post" name="costeReal" id="costeReal">
                             <div class="col-12 col-lg-12 px-3 mt-3">
                                 <select name="comida" id="comida" class="form-select input-group-text">
-                                    <option value="seleccionar">Seleccionar comida</option>
-                                    <option value="pizza">Pizza con pollo</option>
-                                    <option value="fajitas">Fajitas de pollo</option>
-                                    <option value="paella">Paella con pollo</option>
-                                    <option value="pinchos">Pinchos de pollo</option>
-                                    <option value="estofado">Estofado de ternera</option>
+                                    <option value="seleccionar">Escolle comida</option>
+                                    <option value="pizza">Pizza de polo</option>
+                                    <option value="fajitas">Fajitas de polo</option>
+                                    <option value="paella">Paella de polo</option>
+                                    <option value="pinchos">Pinchos de polo</option>
+                                    <option value="estofado">Estufado de tenreira</option>
                                     <option value="albondigas">Albóndigas</option>
                                     <option value="bisteq">Bisteq</option>
                                     <option value="hamburguesa">Hamburguesa</option>
                                 </select><br>
                             </div>
                             <div class="col-12 col-lg-12 px-3 mt-2">
-                                <label for="racion">Indica cuantas raciones has cocinado</label><br>
+                                <label for="racion">Indica cantas racións cociñaches</label><br>
                                 <input type="number" min="1" max="10" value="" placeholder="0" name="racion"
                                     class="input-group-text">
                             </div>

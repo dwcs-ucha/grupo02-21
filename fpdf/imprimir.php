@@ -1,9 +1,13 @@
 <?php
-    require('fpdf.php');
+    require('/fpdf/fpdf.php');
 
-    class PDF extends FPDF{
+    class PdfArticulo extends FPDF{
+        private $articulo;
 
-        
+        public function __constructor($articulo){
+
+        }
+
         // Cabecera de página
         function Header()
         {
@@ -39,6 +43,4 @@
             $this->CuerpoArchivo();
         }
     }
-    
-
 ?>
