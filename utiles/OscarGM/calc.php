@@ -29,18 +29,15 @@ if (isset($_SESSION['userLogged'])) {
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-    <meta charset="UTF-8">
+<head>    
     <title>Calculadora de Consumo Electrico</title>
     <!--
     <link rel="stylesheet" href="./estilos/style.css">
 -->
-    <?php
-    //include '../../plantillas/head.php';
+    <?php    
     include_once "../../head.php";
     ?>
 </head>
-
 <body>
 
     <div id="menu">
@@ -50,7 +47,6 @@ if (isset($_SESSION['userLogged'])) {
         ?>
     </div>
     <div class="container">
-
         <div id="calculadora" class="col">
             <fieldset>
                 <legend>Consumos</legend>
