@@ -1,3 +1,6 @@
+<?php 
+session_start(); 
+?>
 <html>
 <?php
 /*
@@ -11,11 +14,8 @@ Data de modificación: 10/12/2021
 */
 ?>
 	<head>
-                <link  rel = " stylesheet " href = " ../../css / custom.css ">
-	   	    <?php
-		    	include'../../head.php' ;
-		    ?>
-		<meta charset="utf-8">		
+                <link rel="stylesheet" href="../../css/custom.css">
+	   	<?php include '../../componentes/head.php'; ?>		
                 <title>Calculadora de consumo de un vehículo</title>
 		<style>
 			.error{
@@ -27,10 +27,11 @@ Data de modificación: 10/12/2021
 		</style>
 	</head>
 	<body>
-            <?php
-            		include '../../menu.php';
-        	?>
+           	<?php include '../../componentes/menu.php'; ?>
+		<?php include_once '../../componentes/cookieAlert.php';?>
 		<div class="fondo">
+		<div class="container py-5">
+		<div class="container border border-5 border border-primary border rounded-3 bg-light ">
 		<form action="calculadora.php" method="post">
 			<fieldset>
 				<?php
@@ -64,8 +65,8 @@ Data de modificación: 10/12/2021
                                                 
                                         }
 				?>
-                            <legend><h1>Calculadora de gasto energético</h1></legend>
-                            Calcula el gasto en gasolina para tu viaje según la distancia, rendimiento de tu vehículo y el precio del combustible en tu país. Utiliza punto como separador decimal.<br>
+                            <legend><h1>Calculadora do gasto nun viaxe</h1></legend>
+                            Calcula o custo da gasolina para a túa viaxe segundo a distancia, o rendemento do teu vehículo e o prezo do combustible no teu país. Use o punto como separador decimal.<br>
                                     
                                         <?php echo $error_distancia; ?><br/>
                                         <?php echo $error_distancia2; ?><br/>
@@ -85,7 +86,7 @@ Data de modificación: 10/12/2021
                                 
                                  <?php echo $error_precio; ?><br/>
                                 <?php echo $error_precio2; ?><br/>
-                                Precio:   <?php echo str_repeat ("&nbsp;", 10);   ?>
+                                Prezo:   <?php echo str_repeat ("&nbsp;", 10);   ?>
                                 <select name="precio">
                                     <option value="Litro">Litro</option></select>
                                 <input type="text" name="precio1" value="<?php echo $precio2 ?>">
@@ -99,23 +100,27 @@ Data de modificación: 10/12/2021
                             }
                             ?>
 		</form>
-                    <h1>¿Cómo calculo el consumo de combustible en mi vehículo?</h1>
-                    <p>La gran mayoría de automóviles, SUVs y otros vehículos comercializados en el mundo, traen este valor dentro de las especificaciones, ficha técnica o manual de usuario. Sin embargo, hay que tener en cuenta que dichas pruebas de consumo se realizan en condiciones de laboratorio, lo que puede diferir bastante del consumo real del vehículo bajo nuestra forma de conducción.</p>
+		</div>
+                    <h1 class="text-primary"> Como calculo o consumo de combustible do meu vehículo? </h1>
+                    <p> A gran maioría dos coches, todoterreos e outros vehículos que se venden no mundo, achegan este valor ás especificacións, ficha técnica ou manual de usuario. Non obstante, hai que ter en conta que estas probas de consumo realízanse en condicións de laboratorio, que poden diferir considerablemente do consumo real do vehículo na nosa forma de conducir.</p>
 
-                       </p>Para calcular el consumo real de nuestro vehículo, nos basta con aplicar paso a paso esta sencilla metodología:</p>
+                       </p> Para calcular o consumo real do noso vehículo só temos que aplicar paso a paso esta sinxela metodoloxía: </p>
 
-                       <p>1. Llena el estanque de gasolina hasta que el flotador salte y se detenga la manguera.</p>
-                      <p>2. Resetea el contador de kms para viaje a 0, o bien, anota el kilometraje total del automóvil en ese momento.
-                       <p>3. Ocupa el vehículo como lo harías habitualmente, hasta que recorras al menos 100kms. De esta forma, nos evitamos que formas de conducción puntuales afecten el cálculo final.</p>
-                       <p>4. Vuelve a llenar el estanque de gasolina hasta el salto del flotador. Anota el número de litros cargados al momento de rellenar.</p>
-                       <p>5. Calcula los kilómetros recorridos desde el paso 2 y divídelos por el número de litros registrado en el paso 4.</p>
+                       <p> 1. Enche o depósito con gasolina ata que o flotador salga e a mangueira pare. </p>
+                      <p> 2. Restablece o contador de quilómetros de viaxe a 0 ou anota a quilometraxe total do coche nese momento.
+                       <p> 3. Ocupa o vehículo como o farías normalmente, ata percorrer polo menos 100 quilómetros. Deste xeito, evitamos que determinadas formas de condución afecten ao cálculo final.</p>
+                       <p> 4. Enche o depósito con gasolina ata que salte o flotador. Anota o número de litros cargados no momento de encher. </p>
+                       <p> 5. Calcula os quilómetros percorridos desde o paso 2 e divídeo polo número de litros rexistrados no paso 4. </p>
+
+
                        
-                       <h1>Consejos para reducir el consumo de gasolina</h1>
-                       <p>Aumentar el rendimiento de nuestro vehículo es una gran ayuda para nuestro bolsillo, más aún cuando el precio de la gasolina es elevado. Para esto, te entregamos algunos tips que puedes aplicar en cualquier tipo de vehículo y que te ayudarán a reducir este gasto.</p>
-                       <p>1. Evita aceleraciones bruscas: La instancia que más gasolina consume es cuando apretamos el acelerador. A mayor presión que realicemos en este, mayor será el consumo de combustible.</p>
-                       <p>2. En autopistas, conduce a 90 km/hr: En la mayoría de los vehículos, esta velocidad es el óptimo de eficiencia del motor. Esto quiere decir que recorrerás la máxima cantidad de kilómetros por litro que permite tu vehículo.</p>
-                       <p>3. Evita viajar con las ventanas abiertas: La mejor aerodinámica del auto se presenta cuando las ventanas están cerradas. Esto hace que la resistencia del vehículo con el aire sea menor, resultando en un menor consumo de combustible.</p>
-                <div class="fondo">
+                       <h1 class="text-primary"> Consellos para reducir o consumo de gas </h1>
+                       <p> Aumentar o rendemento do noso vehículo é unha gran axuda para o noso peto, especialmente cando o prezo da gasolina é alto. Para iso, dámosche algúns consellos que podes aplicar en calquera tipo de vehículo e que che axudarán a reducir este gasto.</p>
+                       <p> 1. Evita aceleracións bruscas: a instancia que máis gasolina consume é cando presionamos o acelerador. Canto maior sexa a presión que realicemos neste, maior será o consumo de combustible. </p>
+                       <p> 2. En autoestradas, conduza a 90 km/h: na maioría dos vehículos, esta velocidade é a óptima para a eficiencia do motor. Isto significa que percorrerá o número máximo de quilómetros por litro que lle permita o seu vehículo. </p>
+                       <p> 3. Evita viaxar coas fiestras abertas: a mellor aerodinámica do coche chega cando as fiestras están pechadas. Isto reduce a resistencia do vehículo co aire, o que supón un menor consumo de combustible. </p>
+		</div>
+	       </div>
 	</body>
 </html>
 

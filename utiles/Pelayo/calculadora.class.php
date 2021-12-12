@@ -51,7 +51,7 @@ class Vehiculos{
 
     public function Resultado(){
         $resultado=(((doubleval($this->consumo)*doubleval($this->precio))/100)*doubleval($this->distancia));
-        echo round($resultado,2)."€";
+        echo round($resultado,2)."€ Sería o custo da gasolina do viaxe.";
         
         
     }
