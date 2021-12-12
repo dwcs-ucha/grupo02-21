@@ -1,0 +1,75 @@
+.div{
+    width: 100%;
+}
+
+.img{
+    float: right;
+}
+
+.fieldset{
+        border:5px ridge #3B83BD; 
+        background-color: #92C5FC;
+        padding-right: 50px;
+}
+
+.legend{
+        border:5px ridge #3B83BD;
+        background-color: #FFFFFF;
+        font-family: "Arial";
+        font-weight: bold;
+}
+
+p{
+    font-family: "Arial";
+    font-weight: bold;
+}
+
+.table{
+    border-color: #3b83bd;
+    border-style: ridge; 
+    border-width: 4px;
+    border-collapse: collapse;
+    background-color: white;
+    text-align: center;
+}
+
+.th{
+    background-color: black;
+    color: white;
+}
+
+.a{
+    background-color: red;
+    color: white;
+}
+
+.b{
+    background-color: orange;
+    color: white;
+}
+
+.c{
+    background-color: #BDBDBD;
+    color: white;
+}
+
+.d{
+    background-color: grey;
+    color: white;
+}
+
+.e{
+    background-color: purple;
+    color: white;
+}
+
+.resultado{
+    border:5px ridge #3B83BD;
+    background-color: #FFFFFF;
+    color: green;
+    font-family: "Arial";
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    width: 30%;
+}

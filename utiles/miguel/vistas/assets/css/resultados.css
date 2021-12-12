@@ -1,0 +1,27 @@
+.fila-consumo-total {
+    text-align: end;
+}
+
+.consumo-equipo {
+    text-align: center;
+    color: white;
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.consumo-equipo p {
+    margin-bottom: 0;
+}
+
+.cuadro-consumo-total {
+    padding: 2rem 1rem 1rem;
+    text-align: center;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+}
+
+.cuadro-consumo-total .valor {
+    color: #e1a820;
+    font-weight: 900;
+    font-size: 22px;
+}

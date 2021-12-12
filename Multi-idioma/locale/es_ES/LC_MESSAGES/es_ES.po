@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gettext test\n"
-"POT-Creation-Date: 2021-11-25 16:52+0100\n"
-"PO-Revision-Date: 2021-11-25 16:54+0100\n"
+"POT-Creation-Date: 2021-12-02 18:48+0100\n"
+"PO-Revision-Date: 2021-12-02 18:48+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -15,6 +15,7 @@ msgstr ""
 "X-Poedit-KeywordsList: _\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: gettext.php:10
+#: gettext.php:10 grupo02-21/Multi-idioma/gettext.php:10
+#: javiml99/Multi-idioma/gettext.php:10
 msgid "Hello World"
 msgstr "Hola mundo"

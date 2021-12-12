@@ -5,25 +5,43 @@
  * @author Miguel A García Fustes
  * @date 25 de Noviembre de 2021
  * @version 1.0.0
+ * 
+ * Nuestra calculador utiliza 5 tipos de equipos según su consumo que se clasifican del siguiente modo:
+ * tipo 1: Equipo cuyo consumo se calcula en función de las horas y minutos de uso semanal (televisor, secador, batidora, etc)
+ * tipo 2: Equipo cuyo funcionamiento es contínuo (365/24)
+ * tipo 3: Equipo cuyo consumo se calcula por uso, donde se multiplica el uso por los hWh/uso (lavadora, lavavajillas, etc)
+ * tipo 4: Equipo cuyo consumo se calcula por uso mensual, habitualmente Km al mes (cualquier equipo de transporte)
+ * tipo 5: Equipo de iluminación, donde la potencia se obtiene en función del tipo de bombilla
  */
+session_start();
+ include_once '../../Class/Erro.class.php';
+ $resultados = isset($_POST) ? $_POST : null;
+
+ if ($resultados)
+ {
+     include_once '../../Class/Validacion.class.php';
+     include_once './validaciones/validadatos.php';
+ }
 ?>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora avanzada</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-
+    <?php include '../../componentes/head.php'; ?>
+    <link rel="stylesheet" href="./vistas/assets/css/equipos.css">
+    <title>Calculadora Avanzada</title>
 </head>
 
 <body>
-    <?php include './vistas/datos.php'; ?>
+    <?php include '../../componentes/menu.php'; ?>
+    <?php include '../../componentes/error.php'; ?>
+    <form action="/utiles/miguel/index.php" method="POST">
+        <div class="container my-5">
+            <?php include './vistas/datos.php'; ?>
+        </div>
+    </form>
 </body>
+<script src="./vistas/assets/js/equipos.js"></script>
+<script src="./vistas/assets/js/datos.js"></script>
 
 </html>

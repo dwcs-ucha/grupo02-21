@@ -15,7 +15,7 @@ abstract class Persona {
     private $eMail;
     private $rol;
 
-    public function __construct( $rol,$login, $name, $surName, $passWord, $eMail) {
+    public function __construct( $rol,$login, $name, $passWord, $surName, $eMail) {
         $this->login = $login;
         $this->name = $name;
         $this->surName = $surName;
@@ -27,9 +27,9 @@ abstract class Persona {
     // Formatear la salida para que la escritura sea más fácil
     public function formatPerson() {
         $user = array($this->rol,
-            $this->login,
-            $this->passWord,
+            $this->login,            
             $this->name,
+            $this->passWord,
             $this->surName,
             $this->eMail
     );
@@ -90,7 +90,7 @@ abstract class Persona {
      * 
      * @author https://www.php.net/manual/es/function.crypt.php#114060
      */
-    function generate_hash($password, $cost = 11) {
+    public static function generate_hash($password, $cost = 11) {
 
         $salt = substr(base64_encode(openssl_random_pseudo_bytes(17)), 0, 22);
         $salt = str_replace("+", ".", $salt);
@@ -111,8 +111,8 @@ abstract class Persona {
      * @author https://www.php.net/manual/es/function.crypt.php#114060
      */
     
-     function validate_pw($password, $hash){
-        return crypt($password, $hash) == $hash;
+    static function validate_pw($password, $hash){
+        return hash_equals(crypt($password, $hash), $hash);
     }
 
 }

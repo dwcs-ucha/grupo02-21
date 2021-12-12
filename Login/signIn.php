@@ -1,83 +1,135 @@
 <!DOCTYPE html>
-<?php 
-    //@author: Oscar Gonzalez Martinez
-    //@date: 22/11/2021
-    //@version: 0.1
-    //include "validaciones.php";
-    //Página de Login.
-    include_once "../Class/Persona.class.php";
-    include_once "../Class/Usuario.class.php";
-    include_once "../Class/Validacion.class.php";
-    include_once "../Class/Erro.class.php";
-    include_once "../DAO/DAO.class.php";
-    
+<?php
+//@author: Oscar Gonzalez Martinez
+//@date: 22/11/2021
+//@version: 1.0
+
+//Página de Login.
+include_once "../Class/Persona.class.php";
+include_once "../Class/Usuario.class.php";
+include_once "../Class/Admin.class.php";
+include_once "../Class/Validacion.class.php";
+include_once "../Class/Erro.class.php";
+include_once "../DAO/DAO.class.php";
+include_once "../Class/Log.class.php";
+//Comento el inicio de Sesión. Se inicia Sesión desde el Menú para poder mostrar el enlace a cerrar sesión si hay una sesion iniciada.
+session_status() === PHP_SESSION_ACTIVE ?: session_start();
+if (isset($_SESSION['userLogged'])) {
+    header('Location: ../index.php');
+}
 ?>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <style>
-        .container {
-            width: 400px;
-            height: 200px;
-            margin: auto;
-            border: solid 1px;
-        }
-        .userName {            
-            width: 200px;
-            height: 75px;
-            margin: auto;
-            text-align: justify;
-        }
-        .passWord {
-            width: 200px;
-            height: 75px;
-            margin: auto;
-        }
-        .submit {
-            width: 55px;            
-            margin: auto;            
-        }
-    </style>
-    <body>
-        <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/custom.css">
+    <?php
+    include '../head.php';
+    ?>
+</head>
+
+<body>
+    <?php
+    include '../menu.php';
+    ?>
+    <div class="fondo alto">
         <div class="container">
-            <div class="userName">
-                Nome de Usuario <br/>
-                <input type="text" name="loginUserName" value="Introduce nome de usuario" />
-            </div>
-            <div class="passWord">
-                Contrasinal <br/>
-                <input type="password" name="loginPassWord" />
-            </div>
-            <div class="submit">
-                <input type="submit" value="Enviar" name="loginSend"/>
-            </div>
+            <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+                <div class="col-12 pt-3 pb-1">
+                    <h1 class="text-primary">Iniciar sesión</h1>
+                </div>
+                <div class="container border border-5 border border-primary border rounded-3 bg-light">
+                    <div class="col-12 col-lg-12">
+                        <div class="row">
+                            <div class="col-12 col-lg-12 px-3 mt-3">
+                                <label for="loginUserName">Nome de Usuario</label>
+                                <input type="text" name="loginUserName" class="input-group-text" value="" placeholder="Introduce un nombre de usuario" />
+                            </div>
+                            <div class="col-12 col-lg-12 px-3 mt-3">
+                                <label>Contraseña</label>
+                                <input type="password" class="input-group-text" name="loginPassWord" />
+                            </div>
+                            <div class="col-12 col-lg-12 px-3 mt-3 mb-3">
+                                <input type="submit" value="Enviar" class="btn btn-primary" name="loginSend" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
-            
         </form>
-        <?php        
-        
+        <?php
+
         $login = $passWord = "";
-        if (isset($_POST['loginSend'])){
+
+        if (isset($_POST['loginSend'])) {
             //Almacenamos en las variables los datos, después de estar validados.
             $login = $_POST['loginUserName'];
-            $pass = $_POST['loginPassWord']; 
-            
-            if (empty($login) || empty($pass)){
-                Erro::addError("emptyField","Introduzca Login y contraseña");
+            $passWord = $_POST['loginPassWord'];
+
+            if (empty($login) || empty($passWord)) {
+                Erro::addError("EmptyField", "Introduzca Login y contraseña");
+                echo Erro::showErrors();
+
+                registrarLogIn(3);
             } else {
-                if (($user = DAO::authenticateUser($login,$pass)) != null ){
-                    session_start();
+                $user = DAO::authenticateUser($login, $passWord);
+                if ($user != null) {
                     $_SESSION['userLogged'] = $user;
-                    echo "todo ok";
-                    var_dump($_SESSION['userLogged']);
+                    //$visitas = new Visitas($username->getLogin(), $ip, $fecha, $serveName, $browser, $so, $requestTime);
+                    //DAO::insertVisit($visitas);
+
+                    registrarLogIn(1, $login);
+
+                    //Comprobamos el rol del usuario logueado.
+                    //Si es administrador se le dirigen a su panel de administración.
+                    if ($user->getRol() === "Admin"){
+                        header('Location: adminRegPanel.php');
+                    } else {
+                    //Si es un usuario se le dirige al indice de la página.
+                        header('Location: ../index.php');
+                    }
+                } else {
+                    Erro::addError("UserAuthenticateError", "No parece haber ningún usuario con ese nombre");
+                    echo Erro::showErrors();
+
+                    registrarLogIn(2, $login);
                 }
             }
-                    
         }
-        
+
+        /**
+         * Empleado para llevar registro de visitas y del log.
+         * 
+         * - case 1: Login correcto
+         * - case 2: Login incorrecto, usuario o contraseña no son válidos
+         * - case 3: Login incorrecto, alguno de los campos está vacío
+         */
+        function registrarLogIn($tipo, $login = null)
+        {
+            $ip = Visitas::guessIP();
+            $location = Visitas::locateIP($ip);
+            //$username=$_SESSION['userLogged'];
+            switch ($tipo) {
+                case 1:
+                    // Login correcto
+                    //DAO::insertVisit(new Visitas($username->getLogin(), $ip, $fecha, $serveName, $browser, $so, $requestTime));
+                    DAO::writeLog(new Log("se ha logueado en la aplicación desde " . $ip . "(" . $location . ")", $login));
+                    break;
+                case 2:
+                    // Login incorrecto, usuario o contraseña no son válidos
+                    DAO::writeLog(new Log("se ha intentado loguear como " . strtoupper($login) . " en la aplicación desde " . $ip . "(" . $location . ") - " . Erro::showErrorsLog()));
+                    break;
+                case 3:
+                    // Login incorrecto, alguno de los campos está vacío
+                    DAO::writeLog(new Log("se ha intentado loguear en la aplicación desde " . $ip . "(" . $location . ") - " . Erro::showErrorsLog()));
+                    break;
+            }
+        }
         ?>
-    </body>
+    </div>
+    </div>
+    <?php include_once "../cookieAlert.php" ?>
+</body>
+
 </html>
