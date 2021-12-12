@@ -86,10 +86,10 @@
                             <img src="./imagenes/ejemplo.jpg" class="card-img-top p-1">
                             <div class="card-body">
                                 <div class="d-flex mb-3">
-                                <h5 class="card-title">Criptonómetro</h5>
+                                    <div class="ps-3">
+                                        <h5 class="card-title">Criptonómetro</h5>
                                         <p class="card-text">Cronómetro de consumo acumulado por la actividad de diferentes criptomonedas comparado con el consumo de a pie y el día a día.</p>
                                         <a href="/utiles/luis/index.php" class="btn btn-primary">Acceder</a>
-                                        <a href="#" class="btn btn-primary">Acceder</a>
                                     </div>
                                 </div>
                             </div>
