@@ -6,7 +6,7 @@
  */
 class CSV
 {
-    private static $files = array('users' => '../DataBase/users.csv', 'logs' => '../DataBase/logs.txt', 'idiomas' => '../DataBase/idioma', 'articulos' => '../DataBase/articulos.csv', 'visitas' => '../DataBase/datosVisitas.csv');
+    private static $files = array('users' => '../DataBase/users.csv', 'logs' => '../DataBase/logs.txt', 'idiomas' => '../DataBase/idioma', 'articulos' => '../DataBase/articulos.csv', 'visitas' => '../DataBase/visitas.csv');
 
     /**
      * Comprueba si el fichero pasado existe
