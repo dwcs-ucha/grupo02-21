@@ -2,6 +2,8 @@
     require('fpdf.php');
 
     class PDF extends FPDF{
+
+        
         // Cabecera de página
         function Header()
         {
@@ -25,29 +27,18 @@
             $this->Cell(0,10,utf8_decode('Página ').$this->PageNo().'/{nb}',0,0,'C');
         }
         
-        function CuerpoArchivo($file){
-            //Leemos el fichero
-            $f=fopen($file,'r');
-            $csv=fread($f,filesize($file));
-            fclose($f);
+        function CuerpoArchivo(){
+
             //Times 12
             $this->SetFont('Times','',12);
-            //Imprimimos el texto justificado
-            $this->MultiCell(0,5,utf8_decode($csv));
-            //Salto de línea
-            $this->Ln();
+            $articulo->getImg();
+            $articulo->getCuerpo();
         }
         
-        function ImprimirArchivo($file){
-            $this->CuerpoArchivo($file);
+        function ImprimirArchivo(){
+            $this->CuerpoArchivo();
         }
     }
     
-    $pdf = new PDF();
-    
-    $pdf->AliasNbPages(); 
-    $pdf->AddPage();
-    $pdf->SetFont('Arial','B',10);
-    $pdf->ImprimirArchivo('productos.csv');
-    $pdf->Output();
+
 ?>
