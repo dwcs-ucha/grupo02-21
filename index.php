@@ -9,7 +9,7 @@
 
 <head>
     <?php
-            include 'head.php';
+            include 'componentes/head.php';
         ?>
     <meta charset="UTF-8">
     <title>Index</title>
@@ -17,7 +17,7 @@
 
 <body>
     <?php
-            include 'menu.php';
+            include 'componentes/menu.php';
         ?>
     <div class="fondo">
         <main class="container d-flex justify-content-center align-items-center">
