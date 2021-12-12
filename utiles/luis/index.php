@@ -29,7 +29,7 @@ $resultados = isset($_POST) ? $_POST : null;
     include_once './data/data.php'
     ?>
 
-    <div class="fondo alto">
+    <div class="fondo">
         <div class="container center_lvi">
             <br />
             <h3 class="title_lvi">Criptonómetro</h3>
