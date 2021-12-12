@@ -14,8 +14,9 @@
  * tipo 5: Equipo de iluminación, donde la potencia se obtiene en función del tipo de bombilla
  */
 
- // Cargar clases necesarias
- // Clase Erro para controlar los posibles errores
+// Cargar clases necesarias
+// Clase Erro para controlar los posibles errores
+include_once '../../../cookieAlert.php';
 include_once '../../../Class/Erro.class.php';
 
 session_start();
@@ -62,17 +63,20 @@ if (!$resultados && isset($_SESSION['calculadora_miguel']['resultados'])) {
 </head>
 
 <body>
+
     <!-- Cabecera de la página -->
     <?php include '../../../componentes/menu.php'; ?>
-    <!-- Espacio reservado para mostrar los posibles errores -->
-    <?php include '../../../componentes/error.php'; ?>
-    <!-- Formulario para la solicitud de datos y consumos del hogar -->
-    <form action="/utiles/miguel/datos/index.php" method="POST">
-        <div class="container my-5">
-            <!-- Cargar la vista con los campos -->
-            <?php include '../vistas/datos.php'; ?>
-        </div>
-    </form>
+    <div class="fondo">
+        <!-- Espacio reservado para mostrar los posibles errores -->
+        <?php include '../../../componentes/error.php'; ?>
+        <!-- Formulario para la solicitud de datos y consumos del hogar -->
+        <form action="/utiles/miguel/datos/index.php" method="POST">
+            <div class="container my-5">
+                <!-- Cargar la vista con los campos -->
+                <?php include '../vistas/datos.php'; ?>
+            </div>
+        </form>
+    </div>
 </body>
 <!-- Javascript de la página -->
 <!-- Calcula en tiempo real consumos para mostrar al usuario -->

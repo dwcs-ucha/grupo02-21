@@ -14,14 +14,13 @@
  * tipo 5: Equipo de iluminación, donde la potencia se obtiene en función del tipo de bombilla
  */
 session_start();
- include_once '../../Class/Erro.class.php';
- $resultados = isset($_POST) ? $_POST : null;
+include_once '../../Class/Erro.class.php';
+$resultados = isset($_POST) ? $_POST : null;
 
- if ($resultados)
- {
-     include_once '../../Class/Validacion.class.php';
-     include_once './validaciones/validadatos.php';
- }
+if ($resultados) {
+    include_once '../../Class/Validacion.class.php';
+    include_once './validaciones/validadatos.php';
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -34,12 +33,14 @@ session_start();
 
 <body>
     <?php include '../../componentes/menu.php'; ?>
-    <?php include '../../componentes/error.php'; ?>
-    <form action="/utiles/miguel/index.php" method="POST">
-        <div class="container my-5">
-            <?php include './vistas/datos.php'; ?>
-        </div>
-    </form>
+    <div class="fondo">
+        <?php include '../../componentes/error.php'; ?>
+        <form action="/utiles/miguel/index.php" method="POST">
+            <div class="container my-5">
+                <?php include './vistas/datos.php'; ?>
+            </div>
+        </form>
+    </div>
 </body>
 <script src="./vistas/assets/js/equipos.js"></script>
 <script src="./vistas/assets/js/datos.js"></script>
