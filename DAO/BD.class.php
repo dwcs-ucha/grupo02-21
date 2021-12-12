@@ -161,6 +161,15 @@ class BD
      * @param Visitas $visit
      * @return void
      */
-    public static function insertVisit(Visitas $visit) { 
+    public static function insertVisit(Visitas $visit)
+    {
+    }
+    /**
+     * Recoger un array de objetos de tipo Visitas
+     *
+     * @return array
+     */
+    private static function getVisits()
+    {
     }
 }
