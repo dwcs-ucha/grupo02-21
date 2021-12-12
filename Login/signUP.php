@@ -208,27 +208,23 @@ if(isset($_SESSION['userLogged'])) {
             $_POST["g-recaptcha-response"]
             );
          }
-         /*
          if ($response != null && $response->success) {
-           
-        } else {
-            Erro::addError('captchaError','Fallo de verificación de Capcha');
-            //echo Erro::showErrors();
-        }
-*/
-        if (Erro::countErros() == 0) {
-            $user = new Usuario($registerRol, $registerLogin, $registerName, $registerPassWord, $registerSurname, $registerEmail, $registerAddress,0);
-            if (DAO::existsUserName($user->getLogin()) || DAO::existsUserEmail($user->getEMail())) {
-                Erro::addError('ExistsUserName','El nombre de usuario ya existe');
-                //echo Erro::showErrors();
+            if (Erro::countErros() == 0) {
+                $user = new Usuario($registerRol, $registerLogin, $registerName, $registerPassWord, $registerSurname, $registerEmail, $registerAddress,0);
+                if (DAO::existsUserName($user->getLogin()) || DAO::existsUserEmail($user->getEMail())) {
+                    Erro::addError('ExistsUserName','El nombre de usuario ya existe');
+                    //echo Erro::showErrors();
+                } else {
+                    DAO::insertUser($user);
+                    $link = 'http://grupo2.com/Login/verify.php?email='.$user->getEmail().'&hash='.Persona::generate_hash($user->getEmail());
+                    mail_cpanel($user->getLogin(),$user->getEmail(),$user->getAddress(),$link);
+                    header("location: ../index.php");                    
+                }
             } else {
-                DAO::insertUser($user);
-                $link = 'http://grupo2.com/Login/verify.php?email='.$user->getEmail().'&hash='.Persona::generate_hash($user->getEmail());
-                mail_cpanel($user->getLogin(),$user->getEmail(),$user->getAddress(),$link);
-                header("location: ../index.php");
-                var_dump($link);
+                //echo Erro::showErrors();
             }
         } else {
+            Erro::addError('captchaError','Fallo de verificación de Capcha');
             //echo Erro::showErrors();
         }
     }
