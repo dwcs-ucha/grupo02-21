@@ -15,6 +15,7 @@ session_start();
     </head>
     <body>  
         <?php include '../../componentes/menu.php'; ?>
+           <?php include '../../componentes/error.php'; ?>
         <?php       
         $duchaVeces = $duchaMinutos = $dientes = $cisterna = $manos = $cara = $grifo = $lavavajillas = $lavadora = '';
         if (isset($_POST['calcular'])) { 
