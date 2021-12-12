@@ -1,3 +1,6 @@
+<?php 
+    setcookie("cookie_readed", true,  time() + 86400);
+?>
 <html>
     <head>
         <meta charset="UTF-8">
