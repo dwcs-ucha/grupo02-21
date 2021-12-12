@@ -25,13 +25,13 @@ if (isset($_SESSION['userLogged'])) {
     <title></title>
     <link rel="stylesheet" href="../css/custom.css">
     <?php
-    include '../head.php';
+    include '../componentes/head.php';
     ?>
 </head>
 
 <body>
     <?php
-    include '../menu.php';
+    include '../componentes/menu.php';
     ?>
     <div class="fondo alto">
         <div class="container">

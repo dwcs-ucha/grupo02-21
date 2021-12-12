@@ -29,12 +29,12 @@
         <meta charset="UTF-8">
         <title>Registro de Usuario</title>
         <?php
-           include '../head.php'; 
+           include '../componentes/head.php'; 
         ?>
     </head>
     <body>
         <?php
-            include '../menu.php'; 
+            include '../componentes/menu.php'; 
         ?>
         <div class="fondo alto">
             <div class="container"> 
@@ -101,10 +101,11 @@
                             <div class="col-12 col-lg-12 px-3 mt-3 mb-3">
                                 <!-- Input y Reset -->
                                 <input type="submit" value="Confirmar" class="btn btn-primary" name="adminSubmit"/>
-                                <input type="reset" value="Borrar" class="btn btn-primary"/>
-                                
-                            </div>   
-                            <button class="btn btn-primary"><a class="nav-link text-white" href="adminDelUser.php">Gestion de Usuarios</a></button>
+                                <input type="reset" value="Borrar" class="btn btn-primary"/> 
+                            </div>  
+                            <div class="col-12 col-lg-12 px-3 mt-3 mb-3"> 
+                                <button class="btn btn-primary"><a class="nav-link text-white" href="adminDelUser.php">Gestion de Usuarios</a></button>
+                            </div>
                         </div>
         <?php
         // put your code here
