@@ -16,7 +16,7 @@ $resultados = isset($_POST) ? $_POST : null;
 <html lang="es">
 
 <head>
-    <?php include_once '../../head.php'; ?>
+    <?php include_once '../../componentes/head.php'; ?>
     <link rel="stylesheet" href="../../css/estilo.css">
     <link rel="stylesheet" href="../../css/custom.css">
     <link rel="stylesheet" href="./css/style.css">
@@ -24,8 +24,8 @@ $resultados = isset($_POST) ? $_POST : null;
 
 <body>
     <?php
-    include_once '../../cookieAlert.php';
-    include_once '../../menu.php';
+    include_once '../../componentes/cookieAlert.php';
+    include_once '../../componentes/menu.php';
     include_once './data/data.php'
     ?>
 

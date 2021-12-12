@@ -10,7 +10,7 @@
  * @cookie_alert_author kolappannathan
  * @reference https://github.com/kolappannathan/bootstrap-cookie-banner
  */
-if (!isset($_COOKIE['newcomer'])) {
+if (!isset($_SESSION['cookie_readed'])) {
 ?>
 <style>
     #cb-cookie-banner{
@@ -31,8 +31,7 @@ if (!isset($_COOKIE['newcomer'])) {
         </button>
     </div>
 <?php
-    setcookie("newcomer", "Not anymore!", time() + (86400 * 30), "/");
-}
+} 
 ?>
 
 <script>
@@ -46,6 +45,9 @@ if (!isset($_COOKIE['newcomer'])) {
     function showCookieBanner() {
         let cookieBanner = document.getElementById("cb-cookie-banner");
         cookieBanner.style.display = "block";
+        <?php
+            $_SESSION['cookie_readed'] = "Yep!";
+        ?>
     }
 
     /**
