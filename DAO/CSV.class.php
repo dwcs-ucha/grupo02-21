@@ -79,12 +79,12 @@ class CSV
                         $admin = new Admin($data[0], $data[1], $data[2], $data[3], $data[4], $data[5]);
                         $fileData[] = $admin;
                     } else if ($type == 'usuarios' && $data[0] == 'Usuario' || $type == 'all' && $data[0] == 'Usuario') {
-                        $user = new Usuario($data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6]);
+                        $user = new Usuario($data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6], $data[7]);
                         $fileData[] = $user;
                     } else if ($type == 'GL' || $type == 'EN' || $type == 'ES') {
                         $fileData[] = $data;
                     } else if ($type == 'articulo') {
-                        $article = new Publicacion($data[0], $data[1], $data[2]);
+                        $article = new Publicacion($data[0], $data[1], $data[2], $data[3]);
                         $fileData[] = $article;
                     } else if ($type == 'visitas') {
                         $visit = new Visitas($data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6]);
@@ -127,7 +127,7 @@ class CSV
                     }
                 } else if ($type == 'articulos') {
                     foreach ($data as $article) {
-                        $object = array($article->getTitulo(), $article->getCuerpo(), $article->getCreacion());
+                        $object = array($article->getTitulo(), $article->getCuerpo(), $article->getCreacion(), $article->getImg());
                         fputcsv($fp, $object, ';');
                     }
                 } else if ($type == 'visitas') {
