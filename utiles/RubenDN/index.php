@@ -59,7 +59,7 @@ function lista() {
                                     $util = $_POST['lista'];
                                 $pages = $_POST['paxinas'];
                                 $lit = Calc::calcularAuga($util, $pages);
-                                if(str_contains($util, 'Papel')) {
+                                if(strpos($util, 'Papel') !== false) {
                                     echo 'Gastouse un total de ' . $lit . ' litros de auga para realizar ese ' . $util . ' con ' . $pages . ' usos';
                                 } else {
                                     echo 'Gastouse un total de ' . $lit . ' litros de auga para realizar ese ' . $util . ' con ' . $pages . ' páxinas';
