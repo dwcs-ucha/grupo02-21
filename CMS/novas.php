@@ -44,6 +44,7 @@ session_start();
                 ?> 
                 <div class="">
                     <a href='novas.php?abrir=<?php echo $novas->getTitulo() ?>'><?php echo $novas->getTitulo() ?></a>
+                    <?php echo $novas->getCreacion() ?><br>
                 </div>
                 <?php 
                         }
