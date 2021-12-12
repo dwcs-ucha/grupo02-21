@@ -40,7 +40,7 @@
     if(isset($_SESSION['userLogged'])) {        
         ?>
     <li class="nav-item">
-        <a class="nav-link text-white" href="/Login/logOut.php">Salir</a>
+        <a class="nav-link text-white" href="/Login/logOut.php">Saír</a>
     </li>
     <?php
     }
