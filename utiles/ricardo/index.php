@@ -16,16 +16,16 @@ CABECEIRA:
     <!-- <link rel="stylesheet" href="estilo.css"> -->
     <link rel="stylesheet" href="../../css/custom.css">
     <?php
-    include '../../head.php';
+     include '../../componentes/head.php';
     ?>
 </head>
 
 
 <body>
     <?php
-    include '../../menu.php';
+  
     include_once '../../cookieAlert.php';
-   
+    include '../../componentes/menu.php';
     ?>
 
 
