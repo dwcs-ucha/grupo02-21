@@ -41,4 +41,6 @@ class Usuario extends Persona {
     public function setActive($active) {
         $this->active = $active;
     }
+
+    
 }

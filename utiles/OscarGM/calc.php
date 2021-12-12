@@ -35,7 +35,7 @@ if (isset($_SESSION['userLogged'])) {
     <link rel="stylesheet" href="./estilos/style.css">
 -->
     <?php    
-    include_once "../../head.php";
+    include_once "../../componentes/head.php";
     ?>
 </head>
 <body>
@@ -43,7 +43,7 @@ if (isset($_SESSION['userLogged'])) {
     <div id="menu">
         <?php
 
-        require_once "../../menu.php";
+        require_once "../../componentes/menu.php";
         ?>
     </div>
     <div class="container">
