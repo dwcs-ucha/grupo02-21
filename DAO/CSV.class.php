@@ -501,7 +501,7 @@ class CSV
      */
     private static function getVisits()
     {
-        $visits = self::readCSV('visitas');
+        $visits = self::readCSV('visitas', 'visitas');
         return $visits;
     }
 }

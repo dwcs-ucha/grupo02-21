@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 Usuario;Admin2;;DeLaOstia;$2y$11$JiGKKoOivdFQlaSBcUW3wOrpqbxFWn/7mw1rL6vy9Jctg8S1BFgVS;super@admin.es;"Calle Falsa 234";
 Usuario;miguel;Prueba;$2y$11$72NiER9VR6Bm8wYcaRtwrO/P86b7614MqmHZX2ivvUVM2FjibJ7nC;"Otra Vez";maikol.ortigueira@gmail.com;sfsfsf;
 Usuario;miguel;Miguel;$2y$11$VT1IG5ekUTSsx2heCRb.iuRj0uneRvNDLoRMQLuG39QYAigi91eQm;García;maikol.ortigueira@gmail.com;sfsfsf;
 Admin;Admin;Dunge;$2y$11$zn.HRxpIB.18m1aqqYneT.dp9PtlplOCD42NTH.MsavUnb4ySHO0O;OnMaster;darklord@aforro.org
 Usuario;Verifico;UnaPrueba;$2y$11$IkkgLPAj7fnKIlPEAhz/ZeNW4sY1aXegCd0OYucs3L33FpoFPieSC;"De Email";correo@fulano.es;"Calle falsa 123";1
 Usuario;Verificate;OtraPrueba;$2y$11$0CzxIn8UWXdR/Se0Adnc2ekFx7P1M5Vi6ci.gzyaD9xRaNH4viO.C;DeVerificacion;correo@mengano.es;"Calle falsa 123";1
+=======
+Usuario;Admin2;;DeLaOstia;$2y$11$JiGKKoOivdFQlaSBcUW3wOrpqbxFWn/7mw1rL6vy9Jctg8S1BFgVS;super@admin.es;"Calle Falsa 234";1
+Usuario;miguel;Prueba;$2y$11$72NiER9VR6Bm8wYcaRtwrO/P86b7614MqmHZX2ivvUVM2FjibJ7nC;"Otra Vez";maikol.ortigueira@gmail.com;sfsfsf;1
+Usuario;miguel;Miguel;$2y$11$VT1IG5ekUTSsx2heCRb.iuRj0uneRvNDLoRMQLuG39QYAigi91eQm;García;maikol.ortigueira@gmail.com;sfsfsf;1
+Admin;Admin;Dunge;$2y$11$zn.HRxpIB.18m1aqqYneT.dp9PtlplOCD42NTH.MsavUnb4ySHO0O;OnMaster;darklord@aforro.org;1
+>>>>>>> db68affd93f81bdce168adefb1bec52360fc9198

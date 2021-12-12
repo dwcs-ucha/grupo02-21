@@ -10,7 +10,7 @@
  * @cookie_alert_author kolappannathan
  * @reference https://github.com/kolappannathan/bootstrap-cookie-banner
  */
-if (!isset($_SESSION['cookie_readed'])) {
+if (!isset($_SESSION['cookie_readed']) && !isset($_COOKIE['cookie_readed'])) {
 ?>
 <style>
     #cb-cookie-banner{

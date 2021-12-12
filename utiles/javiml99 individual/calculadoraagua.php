@@ -12,7 +12,7 @@ session_start();
           <?php include '../../componentes/head.php'; ?>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">       
         <meta charset="utf-8">
-        <title> Calculadora consumo de agua </title>
+        <title> Calculadora consumo de auga </title>
     </head>
     <body>  
         <?php include '../../componentes/menu.php'; ?>
@@ -42,17 +42,17 @@ session_start();
         <form method="post" action='<?php echo $_SERVER['PHP_SELF']; ?>' class="calculadora">
             <fieldset>
                 <legend>
-                    <font color="#6042B9">¿Cuantos litros de agua gastas al mes?</font>
+                    <font color="#6042B9">¿Cantos litros de auga gastas al mes?</font>
                 </legend>
 
                 <br>	
                 <div class="container">
                     <div class="row align-items-start">
                         <div class="col">
-                            ¿Cuantas veces te duchas a la semana?: <input type="number" name="duchaVeces" min="0" max="14" > </input> &nbsp; &nbsp; &nbsp; &nbsp; 
+                            ¿Cantas veces te duchas a semana?: <input type="number" name="duchaVeces" min="0" max="14" > </input> &nbsp; &nbsp; &nbsp; &nbsp; 
                             <select id="ducha" name="duchaMinutos">
                                 <optgroup label="Minutos en la ducha">
-                                    <option selected value="0"> ¿Cuantos minutos tardas en ducharte? </option>                                                                                                                                   
+                                    <option selected value="0"> ¿Cantos minutos tardas en ducharte? </option>                                                                                                                                   
                                     <option value="5">5</option>
                                     <option value="10">10</option>
                                     <option value="15">15</option>
@@ -62,35 +62,35 @@ session_start();
                     </div> <br><br>
                     <div class="row align-items-center">
                         <div class="col">
-                            ¿Cuantas veces te lavas los dientes al día?: <input type="number" name="dientes" min="0" max="9" > </input>  
+                            ¿Cantas veces te lavas os dentes ao día?: <input type="number" name="dientes" min="0" max="9" > </input>  
                         </div>
                         <div class="col">
-                            ¿Cuantas veces tiras de la cisterna al día?: <input type="number" name="cisterna" min="0" max="9" > </input>  
+                            ¿Cantas veces tiras da cisterna ao día?: <input type="number" name="cisterna" min="0" max="9" > </input>  
                         </div>  
                         <div class="col">
-                            ¿Cuantas veces te lavas las manos al día?: <input type="number" name="manos" min="0" max="9" > </input>  
+                            ¿Cantas veces te lavas as mans ao día?: <input type="number" name="manos" min="0" max="9" > </input>  
                         </div>
                         <div class="col">
-                            ¿Cuantas veces te lavas la cara al día?: <input type="number" name="cara" min="0" max="9" > </input>  
+                            ¿Cantas veces te lavas a cara ao día?: <input type="number" name="cara" min="0" max="9" > </input>  
                         </div> 
                     </div> <br> <br>
                     <div class="row align-items-end">
                         <div class="col">
-                            ¿Cuantas veces lavas los platos con agua del grifo a la semana?: <input type="number" name="grifo" min="0" max="4" > </input> <br> 
+                            ¿Cantas veces lavas os platos con auga do grifo a semana?: <input type="number" name="grifo" min="0" max="4" > </input> <br> 
                         </div>
                         <div class="col">
-                            ¿Cuantas veces usas el lavavajillas a la semana?: <input type="number" name="lavavajillas" min="0" max="9" > </input>  
+                            ¿Cantas veces usas o lavavajillas a semana?: <input type="number" name="lavavajillas" min="0" max="9" > </input>  
                             <br>
                         </div> 
                         <div class="col">
-                            ¿Cuantas veces usas la lavadora a la semana?: <input type="number" name="lavadora" min="0" max="9" > </input>  <br>
+                            ¿Cantas veces usas a lavadora a semana?: <input type="number" name="lavadora" min="0" max="9" > </input>  <br>
                         </div>
                     </div>                                                            
                     <br><br>  <input type="submit" value="Calcular" name="calcular"></input>  
                     <br><br>
                     <?php
                     if(isset($casa)){
-                        echo "Tu gasto total de litros al mes es: " .  $casa ->calculo()     . " L";
+                        echo "Tu gasto total de litros ao mes es: " .  $casa ->calculo()     . " L";
                     }
                     if (isset($Error)) {
                         echo $Error;

@@ -4,6 +4,12 @@
     class PdfArticulo extends FPDF{
         private $articulo;
 
+        public function __construct($articulo){
+            $this->titulo = getTitulo();
+            $this->cuerpo = getCuerpo();
+            $this->img = getImg();
+        }
+
         // Cabecera de página
         function Header()
         {
