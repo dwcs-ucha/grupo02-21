@@ -18,7 +18,7 @@ session_start();
         <title><?php //Aquí va el articulo que se ha abierto para leerlo entero ?></title>
         <?php
         include '../componentes/head.php';
-        include '../componentes/cookieAlert.php'
+        include '../componentes/cookieAlert.php';
         ?>
     </head>
     <body>
