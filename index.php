@@ -44,7 +44,7 @@
                                 <div class="d-flex mb-3">
                                     <div class="ps-3">
                                         <h5 class="card-title">Calculadora total do consumo eléctrico dunha vivenda</h5>
-                                        <p class="card-text">Permite calcular el comsumo total de los electrodomesticos de una vivienda. <strong>Solo para usuarios registrados</strong></p>
+                                        <p class="card-text">Fai o calculo do consumo enerxético total dos electrodomesticos de unha vivenda. <strong>Só usuarios rexistrados.</strong></p>
                                         <a href="utiles/OscarGM/calc.php" class="btn btn-primary">Acceder</a>
                                     </div>
                                 </div>
