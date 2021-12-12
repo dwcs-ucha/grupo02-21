@@ -1,5 +1,10 @@
 <?php
-
+/*
+    Eliminar Usuario
+    @author Oscar González Martínez, Rubén Dopico Novo
+    Metodo para Eliminar Usuarios del archivo CSV
+    Fecha: 12/12/2021
+*/
 include_once '../Class/Persona.class.php';
 include_once '../Class/Usuario.class.php';
 include_once '../Class/Admin.class.php';

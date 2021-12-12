@@ -10,9 +10,6 @@ include_once "../DAO/DAO.class.php";
 include_once "../Class/Erro.class.php";
 
 
-//Inicialización de variables 
-
-
 //Comento el inicio de Sesión. Se inicia Sesión desde el Menú para poder mostrar el enlace a cerrar sesión si hay una sesion iniciada.
 session_status() === PHP_SESSION_ACTIVE ?: session_start();
 if (isset($_SESSION['userLogged'])) {
@@ -96,7 +93,7 @@ $userError = array();
         </div>
     </div>
     <?php
-    // put your code here
+    //Inicialización de variables 
     $userName = $userSurname = $userPassWord = $userVerifyPassword =   $userAddress =  "";
     if (isset($_POST['userSubmit'])) {
 
@@ -153,15 +150,15 @@ $userError = array();
         }
 
         if (Erro::countErros() == 0) {
-            
-                    $user = new Usuario($userRol, $userLogin, $userName, $userPassWord, $userSurname, $userEmail, $userAddress, $userActiveUser);
-                    DAO::updateUser($user);
-                    $_SESSION['userLogged'] = $user;
-            }
-        } else {
-            //echo Erro::showErrors();
+
+            $user = new Usuario($userRol, $userLogin, $userName, $userPassWord, $userSurname, $userEmail, $userAddress, $userActiveUser);
+            DAO::updateUser($user);
+            $_SESSION['userLogged'] = $user;
         }
-    
+    } else {
+        //echo Erro::showErrors();
+    }
+
     include_once '../componentes/error.php';
 
     ?>

@@ -2,7 +2,7 @@
 <?php
 //Página de registro.
 //@author: Oscar González Martínez
-//Versión: 0.9
+//Versión: 1.0
 //Proyecto "Aforro Enerxético"
 include_once '../Class/Persona.class.php';
 include_once "../Class/Validacion.class.php";
@@ -219,6 +219,7 @@ if(isset($_SESSION['userLogged'])) {
                     $link = 'http://grupo2.com/Login/verify.php?email='.$user->getEmail().'&hash='.Persona::generate_hash($user->getEmail());
                     mail_cpanel($user->getLogin(),$user->getEmail(),$user->getAddress(),$link);
                     header("location: ../index.php");
+                    var_dump($link);
                 }
             } else {
                 //echo Erro::showErrors();

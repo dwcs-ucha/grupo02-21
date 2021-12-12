@@ -10,9 +10,9 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
 
-require './Phpmailer/Exception.php';
-require './Phpmailer/PHPMailer.php';
-require './Phpmailer/SMTP.php';
+require 'Phpmailer/Exception.php';
+require 'Phpmailer/PHPMailer.php';
+require 'Phpmailer/SMTP.php';
 
 function mail_cpanel($nombre,$email,$direccion,$link){
     //Create an instance; passing `true` enables exceptions

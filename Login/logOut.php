@@ -1,3 +1,9 @@
+<!--
+    Cierre de Sesión
+    @author Oscar González Martínez    
+    Fecha: 10/12/2021
+-->
+
 <html>
     <head>
         <meta charset="UTF-8">
