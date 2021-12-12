@@ -7,8 +7,6 @@
 include_once '../../Class/Erro.class.php';
 session_start();
 ?>
-<html>
-
 <head>
     <?php include '../../componentes/head.php'; ?>
     <title> Calculadora consumo de auga </title>
@@ -110,4 +108,3 @@ session_start();
     </div>
 </body>
 
-</html>

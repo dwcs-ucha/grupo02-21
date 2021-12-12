@@ -18,6 +18,7 @@
 <body>
     <?php
             include 'componentes/menu.php';
+            include 'componentes/cookieAlert.php';
         ?>
     <div class="fondo">
         <main class="container d-flex justify-content-center align-items-center">
@@ -131,9 +132,9 @@
                             <div class="card-body">
                                 <div class="d-flex mb-3">
                                     <div class="ps-3">
-                                        <h5 class="card-title">Calculadora 8</h5>
-                                        <p class="card-text">Info</p>
-                                        <a href="#" class="btn btn-primary">Acceder</a>
+                                        <h5 class="card-title">Calculadora de eficiencia energética</h5>
+                                        <p class="card-text">Calculadora encargada de obtener la calificación energética de una vivienda </p>
+                                        <a href="/utiles/jorgeCM/Calculadora.php" class="btn btn-primary">Acceder</a>
                                     </div>
                                 </div>
                             </div>
