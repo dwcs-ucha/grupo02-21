@@ -16,14 +16,16 @@ CABECEIRA:
     <!-- <link rel="stylesheet" href="estilo.css"> -->
     <link rel="stylesheet" href="../../css/custom.css">
     <?php
-    include '../../head.php';
+     include '../../componentes/head.php';
     ?>
 </head>
 
 
 <body>
     <?php
-    include '../../menu.php';
+  
+    include_once '../../cookieAlert.php';
+    include '../../componentes/menu.php';
     ?>
 
 
@@ -47,7 +49,7 @@ CABECEIRA:
             echo $calculoLED->calculoBombillas() * 730, 001 . "\nEuros cada 30 días<br>";
             echo $calculoLED->calculoBombillas() * 8760, 00240024 . "\nEuros al año<br>";
         } else {
-            echo "<h2 class='text-danger'>*ERROR: DATOS VACÍOS</h2>";
+          echo "<p class='text-danger'>Datos vacíos</p>";
         }
     }
     ?>

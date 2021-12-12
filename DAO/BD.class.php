@@ -56,6 +56,16 @@ class BD
     }
 
     /**
+     * Modificar un Usuario
+     * 
+     * @param Usuario $user Objeto de usuario
+     * @return void
+     */
+    public static function updateUser(Usuario $user)
+    {
+    }
+
+    /**
      * Comprobación de la existencia del nombre de usuario
      *
      * @param String $login 
@@ -161,6 +171,15 @@ class BD
      * @param Visitas $visit
      * @return void
      */
-    public static function insertVisit(Visitas $visit) { 
+    public static function insertVisit(Visitas $visit)
+    {
+    }
+    /**
+     * Recoger un array de objetos de tipo Visitas
+     *
+     * @return array
+     */
+    private static function getVisits()
+    {
     }
 }

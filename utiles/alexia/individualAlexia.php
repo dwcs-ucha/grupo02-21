@@ -12,13 +12,13 @@ include_once "claseCalcAlexia.php";
     <title>El coste real</title>
     <meta charset="utf-8">
     <?php
-           include '../../head.php'; 
+           include '../../componentes/head.php'; 
         ?>
 </head>
 
 <body>
     <?php
-            include '../../menu.php';
+            include '../../componentes/menu.php';
         ?>
     <div class="fondo">
         <?php

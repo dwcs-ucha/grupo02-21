@@ -13,18 +13,16 @@ session_start();
     <head>
         <title>Novas</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="../css/custom.css">
         <?php
-            include '../head.php'
+            include '../componentes/head.php'
         ?>
     </head>
     <body>
         <?php
-            include '../menu.php'
+            include '../componentes/menu.php'
         ?>
         <div class="fondo">
             <main class="container alto">
-            
                 <div class="col-12 pt-5 pb-1">
                     <h1 class="text-primary">Novas</h1>
                 </div>
@@ -42,14 +40,17 @@ session_start();
                         $cont=0;
                         foreach ($articulos as $novas) {
                 ?> 
-                <div class="">
-                    <a href='novas.php?abrir=<?php echo $novas->getTitulo() ?>'><?php echo $novas->getTitulo() ?></a>
-                    <?php echo $novas->getCreacion() ?><br>
-                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-12 px-3 mt-3"></div>
+                        <a class='text-decoration-none fs-4 fw-bold' href='novas.php?abrir=<?php echo $novas->getTitulo() ?>'><?php echo $novas->getTitulo()?></a>
+                        <?php echo "<p>".$novas->getCreacion()."</p>" ?>
+                    
                 <?php 
                         }
                     }
                 ?>
+                    </div>
+                </div>
                 </div>
             </main>
         </div>

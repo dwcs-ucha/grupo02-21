@@ -25,13 +25,13 @@ if (isset($_SESSION['userLogged'])) {
     <title></title>
     <link rel="stylesheet" href="../css/custom.css">
     <?php
-    include '../head.php';
+    include '../componentes/head.php';
     ?>
 </head>
 
 <body>
     <?php
-    include '../menu.php';
+    include '../componentes/menu.php';
     ?>
     <div class="fondo alto">
         <div class="container">
@@ -69,7 +69,7 @@ if (isset($_SESSION['userLogged'])) {
 
             if (empty($login) || empty($passWord)) {
                 Erro::addError("EmptyField", "Introduzca Login y contraseña");
-                echo Erro::showErrors();
+                //echo Erro::showErrors();
 
                 registrarLogIn(3);
             } else {
@@ -91,12 +91,13 @@ if (isset($_SESSION['userLogged'])) {
                     }
                 } else {
                     Erro::addError("UserAuthenticateError", "No parece haber ningún usuario con ese nombre");
-                    echo Erro::showErrors();
+                    //echo Erro::showErrors();
 
                     registrarLogIn(2, $login);
                 }
             }
         }
+        include_once '../componentes/error.php';
 
         /**
          * Empleado para llevar registro de visitas y del log.
@@ -109,11 +110,16 @@ if (isset($_SESSION['userLogged'])) {
         {
             $ip = Visitas::guessIP();
             $location = Visitas::locateIP($ip);
-            //$username=$_SESSION['userLogged'];
+            $username=$_SESSION['userLogged'];
+            $fecha=getDate();
+            $serveName=$_SERVER['SERVER_NAME'];
+            $browser= $_SERVER['SERVER_SOFTWARE'];
+            $so= $_SERVER['HTTP_USER_AGENT'];
+            $requestTime=$_SERVER['REQUEST_TIME'];
             switch ($tipo) {
                 case 1:
                     // Login correcto
-                    //DAO::insertVisit(new Visitas($username->getLogin(), $ip, $fecha, $serveName, $browser, $so, $requestTime));
+                    DAO::insertVisit(new Visitas($username->getLogin(), $ip, $fecha, $serveName, $browser, $so, $requestTime));
                     DAO::writeLog(new Log("se ha logueado en la aplicación desde " . $ip . "(" . $location . ")", $login));
                     break;
                 case 2:

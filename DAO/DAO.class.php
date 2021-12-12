@@ -88,6 +88,22 @@ class DAO
             BD::deletePerson($login);
         }
     }
+
+    /**
+     * Modificar un Usuario
+     * 
+     * @param Usuario $user Objeto de usuario
+     * @return void
+     */
+    public static function updateUser(Usuario $user)
+    {
+        if (self::$modo == 'csv') {
+            CSV::updateUser($user);
+        } else if (self::$modo == 'bd') {
+            BD::updateUser($user);
+        }
+    }
+
     /**
      * Recoger un array de objetos de tipo admin y usuario
      *

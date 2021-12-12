@@ -4,14 +4,19 @@
   Fecha de Última modificación: 16/11/2021
   Versión: 0.9
  */
+include_once '../../Class/Erro.class.php';
 session_start();
 ?>
 <html>
-    <head>        
+    <head>       
+          <?php include '../../componentes/head.php'; ?>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">       
         <meta charset="utf-8">
+        <title> Calculadora consumo de agua </title>
     </head>
-    <body>   
+    <body>  
+        <?php include '../../componentes/menu.php'; ?>
+           
         <?php       
         $duchaVeces = $duchaMinutos = $dientes = $cisterna = $manos = $cara = $grifo = $lavavajillas = $lavadora = '';
         if (isset($_POST['calcular'])) { 
@@ -84,13 +89,14 @@ session_start();
                     <br><br>  <input type="submit" value="Calcular" name="calcular"></input>  
                     <br><br>
                     <?php
-                    
+                    if(isset($casa)){
                         echo "Tu gasto total de litros al mes es: " .  $casa ->calculo()     . " L";
-                    
+                    }
                     if (isset($Error)) {
                         echo $Error;
                     }
                     ?>
+                    <?php include '../../componentes/error.php'; ?>
                 </div>
                 </p>                            
             </fieldset>                                                                                

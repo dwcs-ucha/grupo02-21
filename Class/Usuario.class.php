@@ -10,10 +10,15 @@ class Usuario extends Persona {
 
     //put your code here
     private $address;
+    //Metodo booleano.
+    //1 = usuario activado
+    //0 = usuario inactivo.
+    private $active;
 
-    public function __construct( $rol,$login, $name, $passWord, $surName, $eMail, $address) {
+    public function __construct( $rol,$login, $name, $passWord, $surName, $eMail, $address,$active) {
         parent::__construct( $rol,$login, $name, $passWord, $surName, $eMail);
         $this->address = $address;
+        $this->active = $active;
     }
     public function formatUsuario() {
         $array = parent::formatPerson();
@@ -27,5 +32,13 @@ class Usuario extends Persona {
 
     public function setAddress($address): void {
         $this->address = $address;
+    }
+
+    public function getActive(){
+        return $this->active;
+    }
+
+    public function setActive($active) {
+        $this->active = $active;
     }
 }

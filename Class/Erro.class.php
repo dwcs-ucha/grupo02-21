@@ -21,7 +21,7 @@ class Erro
      */
     public static function addError($type, $message)
     {
-        self::$errors[$type] = $message;
+        self::$errors[$type][] = $message;
     }
     /**
      * Mostrar todos los errores en formato texto
@@ -42,8 +42,11 @@ class Erro
     public static function showErrorsLog()
     {
         $texto = "";
-        foreach (self::$errors as $type => $message) {
-            $texto .= $type . '//';
+        foreach (self::$errors as $type => $erros) {
+            $texto .= $type . ':<br>';
+            foreach($erros as $erro) {
+                $texto .= $erro . '<br>';
+            }
         }
         return $texto;
     }

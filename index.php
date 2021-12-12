@@ -9,7 +9,7 @@
 
 <head>
     <?php
-        include 'head.php';
+            include 'componentes/head.php';
         ?>
     <meta charset="UTF-8">
     <title>Index</title>
@@ -17,7 +17,7 @@
 
 <body>
     <?php
-            include 'menu.php';
+            include 'componentes/menu.php';
         ?>
     <div class="fondo">
         <main class="container d-flex justify-content-center align-items-center">
@@ -86,10 +86,10 @@
                             <img src="./imagenes/ejemplo.jpg" class="card-img-top p-1">
                             <div class="card-body">
                                 <div class="d-flex mb-3">
-                                    <div class="ps-3">
-                                        <h5 class="card-title">Calculadora 5</h5>
-                                        <p class="card-text">Info</p>
-                                        <a href="#" class="btn btn-primary">Acceder</a>
+                                     <div class="ps-3">
+                                        <h5 class="card-title">Criptonómetro</h5>
+                                        <p class="card-text">Cronómetro de consumo acumulado pola actividade das diferentes criptomonedas comparado co consumo de a pe e do día a día.</p>
+                                        <a href="/utiles/luis/index.php" class="btn btn-primary">Acceder</a>
                                     </div>
                                 </div>
                             </div>
