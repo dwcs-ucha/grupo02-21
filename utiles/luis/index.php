@@ -1,7 +1,5 @@
 <?php
-setcookie("newcomer", "Not anymore!", time() + (86400 * 30), "/");
-?>
-<?php
+
 /**
  * @author luisvi
  * @email luisvaziza@gmail.com
@@ -25,8 +23,11 @@ $resultados = isset($_POST) ? $_POST : null;
 </head>
 
 <body>
-    <?php include_once '../../menu.php'; ?>
-    <?php include_once './data/data.php' ?>
+    <?php
+    include_once '../../cookieAlert.php';
+    include_once '../../menu.php';
+    include_once './data/data.php'
+    ?>
 
     <div class="fondo alto">
         <div class="container center_lvi">
@@ -142,7 +143,7 @@ $resultados = isset($_POST) ? $_POST : null;
                     60, //bombilla
                     200, //tesla
                     1200, //lavadora
-                    300000, //manowar
+                    600000, //manowar
                     9922000, //familia
                     25000000, //partido
                     100000000, //vigo
@@ -229,8 +230,6 @@ $resultados = isset($_POST) ? $_POST : null;
 
         </div>
     </div>
-
-    <?php include_once '../../cookieAlert.php' ?>
 </body>
 
 </html>

@@ -4,32 +4,34 @@
  * @author luisvi
  * @email luisvaziza@gmail.com
  * @fechaDeCreación 11 dic 2021
- * @últimaModificación 11 dic 2021
+ * @últimaModificación 12 dic 2021
  * @versión v01.00.00
  *
  * @cookie_alert_author kolappannathan
  * @reference https://github.com/kolappannathan/bootstrap-cookie-banner
  */
-if (isset($_COOKIE['newcomer'])) {
-    
-} else {
+if (!isset($_COOKIE['newcomer'])) {
 ?>
 <style>
     #cb-cookie-banner{
         z-index: 100;
         position: fixed;
-        bottom: 10px;
+        bottom: 2%;
+        left: 25%;
+        right: 25%;
     }
 </style>
     <div id="cb-cookie-banner"  class="alert alert-dark text-center mb-0" role="alert">
-        🍪 This website uses cookies to ensure you get the best experience on our website.
-        <a href="https://www.cookiesandyou.com/" target="blank">Learn more</a>
+        🍪 Este lugar hace uso de cookies para mejorar la experiencia de usuario.
+        <br/>También rastrea tu actividad durante tu visita, pero eso no lo hace con cookies.
+        <a href="https://www.cookiesandyou.com/" target="blank">Saber más</a>
+        <br/>
         <button type="button" class="btn btn-primary btn-sm ms-3" onclick="window.hideCookieBanner()">
-            I Got It
+            ¡Bien, me encantan las cookies!
         </button>
     </div>
 <?php
-    //setcookie("newcomer", "Not anymore!", time() + (86400 * 30), "/");
+    setcookie("newcomer", "Not anymore!", time() + (86400 * 30), "/");
 }
 ?>
 
