@@ -73,9 +73,9 @@
                             <div class="card-body">
                                 <div class="d-flex mb-3">
                                     <div class="ps-3">
-                                        <h5 class="card-title">Calculadora 4</h5>
-                                        <p class="card-text">Info</p>
-                                        <a href="#" class="btn btn-primary">Acceder</a>
+                                        <h5 class="card-title">Calculadora de ahorro energético</h5>
+                                        <p class="card-text">Permite calcular el ahorro energético según la cantidad y el consumo de bombillas tradicionales y LEDs</p>
+                                        <a href="/utiles/ricardo/index.php" class="btn btn-primary">Acceder</a>
                                     </div>
                                 </div>
                             </div>
