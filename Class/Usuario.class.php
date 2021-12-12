@@ -42,7 +42,5 @@ class Usuario extends Persona {
         $this->active = $active;
     }
 
-    public static function hashVerifyEmail(){
-        
-    }
+    
 }
