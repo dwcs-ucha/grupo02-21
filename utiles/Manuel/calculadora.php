@@ -151,7 +151,9 @@
                 <h2 class="text-primary"> Electrodomésticos novos? Asegura un baixo consumo de enerxía! </h1>
                 <p> Cun só golpe, pódese reducir moito o consumo de enerxía substituíndo unha neveira, conxelador ou lavadora antigas. Os novos dispositivos teñen un menor consumo que os antigos. </p>
 	</div>
-
+	    <?php
+            include '../../componentes/footer.php'
+            ?>
 	</div>
 	</body>
 </html>
