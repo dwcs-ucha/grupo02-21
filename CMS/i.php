@@ -8,7 +8,6 @@
 require_once '../Class/Cms.class.php';
 require_once '../DAO/DAO.class.php';
 require_once '../Class/Validacion.class.php';
-require_once '../Class/Erro.class.php';
 session_start();
 
  //Comento el inicio de Sesión. Se inicia Sesión desde el Menú para poder mostrar el enlace a cerrar sesión si hay una sesion iniciada.
@@ -19,7 +18,7 @@ session_start();
         header('Location: ../index.php');
     }
 } else {
-    header('Location: signUp.php');
+    header('Location: ../Login/signUP.php');
 }
 ?>
 <html>
