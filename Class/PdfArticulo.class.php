@@ -3,8 +3,11 @@
     Autor: Pablo Martinez Castro
     Version=1.0.0
     Ultima modificacion: 13/12/2021*/
-class PdfArticulo
-{
+
+    require_once 'Pdf_Html.class.php';
+
+class PdfArticulo{
+
     private $articulo;
     private $pdf;
 
@@ -51,16 +54,24 @@ class PdfArticulo
         $imagen = $this->articulo->getImg();
         if (isset($imagen) && !empty($imagen))
         {
-            $this->pdf->Image($_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/' . $imagen, 20, 20);
+            $this->pdf->Image($_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/' . $imagen, 20, 20, 80, 50);
         }
 
         //Limpiar el cuerpo del archivo (quitar etiquetas html)
         $cuerpo = $this->articulo->getCuerpo();
-        /*$cuerpo = str_replace("&nbsp;"," ",$cuerpo);
-        $cuerpo = strip_tags($cuerpo);*/
+        $cuerpo = utf8_decode($cuerpo);
+        $cuerpo = str_replace("&nbsp;"," ",$cuerpo);
+        $cuerpo = str_replace("&quot;","'",$cuerpo);
+        $cuerpo = str_replace("&#39;","'",$cuerpo);
+        $cuerpo = str_replace("&aacute;","á",$cuerpo);
+        $cuerpo = str_replace("&eacute;","é",$cuerpo);
+        $cuerpo = str_replace("&iacute;","í",$cuerpo);
+        $cuerpo = str_replace("&oacute;","ó",$cuerpo);
+        $cuerpo = str_replace("&uacute;","ú",$cuerpo);
+
         //Cuerpo
-        //$this->pdf->SetX(65);
-        $this->pdf->WriteHTML(utf8_decode($cuerpo));
+        $this->pdf->SetY(70, false);
+        $this->pdf->WriteHTML($cuerpo);
     }
 
     public function descargarPdf() {
