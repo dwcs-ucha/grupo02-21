@@ -1,5 +1,8 @@
 <?php
-
+    /*Titulo: PdfArticulo.class.php
+    Autor: Pablo Martinez Castro
+    Version=1.0.0
+    Ultima modificacion: 13/12/2021*/
 class PdfArticulo
 {
     private $articulo;

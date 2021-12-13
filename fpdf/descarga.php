@@ -1,4 +1,8 @@
 <?php
+    /*Titulo: descarga.php
+    Autor: Pablo Martinez Castro
+    Version=1.0.0
+    Ultima modificacion: 13/12/2021*/
     require_once '../Class/Cms.class.php';
     require_once '../DAO/DAO.class.php';
     require_once '../Class/PdfArticulo.class.php';
