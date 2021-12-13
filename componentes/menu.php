@@ -22,6 +22,7 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 <ul class="nav justify-content-center bg-primary border border-5 border border-primary">
     <li class="nav-item">
         <a class="nav-link text-white" aria-current="page" href="/Login/signIn.php">Login</a>
@@ -36,3 +37,39 @@
         <a class="nav-link text-white" href="/index.php">Calculadoras</a>
     </li>  
 </ul>
+=======
+<div class="elementos-menu bg-primary d-flex">
+    <div class="container d-flex justify-content-between">
+        <div class="enlaces-web">
+            <ul class="nav justify-content-center bg-primary border border-5 border border-primary">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/CMS/novas.php">Novas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/index.php">Calculadoras</a>
+                </li>
+            </ul>
+        </div>
+        <div class="enlaces-usuarios">
+            <ul class="nav justify-content-center bg-primary border border-5 border border-primary">
+                <li class="nav-item">
+                    <a class="nav-link text-white" aria-current="page" href="/Login/signIn.php">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/Login/signUP.php">Rexistro</a>
+                </li>
+                <?php
+                session_status() === PHP_SESSION_ACTIVE ?: session_start();
+                if (isset($_SESSION['userLogged'])) {
+                ?>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/Login/logOut.php">Saír</a>
+                    </li>
+                <?php
+                }
+                ?>
+            </ul>
+        </div>
+    </div>
+</div>
+>>>>>>> 6fe082a8b1ca993c7166b682c3964ae44fd5ceae
