@@ -67,3 +67,4 @@
 =======
 2021.12.13-10:15:30 - INVITADO se ha intentado loguear como LEMMY KILMISTER en la aplicación desde 127.0.0.1(Ubicación desconocida) - UserAuthenticateError:<br>No parece haber ningún usuario con ese nombre<br>
 >>>>>>> fbc0e1ffe1c07135ee3a4b750bdf0e73db882d5c
+2021.12.13-10:55:53 - ADMIN se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
