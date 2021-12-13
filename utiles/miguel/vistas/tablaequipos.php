@@ -34,7 +34,7 @@ if (isset($resultados['equipos'][$tab])) {
     <thead>
         <tr>
             <th>Unidades</th>
-            <th>Aparato</th>
+            <th>Aparello</th>
             <th>Potencia / Consumo por unidades</th>
             <th colspan="2">Uso semanal</th>
             <th>Consumo</th>
@@ -108,7 +108,7 @@ if (isset($resultados['equipos'][$tab])) {
                             data-aparato="<?php echo $aparato['id']; ?>" 
                             onchange="setConsumo(this)" 
                             />
-                        <label for="<?php echo $tab; ?>_<?php echo $aparato['id']; ?>_usos_semanales"> Usos a la semana</label>
+                        <label for="<?php echo $tab; ?>_<?php echo $aparato['id']; ?>_usos_semanales"> Usos a semán</label>
                     <?php endif; ?>
                     </td>
                     <?php if ($aparato['tipo'] == "1") : ?>
@@ -134,7 +134,7 @@ if (isset($resultados['equipos'][$tab])) {
                         <div id="<?php echo $tab; ?>_<?php echo $aparato['id']; ?>_consumo" class="consumo-anual-aparato" style="display: none;">
                             <span id="<?php echo $tab; ?>_<?php echo $aparato['id']; ?>_consumo_total_etiqueta"></span>
                             <span> kWh</span><br>
-                            <span>anuales</span>
+                            <span>anuais</span>
                         </div>
                         <!-- Consumo anual del equipo calculado con Javascript, solo informa al usuario en tiempo real, pero no se pasa al servidor -->
                         <input type="hidden" id="<?php echo $tab; ?>_<?php echo $aparato['id']; ?>_consumo_total" name="equipos[<?php echo $tab; ?>][<?php echo $aparato['id']; ?>][consumo_total]" value="<?php echo $aparato['consumo_total']; ?>">
@@ -154,7 +154,7 @@ if (isset($resultados['equipos'][$tab])) {
                 <!-- Información en tiempo real del consumo anual de la categoría -->
                 <span>Consumo total <?php echo $tabNombre; ?>:</span>
                 <span class="consumo-total-valor" id="total_consumo_<?php echo $tab; ?>"></span>
-                <span class="consumo-total-unidad">kWh/año.</span>
+                <span class="consumo-total-unidad">kWh/ano.</span>
                 <!-- Campo que recibe el cálculo realizado con javascript, pero no se envía a servidor -->
                 <input type="hidden" id="<?php echo $tab; ?>_consumo_total" value="0" />
                 <!-- Campo con el nombre de la categoría para su envío al servidor -->

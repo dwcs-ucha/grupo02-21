@@ -204,7 +204,7 @@ if (isset($resultados['equipos'][$tab])) {
                     <div id="<?php echo $tab; ?>_<?php echo $numEspacio; ?>_consumo" class="consumo-anual-aparato" style="display: none;">
                         <span id="<?php echo $tab; ?>_<?php echo $numEspacio; ?>_consumo_total_etiqueta"></span>
                         <span> kWh</span><br>
-                        <span>anuales</span>
+                        <span>anuais</span>
                     </div>
                     <input type="hidden" id="<?php echo $tab; ?>_<?php echo $numEspacio; ?>_consumo_total" name="equipos[<?php echo $tab; ?>][<?php echo $numEspacio; ?>][consumo_total]" value="<?php echo $espacio['consumo_total']; ?>">
                     <input type="hidden" name="equipos[<?php echo $tab; ?>][<?php echo $numEspacio; ?>][tipo]" id="<?php echo $tab; ?>_<?php echo $numEspacio; ?>_tipo" value="5">
@@ -218,7 +218,7 @@ if (isset($resultados['equipos'][$tab])) {
             <td colspan="10" class="total-columna-consumo">
                 <span>Consumo total <?php echo $tabNombre; ?>:</span>
                 <span class="consumo-total-valor" id="total_consumo_<?php echo $tab; ?>"></span>
-                <span class="consumo-total-unidad">kWh/año.</span>
+                <span class="consumo-total-unidad">kWh/ano.</span>
                 <input type="hidden" id="<?php echo $tab; ?>_consumo_total" value="0" />
                 <input type="hidden" id="<?php echo $tab; ?>_nombre" name="equipos[<?php echo $tab; ?>][nombre]" value="<?php echo $tabNombre; ?>" />
             </td>

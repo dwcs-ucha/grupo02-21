@@ -20,11 +20,11 @@ class ValidacionEquipos
     public static function esNumeroPositivo($numero, $categoria, $campo, $equipo, $maximo = false)
     {
         if (!is_numeric($numero) || $numero < 0) {
-            Erro::addError('Error', "El valor del <strong>campo $campo</strong> del equipo <strong>$equipo</strong>, dentro de la categoría <strong>$categoria</strong> debe ser un número mayor o igual a 0");
+            Erro::addError('Erro', "O valor do <strong>campo $campo</strong> do aparello <strong>$equipo</strong>, dentro da categoría <strong>$categoria</strong> debe ser un número maior ou igual a 0");
         }
 
         if ($maximo && intval($numero) > $maximo) {
-            Erro::addError('Error', "El valor del campo $campo del <strong>equipo $equipo</strong>, dentro de la categoría <strong>$categoria</strong> no puede ser <strong>superior a $maximo</strong>.");
+            Erro::addError('Erro', "O valor do campo $campo do <strong>aparello $equipo</strong>, dentro da categoría <strong>$categoria</strong> non pode ser <strong>superior a $maximo</strong>.");
         }
     }
 }

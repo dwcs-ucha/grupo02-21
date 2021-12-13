@@ -54,9 +54,9 @@ $i = 0;
         </div>
         <div class="col-12 col-md-6">
             <div class="cuadro-consumo-total mb-5">
-                <h2>Consumo total de la vivienda</h2>
-                <p class="lead"><span class="valor"><?php echo number_format($consumoTotal, 2, ",", "."); ?></span> kWh. por año.</p>
-                <h4>Distribución del consumo por equipo:</h4>
+                <h2>Consumo total da vivenda</h2>
+                <p class="lead"><span class="valor"><?php echo number_format($consumoTotal, 2, ",", "."); ?></span> kWh. por ano.</p>
+                <h4>Distribución do consumo por aparello:</h4>
             </div>
             <div>
                 <canvas id="myChart"></canvas>

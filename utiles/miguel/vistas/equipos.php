@@ -9,8 +9,8 @@
  */
 
 $tabs = array(
-    array('id' => 'cocina', 'nombre' => 'Cocina'),
-    array('id' => 'limpieza', 'nombre' => 'Limpieza'),
+    array('id' => 'cocina', 'nombre' => 'Cociña'),
+    array('id' => 'limpieza', 'nombre' => 'Limpeza'),
     array('id' => 'climatizacion', 'nombre' => 'Climatización'),
     array('id' => 'electronica', 'nombre' => 'Electrónica'),
     array('id' => 'transporte', 'nombre' => 'Transporte'),
@@ -29,7 +29,7 @@ $tabs = array(
     </ul>
     <div class="tab-content mt-5" id="myTabContent">
         <div>
-            <p class="fs-5">Define la potencia y el uso de cada equipo</p>
+            <p class="fs-5">Define a potencia e o uso de cada equipo</p>
         </div>
         <?php foreach ($tabs as $index => $tab) : ?>
             <?php $active = $index === 0 ? ' show active' : ''; ?>

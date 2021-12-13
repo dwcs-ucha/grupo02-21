@@ -6,7 +6,7 @@
 * @version 1.0.0
 */
 
-$display = Erro::countErros() ? ' style="display: block;"' : ' style="display: none;';
+$display = Erro::countErros() ? ' style="display: block;"' : ' style="display: none;"';
 
 ?>
 

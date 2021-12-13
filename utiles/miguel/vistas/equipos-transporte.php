@@ -44,7 +44,7 @@ if (isset($resultados['equipos'][$tab])) {
     <thead>
         <tr>
             <th>Unidades</th>
-            <th>Aparato</th>
+            <th>Aparello</th>
             <th>Potencia / Consumo por unidades</th>
             <th colspan="2">Uso</th>
             <th>Consumo</th>
@@ -88,13 +88,13 @@ if (isset($resultados['equipos'][$tab])) {
                             data-aparato="<?php echo $aparato['id']; ?>" 
                             onchange="setConsumo(this)" 
                             />
-                        <label for="<?php echo $tab; ?>_<?php echo $aparato['id']; ?>_km_mes"> Kms. al mes</label>
+                        <label for="<?php echo $tab; ?>_<?php echo $aparato['id']; ?>_km_mes"> Kms. o mes</label>
                     </td>
                     <td>
                         <div id="<?php echo $tab; ?>_<?php echo $aparato['id']; ?>_consumo" class="consumo-anual-aparato" style="display: none;">
                             <span id="<?php echo $tab; ?>_<?php echo $aparato['id']; ?>_consumo_total_etiqueta"></span>
                             <span> kWh</span><br>
-                            <span>anuales</span>
+                            <span>anuais</span>
                         </div>
                         <input type="hidden" id="<?php echo $tab; ?>_<?php echo $aparato['id']; ?>_consumo_total" name="equipos[<?php echo $tab; ?>][<?php echo $aparato['id']; ?>][consumo_total]" value="<?php echo $aparato['consumo_total']; ?>">
                         <input type="hidden" name="equipos[<?php echo $tab; ?>][<?php echo $aparato['id']; ?>][tipo]" id="<?php echo $tab; ?>_<?php echo $aparato['id']; ?>_tipo" value="4">
@@ -108,7 +108,7 @@ if (isset($resultados['equipos'][$tab])) {
             <td colspan="6" class="total-columna-consumo">
                 <span>Consumo total <?php echo $tabNombre; ?>:</span>
                 <span class="consumo-total-valor" id="total_consumo_<?php echo $tab; ?>"></span>
-                <span class="consumo-total-unidad">kWh/año.</span>
+                <span class="consumo-total-unidad">kWh/ano.</span>
                 <input type="hidden" id="<?php echo $tab; ?>_consumo_total" value="0" />
                 <input type="hidden" id="<?php echo $tab; ?>_nombre" name="equipos[<?php echo $tab; ?>][nombre]" value="<?php echo $tabNombre; ?>" />
             </td>

@@ -31,7 +31,7 @@
                                 <div class="d-flex mb-3">
                                     <div class="ps-3">
                                         <h5 class="card-title">Calculadora avanzada</h5>
-                                        <p class="card-text">Permite realizar el cálculo de <strong class="bold">consumo eléctrico anual de su vivienda</strong> teniendo en cuenta el consumo individual de cada uno de los equipos eléctronicos disponibles en su hogar.</p>
+                                        <p class="card-text">Permite realizar o cálculo do <strong class="bold">consumo eléctrico anual da súa vivenda</strong> tendo en conta o consumo individual de cada un dos equipos eléctronicos dispoñibles no seu fogar.</p>
                                         <a href="/utiles/miguel/datos" class="btn btn-primary">Acceder</a>
                                     </div>
                                 </div>
