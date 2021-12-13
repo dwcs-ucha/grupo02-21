@@ -150,7 +150,7 @@ if(isset($_SESSION['user'])) {
                     if (Validacion::validarPassword($_POST['registerPassword'])) {
                         $registerPassWord = Persona::generate_hash($_POST['registerPassword']);
                     } else {
-                        Erro::addError("registerPassWordError", "La contraseña no cumple los requisitos: 1 Mayuscula,1 Minuscula, 1 carácter especial");
+                        Erro::addError("registerPassWordError", "La contraseña no cumple los requisitos: 1 Mayuscula,1 Minuscula, 1 carácter especial y una longitud entre 8 y 16 digitos.");
                     }
                 } else {
                     Erro::addError("registerPassWordError", "Las contraseñales son distintas");
