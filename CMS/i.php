@@ -37,7 +37,7 @@ if (isset($_SESSION['user'])) {
     include '../componentes/menu.php';
     include '../componentes/cookieAlert.php';
     ?>
-    <div class="fondo alto pt-5">
+    <div class="fondo pt-5">
         <?php
         $titulo = "";
         $cuerpo = "";
@@ -46,7 +46,7 @@ if (isset($_SESSION['user'])) {
         $errorCuerpo = "";
         $errorImg = "";
         ?>
-        <main class="container border border-5 border border-primary border rounded-3 bg-light">
+        <main class="container border border-5 border border-primary border rounded-3 bg-light pb-5 mb-5">
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="formulario" id="formulario">
                 <div class="col-12 pt-5 pb-1">
                     <h1 class="text-primary">Titulo</h1>
@@ -129,7 +129,7 @@ if (isset($_SESSION['user'])) {
             $articulos = DAO::getArticles();
             if ($articulos != null) {
             ?>
-                <table border="1">
+                <table class="table table-striped" border="1">
                     <tr>
                         <th>Titulo</th>
                         <th>Cuerpo </th>
@@ -147,7 +147,7 @@ if (isset($_SESSION['user'])) {
                                 <td><?php echo $novas->getCuerpo() ?></td>
                                 <td><img src="<?php echo $novas->getImg() ?>" /></td>
                                 <td><?php echo $novas->getCreacion() ?></td>
-                                <td><input type="submit" name="delete"></a></td>
+                                <td><input class="btn btn-primary" type="submit" name="delete"></a></td>
                             </tr>
                         </form>
                 <?php

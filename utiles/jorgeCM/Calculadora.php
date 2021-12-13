@@ -145,6 +145,9 @@ include_once './Class/classCalculadora.php';
         </fieldset
        </form> 
        </div>   
+    <?php
+            include '../../componentes/footer.php'
+            ?>
         </div>
     </body>
 </html>

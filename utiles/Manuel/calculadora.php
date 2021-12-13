@@ -104,7 +104,7 @@
                                         <?php echo $error_euros2."<br/>"; ?>
 					<input type="text" name="euros" value="<?php echo $euros ?>">
 				</p>
-				<p><button type="submit" style="background-color:#4CFE24" name='submit'>Calcular</button></p>
+				<p><button class="btn btn-primary" type="submit"  name='submit'>Calcular</button></p>
 			</fieldset>	
                             <?php
                             if(( isset($_POST['submit']))&&($validaciones==true)) { 
