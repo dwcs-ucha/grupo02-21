@@ -18,8 +18,8 @@ require_once "../../Class/Admin.class.php";
 require_once "../../Class/Usuario.class.php";
 
 session_start();
-if (isset($_SESSION['userLogged'])) {
-    $user = $_SESSION['userLogged'];
+if (isset($_SESSION['user'])) {
+    $login = $_SESSION['user']['login'];
 } else {
     header("Location: ../../Login/signIn.php");
 }
@@ -103,12 +103,12 @@ if (isset($_SESSION['userLogged'])) {
 
                 $deviceOne[] = new Devices($deviceName, $deviceNumber, $devicePower, $deviceHours);
 
-                Fm::setData($deviceOne, "a", $user->getLogin());
+                Fm::setData($deviceOne, "a", $login);
                 echo "<meta http-equiv='refresh' content='0'>";
             }
 
 
-            if (Fm::fileStatus($user->getLogin())) {
+            if (Fm::fileStatus($login)) {
             ?>
                 <br><br>
         </div>
@@ -128,7 +128,7 @@ if (isset($_SESSION['userLogged'])) {
 
                         <?php
                         $line = 0;
-                        $dataBase = Fm::getCalc($user->getLogin());
+                        $dataBase = Fm::getCalc($login);
                         $sumDaily = $sumMonthly = 0;
                         foreach ($dataBase as $calcs) {
                             echo '<tr class="table-primary">';
@@ -158,7 +158,7 @@ if (isset($_SESSION['userLogged'])) {
         <?php
                 //Llamada a la función que borra el CSV entero.
                 if (isset($_POST['erase'])) {
-                    Fm::emptyCsv($user->getLogin());
+                    Fm::emptyCsv($login);
                     echo "<meta http-equiv='refresh' content='0'>";
                 }
 
@@ -169,9 +169,9 @@ if (isset($_SESSION['userLogged'])) {
                     $remove = Fm::rmDevice($dataBase, $_POST['fileNumber']);
                     $ordered = array_values($remove);
                     if (empty($ordered)) {
-                        Fm::emptyCsv($user->getLogin());
+                        Fm::emptyCsv($login);
                     } else {
-                        Fm::setData($ordered, "w", $user->getLogin());
+                        Fm::setData($ordered, "w", $login);
                     }
                     echo "<meta http-equiv='refresh' content='0'>";
                 }
