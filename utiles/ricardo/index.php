@@ -54,7 +54,7 @@ CABECEIRA:
         }
     }
     ?>
-    <div id="fondo">
+    <div class="fondo">
         <div class="col-12 pt-5 pb-1">
             <h1 class="text-primary">CALCULADORA DE AFORRO ENERXÉTICOS</h1>
         </div>
@@ -62,11 +62,11 @@ CABECEIRA:
          <div class="col-12 col-lg-12">
             <form action="index.php" method="post">
                 <div>
-                    <h1 id="tradicional">cantidad bombillas tradicionales:</h1>
+                    <p id="tradicional">cantidad bombillas tradicionales:</p>
                     <input type="number" step="any" id="cantidadTradicionales" name="cantidadTradicionales">
-                    <h1 id="tradicional">consume medio total(W) de cada bombilla tradicional:</h1>
+                    <p id="tradicional">consume medio total(W) de cada bombilla tradicional:</p>
                     <input type="number" step="any" id="lumenes" name="lumenes">
-                    <h1 id="tradicional">coste de energía de las bombillas tradicionales(KW/h)</h1>
+                    <p id="tradicional">coste de energía de las bombillas tradicionales(KW/h)</p>
                     <input type="number" step="any" id="costeEnergia" name="costeEnergia">
                 </div>
              
@@ -74,11 +74,11 @@ CABECEIRA:
                 <hr>
                 <br>
                 <div id="LED">
-                    <h1>cantidad bombillas LED:</h1>
+                    <p>cantidad bombillas LED:</p>
                     <input type="number" step="any" id="cantidadLED" name="cantidadLED">
-                    <h1>consume medio total(W) de cada bombilla LED:</h1>
+                    <p>consume medio total(W) de cada bombilla LED:</p>
                     <input type="number" step="any" id="lumenesLED" name="lumenesLED">
-                    <h1>coste de energía de las bombillas LEDS(KW/h)</h1>
+                    <p>coste de energía de las bombillas LEDS(KW/h)</p>
                     <input type="number" step="any" id="costeEnergiaLED" name="costeEnergiaLED">
 
                 </div>
