@@ -46,6 +46,9 @@ if (!isset($_SESSION['articulo'])) {
                     </div>
                 </div>
             </main>
+            <?php
+            include '../componentes/footer.php'
+            ?>
         </div>
     </body>
 </html>

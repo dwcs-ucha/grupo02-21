@@ -51,6 +51,12 @@
                          <li class="nav-item">
                             <a class="nav-link text-white" href="/Login/adminRegPanel.php">Panel de Administración</a>
                         </li>
+                        <li>
+                            <a class="nav-link text-white" href="/Login/adminDelUser.php">Borrar usuarios</a>
+                        </li>
+                        <li>
+                            <a class="nav-link text-white" href="/CMS/i.php">Escribir artigo</a>
+                        </li>
                         <?php
                     } else {
                         ?>
