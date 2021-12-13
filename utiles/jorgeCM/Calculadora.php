@@ -21,7 +21,7 @@ include_once './Class/classCalculadora.php';
 <div class="fondo">
         <div class="container pt-5">
             <h1 class="text-primary">Calculadora eficiencia enerxética</h1>
-            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="formulario" id="formulario">
+            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="formulario" id="formulario" style="margin:0;">
                 <fieldset class="fieldset">
                      <div class="row">
                          <div class="col-6">
