@@ -7,9 +7,9 @@
  class Vivienda{
      
      public static $provincias=array('Alava','Albacete','Alicante','Almería','Asturias','Avila','Badajoz','Barcelona','Burgos','Cáceres',
-                                     'Cádiz','Cantabria','Castellón','Ciudad Real','Córdoba','La Coruña','Cuenca','Gerona','Granada','Guadalajara',
+                                     'Cádiz','Cantabria','Castellón','Ciudad Real','Córdoba','A coruña','Cuenca','Gerona','Granada','Guadalajara',
                                      'Guipúzcoa','Huelva','Huesca','Islas Baleares','Jaén','León','Lérida','Lugo','Madrid','Málaga','Murcia','Navarra',
-                                     'Orense','Palencia','Las Palmas','Pontevedra','La Rioja','Salamanca','Segovia','Sevilla','Soria','Tarragona',
+                                     'Ourense','Palencia','Las Palmas','Pontevedra','La Rioja','Salamanca','Segovia','Sevilla','Soria','Tarragona',
                                      'Santa Cruz de Tenerife','Teruel','Toledo','Valencia','Valladolid','Vizcaya','Zamora','Zaragoza');
 
      public static $potencia =array(3.45,4.6,5.75,6.9,8.05,9.2,10.35,11.5,14.49);
@@ -104,7 +104,8 @@
           * TUR 1 	5.44 €/mes 	0.0446 €/kWh
           * TUR 2 	10.23 €/mes 	0.0412 €/kWh
           * TUR 3 	21.99 €/mes 	0.0387 €/kWh
-        * Electricidad    Fijo(€/kW año)    Término Variable C.(€/kW)
+        * Electricidade
+        *     Fijo(€/kW año)    Término Variable C.(€/kW)
             *  Punta 	33,78566 	0,133118
         * Gasoleo
             *0,948443 €/l.   
@@ -118,7 +119,7 @@
          switch ($tipoCalc){
             case "Gas": $tipo=0.04469191;//ASUMIMOS EL TUR1
                 break;
-            case "Electricidad": $tipo= 0.133118 /$potencia;
+            case "Electricidade": $tipo= 0.133118 /$potencia;
                 break;
             case "Gasoleo":$tipo=0.948443;
                 break;
@@ -135,7 +136,7 @@
          switch ($tipoACS){
             case "Gas": $tipo=0.04469191;//ASUMIMOS EL TUR1
                 break;
-            case "Electricidad": $tipo= 33.78566/$potencia;
+            case "Electricidade": $tipo= 33.78566/$potencia;
                 break;
             case "Gasoleo":$tipo=0.948443;
                 break;
@@ -154,31 +155,31 @@
      }
      public function consumoTotal($consumoCalc,$consumoACS,$consumoRefrig) {
          $consumoTotal=$consumoCalc+$consumoACS+$consumoRefrig;
-         echo 'El consumo total de tu vivienda es de: '. round($consumoTotal,2)."€<br>";
+         echo 'O consumo total da túa vivenda é de: '. round($consumoTotal,2)."€<br>";
      }
      public function calculoEficiencia($zona) {
      $eficiencia=$this->superficie*$zona;
      
          if($eficiencia<=50){
-           echo "Tu eficiencia energética es de una calificación A+";
+           echo "A túa eficiencia enerxética e dunha A+";
          }
              elseif ($eficiencia>50 && $eficiencia<=60) {
-             echo "Tu eficiencia energética es de una calificación A";
+             echo "A túa eficiencia enerxética e dunha A";
              }
              elseif ($eficiencia>60 && $eficiencia<=70) {
-                 echo "Tu eficiencia energética es de una calificación B";
+                 echo "A túa eficiencia enerxética e dunha B";
              }
              elseif ($eficiencia>70 && $eficiencia<=80) {
-                 echo "Tu eficiencia energética es de una calificación C";
+                 echo "A túa eficiencia enerxética e dunha C";
              }
              elseif ($eficiencia>80 && $eficiencia<=90) {
-                 echo "Tu eficiencia energética es de una calificación D";
+                 echo "A túa eficiencia enerxética e dunha D";
              }
              elseif ($eficiencia>90 && $eficiencia<=100) {
-                 echo "Tu eficiencia energética es de una calificación E";
+                 echo "A túa eficiencia enerxética e dunha E";
              }
              elseif ($eficiencia>100 ) {
-                 echo "Tu eficiencia energética es de una calificación F";
+                 echo "A túa eficiencia enerxética e dunha F";
              }
 
         }

@@ -15,10 +15,12 @@ class PdfArticulo
     {
         // Arial bold 15
         $this->pdf->SetFont('Arial', 'B', 15);
+        //Color del texto
+        $this->pdf->SetTextColor(0,143,57);
         // Movernos a la derecha
         $this->pdf->Cell(58);
         // Título
-        $this->pdf->Cell(70, 10, $this->articulo->getTitulo(), 1, 0, 'C');
+        $this->pdf->Cell(65, 10, $this->articulo->getTitulo(), 0, 0, 'C');
         // Salto de línea
         $this->pdf->Ln(20);
     }
@@ -37,24 +39,34 @@ class PdfArticulo
     private function getCuerpo()
     {
         //Times 12
-        $this->pdf->SetFont('Times', '', 12);
-        // Imagen
+        $this->pdf->SetFont('Arial', '', 12);
+        //Color del borde, relleno y letra
+        $this->pdf->SetDrawColor(0,143,57);
+        $this->pdf->SetTextColor(0,0,0);
+        $this->pdf->SetFillColor(255,255,255);
+        // Imagen. Si no existe la imagen no se va a imprimir
         $imagen = $this->articulo->getImg();
         if (isset($imagen) && !empty($imagen))
         {
-            $this->pdf->Image($_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/' . $imagen, 80, 80);
+            $this->pdf->Image($_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/' . $imagen, 70, 55);
         }
+
+        //Limpiar el cuerpo del archivo (quitar etiquetas html)
+        $cuerpo = $this->articulo->getCuerpo();
+        $cuerpo = str_replace("&nbsp;"," ",$cuerpo);
+        $cuerpo = strip_tags($cuerpo);
         //Cuerpo
-        $cuerpo = str_replace("&nbsp;"," ",$this->articulo->getCuerpo());
-        $this->pdf->Write(5, $cuerpo);
+        $this->pdf->SetX(65);
+        $this->pdf->MultiCell(90, 10, utf8_decode($cuerpo), 1, 1, 'J', true);
     }
 
     public function descargarPdf() {
-        $this->pdf->AliasNbPages();
+        //$this->pdf->AliasNbPages();
+        
         $this->pdf->AddPage();
         $this->getCabecera();
         $this->getCuerpo();
-        $this->getFooter();
+        //$this->getFooter();
 
         $this->pdf->Output('D', 'publicacion.pdf');
     }

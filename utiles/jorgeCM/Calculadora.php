@@ -1,8 +1,8 @@
 <?php
 /* 
  * Author: Jorge Carreño Miranda
- * Version:1.0.0
- * Last modified: 08/12/2021
+ * Version:2.0.0
+ * Last modified: 8/12/2021
  */
 session_start();
 include_once './Class/classCalculadora.php';
@@ -12,7 +12,7 @@ include_once './Class/classCalculadora.php';
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Eficiencia energética</title>
+        <title>Eficiencia enerxética</title>
         <link rel="stylesheet" href="../../css/custom.css"/>
     </head>
     <body>
@@ -20,7 +20,7 @@ include_once './Class/classCalculadora.php';
         <?php include_once '../../componentes/cookieAlert.php';?>
 <div class="fondo">
         <div class="container pt-5">
-            <h1 class="text-primary">Calculadora eficiencia energética</h1>
+            <h1 class="text-primary">Calculadora eficiencia enerxética</h1>
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="formulario" id="formulario">
                 <fieldset class="fieldset">
                     
@@ -35,7 +35,7 @@ include_once './Class/classCalculadora.php';
                     <div class="col-8">
                 <select name="tipoCalc" class="form-select input-group-text">
                     <option value="Gas" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Gas")) echo "selected"; ?>>Gas</option>
-                    <option value="Electricidad" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Electricidad")) echo "selected"; ?>>Electricidad</option>
+                    <option value="Electricidade" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Electricidade")) echo "selected"; ?>>Electricidade</option>
                     <option value="Gasoleo" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Gasoleo")) echo "selected"; ?>>Gasóleo</option>
                 </select>
                     </div>
@@ -49,12 +49,12 @@ include_once './Class/classCalculadora.php';
                     <div class="col-8">
                 <select name="tipoACS" class="form-select input-group-text">>
                     <option value="Gas" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Gas")) echo "selected"; ?>>Gas</option>
-                    <option value="Electricidad" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Electricidad")) echo "selected"; ?>>Electricidad</option>
+                    <option value="Electricidade" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Electricidade")) echo "selected"; ?>>Electricidade</option>
                     <option value="Gasoleo" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Gasoleo")) echo "selected"; ?>>Gasóleo</option>
                 </select>
                         </div>
                 </div>
-                <p>Refrigeración</p>
+                <p>Refrixeración</p>
                 <pre> kWh/m²                        Tipo</pre>
                 <div class="row mb-4">
                     <div class="col-4">
@@ -62,11 +62,11 @@ include_once './Class/classCalculadora.php';
                  </div>
                     <div class="col-8">
                 <select name="tipoRef" class="form-select input-group-text">
-                    <option value="Electricidad" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Electricidad")) echo "selected"; ?>>Electricidad</option>
+                    <option value="Electricidade" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Electricidade")) echo "selected"; ?>>Electricidade</option>
                 </select>
                     </div>
                 </div>
-                <p>Datos de la vivienda</p>
+                <p>Datos da vivenda</p>
                 <pre>Superficie                     Tipo</pre>
                 <div class="row mb-4">
                     <div class="col-4">
@@ -139,7 +139,7 @@ include_once './Class/classCalculadora.php';
             ?>
             <img style="margin-right:100% " src="imagen/eficiencia-energetica.png"  alt="imagen eficiencia energética"/>
             <?php $Vivienda->consumoTotal($consumoCalc,$consumoACS,$consumoRefrig);?>
-            <?php $Vivienda->calculoEficiencia($zona,$consumoCalc, $consumoACS, $consumoRefrig);?>
+            <p><?php $Vivienda->calculoEficiencia($zona,$consumoCalc, $consumoACS, $consumoRefrig);?><p>
             <?php
             }
         

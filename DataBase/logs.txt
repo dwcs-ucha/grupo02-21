@@ -61,3 +61,4 @@
 2021.12.12-21:18:25 - ADMIN se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
 2021.12.12-21:37:00 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
 2021.12.12-21:37:09 - ADMIN se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
+2021.12.13-10:15:30 - INVITADO se ha intentado loguear como LEMMY KILMISTER en la aplicación desde 127.0.0.1(Ubicación desconocida) - UserAuthenticateError:<br>No parece haber ningún usuario con ese nombre<br>
