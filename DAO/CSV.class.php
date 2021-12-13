@@ -6,7 +6,7 @@
  */
 class CSV
 {
-    private static $files = array('users' => '../DataBase/users.csv', 'logs' => '../DataBase/logs.txt', 'idiomas' => '../DataBase/idioma', 'articulos' => '../DataBase/articulos.csv', 'visitas' => '../DataBase/visitas.csv');
+    private static $files = array('users' => '../DataBase/users.csv', 'logs' => '../DataBase/logs.txt', 'idiomas' => '../DataBase/idioma', 'articulos' => '../DataBase/articulos.csv', 'visitas' => '../DataBase/visitas.csv', 'calculadoraAvanzada', '../DataBase/calculadoraAvanzada.csv');
 
     /**
      * Comprueba si el fichero pasado existe
@@ -89,6 +89,10 @@ class CSV
                     } else if ($type == 'visitas') {
                         $visit = new Visitas($data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6]);
                         $fileData[] = $visit;
+                    } else if($type == 'calculadora') {
+                        $user = self::getUser($data[0]);
+                        $calculadora = new DatosCalculadoraAvanzada($user, $data[1]);
+                        $fileData[] = $calculadora;
                     }
                 }
                 return $fileData;
@@ -111,6 +115,8 @@ class CSV
             $type = 'articulos';
         } else if ($file == 'visitas') {
             $type = 'visitas';
+        } else if($file == 'calculadoraAvanzada') {
+            $type = 'calculadora';
         }
         $file = self::$files[$file];
         if (self::existsFile($file)) {
@@ -133,6 +139,11 @@ class CSV
                 } else if ($type == 'visitas') {
                     foreach ($data as $visit) {
                         $object = $visit->formatVisit();
+                        fputcsv($fp, $object, ';');
+                    }
+                } else if($type == 'calculadora') {
+                    foreach ($data as $calculadora) {
+                        $object = $calculadora->formatData();
                         fputcsv($fp, $object, ';');
                     }
                 }
@@ -503,5 +514,41 @@ class CSV
     {
         $visits = self::readCSV('visitas', 'visitas');
         return $visits;
+    }
+
+    /**
+     * Recoger los datos de un usuario
+     *
+     * @param String $username Nombre de Usuario
+     * 
+     * @return DatosCalculadoraAvanzada
+     */
+
+    public static function getDataCalc($username) {
+        $dataCalc = self::getDataCalcs();
+        foreach($dataCalc as $calc) {
+            if($calc->getUserName() == $username) {
+                return $calc;
+            }
+        }
+    }
+
+    /**
+     * Insertar datos de la calculadora avanzada, nombre de usuario y los datos
+     * 
+     * @param DatosCalculadoraAvanzada
+     * 
+     * @return void
+     */
+
+    public static function insertDataCalc($calc) {
+        $dataCalc = self::getDataCalcs();
+        $dataCalc[] = $calc;
+        self::writeCSV('calculadoraAvanzada', $dataCalc); 
+    }
+
+    private static function getDataCalcs() {
+        $dataCalc = self::readCSV('calculadoraAvanzada', 'calculadora');
+        return $dataCalc;
     }
 }

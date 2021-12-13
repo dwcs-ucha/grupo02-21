@@ -251,6 +251,8 @@ class DAO
     }
     /**
      * Recoger un objeto de tipo articulo
+     * 
+     * @param String $titulo Titulo de la publicacion
      *
      * @return Publicacion
      */
@@ -350,5 +352,37 @@ class DAO
             BD::getVisits();
         }
     }*/
+
+    /**
+     * Recoger los datos de un usuario
+     *
+     * @param String $username Nombre de Usuario
+     * 
+     * @return DatosCalculadoraAvanzada
+     */
+
+    public static function getDataCalc($username) {
+        $calc = null;
+        if(self::$modo == 'csv') {
+            $calc = CSV::getDataCalc($username);
+        }
+        return $calc;
+    }
+
+    /**
+     * Insertar datos de la calculadora avanzada, nombre de usuario y los datos
+     * 
+     * @param DatosCalculadoraAvanzada
+     * 
+     * @return void
+     */
+
+    public static function insertDataCalc($calc) {
+        if(self::$modo == 'csv') {
+            CSV::insertDataCalc($calc);
+        }
+    }
+
+
 
 }
