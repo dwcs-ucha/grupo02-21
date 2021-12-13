@@ -21,58 +21,96 @@ include_once './Class/classCalculadora.php';
 <div class="fondo">
         <div class="container pt-5">
             <h1 class="text-primary">Calculadora eficiencia energética</h1>
-       
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="formulario" id="formulario">
                 <fieldset class="fieldset">
-
-                     <div class="tamaño">
+                    
+                     <div class="row">
+                         <div class="col-6">
                 <p>Calefacción</p>
-                <pre> kWh/m²                         Tipo</pre>
-                <input class="txt" type="number" name="calefaccion" value="">
-                <select name="tipoCalc">
+                <pre> kWh/m²                        Tipo</pre>
+                <div class="row mb-4">
+                    <div class="col-4">
+                <input class="input-group-text" style="width: 100%" type="number" name="calefaccion" value="">
+                    </div>
+                    <div class="col-8">
+                <select name="tipoCalc" class="form-select input-group-text">
                     <option value="Gas" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Gas")) echo "selected"; ?>>Gas</option>
                     <option value="Electricidad" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Electricidad")) echo "selected"; ?>>Electricidad</option>
                     <option value="Gasoleo" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Gasoleo")) echo "selected"; ?>>Gasóleo</option>
-                </select><br></br>
+                </select>
+                    </div>
+                </div>
                 <p>ACS</p>
-                <pre> kWh/m²                         Tipo</pre>
-                <input class="txt" type="number" name='ACS' value="">
-                <select name="tipoACS">
+                <pre> kWh/m²                        Tipo</pre>
+                <div class="row mb-4">
+                    <div class="col-4">
+                <input class="input-group-text"  style="width: 100%" type="number" name='ACS' value="">
+                </div>
+                    <div class="col-8">
+                <select name="tipoACS" class="form-select input-group-text">>
                     <option value="Gas" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Gas")) echo "selected"; ?>>Gas</option>
                     <option value="Electricidad" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Electricidad")) echo "selected"; ?>>Electricidad</option>
                     <option value="Gasoleo" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Gasoleo")) echo "selected"; ?>>Gasóleo</option>
-                </select><br></br>
+                </select>
+                        </div>
+                </div>
                 <p>Refrigeración</p>
-                <pre> kWh/m²                         Tipo</pre>
-                <input class="txt" type="number" name="refrigeracion" value="">
-                <select name="tipoRef">
+                <pre> kWh/m²                        Tipo</pre>
+                <div class="row mb-4">
+                    <div class="col-4">
+                        <input class="input-group-text" style="width: 100%"  type="number" name="refrigeracion" value="">
+                 </div>
+                    <div class="col-8">
+                <select name="tipoRef" class="form-select input-group-text">
                     <option value="Electricidad" <?php if(isset($_POST['enviar']) && ($_POST['calefaccion']=="Electricidad")) echo "selected"; ?>>Electricidad</option>
-                </select><br></br>
+                </select>
+                    </div>
+                </div>
                 <p>Datos de la vivienda</p>
-                <pre>superficie                      Tipo</pre>
-                <input class="txt" type="number" name="superficie" value="">
-                <select name="tipoSuperf">
+                <pre>Superficie                     Tipo</pre>
+                <div class="row mb-4">
+                    <div class="col-4">
+                <input class="input-group-text" style="width: 100%" type="number" name="superficie" value="">
+                </div>
+                    <div class="col-8">
+                <select name="tipoSuperf" class="form-select input-group-text">
                     <option value="Unifamiliar" <?php if(isset($_POST['enviar']) && ($_POST['superficie']=="unifamiliar")) echo "selected"; ?>>Unifamiliar</option>
                     <option value="Bloque" <?php if(isset($_POST['enviar']) && ($_POST['superficie']=="bloque")) echo "selected"; ?>>Bloque </option>
-                </select><br></br>
-                <p class="PE">Provincia</p>
-                <select class="prov" required name="provincia" >
+                </select>
+                    </div>
+                </div>
+                <p >Provincia</p>
+                <div class="row mb-4">
+                    <div class="col-12">
+                <select  required name="provincia" style="width: 68%" class="form-select input-group-text"> >
                         <?php
                         foreach (Vivienda:: $provincias as $nombre){
                             echo '<option value="'.$nombre.'">'.$nombre.'</option>';
                         }
                         ?>
-                  </select><br>
-                <p class="PE">Potencia eléctrica PUNTA</p>
-                <select class="prov" name="potencia" >
+                </select>
+                    </div>
+                </div>
+                <p>Potencia eléctrica PUNTA</p> 
+                <div class="row ">
+                    <div class="col-4"> 
+                <select  name="potencia" style="width: 100%" class="form-select input-group-text"> >
                     <?php
                         foreach (Vivienda:: $potencia as $valor){
                             echo '<option value="'.$valor.'">'.$valor.'KW</option>';
                         }
                         ?>
-                </select><br></br>
-                </div>
-                <input class="calc" type="submit" name="calcular" value="calcular"><br></br>
+                </select>
+                    </div>
+                    <div class="col-8">
+                <input class="btn btn-primary mx-5" type="submit" name="calcular" value="calcular">
+                <br></br><br>
+                    </div>
+                         </div>
+                         </div>
+                         <div class="col-6 mt-5 ">
+                             
+               
                 
                 
                 
@@ -98,19 +136,20 @@ include_once './Class/classCalculadora.php';
             $consumoCalc=$Vivienda->calculaCalefaccion($tipoCalc,$Vivienda->getPotenciaPunta(),$zona);
             $consumoACS=$Vivienda->calculaACS($tipoACS,$Vivienda->getPotenciaPunta(),$zona);
             $consumoRefrig=$Vivienda->calculaRefrigeracion($tipoRef,$Vivienda->getPotenciaPunta(),$zona);
-            echo '<d civ align:right>';
-            echo '<div class="rounded float-end"><img src="imagen/eficiencia-energetica.png" alt="imagen eficiencia energética"/></div>';
-            $Vivienda->consumoTotal($consumoCalc,$consumoACS,$consumoRefrig);
-            $Vivienda->calculoEficiencia($zona,$consumoCalc, $consumoACS, $consumoRefrig);
-            echo '</div>';
+            ?>
+            <img style="margin-right:100% " src="imagen/eficiencia-energetica.png"  alt="imagen eficiencia energética"/>
+            <?php $Vivienda->consumoTotal($consumoCalc,$consumoACS,$consumoRefrig);?>
+            <?php $Vivienda->calculoEficiencia($zona,$consumoCalc, $consumoACS, $consumoRefrig);?>
+            <?php
             }
-        echo '</div>';
+        
         ?>
-                <br/>
-            </div>
+                   
+                  </div>
+                </div>
         </fieldset
        </form> 
-            
+       </div>   
         </div>
     </body>
 </html>
