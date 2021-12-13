@@ -17,7 +17,7 @@ session_start();
 if (isset($_SESSION['user'])) {
     $rol = $_SESSION['user']['rol'];              
     if ($rol != "Admin"){    
-        header('Location: ../index.php');
+        header('Location: /index.php');
     }
 } else {
     header('Location: signUp.php');

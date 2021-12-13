@@ -38,6 +38,7 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" aria-current="page" href="/Login/signIn.php">Login</a>
                 </li>
+                
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/Login/signUP.php">Rexistro</a>
                 </li>
