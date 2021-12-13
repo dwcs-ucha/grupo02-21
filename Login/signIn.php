@@ -75,9 +75,15 @@ if (isset($_SESSION['userLogged'])) {
                 registrarLogIn(3);
             } else {
                 $user = DAO::authenticateUser($login, $passWord);
-                if ($user != null) {
-                    $_SESSION['userLogged'] = $user;                   
-
+                if ($user != null) {                    
+                    $_SESSION['user']['rol'] = $user->getRol();
+                    $_SESSION['user']['nombre'] = $user->getName();
+                    $_SESSION['user']['login'] = $user->getLogin();                 
+                    $_SESSION['user']['apellido'] = $user->getSurName();
+                    $_SESSION['user']['correo'] = $user->getEmail();
+                    if ($user->getRol() != "Admin") {
+                    $_SESSION['user']['direccion'] = $user->getAddress();
+                    }
                     registrarLogIn(1, $login);
 
                     //Comprobamos el rol del usuario logueado.
@@ -111,7 +117,7 @@ if (isset($_SESSION['userLogged'])) {
         {
             $ip = Visitas::guessIP();
             $location = Visitas::locateIP($ip);
-            $username=$_SESSION['userLogged'];
+            $username=$_SESSION['user'];
             $fecha=getDate();
             $fecha= $fecha['year'] . "." . sprintf("%02d", $fecha['mon']) . "." . sprintf("%02d", $fecha['mday'])
             . "-" . sprintf("%02d", $fecha['hours']) . ":" . sprintf("%02d", $fecha['minutes']) . ":" . sprintf("%02d", $fecha['seconds']);
@@ -122,7 +128,7 @@ if (isset($_SESSION['userLogged'])) {
             switch ($tipo) {
                 case 1:
                     // Login correcto
-                    DAO::insertVisit(new Visitas($username->getLogin(), $ip, $fecha, $serveName, $browser, $so, $requestTime));
+                    DAO::insertVisit(new Visitas( $_SESSION['user']['login'], $ip, $fecha, $serveName, $browser, $so, $requestTime));
                     DAO::writeLog(new Log("se ha logueado en la aplicación desde " . $ip . "(" . $location . ")", $login));
                     break;
                 case 2:

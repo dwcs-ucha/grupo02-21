@@ -1,5 +1,4 @@
 <?php
-
 /**
  *@author Alexia Caride Yáñez
  *@modificado 02/12/2021
@@ -44,9 +43,9 @@
                 </li>
                 <?php
                 session_status() === PHP_SESSION_ACTIVE ?: session_start();
-                if (isset($_SESSION['userLogged'])) {
-                    $user = $_SESSION['userLogged'];
-                    if ($user->getRol() == "Admin"){
+                if (isset($_SESSION['user'])) {
+                    $rol = $_SESSION['user']['rol'];              
+                    if ($rol == "Admin"){                    
                         ?>
                          <li class="nav-item">
                             <a class="nav-link text-white" href="/Login/adminRegPanel.php">Panel de Administración</a>

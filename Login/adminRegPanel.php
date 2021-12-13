@@ -15,9 +15,9 @@
  $adminError = array();
  //Comento el inicio de Sesión. Se inicia Sesión desde el Menú para poder mostrar el enlace a cerrar sesión si hay una sesion iniciada.
  session_status() === PHP_SESSION_ACTIVE ?: session_start();
- if(isset($_SESSION['userLogged'])) {
-    $user = $_SESSION['userLogged'];
-    if($user->getRol() != 'Admin') {
+ if (isset($_SESSION['user'])) {
+    $rol = $_SESSION['user']['rol'];              
+    if ($rol != "Admin"){    
         header('Location: ../index.php');
     }
 } else {

@@ -12,16 +12,21 @@ include_once "../Class/Erro.class.php";
 
 //Comento el inicio de Sesión. Se inicia Sesión desde el Menú para poder mostrar el enlace a cerrar sesión si hay una sesion iniciada.
 session_status() === PHP_SESSION_ACTIVE ?: session_start();
-if (isset($_SESSION['userLogged'])) {
-    $user = $_SESSION['userLogged'];
+if (isset($_SESSION['user'])) {
+    $rol = $_SESSION['user']['rol'];
+    $nombre = $_SESSION['user']['nombre'];
+    $login = $_SESSION['user']['login'];
+    $apellido = $_SESSION['user']['apellido'];
+    $email = $_SESSION['user']['correo'];
+    $direccion = $_SESSION['user']['direccion'];
 } else {
     header('Location: signUp.php');
 }
 
-$userLogin = $user->getLogin();
+$userLogin = $login;
 $userRol = "Usuario";
 $userActivate = 1;
-$userEmail = $user->getEmail();
+$userEmail = $email;
 $userError = array();
 ?>
 
@@ -50,17 +55,17 @@ $userError = array();
                             <div class="col-12 col-lg-12 px-3 mt-3">
                                 <!-- Nombre de Login -->
                                 <label for="userLogin">Login</label>
-                                <input disabled type="text" name="userLogin" class="input-group-text" value="<?php echo $user->getLogin(); ?>" />
+                                <input disabled type="text" name="userLogin" class="input-group-text" value="<?php echo $login; ?>" />
                             </div>
                             <div class="col-12 col-lg-12 px-3 mt-3">
                                 <!-- Nombre del Usario -->
                                 <label for="userName">Nombre</label>
-                                <input type="text" name="userName" class="input-group-text" value="<?php echo $user->getName(); ?>" />
+                                <input type="text" name="userName" class="input-group-text" value="<?php echo $nombre; ?>" />
                             </div>
                             <div class="col-12 col-lg-12 px-3 mt-3">
                                 <!-- Apellido del Usario -->
                                 <label for="userSurName">Apellidos</label>
-                                <input type="text" name="userSurName" class="input-group-text" value="<?php echo $user->getSurName(); ?>" />
+                                <input type="text" name="userSurName" class="input-group-text" value="<?php echo $apellido; ?>" />
                             </div>
                             <div class="col-12 col-lg-12 px-3 mt-3">
                                 <!-- Campo Password. Por seguridad en caso de fallo no recupera el valor de la conrtaseña -->
@@ -75,11 +80,11 @@ $userError = array();
                             <div class="col-12 col-lg-12 px-3 mt-3">
                                 <!-- Email -->
                                 <label for="userEmail">Correo Electronico </label>
-                                <input type="userEmail" name="userEmail" class="input-group-text" value="<?php echo $user->getEmail(); ?>;" disabled />
+                                <input type="userEmail" name="userEmail" class="input-group-text" value="<?php echo $email; ?>" disabled />
                             </div>
                             <div class="col-12 col-lg-12 px-3 mt-3">
                                 <label for="userAddress">Dirección</label>
-                                <input type="text" name="userAddress" id="userAdress" class="input-group-text" value="<?php echo $user->getAddress(); ?>">
+                                <input type="text" name="userAddress" id="userAdress" class="input-group-text" value="<?php echo $email; ?>">
                             </div>
                             <div class="col-12 col-lg-12 px-3 mt-3 mb-3">
                                 <!-- Input y Reset -->
