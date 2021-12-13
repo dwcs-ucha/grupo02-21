@@ -23,7 +23,7 @@ class PdfArticulo
         // Movernos a la derecha
         $this->pdf->Cell(58);
         // Título
-        $this->pdf->Cell(65, 10, $this->articulo->getTitulo(), 0, 0, 'C');
+        $this->pdf->Cell(65, 10, utf8_decode($this->articulo->getTitulo()), 0, 0, 'C');
         // Salto de línea
         $this->pdf->Ln(20);
     }
@@ -55,12 +55,12 @@ class PdfArticulo
         }
 
         //Limpiar el cuerpo del archivo (quitar etiquetas html)
-        $cuerpo = $this->articulo->getCuerpo();
+        /*$cuerpo = $this->articulo->getCuerpo();
         $cuerpo = str_replace("&nbsp;"," ",$cuerpo);
-        $cuerpo = strip_tags($cuerpo);
+        $cuerpo = strip_tags($cuerpo);*/
         //Cuerpo
-        $this->pdf->SetX(65);
-        $this->pdf->MultiCell(90, 10, utf8_decode($cuerpo), 1, 1, 'J', true);
+        //$this->pdf->SetX(65);
+        $this->pdf->WriteHTML(utf8_decode($cuerpo));
     }
 
     public function descargarPdf() {
