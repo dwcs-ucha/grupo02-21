@@ -78,6 +78,7 @@ if (!$resultados && isset($_SESSION['calculadora_miguel']['resultados'])) {
             </div>
         </form>
     </div>
+    <?php include '../../../componentes/footer.php'; ?>
 </body>
 <!-- Javascript de la página -->
 <!-- Calcula en tiempo real consumos para mostrar al usuario -->
