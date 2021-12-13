@@ -37,7 +37,7 @@ if (isset($_SESSION['user'])) {
     include '../componentes/menu.php';
     include '../componentes/cookieAlert.php';
     ?>
-    <div class="fondo pt-5">
+    <div class="fondo alto pt-5">
         <?php
         $titulo = "";
         $cuerpo = "";
