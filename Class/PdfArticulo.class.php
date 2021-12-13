@@ -55,8 +55,8 @@ class PdfArticulo
         }
 
         //Limpiar el cuerpo del archivo (quitar etiquetas html)
-        /*$cuerpo = $this->articulo->getCuerpo();
-        $cuerpo = str_replace("&nbsp;"," ",$cuerpo);
+        $cuerpo = $this->articulo->getCuerpo();
+        /*$cuerpo = str_replace("&nbsp;"," ",$cuerpo);
         $cuerpo = strip_tags($cuerpo);*/
         //Cuerpo
         //$this->pdf->SetX(65);
