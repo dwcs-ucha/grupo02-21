@@ -8,6 +8,7 @@
 <?php 
 require('Calc.class.php');
 require_once('../../Class/Erro.class.php');
+session_start();
 function lista() {
     $utils = Calc::getUtils();
     foreach($utils as $key => $util) {
