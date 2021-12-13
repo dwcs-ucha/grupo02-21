@@ -14,7 +14,8 @@ include_once "../DAO/DAO.class.php";
 include_once "../Class/Log.class.php";
 //Comento el inicio de Sesión. Se inicia Sesión desde el Menú para poder mostrar el enlace a cerrar sesión si hay una sesion iniciada.
 session_status() === PHP_SESSION_ACTIVE ?: session_start();
-if (isset($_SESSION['userLogged'])) {
+$rol = "invitado";
+if (isset($_SESSION['user'])) {
     header('Location: ../index.php');
 }
 ?>
@@ -34,6 +35,51 @@ if (isset($_SESSION['userLogged'])) {
     include '../componentes/menu.php';
     include_once "../componentes/cookieAlert.php";
     ?>
+ <?php
+
+$login = $passWord = "";
+
+if (isset($_POST['loginSend'])) {
+    //Almacenamos en las variables los datos, después de estar validados.
+    $login = $_POST['loginUserName'];
+    $passWord = $_POST['loginPassWord'];
+
+    if (empty($login) || empty($passWord)) {
+        Erro::addError("EmptyField", "Introduzca Login y contraseña");
+        //echo Erro::showErrors();
+
+        registrarLogIn(3);
+    } else {
+        $user = DAO::authenticateUser($login, $passWord);
+        if ($user != null) {                    
+            $_SESSION['user']['rol'] = $user->getRol();
+            $_SESSION['user']['nombre'] = $user->getName();
+            $_SESSION['user']['login'] = $user->getLogin();                 
+            $_SESSION['user']['apellido'] = $user->getSurName();
+            $_SESSION['user']['correo'] = $user->getEmail();
+            if ($user->getRol() != "Admin") {
+            $_SESSION['user']['direccion'] = $user->getAddress();
+            }
+            registrarLogIn(1, $login);
+
+            //Comprobamos el rol del usuario logueado.
+            //Si es administrador se le dirigen a su panel de administración.
+            if ($user->getRol() == "Admin"){                        
+                header('Location: /Login/adminRegPanel.php');
+            } else {
+            //Si es un usuario se le dirige al indice de la página.                   
+                header('Location: /index.php');
+            }
+        } else {
+            Erro::addError("UserAuthenticateError", "No parece haber ningún usuario con ese nombre");
+            //echo Erro::showErrors();
+
+            registrarLogIn(2, $login);
+        }
+    }
+}
+?>
+
     <div class="fondo alto">
         <div class="container">
             <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
@@ -59,51 +105,8 @@ if (isset($_SESSION['userLogged'])) {
                 </div>
         </div>
         </form>
+       
         <?php
-
-        $login = $passWord = "";
-
-        if (isset($_POST['loginSend'])) {
-            //Almacenamos en las variables los datos, después de estar validados.
-            $login = $_POST['loginUserName'];
-            $passWord = $_POST['loginPassWord'];
-
-            if (empty($login) || empty($passWord)) {
-                Erro::addError("EmptyField", "Introduzca Login y contraseña");
-                //echo Erro::showErrors();
-
-                registrarLogIn(3);
-            } else {
-                $user = DAO::authenticateUser($login, $passWord);
-                if ($user != null) {                    
-                    $_SESSION['user']['rol'] = $user->getRol();
-                    $_SESSION['user']['nombre'] = $user->getName();
-                    $_SESSION['user']['login'] = $user->getLogin();                 
-                    $_SESSION['user']['apellido'] = $user->getSurName();
-                    $_SESSION['user']['correo'] = $user->getEmail();
-                    if ($user->getRol() != "Admin") {
-                    $_SESSION['user']['direccion'] = $user->getAddress();
-                    }
-                    registrarLogIn(1, $login);
-
-                    //Comprobamos el rol del usuario logueado.
-                    //Si es administrador se le dirigen a su panel de administración.
-                    if ($user->getRol() == "Admin"){
-                        echo "<meta http-equiv='refresh' content='0'>";
-                        //header('Location: adminRegPanel.php');
-                    } else {
-                    //Si es un usuario se le dirige al indice de la página.
-                    echo "<meta http-equiv='refresh' content='0'>";
-                        //header('Location: ../index.php');
-                    }
-                } else {
-                    Erro::addError("UserAuthenticateError", "No parece haber ningún usuario con ese nombre");
-                    //echo Erro::showErrors();
-
-                    registrarLogIn(2, $login);
-                }
-            }
-        }
         include_once '../componentes/error.php';
 
         /**
