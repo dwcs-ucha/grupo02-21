@@ -80,3 +80,5 @@
 2021.12.13-12:24:35 - ADMIN se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
 2021.12.13-12:32:05 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
 2021.12.13-12:35:41 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
+2021.12.13-12:50:13 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
+2021.12.13-12:50:24 - ADMIN se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
