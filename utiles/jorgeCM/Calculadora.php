@@ -23,7 +23,6 @@ include_once './Class/classCalculadora.php';
             <h1 class="text-primary">Calculadora eficiencia enerxética</h1>
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="formulario" id="formulario">
                 <fieldset class="fieldset">
-                    
                      <div class="row">
                          <div class="col-6">
                 <p>Calefacción</p>
@@ -58,7 +57,7 @@ include_once './Class/classCalculadora.php';
                 <pre> kWh/m²                        Tipo</pre>
                 <div class="row mb-4">
                     <div class="col-4">
-                        <input class="input-group-text" style="width: 100%"  type="number" name="refrigeracion" value="">
+                        <input class="input-group-text" style="width: 100%"  type="number" name="refrixeracion" value="">
                  </div>
                     <div class="col-8">
                 <select name="tipoRef" class="form-select input-group-text">
@@ -108,19 +107,15 @@ include_once './Class/classCalculadora.php';
                     </div>
                          </div>
                          </div>
-                         <div class="col-6 mt-5 ">
-                             
-               
-                
-                
+                         <div class="col-6 mt-5 ">                 
                 
         <?php
         
         if(isset($_POST['calcular'])){
-           echo '<div class="resultado">';
+           //Creacion de variables
             $calefaccion=(int)$_POST['calefaccion'];
             $ACS=(int)$_POST['ACS'];
-            $refrigeracion=(int)$_POST['refrigeracion'];
+            $refrixeracion=(int)$_POST['refrixeracion'];
             $superficie=(int)$_POST['superficie'];
             $potenciaPunta=(float)$_POST['potencia'];
             $provincia=$_POST['provincia'];
@@ -129,7 +124,7 @@ include_once './Class/classCalculadora.php';
             $tipoRef=$_POST['tipoRef'];
             $tipoSuperf=$_POST['tipoSuperf'];
             //Creación del objeto
-            $Vivienda=new vivienda($calefaccion, $ACS, $refrigeracion, $superficie,$potenciaPunta);
+            $Vivienda=new vivienda($calefaccion, $ACS, $refrixeracion, $superficie,$potenciaPunta);
             //metodos del objeto
             $Vivienda->obtenerSuperficie($tipoSuperf);
             $zona=$Vivienda->obtenerZona($provincia);

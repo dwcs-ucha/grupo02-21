@@ -41,9 +41,9 @@ session_start();
             <br>
             <?php validaCuerpo(); ?>
             <br>
-            <h4>Imagen</h4>
-            <input type="text" name="img" value="<?php echo $img;?>" placeholder="CMS/imagenes/(Nombre_img)"><br></br>
-            <?php validaImg();?>
+            <h4>Imaxe(opcional)</h4>
+            <input type="text" name="img" value="<?php echo $img;?>" placeholder="/CMS/imagenes/(Nombre_img)">
+            <?php validaImg();?><br></br>
             <input type="submit" value="publicar" name="enviar" />
             <input type="submit" value="borrar todo" name="borrar"/><br></br>
         </div>
@@ -79,10 +79,12 @@ session_start();
     }
     
     function validaImg(){
+        global $img;
         if(isset($_POST['img'])){
-                $img = $_POST['img'];
+                $img = $_POST['img'];  
             }
     }
+    
         
     
     if (isset($_POST['enviar']) && Erro::countErros() == 0) {
@@ -90,9 +92,8 @@ session_start();
         if (DAO::existsArticle($titulo)) {
             Erro::addError('existsTitle', 'El titulo ya existe');
             echo Erro::showErrors();
-        } else {
+        } else {   
             $nuevo = new Publicacion($titulo,$cuerpo,$creacion,$img);
-            var_dump($nuevo);
             DAO::insertArticle($nuevo);
         }
     } else {
