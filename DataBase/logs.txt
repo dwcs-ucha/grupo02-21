@@ -96,3 +96,6 @@
 =======
 >>>>>>> 9fd6d4257aa725645a981e173ca52e3fc2650eef
 >>>>>>> 785fb2224674828a6790b0a202c524fdfee3994c
+2021.12.13-13:11:22 - INVITADO se ha intentado loguear como ADMIN en la aplicación desde 127.0.0.1(Ubicación desconocida) - UserAuthenticateError:<br>No parece haber ningún usuario con ese nombre<br>
+2021.12.13-13:11:35 - ADMIN se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
+2021.12.13-13:11:52 - INVITADO se ha intentado loguear como ADMIN en la aplicación desde 127.0.0.1(Ubicación desconocida) - UserAuthenticateError:<br>No parece haber ningún usuario con ese nombre<br>
