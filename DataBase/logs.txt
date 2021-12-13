@@ -101,3 +101,5 @@
 2021.12.13-13:11:52 - INVITADO se ha intentado loguear como ADMIN en la aplicación desde 127.0.0.1(Ubicación desconocida) - UserAuthenticateError:<br>No parece haber ningún usuario con ese nombre<br>
 2021.12.13-13:49:50 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
 2021.12.13-14:19:24 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
+2021.12.13-14:28:45 - ADMIN se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
+2021.12.13-14:31:36 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)

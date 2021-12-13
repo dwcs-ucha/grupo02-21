@@ -180,6 +180,11 @@ if (isset($_SESSION['user'])) {
         </div>
 
     </div>
+    <br/>
+    
+    <?php 
+        include '../../componentes/footer.php';
+    ?>
 </body>
 
 </html>
