@@ -43,8 +43,8 @@ $userError = array();
     include '../componentes/menu.php';
     include_once "../componentes/cookieAlert.php";
     ?>
-    <div class="fondo alto">
-        <div class="container pb-5">
+    <div class="fondo ">
+        <div class="container alto pb-5">
             <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
                 <div class="col-12 pt-3 pb-1">
                     <h1 class="text-primary">Panel de Usuario</h1>

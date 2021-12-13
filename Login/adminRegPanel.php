@@ -38,7 +38,7 @@
             include_once "../componentes/cookieAlert.php"; 
         ?>
         <div class="fondo alto">
-            <div class="container"> 
+            <div class="container pb-5"> 
             <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>" >
                 <div class="col-12 pt-3 pb-1">
                     <h1 class="text-primary">Registrarse</h1>
