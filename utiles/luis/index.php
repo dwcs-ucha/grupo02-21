@@ -231,6 +231,9 @@ $resultados = isset($_POST) ? $_POST : null;
 
         </div>
     </div>
+    <?php
+        include '../../componentes/footer.php'
+    ?>
 </body>
 
 </html>
