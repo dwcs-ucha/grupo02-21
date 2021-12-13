@@ -33,6 +33,7 @@ if (isset($resultados['equipos'][$tab])) {
         $espacios[$i]['horas'] = 0;
         $espacios[$i]['min'] = 0;
         $espacios[$i]['tipo'] = 5;
+        $espacios[$i]['consumo_total'] = '';
         $i++;
     }
 }

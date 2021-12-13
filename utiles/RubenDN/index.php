@@ -80,7 +80,10 @@ function lista() {
                     </div>
                 </div>
             </div>
-            <?php include_once '../../componentes/error.php'; ?>
+            <?php 
+            include_once '../../componentes/error.php'; 
+            include_once '../../componentes/footer.php';
+            ?>
         </main>
         
 </body>
