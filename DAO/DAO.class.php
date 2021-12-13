@@ -382,7 +382,4 @@ class DAO
             CSV::insertDataCalc($calc);
         }
     }
-
-
-
 }

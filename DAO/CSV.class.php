@@ -547,6 +547,12 @@ class CSV
         self::writeCSV('calculadoraAvanzada', $dataCalc); 
     }
 
+    /**
+     * Recoger un array del objeto de DatosCalculadoraAvanzada
+     * 
+     * @return array
+     */
+
     private static function getDataCalcs() {
         $dataCalc = self::readCSV('calculadoraAvanzada', 'calculadora');
         return $dataCalc;

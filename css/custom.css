@@ -2,7 +2,7 @@
   background-color: #d4f7dd;
 }
 .alto{
-  height: 100vh;
+  min-height: 100vh;
 }
 .eP>a:hover{
   color:black

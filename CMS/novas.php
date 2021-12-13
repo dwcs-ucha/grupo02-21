@@ -21,7 +21,7 @@ session_start();
         <?php
             include '../componentes/menu.php';
         ?>
-        <div class="fondo">
+        <div class="fondo alto">
             <main class="container alto">
                 <div class="col-12 pt-5 pb-1">
                     <h1 class="text-primary">Novas</h1>

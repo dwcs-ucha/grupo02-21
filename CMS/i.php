@@ -37,7 +37,7 @@ if (isset($_SESSION['user'])) {
     include '../componentes/menu.php';
     include '../componentes/cookieAlert.php';
     ?>
-    <div class="fondo pt-5">
+    <div class="fondo alto pt-5">
         <?php
         $titulo = "";
         $cuerpo = "";
@@ -145,7 +145,7 @@ if (isset($_SESSION['user'])) {
                             <tr>
                                 <td><?php echo $novas->getTitulo() ?></td>
                                 <td><?php echo $novas->getCuerpo() ?></td>
-                                <td><img src="<?php echo $novas->getImg() ?>" /></td>
+                                <td><img style="max-width:100px" src="<?php echo $novas->getImg() ?>" /></td>
                                 <td><?php echo $novas->getCreacion() ?></td>
                                 <td><input class="btn btn-primary" type="submit" name="delete"></a></td>
                             </tr>

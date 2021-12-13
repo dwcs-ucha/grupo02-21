@@ -25,7 +25,7 @@ if (!isset($_SESSION['articulo'])) {
       <?php
             include '../componentes/menu.php';
         ?>
-        <div class="fondo">
+        <div class="fondo alto">
         <?php
             $articulos = DAO::getArticles();
             if ($_SESSION['articulo'] != null) {

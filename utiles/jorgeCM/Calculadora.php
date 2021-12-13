@@ -137,9 +137,9 @@ if (isset($_SESSION['user'])) {
             $consumoACS=$Vivienda->calculaACS($tipoACS,$Vivienda->getPotenciaPunta(),$zona);
             $consumoRefrig=$Vivienda->calculaRefrigeracion($tipoRef,$Vivienda->getPotenciaPunta(),$zona);
             ?>
-            <img style="margin-right:100% " src="imagen/eficiencia-energetica.png"  alt="imagen eficiencia energética"/>
-            <?php $Vivienda->consumoTotal($consumoCalc,$consumoACS,$consumoRefrig);?>
             <p><?php $Vivienda->calculoEficiencia($zona,$consumoCalc, $consumoACS, $consumoRefrig);?><p>
+            <?php $Vivienda->consumoTotal($consumoCalc,$consumoACS,$consumoRefrig);?>
+            
             <?php
             }
         

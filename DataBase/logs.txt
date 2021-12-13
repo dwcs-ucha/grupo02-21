@@ -108,7 +108,16 @@
 2021.12.13-17:46:58 - ADMIN se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
 2021.12.13-17:52:47 - ADMIN se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
 2021.12.13-18:20:07 - ADMIN se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
+<<<<<<< HEAD
 2021.12.13-20:12:04 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
 2021.12.13-20:13:28 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
 2021.12.13-20:15:09 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
 2021.12.13-20:36:37 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
+=======
+2021.12.13-19:16:09 - INVITADO se ha intentado loguear como JORGE en la aplicación desde 127.0.0.1(Ubicación desconocida) - UserAuthenticateError:<br>No parece haber ningún usuario con ese nombre<br>
+2021.12.13-19:20:16 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
+2021.12.13-19:22:25 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
+2021.12.13-19:25:32 - ADMIN se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
+2021.12.13-19:26:15 - ADMIN se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
+2021.12.13-19:37:50 - MIGUEL se ha logueado en la aplicación desde 127.0.0.1(Ubicación desconocida)
+>>>>>>> 72bbcea81a04b0984ba4ff6133a324449337e622

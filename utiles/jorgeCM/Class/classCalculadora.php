@@ -213,25 +213,32 @@
      $eficiencia=$this->superficie*$zona;
      
          if($eficiencia<=50){
-           echo "A túa eficiencia enerxética e dunha A+";
+           echo '<img style="margin-right:100% " src="imagen/eficiencia-energeticaA.png"  alt="imagen eficiencia energética"/>';
+           echo "A túa eficiencia enerxética e dunha A";
          }
              elseif ($eficiencia>50 && $eficiencia<=60) {
-             echo "A túa eficiencia enerxética e dunha A";
+                echo '<img style="margin-right:100% " src="imagen/eficiencia-energeticaB.png"  alt="imagen eficiencia energética"/>';
+                echo "A túa eficiencia enerxética e dunha B";
              }
              elseif ($eficiencia>60 && $eficiencia<=70) {
-                 echo "A túa eficiencia enerxética e dunha B";
-             }
-             elseif ($eficiencia>70 && $eficiencia<=80) {
+                 echo '<img style="margin-right:100% " src="imagen/eficiencia-energeticaC.png"  alt="imagen eficiencia energética"/>';
                  echo "A túa eficiencia enerxética e dunha C";
              }
-             elseif ($eficiencia>80 && $eficiencia<=90) {
+             elseif ($eficiencia>70 && $eficiencia<=80) {
+                 echo '<img style="margin-right:100% " src="imagen/eficiencia-energeticaD.png"  alt="imagen eficiencia energética"/>';
                  echo "A túa eficiencia enerxética e dunha D";
              }
-             elseif ($eficiencia>90 && $eficiencia<=100) {
+             elseif ($eficiencia>80 && $eficiencia<=90) {
+                 echo '<img style="margin-right:100% " src="imagen/eficiencia-energeticaE.png"  alt="imagen eficiencia energética"/>';
                  echo "A túa eficiencia enerxética e dunha E";
              }
-             elseif ($eficiencia>100 ) {
+             elseif ($eficiencia>90 && $eficiencia<=100) {
+                 echo '<img style="margin-right:100% " src="imagen/eficiencia-energeticaF.png"  alt="imagen eficiencia energética"/>';
                  echo "A túa eficiencia enerxética e dunha F";
+             }
+             elseif ($eficiencia>100 ) {
+                 echo '<img style="margin-right:100% " src="imagen/eficiencia-energeticaG.png"  alt="imagen eficiencia energética"/>';
+                 echo "A túa eficiencia enerxética e dunha G";
              }
 
         }
