@@ -8,6 +8,13 @@
 <?php 
 require('Calc.class.php');
 require_once('../../Class/Erro.class.php');
+session_start();
+if (isset($_SESSION['user'])) {
+    $login = $_SESSION['user']['login'];
+} else {
+    header("Location: ../../Login/signIn.php");
+}
+
 function lista() {
     $utils = Calc::getUtils();
     foreach($utils as $key => $util) {
@@ -81,6 +88,6 @@ function lista() {
             </div>
             <?php include_once '../../componentes/error.php'; ?>
         </main>
-        
+        <?php include_once '../../componentes/footer.php';?>
 </body>
 </html>

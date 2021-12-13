@@ -23,7 +23,7 @@ class PdfArticulo
         // Movernos a la derecha
         $this->pdf->Cell(58);
         // Título
-        $this->pdf->Cell(65, 10, $this->articulo->getTitulo(), 0, 0, 'C');
+        $this->pdf->Cell(65, 10, utf8_decode($this->articulo->getTitulo()), 0, 0, 'C');
         // Salto de línea
         $this->pdf->Ln(20);
     }
@@ -44,23 +44,23 @@ class PdfArticulo
         //Times 12
         $this->pdf->SetFont('Arial', '', 12);
         //Color del borde, relleno y letra
-        $this->pdf->SetDrawColor(0,143,57);
+        //$this->pdf->SetDrawColor(0,143,57);
         $this->pdf->SetTextColor(0,0,0);
-        $this->pdf->SetFillColor(255,255,255);
+        //$this->pdf->SetFillColor(255,255,255);
         // Imagen. Si no existe la imagen no se va a imprimir
         $imagen = $this->articulo->getImg();
         if (isset($imagen) && !empty($imagen))
         {
-            $this->pdf->Image($_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/' . $imagen, 70, 55);
+            $this->pdf->Image($_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/' . $imagen, 20, 20);
         }
 
         //Limpiar el cuerpo del archivo (quitar etiquetas html)
         $cuerpo = $this->articulo->getCuerpo();
-        $cuerpo = str_replace("&nbsp;"," ",$cuerpo);
-        $cuerpo = strip_tags($cuerpo);
+        /*$cuerpo = str_replace("&nbsp;"," ",$cuerpo);
+        $cuerpo = strip_tags($cuerpo);*/
         //Cuerpo
-        $this->pdf->SetX(65);
-        $this->pdf->MultiCell(90, 10, utf8_decode($cuerpo), 1, 1, 'J', true);
+        //$this->pdf->SetX(65);
+        $this->pdf->WriteHTML(utf8_decode($cuerpo));
     }
 
     public function descargarPdf() {

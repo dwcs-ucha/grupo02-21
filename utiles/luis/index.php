@@ -83,25 +83,25 @@ $resultados = isset($_POST) ? $_POST : null;
                     <img id="img_lvi" class="img_lvi" src="icons/bombilla.png" width="200px" />
                     <br /><br />
                     <p>Bombillas de 60W <span title="Consumo dunha bombilla incandescente convencional.">ⓘ</span></p>
-                    <p id="object_1">0</p>
+                    <p class="lead" id="object_1">0</p>
                 </span>
                 <span class="span_lvi flex">
                     <img id="img_lvi" class="img_lvi" src="icons/tesla.png" width="200px" />
                     <br /><br />
                     <p>Km nun Tesla <span title="Cálculo de 200 Wh por km.">ⓘ</span></p>
-                    <p id="object_2">0</p>
+                    <p class="lead" id="object_2">0</p>
                 </span>
                 <span class="span_lvi flex">
                     <img id="img_lvi" class="img_lvi" src="icons/washer.png" width="200px" />
                     <br /><br />
                     <p>Lavadoras <span title="Lavadora de 1200W.">ⓘ</span></p>
-                    <p id="object_3">0</p>
+                    <p class="lead" id="object_3">0</p>
                 </span>
                 <span class="span_lvi">
                     <img id="img_lvi" class="img_lvi" src="icons/manowar.png" width="200px" />
                     <br /><br />
                     <p>Concertos de Manowar <span title="Durante o 2016 fixeron un concerto con 300.000W entre equipos de sonido e realización.">ⓘ</span></p>
-                    <p id="object_4">0</p>
+                    <p class="lead" id="object_4">0</p>
 
                 </span>
             </div>
@@ -111,25 +111,25 @@ $resultados = isset($_POST) ? $_POST : null;
                     <img id="img_lvi" class="img_lvi" src="icons/family.png" width="200px" />
                     <br /><br />
                     <p>Consumo familiar nun ano <span title="Basado no promedio dun fogar na cidade.">ⓘ</span></p>
-                    <p id="object_5">0</p>
+                    <p class="lead" id="object_5">0</p>
                 </span>
                 <span class="span_lvi">
                     <img id="img_lvi" class="img_lvi" src="icons/soccermatches.png" width="200px" />
                     <br /><br />
                     <p>Partidos de fútbol <span title="Un partido de fútbol pode chegar a consumir ata 25.000 KWh.">ⓘ</span></p>
-                    <p id="object_6">0</p>
+                    <p class="lead" id="object_6">0</p>
                 </span>
                 <span class="span_lvi">
                     <img id="img_lvi" class="img_lvi" src="icons/vigo.png" width="200px" />
                     <br /><br />
                     <p>Nadais de Vigo <span title="En Nova York van alucinar.">ⓘ</span></p>
-                    <p id="object_7">0</p>
+                    <p class="lead" id="object_7">0</p>
                 </span>
                 <span class="span_lvi flex">
                     <img id="img_lvi" class="img_lvi" src="icons/timetravel.png" width="200px" />
                     <br /><br />
-                    <p>Viaxes no tiempo <span title="«Marty, lo siento, pero a única fonte de poder capaz de xerar 1.21 giga watts de potencia eléctrica é un raio.»">ⓘ</span></p>
-                    <p id="object_8">0</p>
+                    <p>Viaxes no tiempo <span title="«Marty, síntoo, pero a única fonte de poder capaz de xerar 1.21 giga watts de potencia eléctrica é un raio.»">ⓘ</span></p>
+                    <p class="lead" id="object_8">0</p>
                 </span>
             </div>
 
@@ -220,10 +220,15 @@ $resultados = isset($_POST) ? $_POST : null;
                     document.getElementById("object_2").innerHTML = parseInt(Wh_counter / objects[1]);
                     document.getElementById("object_3").innerHTML = parseInt(Wh_counter / objects[2]);
                     document.getElementById("object_4").innerHTML = parseInt(Wh_counter / objects[3]);
-                    document.getElementById("object_5").innerHTML = parseInt(Wh_counter / objects[4]);
-                    document.getElementById("object_6").innerHTML = parseInt(Wh_counter / objects[5]);
-                    document.getElementById("object_7").innerHTML = parseInt(Wh_counter / objects[6]);
-                    document.getElementById("object_8").innerHTML = parseInt(Wh_counter / objects[7]);
+                    // Chapuza para que no sume valores en los primeros cálculos del consumo.
+                    // Esto creo que es debido a que PHP encuentra dificultades para operar con números muy grandes.
+                    // No he encontrado otra solución funcional.
+                    if(Wh_counter > 200000) {
+                        document.getElementById("object_5").innerHTML = parseInt(Wh_counter / objects[4]);
+                        document.getElementById("object_6").innerHTML = parseInt(Wh_counter / objects[5]);
+                        document.getElementById("object_7").innerHTML = parseInt(Wh_counter / objects[6]);
+                        document.getElementById("object_8").innerHTML = parseInt(Wh_counter / objects[7]);
+                    }
                 }
 
                 resetTime();
