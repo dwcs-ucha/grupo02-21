@@ -91,7 +91,7 @@ Data de modificación: 10/12/2021
                                     <option value="Litro">Litro</option></select>
                                 <input type="text" name="precio1" value="<?php echo $precio2 ?>">
                                 
-				<p><button type="submit" name='enviar'>Calcular</button></p>
+				<p><button type="submit" class="btn btn-primary" name='enviar'>Calcular</button></p>
 			</fieldset>	
                             <?php
                             if(( isset($_POST['enviar']))&&($validaciones==true)) { 
