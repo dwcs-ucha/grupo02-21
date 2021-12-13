@@ -8,6 +8,12 @@ session_start();
 include_once './Class/classCalculadora.php';
  include '../../componentes/head.php'; 
 
+session_start();
+if (isset($_SESSION['user'])) {
+    $login = $_SESSION['user']['login'];
+} else {
+    header("Location: ../../Login/signIn.php");
+}
 ?>
 <html>
     <head>
