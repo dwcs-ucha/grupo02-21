@@ -114,7 +114,7 @@ Data de modificación: 10/12/2021
 
 
                        
-                       <h1 class="text-primary"> Consellos para reducir o consumo de gas </h1>
+                       <h1 class="text-primary"> Consellos para reducir o consumo da gasolina </h1>
                        <p> Aumentar o rendemento do noso vehículo é unha gran axuda para o noso peto, especialmente cando o prezo da gasolina é alto. Para iso, dámosche algúns consellos que podes aplicar en calquera tipo de vehículo e que che axudarán a reducir este gasto.</p>
                        <p> 1. Evita aceleracións bruscas: a instancia que máis gasolina consume é cando presionamos o acelerador. Canto maior sexa a presión que realicemos neste, maior será o consumo de combustible. </p>
                        <p> 2. En autoestradas, conduza a 90 km/h: na maioría dos vehículos, esta velocidade é a óptima para a eficiencia do motor. Isto significa que percorrerá o número máximo de quilómetros por litro que lle permita o seu vehículo. </p>
