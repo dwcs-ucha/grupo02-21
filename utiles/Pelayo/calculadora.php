@@ -121,6 +121,9 @@ Data de modificación: 10/12/2021
                        <p> 3. Evita viaxar coas fiestras abertas: a mellor aerodinámica do coche chega cando as fiestras están pechadas. Isto reduce a resistencia do vehículo co aire, o que supón un menor consumo de combustible. </p>
 		</div>
 	       </div>
+	     <?php
+	      include '../../componentes/footer.php'
+	     ?>
 	</body>
 </html>
 
