@@ -188,6 +188,7 @@
             </div>
         </main>
     </div>
+    <?php include 'componentes/footer.php';?>
 </body>
 
 </html>
