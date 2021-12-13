@@ -233,7 +233,7 @@ if(isset($_SESSION['user'])) {
     ?>
     </div>
     <?php
-        include '../componentes/footer.php'
+        include '../componentes/footer.php';
     ?>
 </div>
 </body>

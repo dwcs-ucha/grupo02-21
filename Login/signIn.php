@@ -146,6 +146,7 @@ if (isset($_POST['loginSend'])) {
         }
         ?>
     </div>
+    <?php include '../componentes/footer.php'; ?>
     </div>
 </body>
 

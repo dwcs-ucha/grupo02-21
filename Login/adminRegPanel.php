@@ -228,6 +228,7 @@
             </form>
             
             </div>
+            <?php include '../componentes/footer.php'; ?>
         </div>
     </body>
 </html>

@@ -110,7 +110,9 @@ if (isset($_SESSION['user'])) {
                 </div>
             </div>
         </main>
+        <?php include '../componentes/footer.php'; ?>
     </div>
+
 </body>
 
 </html>
