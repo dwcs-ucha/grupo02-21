@@ -10,6 +10,17 @@ require_once '../DAO/DAO.class.php';
 require_once '../Class/Validacion.class.php';
 require_once '../Class/Erro.class.php';
 session_start();
+
+ //Comento el inicio de Sesión. Se inicia Sesión desde el Menú para poder mostrar el enlace a cerrar sesión si hay una sesion iniciada.
+ session_status() === PHP_SESSION_ACTIVE ?: session_start();
+ if(isset($_SESSION['userLogged'])) {
+    $user = $_SESSION['userLogged'];
+    if($user->getRol() != 'Admin') {
+        header('Location: ../index.php');
+    }
+} else {
+    header('Location: signUp.php');
+}
 ?>
 <html>
     <head>
