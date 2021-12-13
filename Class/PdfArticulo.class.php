@@ -11,7 +11,7 @@ class PdfArticulo
     public function __construct($articulo)
     {
         $this->articulo = $articulo;
-        $this->pdf = new FPDF();
+        $this->pdf = new PDF_HTML();
     }
 
     private function getCabecera()
