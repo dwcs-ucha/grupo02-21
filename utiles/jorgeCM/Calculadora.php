@@ -4,7 +4,6 @@
  * Version:2.0.0
  * Last modified: 8/12/2021
  */
-session_start();
 include_once './Class/classCalculadora.php';
  include '../../componentes/head.php'; 
 
