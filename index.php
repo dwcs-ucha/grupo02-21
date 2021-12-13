@@ -132,8 +132,8 @@
                             <div class="card-body">
                                 <div class="d-flex mb-3">
                                     <div class="ps-3">
-                                        <h5 class="card-title">Calculadora de eficiencia energética</h5>
-                                        <p class="card-text">Calculadora encargada de obtener la calificación energética de una vivienda anualmente </p>
+                                        <h5 class="card-title">Calculadora de eficiencia enerxética</h5>
+                                        <p class="card-text">Calculadora encargada de obter la cualificación enerxética dunha vivienda anualmente </p>
                                         <a href="/utiles/jorgeCM/Calculadora.php" class="btn btn-primary">Acceder</a>
                                     </div>
                                 </div>
