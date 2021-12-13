@@ -1,4 +1,4 @@
-<div class="bg-primary py-5 opacity-75 mt-5">
+<div class="bg-primary py-5 opacity-75">
     <div class="container text-white">
         <div class="row">
             <div class="col-12 col-4">
