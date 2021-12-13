@@ -5,7 +5,6 @@
 * @date 9 de diciembre de 2021
 * @version 1.0.0
 */
-
 $hasResultados = isset($resultados['equipos'][$tab]);
 $aparatos = array();
 
@@ -24,6 +23,7 @@ if (isset($resultados['equipos'][$tab])) {
 } else {
     foreach ($datos as $aparato) {
         $aparato['unidades'] = 0;
+        $aparato['consumo_total'] = '';
         $aparatos[] = $aparato;
     }
 }

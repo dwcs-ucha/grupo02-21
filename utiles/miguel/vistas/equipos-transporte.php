@@ -35,6 +35,7 @@ if (isset($resultados['equipos'][$tab])) {
 } else {
     foreach ($datos as $aparato) {
         $aparato['unidades'] = 0;
+        $aparato['consumo_total'] = '';
         $aparatos[] = $aparato;
     }
 }
