@@ -16,7 +16,7 @@
 
 // Cargar clases necesarias
 // Clase Erro para controlar los posibles errores
-include_once '../../../cookieAlert.php';
+include_once '../../../componentes/cookieAlert.php';
 include_once '../../../Class/Erro.class.php';
 
 session_start();

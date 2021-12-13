@@ -1,15 +1,14 @@
 <?php
     require_once '../Class/Cms.class.php';
-    session_start();
+    require_once '../DAO/DAO.class.php';
+    require_once '../Class/PdfArticulo.class.php';
+    require_once '../fpdf/fpdf.php';
 
-    $article; 
+    $articulo = $_GET['articulo'];
+    $article = DAO::getArticle($articulo);
 
-    $pdf = new PDF($articulo);
+    $pdfArticulo = new PdfArticulo($article);
 
-    $pdf->AliasNbPages();
-    $pdf->AddPage();
-    $pdf->SetFont('Times', 'B', 10);
-    $pdf->ImprimirArchivo();
-    $pdf->Output('D');
+    $pdfArticulo->descargarPdf();
 
 ?>
