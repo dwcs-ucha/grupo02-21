@@ -217,7 +217,7 @@ if(isset($_SESSION['user'])) {
                     //echo Erro::showErrors();
                 } else {
                     DAO::insertUser($user);
-                    $link = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] .' /Login/verify.php?email='.$user->getEmail().'&hash='.Persona::generate_hash($user->getEmail());
+                    $link = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] .'/Login/verify.php?email='.$user->getEmail().'&hash='.Persona::generate_hash($user->getEmail());
                     mail_cpanel($user->getLogin(),$user->getEmail(),$user->getAddress(),$link);
                     header("location: ../index.php");                    
                 }
