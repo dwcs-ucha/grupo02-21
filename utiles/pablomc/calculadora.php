@@ -69,15 +69,15 @@ include('funciones.php');
                 <fieldset class="fieldset">
                     <legend class="legend">Calculadora consumo calefacción</legend>
                         <img class="img" src="./css/mapa_calor.png" height="500"/>
-                        <p>Tamaño de la habitación:</p>
+                        <p>Tamaño da habitación:</p>
                         Largo(m)<input type="text" name="largo" value="">
                         Alto(m)<input type="text" name="alto" value="">
                         Ancho(m)<input type="text" name="ancho" value=""><br/><br/>
                         <table border=1 class="table">
                             <tr class="th">
                                 <th rowspan="2"></th>
-                                <th colspan="2">Vivienda no Aislada</th>
-                                <th colspan="2">Vivienda Aislada</th>
+                                <th colspan="2">Vivenda no Aislada</th>
+                                <th colspan="2">Vivenda Aislada</th>
                             </tr>
                             <tr class="th">
                                 <th>Norte</th>
@@ -86,14 +86,14 @@ include('funciones.php');
                                 <th>Sur</th>
                             </tr>
                             <tr class="a">
-                                <td>Zona Roja</td>
+                                <td>Zona Vermella</td>
                                 <td>90</td>
                                 <td>85</td>
                                 <td>80</td>
                                 <td>70</td>
                             </tr>
                             <tr class="b">
-                                <td>Zona Naranja</td>
+                                <td>Zona Laranxa</td>
                                 <td>95</td>
                                 <td>90</td>
                                 <td>85</td>
@@ -122,28 +122,31 @@ include('funciones.php');
                             </tr>
                         </table>
                         <p>Zona climática:</p>
-                        Roja:<input type="radio" name="zona" value="roja">
-                        Naranja:<input type="radio" name="zona" value="naranja">
+                        Vermella:<input type="radio" name="zona" value="roja">
+                        Laranxa:<input type="radio" name="zona" value="naranja">
                         Gris claro:<input type="radio" name="zona" value="grisClaro">
                         Gris oscuro:<input type="radio" name="zona" value="grisOscuro">
                         Morada:<input type="radio" name="zona" value="morada"><br/><br/>
-                        <p>¿Orientada al Norte?</p>
+                        <p>¿Orientada ao Norte?</p>
                         Sí:<input type="radio" name="orientacion" value="norte">
                         No:<input type="radio" name="orientacion" value="sur"><br/><br/>
-                        <p>Aislamiento de la habitación:</p>
-                        Buen aislamiento:<input type="radio" name="aislamiento" value="aislada">
-                        Mal aislamiento:<input type="radio" name="aislamiento" value="noAislada"><br/><br/>
+                        <p>Illamento da habitación:</p>
+                        Bo illamento:<input type="radio" name="aislamiento" value="aislada">
+                        Mal illamento:<input type="radio" name="aislamiento" value="noAislada"><br/><br/>
                         <br/><br/><input type="submit" name="calcular" value="Calcular">
                         <?php
                         if(isset($_POST['calcular']) && $camposCubiertos){
                         ?>
-                        <center><p class="resultado">El consumo sería de: <?php echo $Habitacion->calcularConsumo(); ?> W</p></center>
+                        <center><p class="resultado">O consumo sería de: <?php echo $Habitacion->calcularConsumo(); ?> W</p></center>
                         <?php
                         }
                         ?>
                 </fieldset>
             </form>
             </div>
+            <?php
+        include '../../componentes/footer.php'
+        ?>
         </div>
     </body>
 </html>

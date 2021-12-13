@@ -5,69 +5,105 @@
  * Last modified: 08/12/2021
  */
  class Vivienda{
-     
+     //Array que contiene las provincias
      public static $provincias=array('Alava','Albacete','Alicante','Almería','Asturias','Avila','Badajoz','Barcelona','Burgos','Cáceres',
                                      'Cádiz','Cantabria','Castellón','Ciudad Real','Córdoba','A coruña','Cuenca','Gerona','Granada','Guadalajara',
                                      'Guipúzcoa','Huelva','Huesca','Islas Baleares','Jaén','León','Lérida','Lugo','Madrid','Málaga','Murcia','Navarra',
                                      'Ourense','Palencia','Las Palmas','Pontevedra','La Rioja','Salamanca','Segovia','Sevilla','Soria','Tarragona',
                                      'Santa Cruz de Tenerife','Teruel','Toledo','Valencia','Valladolid','Vizcaya','Zamora','Zaragoza');
 
+     //Array que contiene los posibles valores de la potencia
      public static $potencia =array(3.45,4.6,5.75,6.9,8.05,9.2,10.35,11.5,14.49);
     //Atributos
      private $calefaccion;
      private $ACS;
-     private $refrigeracion;
+     private $refrixeracion;
      private $superficie;
      private $potenciaPunta;
      
-     
-     public function __construct($calefaccion, $ACS, $refrigeracion, $superficie, $potenciaPunta) {
+     /*
+      * Constructor
+      */
+     public function __construct($calefaccion, $ACS, $refrixeracion, $superficie, $potenciaPunta) {
          $this->calefaccion = $calefaccion;
          $this->ACS = $ACS;
-         $this->refrigeracion = $refrigeracion;
+         $this->refrixeracion = $refrixeracion;
          $this->superficie = $superficie;
          $this->potenciaPunta = $potenciaPunta;
      }
-     
+    
+     /*
+      * get de calefaccion
+      */
      public function getCalefaccion() {
          return $this->calefaccion;
      }
 
+     /*
+      * get de acs
+      */
      public function getACS() {
          return $this->ACS;
      }
-
+     
+     /*
+      * get de refrigeracion
+      */
      public function getRefrigeracion() {
-         return $this->refrigeracion;
+         return $this->refrixeracion;
      }
 
+     /*
+      * get de superficie
+      */
      public function getSuperficie() {
          return $this->superficie;
      }
 
+     /*
+      * get de potencia
+      */
      public function getPotenciaPunta() {
          return $this->potenciaPunta;
      }
+     /*
+      * set de calefaccion
+      */
      public function setCalefaccion($calefaccion): void {
          $this->calefaccion = $calefaccion;
      }
 
+     /*
+      * set de ACS
+      */
      public function setACS($ACS): void {
          $this->ACS = $ACS;
      }
 
-     public function setRefrigeracion($refrigeracion): void {
-         $this->refrigeracion = $refrigeracion;
+     /*
+      * set de refrigeracion
+      */
+     public function setRefrigeracion($refrixeracion): void {
+         $this->refrixeracion = $refrixeracion;
      }
 
+     /*
+      * set de superficie
+      */
      public function setSuperficie($superficie): void {
          $this->superficie = $superficie;
      }
 
+     /*
+      * set de potencia Punta
+      */
      public function setPotenciaPunta($potenciaPunta): void {
          $this->potenciaPunta = $potenciaPunta;
      }
      
+     /*
+      * metodo que obtiene el valor añadido en base a la provincia
+      */
      public function obtenerZona($provincia){
          if($provincia=='Almería'|| 'Cádiz'||'Málaga'||'Melilla'||'Las Palmas'||'Santa Cruz de Tenerife'){
             $zona=0.88;
@@ -89,12 +125,14 @@
     }     
         return $zona;
          }
-         
+    /*
+     * metodo que altera el valores si el tipo de superficie es bloque
+     */     
     public function obtenerSuperficie($tipoSuperf) {
        if($tipoSuperf=='Bloque'){
            $this->setCalefaccion($this->calefaccion/1.5); 
            $this->setACS($this->ACS/1.5); 
-           $this->setRefrigeracion($this->refrigeracion/1.5); 
+           $this->setRefrigeracion($this->refrixeracion/1.5); 
        }
        
     }
@@ -110,7 +148,9 @@
         * Gasoleo
             *0,948443 €/l.   
           */
-             
+    /*
+     * Metodo para obtener el consumo de la calefaccion
+     */
      public function calculaCalefaccion($tipoCalc,$potencia,$zona) {
        
          $tipo;
@@ -129,6 +169,9 @@
          return $consumo; 
      }
      
+     /*
+      * Metodo para obtener el consumo del ACS
+      */
      public function calculaACS($tipoACS,$potencia,$zona) {
          $tipo;
          $ACS=$this->ACS;
@@ -146,17 +189,26 @@
          return $consumo; 
      }
      
+     /*
+      * Metodo para obtener el consumo de la refrigeracion
+      */
      public function calculaRefrigeracion($tipoRefrig,$potencia,$zona) {
          $tipo= 0.133118/$potencia;
-         $tipoRefrig=$this->refrigeracion;
+         $tipoRefrig=$this->refrixeracion;
          $consumo=($tipoRefrig*$tipo*$this->superficie*$zona)*0.21;
          $consumo*=12;
          return $consumo;  
      }
+     /*
+      * metodo que devuelve un print con el consumo total
+      */
      public function consumoTotal($consumoCalc,$consumoACS,$consumoRefrig) {
          $consumoTotal=$consumoCalc+$consumoACS+$consumoRefrig;
          echo 'O consumo total da túa vivenda é de: '. round($consumoTotal,2)."€<br>";
      }
+     /*
+      * metodo que obtiene la calificación energética
+      */
      public function calculoEficiencia($zona) {
      $eficiencia=$this->superficie*$zona;
      

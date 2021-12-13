@@ -8,8 +8,18 @@
 require_once '../Class/Cms.class.php';
 require_once '../DAO/DAO.class.php';
 require_once '../Class/Validacion.class.php';
-require_once '../Class/Erro.class.php';
 session_start();
+
+ //Comento el inicio de Sesión. Se inicia Sesión desde el Menú para poder mostrar el enlace a cerrar sesión si hay una sesion iniciada.
+ session_status() === PHP_SESSION_ACTIVE ?: session_start();
+ if(isset($_SESSION['userLogged'])) {
+    $user = $_SESSION['userLogged'];
+    if($user->getRol() != 'Admin') {
+        header('Location: ../index.php');
+    }
+} else {
+    header('Location: ../Login/signUP.php');
+}
 ?>
 <html>
     <head>
@@ -41,9 +51,9 @@ session_start();
             <br>
             <?php validaCuerpo(); ?>
             <br>
-            <h4>Imagen</h4>
-            <input type="text" name="img" value="<?php echo $img;?>" placeholder="CMS/imagenes/(Nombre_img)"><br></br>
-            <?php validaImg();?>
+            <h4>Imaxe(opcional)</h4>
+            <input type="text" name="img" value="<?php echo $img;?>" placeholder="/CMS/imagenes/(Nombre_img)">
+            <?php validaImg();?><br></br>
             <input type="submit" value="publicar" name="enviar" />
             <input type="submit" value="borrar todo" name="borrar"/><br></br>
         </div>
@@ -79,10 +89,12 @@ session_start();
     }
     
     function validaImg(){
+        global $img;
         if(isset($_POST['img'])){
-                $img = $_POST['img'];
+                $img = $_POST['img'];  
             }
     }
+    
         
     
     if (isset($_POST['enviar']) && Erro::countErros() == 0) {
@@ -90,9 +102,8 @@ session_start();
         if (DAO::existsArticle($titulo)) {
             Erro::addError('existsTitle', 'El titulo ya existe');
             echo Erro::showErrors();
-        } else {
+        } else {   
             $nuevo = new Publicacion($titulo,$cuerpo,$creacion,$img);
-            var_dump($nuevo);
             DAO::insertArticle($nuevo);
         }
     } else {
