@@ -45,7 +45,8 @@ class PdfArticulo
             $this->pdf->Image($_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/' . $imagen, 80, 80);
         }
         //Cuerpo
-        $this->pdf->Write(5, $this->articulo->getCuerpo());
+        $cuerpo = str_replace("&nbsp;"," ",$this->articulo->getCuerpo());
+        $this->pdf->Write(5, $cuerpo);
     }
 
     public function descargarPdf() {
