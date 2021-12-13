@@ -1,4 +1,11 @@
-<?php session_start(); ?>
+<?php 
+session_start(); 
+if (isset($_SESSION['user'])) {
+    $login = $_SESSION['user']['login'];
+} else {
+    header("Location: ../../Login/signIn.php");
+}
+?>
 <html>
 	<head>
 
