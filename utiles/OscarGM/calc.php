@@ -37,7 +37,12 @@ if (isset($_SESSION['userLogged'])) {
     <?php    
     include_once "../../componentes/head.php";    
     ?>
-      
+    <style>
+        table{
+            text-align:center;            
+        }
+        
+    </style>
 </head>
 <body>
 
