@@ -44,14 +44,14 @@ class PdfArticulo
         //Times 12
         $this->pdf->SetFont('Arial', '', 12);
         //Color del borde, relleno y letra
-        $this->pdf->SetDrawColor(0,143,57);
+        //$this->pdf->SetDrawColor(0,143,57);
         $this->pdf->SetTextColor(0,0,0);
-        $this->pdf->SetFillColor(255,255,255);
+        //$this->pdf->SetFillColor(255,255,255);
         // Imagen. Si no existe la imagen no se va a imprimir
         $imagen = $this->articulo->getImg();
         if (isset($imagen) && !empty($imagen))
         {
-            $this->pdf->Image($_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/' . $imagen, 70, 55);
+            $this->pdf->Image($_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/' . $imagen, 20, 20);
         }
 
         //Limpiar el cuerpo del archivo (quitar etiquetas html)
