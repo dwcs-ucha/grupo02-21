@@ -128,7 +128,7 @@
                     </div>
                     <div class="col-12 col-lg-4 mb-3">
                         <article class="card h-100 shadow-sm">
-                            <img src="./imagenes/ejemplo.jpg" class="card-img-top p-1">
+                            <img src="./imagenes/eficiencia.jpg" class="card-img-top p-1">
                             <div class="card-body">
                                 <div class="d-flex mb-3">
                                     <div class="ps-3">
@@ -142,7 +142,7 @@
                     </div>
                     <div class="col-12 col-lg-4 mb-3">
                         <article class="card h-100 shadow-sm">
-                            <img src="./imagenes/ejemplo.jpg" class="card-img-top p-1">
+                            <img src="./imagenes/gasolina.jpg" class="card-img-top p-1">
                             <div class="card-body">
                                 <div class="d-flex mb-3">
                                     <div class="ps-3">
@@ -188,6 +188,7 @@
             </div>
         </main>
     </div>
+    <?php include 'componentes/footer.php';?>
 </body>
 
 </html>
