@@ -55,6 +55,9 @@ session_start();
                 </div>
                 </div>
             </main>
+            <?php
+            include '../componentes/footer.php'
+            ?>
         </div>
     </body>
 </html>
