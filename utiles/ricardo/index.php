@@ -56,11 +56,11 @@ CABECEIRA:
     ?>
     <div class="fondo">
         <div class="col-12 pt-5 pb-1">
-            <h1 class="text-primary">CALCULADORA DE AFORRO ENERXÉTICOS</h1>
         </div>
         <div class="container border border-5 border border-primary border rounded-3 bg-light">
          <div class="col-12 col-lg-12">
             <form action="index.php" method="post">
+                <legend><h3>CALCULADORA DE AFORRO ENERXÉTICOS</h3></legend>
                 <div>
                     <p id="tradicional">cantidad bombillas tradicionales:</p>
                     <input type="number" step="any" id="cantidadTradicionales" name="cantidadTradicionales">
