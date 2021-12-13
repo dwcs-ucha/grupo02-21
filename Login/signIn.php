@@ -35,50 +35,62 @@ if (isset($_SESSION['user'])) {
     include '../componentes/menu.php';
     include_once "../componentes/cookieAlert.php";
     ?>
- <?php
+    <?php
 
-$login = $passWord = "";
+    $login = $passWord = "";
 
-if (isset($_POST['loginSend'])) {
-    //Almacenamos en las variables los datos, después de estar validados.
-    $login = $_POST['loginUserName'];
-    $passWord = $_POST['loginPassWord'];
+    if (isset($_POST['loginSend'])) {
+        //Almacenamos en las variables los datos, después de estar validados.
+        $login = $_POST['loginUserName'];
+        $passWord = $_POST['loginPassWord'];
 
-    if (empty($login) || empty($passWord)) {
-        Erro::addError("EmptyField", "Introduzca Login y contraseña");
-        //echo Erro::showErrors();
-
-        registrarLogIn(3);
-    } else {
-        $user = DAO::authenticateUser($login, $passWord);
-        if ($user != null) {                    
-            $_SESSION['user']['rol'] = $user->getRol();
-            $_SESSION['user']['nombre'] = $user->getName();
-            $_SESSION['user']['login'] = $user->getLogin();                 
-            $_SESSION['user']['apellido'] = $user->getSurName();
-            $_SESSION['user']['correo'] = $user->getEmail();
-            if ($user->getRol() != "Admin") {
-            $_SESSION['user']['direccion'] = $user->getAddress();
-            }
-            registrarLogIn(1, $login);
-
-            //Comprobamos el rol del usuario logueado.
-            //Si es administrador se le dirigen a su panel de administración.
-            if ($user->getRol() == "Admin"){                        
-                header('Location: /Login/adminRegPanel.php');
-            } else {
-            //Si es un usuario se le dirige al indice de la página.                   
-                header('Location: /index.php');
-            }
-        } else {
-            Erro::addError("UserAuthenticateError", "No parece haber ningún usuario con ese nombre");
+        if (empty($login) || empty($passWord)) {
+            Erro::addError("EmptyField", "Introduzca Login y contraseña");
             //echo Erro::showErrors();
 
-            registrarLogIn(2, $login);
+            registrarLogIn(3);
+        } else {
+            $user = DAO::authenticateUser($login, $passWord);
+            if ($user != null) {
+                $_SESSION['user']['rol'] = $user->getRol();
+                $_SESSION['user']['nombre'] = $user->getName();
+                $_SESSION['user']['login'] = $user->getLogin();
+                $_SESSION['user']['apellido'] = $user->getSurName();
+                $_SESSION['user']['correo'] = $user->getEmail();
+                if ($user->getRol() != "Admin") {
+                    $_SESSION['user']['direccion'] = $user->getAddress();
+                }
+                registrarLogIn(1, $login);
+
+                //Comprobamos el rol del usuario logueado.
+                //Si es administrador se le dirigen a su panel de administración.
+                if ($user->getRol() == "Admin") {
+                    // Si viene de otra página a la que se debe redirigir hacerlo ahora
+                    if (isset($_GET['return'])) {
+                        $redirigir = base64_decode($_GET['return']);
+                        header('Location: ' . $redirigir);
+                        exit();
+                    }
+                    header('Location: /Login/adminRegPanel.php');
+                } else {
+                    // Si viene de otra página a la que se debe redirigir hacerlo ahora
+                    if (isset($_GET['return'])) {
+                        $redirigir = base64_decode($_GET['return']);
+                        header('Location: ' . $redirigir);
+                        exit();
+                    }
+                    //Si es un usuario se le dirige al indice de la página.                   
+                    header('Location: /index.php');
+                }
+            } else {
+                Erro::addError("UserAuthenticateError", "No parece haber ningún usuario con ese nombre");
+                //echo Erro::showErrors();
+
+                registrarLogIn(2, $login);
+            }
         }
     }
-}
-?>
+    ?>
 
     <div class="fondo alto">
         <div class="container">
@@ -105,7 +117,7 @@ if (isset($_POST['loginSend'])) {
                 </div>
         </div>
         </form>
-       
+
         <?php
         include_once '../componentes/error.php';
 
@@ -120,18 +132,18 @@ if (isset($_POST['loginSend'])) {
         {
             $ip = Visitas::guessIP();
             $location = Visitas::locateIP($ip);
-            $username=$_SESSION['user'];
-            $fecha=getDate();
-            $fecha= $fecha['year'] . "." . sprintf("%02d", $fecha['mon']) . "." . sprintf("%02d", $fecha['mday'])
-            . "-" . sprintf("%02d", $fecha['hours']) . ":" . sprintf("%02d", $fecha['minutes']) . ":" . sprintf("%02d", $fecha['seconds']);
-            $serveName=$_SERVER['SERVER_NAME'];
-            $browser= $_SERVER['SERVER_SOFTWARE'];
-            $so= $_SERVER['HTTP_USER_AGENT'];
-            $requestTime=$_SERVER['REQUEST_TIME'];
+            $username = $_SESSION['user'];
+            $fecha = getDate();
+            $fecha = $fecha['year'] . "." . sprintf("%02d", $fecha['mon']) . "." . sprintf("%02d", $fecha['mday'])
+                . "-" . sprintf("%02d", $fecha['hours']) . ":" . sprintf("%02d", $fecha['minutes']) . ":" . sprintf("%02d", $fecha['seconds']);
+            $serveName = $_SERVER['SERVER_NAME'];
+            $browser = $_SERVER['SERVER_SOFTWARE'];
+            $so = $_SERVER['HTTP_USER_AGENT'];
+            $requestTime = $_SERVER['REQUEST_TIME'];
             switch ($tipo) {
                 case 1:
                     // Login correcto
-                    DAO::insertVisit(new Visitas( $_SESSION['user']['login'], $ip, $fecha, $serveName, $browser, $so, $requestTime));
+                    DAO::insertVisit(new Visitas($_SESSION['user']['login'], $ip, $fecha, $serveName, $browser, $so, $requestTime));
                     DAO::writeLog(new Log("se ha logueado en la aplicación desde " . $ip . "(" . $location . ")", $login));
                     break;
                 case 2:

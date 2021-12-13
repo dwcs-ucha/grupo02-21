@@ -11,9 +11,22 @@
 $consumoTotal = 0;
 $i = 0;
 
+// Controlar el usuario
+$rol = "invitado";
+
+if (isset($_SESSION['user'])) {
+    $rol = $_SESSION['user']['rol'];
+    $username = $_SESSION['user']['login'];
+}
+
 ?>
 
 <div class="container">
+    <div class="row">
+        <div class="col-12">
+            <?php include 'resultados-guardar.php'; ?>
+        </div>
+    </div>
     <div class="row">
         <div class="col-12 col-md-6">
             <table class="table">
