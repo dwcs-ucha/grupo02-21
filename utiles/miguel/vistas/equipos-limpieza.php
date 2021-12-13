@@ -8,10 +8,10 @@
  */
 
 $tab = 'limpieza';
-$tabNombre = 'Limpieza';
+$tabNombre = 'Limpeza';
 $datos = array(
     array("tipo" => "3", "potencia" => 0.665, "unidad" => "kWh/uso", "id" => "lavadora", "nombre" => "Lavadora", "usos_semanales" => 3),
-    array("tipo" => "1", "potencia" => 1200, "unidad" => "W", "id" => "plancha", "nombre" => "Plancha", "horas" => 2, "min" => 0),
+    array("tipo" => "1", "potencia" => 1200, "unidad" => "W", "id" => "plancha", "nombre" => "Prancha", "horas" => 2, "min" => 0),
     array("tipo" => "1", "potencia" => 600, "unidad" => "W", "id" => "aspiradora", "nombre" => "Aspiradora", "horas" => 2, "min" => 0),
     array("tipo" => "3", "potencia" => 1.0595, "unidad" => "kWh/uso", "id" => "secadora", "nombre" => "Secadora", "usos_semanales" => 3),
 );

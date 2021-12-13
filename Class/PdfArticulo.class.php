@@ -43,21 +43,21 @@ class PdfArticulo
         //Color del borde, relleno y letra
         $this->pdf->SetDrawColor(0,143,57);
         $this->pdf->SetTextColor(0,0,0);
-        $this->pdf->SetFillColor(189,236,182);
+        $this->pdf->SetFillColor(255,255,255);
         // Imagen. Si no existe la imagen no se va a imprimir
         $imagen = $this->articulo->getImg();
         if (isset($imagen) && !empty($imagen))
         {
-            $this->pdf->Image($_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/' . $imagen, 65, 55);
+            $this->pdf->Image($_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/' . $imagen, 70, 55);
         }
 
         //Limpiar el cuerpo del archivo (quitar etiquetas html)
-        $texto = $this->articulo->getCuerpo();
-        $textoLimpio = str_replace("&nbsp;"," ",$this->articulo->getCuerpo());
-        $textoLimpio = strip_tags($texto);
+        $cuerpo = $this->articulo->getCuerpo();
+        $cuerpo = str_replace("&nbsp;"," ",$cuerpo);
+        $cuerpo = strip_tags($cuerpo);
         //Cuerpo
         $this->pdf->SetX(65);
-        $this->pdf->MultiCell(90, 10, utf8_decode($textoLimpio), 1, 1, 'C', true);
+        $this->pdf->MultiCell(90, 10, utf8_decode($cuerpo), 1, 1, 'J', true);
     }
 
     public function descargarPdf() {

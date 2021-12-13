@@ -67,13 +67,14 @@ if (!$resultados && isset($_SESSION['calculadora_miguel']['resultados'])) {
     <!-- Cabecera de la página -->
     <?php include '../../../componentes/menu.php'; ?>
     <!-- Espacio reservado para mostrar los posibles errores -->
-    <div class="fondo">
+    <div class="fondo py-5">
         <?php include '../../../componentes/error.php'; ?>
         <!-- Formulario para la solicitud de datos y consumos del hogar -->
         <form action="/utiles/miguel/datos/index.php" method="POST">
-            <div class="container my-5">
+            <div class="container">
                 <!-- Cargar la vista con los campos -->
                 <?php include '../vistas/datos.php'; ?>
+                <?php include '../vistas/equipos.php'; ?>
             </div>
         </form>
     </div>

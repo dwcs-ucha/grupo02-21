@@ -8,9 +8,15 @@
 
 $datos = $resultados['datos'];
 
+// El campo ciudad es obligatorio
 if (Validacion::campoVacio($datos['ciudad']))
 {
-    Erro::addError('error', 'El campo ciudad no puede estar vacío.');
+    Erro::addError('Erro', 'O Campo cidade non pode estar vacío.');
 }
 
+// Comprobar que el valor de niños no es superior al de habitantes
+if ($datos['nenos'] > $datos['habitantes'])
+{
+    Erro::addError('Erro', 'Non pode haber mais nenos que habitantes da casa.');
+}
 ?>

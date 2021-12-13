@@ -47,8 +47,10 @@ if ($numResultados) {
     <?php include '../../../componentes/menu.php'; ?>
 
     <!-- Contenido propio de la página -->
-    <div class="container my-5">
-        <?php include '../vistas/resultados.php'; ?>
+    <div class="fondo alto">
+        <div class="container py-5">
+            <?php include '../vistas/resultados.php'; ?>
+        </div>
     </div>
     <!-- Cargar javascript para pasar los datos y generar la gráfica -->
     <script src="../vistas/assets/js/resultados.js"></script>

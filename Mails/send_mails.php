@@ -25,12 +25,12 @@ function mail_cpanel($nombre,$email,$direccion,$link){
         //Server settings
         $mail->SMTPDebug = 0 /* Si substituimos por SMTP::DEBUG_SERVER nos imprimira por pantalla todo el proceso*/;                 //Enable verbose debug output
         $mail->isSMTP();                                            								     //Send using SMTP
-        $mail->Host       = '';                      				   		     //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                								     //Enable SMTP authentication
-        $mail->Username   = '';          			        		     //SMTP username
-        $mail->Password   = '';                			  					     //SMTP password
+        $mail->Host       = 'mail.grupo022122dwcs.uchaweb2.es';     //Set the SMTP server to send through
+        $mail->SMTPAuth   = true;     //Enable SMTP authentication
+        $mail->Username   = 'verificacion@grupo022122dwcs.uchaweb2.es';     //SMTP username
+        $mail->Password   = '';     //SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; /* Cambiar aqui por ssl si no funciona */           			     //Enable implicit TLS encryption
-        $mail->Port       = 465;                                    								     //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        $mail->Port       = 465;                                   								     //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
         //Recipients - Primera linea desde que correo se mandara el email, y en las siguientes a quien se enviara
         $mail->setFrom('prueba.grupo022122dwcs@gmail.com', 'grupo022122dwcs');
