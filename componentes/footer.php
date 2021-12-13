@@ -1,11 +1,13 @@
-<div class="bg-primary py-5">
+<div class="bg-primary py-5 opacity-75 mt-5">
     <div class="container text-white">
         <div class="row">
             <div class="col-12 col-4">
+                <div class="col-6">
                 <h4>Usuarios</h4>
                 <ul>
                     <li><a  class="nav-link text-white" href="/Login/userPanel.php">Panel de Control</a></li>
                     <li><a  class="nav-link text-white" href="/Login/logOut.php">Salir</a></li>
+                </div>
                     <?php 
     //session_status() === PHP_SESSION_ACTIVE ?: session_start();      
     if(isset($_SESSION['userLogged'])) {        
