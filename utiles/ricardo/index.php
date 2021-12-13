@@ -24,8 +24,9 @@ CABECEIRA:
 <body>
     <?php
   
-    include_once '../../cookieAlert.php';
-    include '../../componentes/menu.php';
+
+    include_once '../../componentes/menu.php';
+    include_once '../../componentes/cookieAlert.php';
     ?>
 
 
