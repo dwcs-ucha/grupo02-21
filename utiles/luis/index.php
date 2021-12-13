@@ -221,7 +221,7 @@ $resultados = isset($_POST) ? $_POST : null;
                     document.getElementById("object_3").innerHTML = parseInt(Wh_counter / objects[2]);
                     document.getElementById("object_4").innerHTML = parseInt(Wh_counter / objects[3]);
                     // Chapuza para que no sume valores en los primeros cálculos del consumo.
-                    // Esto creo que es debido a que PHP encuentra dificultades para operar con números muy grandes.
+                    // Esto creo que es debido a que JS encuentra dificultades para operar con números muy grandes.
                     // No he encontrado otra solución funcional.
                     if(Wh_counter > 200000) {
                         document.getElementById("object_5").innerHTML = parseInt(Wh_counter / objects[4]);
