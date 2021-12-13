@@ -41,8 +41,8 @@ if(isset($_SESSION['user'])) {
         include '../componentes/menu.php';
         include_once "../componentes/cookieAlert.php"; 
     ?>
-    <div class="fondo alto">
-    <div class="container"> 
+    <div class="fondo">
+    <div class="container pb-5"> 
     <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
             <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
             <div class="col-12 pt-3 pb-1">
@@ -232,6 +232,9 @@ if(isset($_SESSION['user'])) {
     include_once '../componentes/error.php';
     ?>
     </div>
+    <?php
+        include '../componentes/footer.php'
+    ?>
 </div>
 </body>
 

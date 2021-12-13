@@ -71,6 +71,7 @@ if (isset($_SESSION['user'])) {
                         </form>
                         <div class="m-3">
                             <?php
+                            //Hago un if que si los campos no vienen  vacios y se le da a calcular entre en un switch que impria por pantalla la comida que se seleccionó pasandole las raciones
                             if (isset($_POST['calcular']) && $_POST['racion'] > 0 && $_POST['comida'] != 'seleccionar') {
                                 switch ($_POST['comida']) {
                                     case 'pizza':
