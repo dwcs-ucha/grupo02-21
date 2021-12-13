@@ -45,7 +45,22 @@
                 <?php
                 session_status() === PHP_SESSION_ACTIVE ?: session_start();
                 if (isset($_SESSION['userLogged'])) {
-                ?>
+                    $user = $_SESSION['userLogged'];
+                    if ($user->getRol() == "Admin"){
+                        ?>
+                         <li class="nav-item">
+                            <a class="nav-link text-white" href="/Login/adminRegPanel.php">Panel de Administración</a>
+                        </li>
+                        <?php
+                    } else {
+                        ?>
+                         <li class="nav-item">
+                            <a class="nav-link text-white" href="/Login/userPanel.php">Panel de Usuario</a>
+                        </li>
+                        <?php
+                    }    
+                    ?>
+                
                     <li class="nav-item">
                         <a class="nav-link text-white" href="/Login/logOut.php">Saír</a>
                     </li>

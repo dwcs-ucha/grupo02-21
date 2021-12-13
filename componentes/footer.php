@@ -4,9 +4,18 @@
             <div class="col-12 col-4">
                 <h4>Usuarios</h4>
                 <ul>
-                    <li>Uno</li>
-                    <li>Dos</li>
-                    <li>Tres</li>
+                    <li><a  class="nav-link text-white" href="/Login/userPanel.php">Panel de Control</a></li>
+                    <li><a  class="nav-link text-white" href="/Login/logOut.php">Salir</a></li>
+                    <?php 
+    //session_status() === PHP_SESSION_ACTIVE ?: session_start();      
+    if(isset($_SESSION['userLogged'])) {        
+        ?>
+    <li class="nav-item">
+        <a class="nav-link text-white" href="/Login/logOut.php">Saír</a>
+    </li>
+    <?php
+    }
+    ?>
                 </ul>
             </div>
         </div>
