@@ -20,7 +20,6 @@ session_start();
     <body>
         <?php
             include '../componentes/menu.php';
-            include '../componentes/cookieAlert.php';
         ?>
         <div class="fondo">
             <main class="container alto">

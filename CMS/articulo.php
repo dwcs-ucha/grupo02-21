@@ -25,14 +25,14 @@ if (!isset($_SESSION['articulo'])) {
       <?php
             include '../componentes/menu.php';
         ?>
-        <div class="fondo alto">
+        <div class="fondo">
         <?php
             $articulos = DAO::getArticles();
             if ($_SESSION['articulo'] != null) {
                 $article=DAO::getArticle($_SESSION['articulo']);
             }
         ?>
-            <main class="container">
+            <main class="container pb-4">
                 <div class="col-12 pt-5 text-primary">         
                         <?php echo "<h1>". $article->getTitulo()."</h1>" ;?>
                          <div class="mb-4"><?php echo "<img class='img-fluid' style='max-width: 400px;' src='".$article->getImg()."'>";?></div>
