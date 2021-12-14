@@ -33,7 +33,6 @@ if (isset($_SESSION['user'])) {
 <body>
     <?php
     include '../componentes/menu.php';
-    include_once "../componentes/cookieAlert.php";
     ?>
     <?php
 
@@ -91,7 +90,7 @@ if (isset($_SESSION['user'])) {
         }
     }
     ?>
-
+    <?php include_once "../componentes/cookieAlert.php"; ?>
     <div class="fondo alto">
         <div class="container">
             <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">

@@ -1,4 +1,5 @@
 <?php
+
 /**
  *@author Alexia Caride Yáñez
  *@modificado 02/12/2021
@@ -35,40 +36,38 @@
         </div>
         <div class="enlaces-usuarios">
             <ul class="nav justify-content-center bg-primary border border-5 border border-primary">
-                <li class="nav-item">
-                    <a class="nav-link text-white" aria-current="page" href="/Login/signIn.php">Login</a>
-                </li>
-                
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/Login/signUP.php">Rexistro</a>
-                </li>
-                <?php
-                session_status() === PHP_SESSION_ACTIVE ?: session_start();
-                if (isset($_SESSION['user'])) {
-                    $rol = $_SESSION['user']['rol'];              
-                    if ($rol == "Admin"){                    
-                        ?>
-                         <li class="nav-item">
-                            <a class="nav-link text-white" href="/Login/adminRegPanel.php">Panel de Administración</a>
-                        </li>
-                        <li>
-                            <a class="nav-link text-white" href="/CMS/i.php">Escribir artigo</a>
-                        </li>
-                        <?php
-                    } else {
-                        ?>
-                         <li class="nav-item">
-                            <a class="nav-link text-white" href="/Login/userPanel.php">Panel de Usuario</a>
-                        </li>
-                        <?php
-                    }    
-                    ?>
-                
+                <?php session_status() === PHP_SESSION_ACTIVE ?: session_start(); ?>
+                <?php $rol = 'invitado'; ?>
+                <?php if (isset($_SESSION['user'])) : ?>
+                    <?php $rol = $_SESSION['user']['rol']; ?>
+                <?php endif; ?>
+
+                <?php if ($rol === 'invitado') : ?>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/Login/logOut.php">Saír</a>
+                        <a class="nav-link text-white" aria-current="page" href="/Login/signIn.php">Login</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/Login/signUP.php">Rexistro</a>
+                    </li>
+                <?php endif; ?>
+                <?php if ($rol == "Admin") : ?>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/Login/adminRegPanel.php">Panel de Administración</a>
+                    </li>
+                    <li>
+                        <a class="nav-link text-white" href="/CMS/i.php">Escribir artigo</a>
+                    </li>
+                <?php elseif ($rol !== 'invitado') : ?>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/Login/userPanel.php">Panel de Usuario</a>
+                    </li>
+                <?php endif; ?>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/Login/logOut.php">Saír</a>
+                </li>
                 <?php
-                }
                 ?>
             </ul>
         </div>

@@ -12,9 +12,9 @@ $tareaPostRegistro = '?tarea=login';
 $tareaPostLogin = '?tarea=guardar';
 
 // Retorno después de registro
-$registro = base64_encode('/Login/signUP.php?return=' . $tareaPostRegistro);
+$registro = '/Login/signUP.php?return=' . base64_encode($estaUrl . $tareaPostRegistro);
 // Retorno después de login
-$login = base64_encode('/Login/signIn.php?return=' . $tareaPostLogin);
+$login = '/Login/signIn.php?return=' . base64_encode($estaUrl . $tareaPostLogin);
 
 $recienRegistrado = false;
 $guardar = false;
@@ -32,8 +32,15 @@ if (isset($_GET['tarea'])) {
 }
 
 if ($guardar) {
-    include '../../../DAO/DAO.class.php';
-    
+    //include '../../../DAO/DAO.class.php';
+    include '../../../Class/DatosCalculadoraAvanzada.class.php';
+
+    $user = $_SESSION['user']['login'];
+    $user = DAO::getUser($user);
+    $resultados = $_SESSION['calculadora_miguel']['resultados'];
+
+    $objDatosCalculadora = new DatosCalculadoraAvanzada($user, $resultados);
+    $objDatosCalculadora->guardarDatos();
 }
 ?>
 
@@ -48,7 +55,7 @@ if ($guardar) {
         <?php endif; ?>
         <div class="text-end">
             <?php if ($rol !== 'invitado') : ?>
-                <a class="btn btn-success" href="<?php echo $estaUrl; ?>">Guardar</a>
+                <a class="btn btn-success" href="<?php echo $estaUrl . $tareaPostLogin; ?>">Guardar</a>
             <?php else : ?>
                 <?php if (!$recienRegistrado) : ?>
                     <a class="btn btn-success" href="<?php echo $registro; ?>">Registro y guardar</a>

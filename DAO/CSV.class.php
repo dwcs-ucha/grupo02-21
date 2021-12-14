@@ -6,7 +6,14 @@
  */
 class CSV
 {
-    private static $files = array('users' => '../DataBase/users.csv', 'logs' => '../DataBase/logs.txt', 'idiomas' => '../DataBase/idioma', 'articulos' => '../DataBase/articulos.csv', 'visitas' => '../DataBase/visitas.csv', 'calculadoraAvanzada', '../DataBase/calculadoraAvanzada.csv');
+    private static $files = array(
+        'users'                 => '../DataBase/users.csv',
+        'logs'                  => '../DataBase/logs.txt',
+        'idiomas'               => '../DataBase/idioma', 
+        'articulos'             => '../DataBase/articulos.csv', 
+        'visitas'               => '../DataBase/visitas.csv', 
+        'calculadoraAvanzada'   => '../DataBase/calculadoraAvanzada.csv'
+    );
 
     /**
      * Comprueba si el fichero pasado existe
@@ -71,6 +78,7 @@ class CSV
             $file = self::$files[$file] . $type . '.csv';
         } else {
             $file = self::$files[$file];
+            $file = dirname(__FILE__) . '/' . $file;
         }
         if (self::existsFile($file)) {
             if (($fp = fopen($file, 'r')) !== FALSE) {
@@ -91,7 +99,8 @@ class CSV
                         $fileData[] = $visit;
                     } else if($type == 'calculadora') {
                         $user = self::getUser($data[0]);
-                        $calculadora = new DatosCalculadoraAvanzada($user, $data[1]);
+                        $datos = DatosCalculadoraAvanzada::__toArray($data[1]);
+                        $calculadora = new DatosCalculadoraAvanzada($user, $datos);
                         $fileData[] = $calculadora;
                     }
                 }
@@ -119,6 +128,7 @@ class CSV
             $type = 'calculadora';
         }
         $file = self::$files[$file];
+        $file = dirname(__FILE__) . '/' . $file;
         if (self::existsFile($file)) {
             if (($fp = fopen($file, 'w')) !== FALSE) {
                 if ($type == '') {

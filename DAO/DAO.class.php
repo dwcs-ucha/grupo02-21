@@ -4,13 +4,14 @@
  * Version: 4.8.0
  * Last modified: 07 12 2021
  */
-require_once('../Class/Persona.class.php');
-require_once('../Class/Usuario.class.php');
-require_once('../Class/Admin.class.php');
-require_once('../DAO/CSV.class.php');
-require_once('../DAO/BD.class.php');
-require_once('../Class/Cms.class.php');
-require_once('../Class/Visitas.class.php');
+$esteDirectorio = dirname(__FILE__) . '/';
+require_once($esteDirectorio . '../Class/Persona.class.php');
+require_once($esteDirectorio . '../Class/Usuario.class.php');
+require_once($esteDirectorio . '../Class/Admin.class.php');
+require_once($esteDirectorio . '../DAO/CSV.class.php');
+require_once($esteDirectorio . '../DAO/BD.class.php');
+require_once($esteDirectorio . '../Class/Cms.class.php');
+require_once($esteDirectorio . '../Class/Visitas.class.php');
 class DAO
 {
     private static $idiomas = array('gallego' => 'GL', 'castellano' => 'ES', 'ingles' => 'EN');

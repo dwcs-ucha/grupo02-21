@@ -18,10 +18,32 @@
 // Clase Erro para controlar los posibles errores
 include_once '../../../componentes/cookieAlert.php';
 include_once '../../../Class/Erro.class.php';
+include_once '../../../Class/DatosCalculadoraAvanzada.class.php';
+include_once '../../../DAO/DAO.class.php';
+
+
 
 session_start();
 
+// Comprobar tipo de usuario
+$rol = 'invitado';
+$username = 'invitado';
+
+if (isset($_SESSION['user'])) {
+    $rol = $_SESSION['user']['rol'];
+    $username = $_SESSION['user']['login'];
+}
+
 $resultados = isset($_POST) ? $_POST : null;
+
+// Comprobar si el usuario tiene datos almacenados
+if ($rol !== 'invitado' && !$resultados) {
+    $objResultados = DAO::getDataCalc($username);
+
+    if (isset($objResultados)) {
+        $resultados = $objResultados->getData();
+    }
+}
 
 if ($resultados) {
 
