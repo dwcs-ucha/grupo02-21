@@ -553,6 +553,13 @@ class CSV
 
     public static function insertDataCalc($calc) {
         $dataCalc = self::getDataCalcs();
+        // No puede repetirse datos para un mismo usuario
+        // Comprobar si existe ya datos para el usuario
+        foreach ($dataCalc as $i => $dato) {
+            if ($dato->getUserName()  === $calc->getUserName()) {
+                unset($dataCalc[$i]);
+            }
+        }
         $dataCalc[] = $calc;
         self::writeCSV('calculadoraAvanzada', $dataCalc); 
     }
@@ -566,5 +573,23 @@ class CSV
     private static function getDataCalcs() {
         $dataCalc = self::readCSV('calculadoraAvanzada', 'calculadora');
         return $dataCalc;
+    }
+
+    /**
+     * Comprobación de la existencia de los datos para un usuario
+     * 
+     * @param String $userLogin Nombre login del usuario
+     * @return boolean Si existe el articulo devuelve true si no lo hace false
+     */
+    public static function existDataCalc(String $userLogin)
+    {
+        $bool = false;
+        $datos = self::getDataCalcs();
+        foreach ($datos as $dato) {
+            if ($dato->getUserName() == $userLogin) {
+                $bool = true;
+            }
+        }
+        return $bool;
     }
 }

@@ -64,6 +64,12 @@ if (isset($_SESSION['user'])) {
                     </tr>
                 </tfoot>
             </table>
+            <div class="alert alert-secondary mt-4">
+                <p>¿Deseas volver a los datos para alguna modificación?</p>
+                <div class="text-end">
+                    <a class="btn btn-primary" href="/utiles/miguel/datos/index.php">Volver a datos</a>
+                </div>
+            </div>
         </div>
         <div class="col-12 col-md-6">
             <div class="cuadro-consumo-total mb-5">

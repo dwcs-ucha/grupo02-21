@@ -36,15 +36,6 @@ if (isset($_SESSION['user'])) {
 
 $resultados = isset($_POST) ? $_POST : null;
 
-// Comprobar si el usuario tiene datos almacenados
-if ($rol !== 'invitado' && !$resultados) {
-    $objResultados = DAO::getDataCalc($username);
-
-    if (isset($objResultados)) {
-        $resultados = $objResultados->getData();
-    }
-}
-
 if ($resultados) {
 
     $_SESSION['calculadora_miguel']['resultados'] = $resultados;
@@ -71,6 +62,20 @@ if ($resultados) {
 // Si no hay resultados pero si existen en session
 if (!$resultados && isset($_SESSION['calculadora_miguel']['resultados'])) {
     $resultados = $_SESSION['calculadora_miguel']['resultados'];
+}
+
+// Si el usuario quiere recuperar sus datos almacenados
+
+if (isset($_GET) && isset($_GET['tarea']) && $_GET['tarea'] == 'getDatosAlmacenados')
+{
+    // Comprobar si el usuario tiene datos almacenados
+    if ($rol !== 'invitado') {
+        $objResultados = DAO::getDataCalc($username);
+    
+        if (isset($objResultados)) {
+            $resultados = $objResultados->getData();
+        }
+    }
 }
 
 ?>

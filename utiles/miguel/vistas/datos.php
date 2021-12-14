@@ -94,7 +94,15 @@ $disposicion = isset($datos['disposicion']) ? $datos['disposicion'] : '';
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-3"></div>
+            <div class="col-12 col-lg-3">
+                <?php if ($rol !== 'invitado') : ?>
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="/utiles/miguel/datos/index.php?tarea=getDatosAlmacenados" class="btn btn-outline-primary">Recuperar datos almacenados</a>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            </div>
         </div>
     </fieldset>
 </section>
