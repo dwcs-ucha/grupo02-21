@@ -4,7 +4,7 @@
     Version=1.0.0
     Ultima modificacion: 13/12/2021*/
 
-require_once '../../fpdf/fpdf.php';
+require_once '../fpdf/fpdf.php';
 
 class PDF_HTML extends FPDF{
 //variables of html parser
