@@ -6,7 +6,7 @@
  *@version 01
  */
 ?>
-
+<p id="inicio"></p>
 <div class="container">
     <div class="col-12 col-lg-12 col-sm-12">
         <div class="row">
@@ -58,17 +58,17 @@
                     <li>
                         <a class="nav-link text-white" href="/CMS/i.php">Escribir artigo</a>
                     </li>
-                <?php elseif ($rol !== 'invitado') : ?>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/Login/logOut.php">Saír</a>
+                    </li>
+                <?php elseif ($rol != 'invitado') : ?>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="/Login/userPanel.php">Panel de Usuario</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/Login/logOut.php">Saír</a>
+                    </li>
                 <?php endif; ?>
-
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/Login/logOut.php">Saír</a>
-                </li>
-                <?php
-                ?>
             </ul>
         </div>
     </div>

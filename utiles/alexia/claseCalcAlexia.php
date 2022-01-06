@@ -9,15 +9,33 @@ class claseCalcAlexia {
     private $comida;
     private $litrosC;
     private $litrosV;
-    private $ahorro;
+    private $ahorroA;
+    private $co2C;
+    private $co2V;
+    private $co2Ahorro;
+    private $mC;
+    private $mV;
+    private $mAhorro;
+
     //Constructor
-    public function __construct($comida, $litrosC, $litrosV, $ahorro) {
+    public function __construct($comida, $litrosC, $litrosV, $ahorroA, $co2C, $co2V, $co2Ahorro, $mC, $mV, $mAhorro) {
         $this->comida = $comida;
         $this->litrosC = $litrosC;
         $this->litrosV = $litrosV;
-        $this->ahorro = $ahorro;
+        $this->ahorroA = $ahorroA;
+        $this->co2C = $co2C;
+        $this->co2V = $co2V;
+        $this->co2Ahorro = $co2Ahorro;
+        $this->mC = $mC;
+        $this->mV = $mV;
+        $this->mAhorro = $mAhorro;
     }
+
     //Metodos
+    public function getComida()
+    {
+        return $this->comida;
+    }
     //Calcula los litros de la ración en su versión de carne
     public function litrosCRacion($raciones){
         $raciones=intval($raciones);
@@ -29,13 +47,39 @@ class claseCalcAlexia {
         $resultado=$this-> litrosV * $raciones;
         return $resultado;
     }
-    //Muestra por pantalla el resultado del calculo
-    public function resultado($raciones){
-        echo "<p>Hoxe comendo ".$this->comida." gastaches ".$this->litrosCRacion($raciones)."L, que corresponden a ".($this->litrosCRacion($raciones)/80)." duchas de 80L</p>";
-        echo "<p>Se o cambiaras por unha opción de carne vexetal, gastarías".$this->litrosVRacion($raciones)."L, que corresponden a ".($this->litrosVRacion($raciones)/80)." duchas de 80L</p>";
-        echo "<p>Isto sería un aforro de ".$this->ahorro."% de auga</p>";
-        if(intval($raciones)>1){
-            echo "<p>Cálculos feitos en base a ".$raciones." racions, para máis información podes visitar @heurafoods.es no Instagram</p>";
-        }else echo "<p>Cálculos feitos en base a ".$raciones." ración, para máis información podes visitar @heurafoods.es no Instagram</p>";
+    //Calcula el CO2 de la ración en su versión de carne
+    public function co2CRacion($raciones){
+        $raciones=intval($raciones);
+        $resultado=$this-> co2C * $raciones;
+        return $resultado;
+    }
+    //Calcula el CO2 de la ración en una versión Plant-based
+    public function co2VRacion($raciones) {
+        $resultado=$this-> co2V * $raciones;
+        return $resultado;
+    }
+   
+    //Calcula la superficie de la ración en su versión de carne
+    public function m2CRacion($raciones){
+        $raciones=intval($raciones);
+        $resultado=$this-> mC * $raciones;
+        return $resultado;
+    }
+    //Calcula la superficie de la ración en una versión Plant-based
+    public function m2VRacion($raciones) {
+        $resultado=$this-> mV * $raciones;
+        return $resultado;
+    }   
+    public function getAhorroA()
+    {
+        return $this->ahorroA;
+    }
+    public function getCo2Ahorro()
+    {
+        return $this->co2Ahorro;
+    }
+    public function getMAhorro()
+    {
+        return $this->mAhorro;
     }
 }
