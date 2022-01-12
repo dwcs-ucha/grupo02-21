@@ -6,12 +6,6 @@
  *@version 01
  */
 include_once "claseCalcAlexia.php";
-session_start();
-if (isset($_SESSION['user'])) {
-    $login = $_SESSION['user']['login'];
-} else {
-    header("Location: ../../Login/signIn.php");
-}
 ?>
 <html>
 
